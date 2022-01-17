@@ -1,9 +1,9 @@
-FEATURES + USERSTORIES
+# FEATURES + USERSTORIES
 
 ------------------------------------------
 
-USER
---------------------------------
+## USER
+
 Feature Create User
 
 As a person I want to create a User to post on the forum
@@ -131,8 +131,8 @@ Scenario: The user want to delete/edit its group post
 ----------------------------------
 
 
-Group Administrator
-----------------------------------
+## Group Administrator
+
 
 **GA = Group Administrator**
 
