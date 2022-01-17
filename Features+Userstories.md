@@ -175,5 +175,52 @@ Scenario: As GA, I regret to remove a User from my group (**Cancel**)
 - Then a Confirm Message will show with Confirm/**Cancel** removal
 - And the User will not be removed from the group
 
+----------------------------------
+
+Feature Delete a group
+
+Scenario: As GA, I want to Delete a group of mine (**Confirmed**)
+
+- Given that the GA has a group
+- And the GA wants to remove a Group
+- And there is a Delete Button next to a group
+- When the GA presses Delete group
+- Then a Confirm Message will show with **Confirm**/Cancel Delete
+- And the group will be deleted
+
+
+Scenario: As GA, I regret to delete a group of mine (**Cancel**)
+
+- Given that the GA has a group
+- And the GA wants to remove a Group
+- And there is a Delete Button next to a group
+- When the GA presses Delete group
+- Then a Confirm Message will show with Confirm/**Cancel** Delete
+- And the GA presses the Cancel, and the group will not be deleted
+
+----------------------------------
+
+Feature Delete post/comment from my group
+
+Scenario: As GA, I want to Delete a post in a group of mine (**Confirmed**)
+
+- Given that the GA has a group
+- And the GA wants to remove a post in a group of mine
+- And there is a Delete Button next to a post
+- When the GA presses Delete post
+- Then a Confirm Message will show with **Confirm**/Cancel Delete
+- And the post will be deleted
+
+
+Scenario: As GA, I regret to delete a post in a group of mine (**Cancel**)
+
+- Given that the GA has a group
+- And the GA wants to remove a post in a group of mine
+- And there is a Delete Button next to a post
+- When the GA presses Delete post
+- Then a Confirm Message will show with Confirm/**Cancel** Delete
+- And the post will be deleted
+
+
 
 ## Administrator
