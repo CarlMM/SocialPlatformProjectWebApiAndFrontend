@@ -118,7 +118,7 @@ Scenario: The User doesnt want to delete its post (Cancel Delete)
 
 Scenario: None will be able to delete my post, other than admins
 
-- Given that the User is loggen in
+- Given that the User is logged in
 - And the User is not the creator of the post
 - Then the **Delete** button will not appear on the post
 
