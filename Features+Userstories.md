@@ -138,11 +138,7 @@ Scenario: The user wants to create a grouppost
 
 -----------------------------------
 
-Feature: Delete/Edit Grouppost
 
-Scenario: The user want to delete/edit its group post
-
-**Look at FEATURE DELETE POST and FEATURE EDIT POST UP ABOVE**
 
 -----------------------------------
 
@@ -236,6 +232,14 @@ Scenario: As GA, I regret to delete a post in a group of mine (**Cancel**)
 - When the GA presses Delete post
 - Then a Confirm Message will show with Confirm/**Cancel** Delete
 - And the post will be deleted
+
+-----------------------------------
+
+Feature: Delete/Edit Grouppost
+
+Scenario: The user want to delete/edit its group post
+
+**Look at FEATURE DELETE POST and FEATURE EDIT POST UP ABOVE**
 
 -----------------------------------
 
