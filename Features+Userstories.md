@@ -48,7 +48,8 @@ Scenario: Edit Post
 - And the User is the creator of the post
 - When the User/Creator presses the Edit button
 - And the User/Creator will be able to Edit its post
-- And 
+- And The User/Creator will be able to save or cancel its edits
+- Then the edits will be saved
 
 ----------------------------------
 
