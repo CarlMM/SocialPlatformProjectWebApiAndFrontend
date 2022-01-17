@@ -131,14 +131,49 @@ Scenario: The user want to delete/edit its group post
 ----------------------------------
 
 
+Group Administrator
+----------------------------------
+
+**GA = Group Administrator**
+
+Feature Invite Users to group
+
+Scenario: As GA, I want to search for Users to invite for the group
+
+- Given that the User is a GA
+- And the GA presses Add User button
+- When the add user button is pressed, a list of all users will be shown
+- Then a list of all users will be shown
 
 
-Gruppadministratörer
+Scenario: As GA, I want to add a User from a list to my group
 
+- Given that the GA have a list of Users
+- And the GA finds the User that the GA wants to invite
+- When the GA presses the add User button next to the User listname
+- Then the User will be added to the group
 
+----------------------------------
 
+Feature Remove Users from group
 
+Scenario: As GA, I want to remove a User from my group (Confirm)
 
+- Given that the GA have a list of Users in the group
+- And the GA wants to remove a specific User
+- And there is a Remove Button available next to the Users name
+- When the GA presses the Remove button
+- Then a Confirm Message will show with **Confirm**/Cancel removal
+- And the User will be removed from the group
+
+Scenario: As GA, I regret to remove a User from my group (Cancel)
+
+- Given that the GA have a list of Users in the group
+- And the GA wants to remove a specific User
+- And there is a Remove Button available next to the Users name
+- When the GA presses the Remove button
+- Then a Confirm Message will show with Confirm/**Cancel** removal
+- And the User will not be removed from the group
 
 
 Administrator
