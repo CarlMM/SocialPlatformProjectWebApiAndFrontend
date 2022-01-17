@@ -31,11 +31,11 @@ As a User, I want to get an error message when my log in failed
 
 Scenario: Wrong input emailaddress/nickname
 
--Given I entered wrong email/nickname
--When I enter emailadress
--And all the others details are correct
--And I submit the form
--Then I should be displayed a message wrong email/nickname format.
+- Given I entered wrong email/nickname
+- When I enter emailadress
+- And all the others details are correct
+- And I submit the form
+- Then I should be displayed a message wrong email/nickname format.
 
 -----------------------------------
 
