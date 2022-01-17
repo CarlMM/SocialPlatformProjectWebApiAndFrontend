@@ -32,9 +32,23 @@ Scenario: Create Post
 
 -----------------------------------
 
+Feature Edit Post
+
+As a User and Creator of a post, I want to edit My post
+
+Scenario: Edit Post
+
+- Given that the User is logged in
+- And the User is the creator of the post
+- When the User/Creator presses the Edit button
+- And the User/Creator will be able to Edit its post
+- And 
+
+----------------------------------
+
 Feature Delete Post
 
-As a User I want to be able to delete my post from the forum
+As a User and Creator of a post, I want to be able to delete my post from the forum
 
 Scenario: Delete Post
 
