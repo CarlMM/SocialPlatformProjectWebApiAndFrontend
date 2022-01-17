@@ -176,4 +176,4 @@ Scenario: As GA, I regret to remove a User from my group (**Cancel**)
 - And the User will not be removed from the group
 
 
-Administrator
+## Administrator
