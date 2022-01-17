@@ -157,7 +157,7 @@ Scenario: As GA, I want to add a User from a list to my group
 
 Feature Remove Users from group
 
-Scenario: As GA, I want to remove a User from my group (Confirm)
+Scenario: As GA, I want to remove a User from my group (**Confirm**)
 
 - Given that the GA have a list of Users in the group
 - And the GA wants to remove a specific User
@@ -166,7 +166,7 @@ Scenario: As GA, I want to remove a User from my group (Confirm)
 - Then a Confirm Message will show with **Confirm**/Cancel removal
 - And the User will be removed from the group
 
-Scenario: As GA, I regret to remove a User from my group (Cancel)
+Scenario: As GA, I regret to remove a User from my group (**Cancel**)
 
 - Given that the GA have a list of Users in the group
 - And the GA wants to remove a specific User
