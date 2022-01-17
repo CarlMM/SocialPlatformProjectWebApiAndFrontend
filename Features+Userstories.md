@@ -15,6 +15,12 @@ Scenario: Create User
 - When the User fill in my peronal info
 - Then a user is created
 
+Scenario: Nickname is already taken.
+- When I enter nickname
+- And all the others details are correct
+- And I submit the form
+- Then I should be displayed a message nickname already in use.
+
 -----------------------------------
 
 Feature Create Post
