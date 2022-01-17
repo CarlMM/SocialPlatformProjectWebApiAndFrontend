@@ -36,6 +36,10 @@ svenskafans.com
 -----------
 
 
+Kanban: Azure DevOps Board
+
+
+
 **GROVPLANERING**
 ---------------
 VECKA 1:
