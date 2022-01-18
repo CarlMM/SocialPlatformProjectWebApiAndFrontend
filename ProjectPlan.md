@@ -64,7 +64,7 @@ Planera databas
 
 Databas klar
 
-
+MÅL ATT VARA KLAR MED ALLT 11/2 15:00
 
 Grovplanering för vecka 2
 
