@@ -36,10 +36,10 @@ User
 ## GROUP ADMIN
 
 
-### Som GA vill jag kunna se en lista av alla medlemmar i denna grupp
+### As a GA, I want to be able to see a list of all group members in my group
 
-- Lista av gruppmedlemmar
-- Scroll-lista till höger/vänster
+- List of all group members
+- The list should be scrollable to the right/left
 
 ### Som GA vill jag kunna lägga till folk grupp
 
