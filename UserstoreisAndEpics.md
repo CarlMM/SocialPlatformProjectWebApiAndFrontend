@@ -1,20 +1,43 @@
 ## USER
 Create User
-- As a user I want to be able to create an account
-- As i user i want to be to log into my account
-- As a user i want to be able to fill in my personal information
-- As a user i want to be able to see my information
-- As a user i want to know if my username have been taken
+1. As a user I want to be able to create an account
+    - Task: Registerpage with input for Username + email + password and register button (FrontEnd)
+    - Task: Create User (Backend)
+    - Task: Input ErrorHandling
 
+2. As i user i want to be to log into my account
+    - Task: Create Login-page with input for username + password and accept button(Frontend)
+    - Task: Successfull log in check (Backend/Frontend (Auth0?))
+    
+3. As a user i want to be able to fill in my personal information
+
+4. As a user i want to be able to see my information
+    - Task: Create Profile page with input for username + email + password (for edit), Save changes button (extra information?) (Frontend)
+    - Task: Edit User (Backend)
+
+5. As a user i want to know if my username have been taken
+    - Task: Pop up window that display if username is taken with (Frontend)
+    - Task: Check username if taken (Backend)
 
 
 User
-- As a user i want to be able to create my own posts
-- As a user i want to be able to Edit or delete my posts
-- As a user i want to be able to edit or delete my profile
-- As a user i want to be able to create group posts
-- As a user i want to be administrator over my created group posts
-- As a user i want to be able to invite users to my group
+1. As a user i want to be able to create my own posts
+    - Task: Create post button on every category page, new post window with title + text input for post + what category + create post button (Frontend)
+    - Task: Create Post, With title, Category, Inputtext (Backend)
+    
+2. As a user i want to be able to Edit or delete my posts
+    - Task: In post page an button to edit post, delete button on post(Frontend)
+    - Task: Edit post Method(Backend)
+    - Task: Delete post Method(Backend)
+
+
+3. As a user i want to be able to edit or delete my profile
+
+4. As a user i want to be able to create group posts
+
+5. As a user i want to be administrator over my created group posts
+
+6. As a user i want to be able to invite users to my group
 
 
 *User stories
