@@ -58,7 +58,7 @@ As a user i want to be able to invite users to my group
 ### As Main Admin I want to have an account so that I can be in control of the website and manage the ?Data? being outputted on the website so that the website follows the guidelines/laws.
 
     User stories 
-    • = Task   
+      
     • As Main Admin I want to be able to log in with my specific credentials. So that I can get access to all the features Main Admin has.
         ◦ Input field for nickname
         ◦ Input field for password
