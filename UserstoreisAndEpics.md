@@ -53,7 +53,7 @@ User
 - "Remove button" beside every user in the list of users
 - Confirm/cancel funktion to the "Remove button"
 
-### Som GA vill jag kunna editera inlägg i mina skapade grupper
+### As a Ga, I want to be able to edit all posts in my groups 
 
 - Lägga till Edit knapp vid varje inlägg
 - Confirm/Cancel funktion vid editering
