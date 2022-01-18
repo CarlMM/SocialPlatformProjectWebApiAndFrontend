@@ -21,6 +21,7 @@ Create User
 
 
 User
+
 6. As a user i want to be able to create my own posts
     - Task: Create post button on every category page, new post window with title + text input for post + what category + create post button (Frontend)
     - Task: Create Post, With title, Category, Inputtext (Backend)
