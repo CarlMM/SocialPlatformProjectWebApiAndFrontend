@@ -16,6 +16,23 @@ User
 - As a user i want to be administrator over my created group posts
 - As a user i want to be able to invite users to my group
 
+
+*User stories
+- Tasks
+*As a user I want to delete post so that I know my post is deleted.
+-    A button that you can click to delete post.
+-     Confirmation window with “Delete post”.
+
+*As a user I do not want to delete my post so that I keep what posted.
+-     A button that you click to cancel to keep post
+-   Confirmation window with “Cancel”
+
+*As a user I want to create a group post so other members can join the discussion.
+-     A button/tab that you click for creating a group
+-     A input field to add the name for the group
+-    “Ok” button for confirming name of group
+
+
 ## GROUP ADMIN
 
 
