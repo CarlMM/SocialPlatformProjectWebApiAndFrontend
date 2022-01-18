@@ -41,17 +41,17 @@ User
 - List of all group members
 - The list should be scrollable to the right/left
 
-### Som GA vill jag kunna lägga till folk grupp
+### As a GA, I want to be bale to add users to my group
 
-- Lägga till Användare till grupp (add funktion)/knapp
-- Sökfuntion - sök efter användare
-- Confirm/cancel funktion till add funktionen
+- "Add button" to add users to to the group
+- Search function to search for users
+- Confirm/cancel funktion to the "Add button"
 
 
-### Som GA vill jag kunna ta bort medlemmar från grupper
+### As a GA, I want to be able to remove users from my group
 
-- Ta bort knapp bredvid listnamn
-- Confirm/Cancel funktion remove funktionen
+- "Remove button" beside every user in the list of users
+- Confirm/cancel funktion to the "Remove button"
 
 ### Som GA vill jag kunna editera inlägg i mina skapade grupper
 
