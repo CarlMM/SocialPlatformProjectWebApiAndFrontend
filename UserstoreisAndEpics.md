@@ -1,4 +1,4 @@
-## (1.0) USER
+## (1.0) USER (PRIO 1)
 Create User
 1. As a user I want to be able to create an account
     - Task: Registerpage with input for Username + email + password and register button (FrontEnd)
@@ -64,7 +64,7 @@ User
     
 
 
-## (2.0) GROUP ADMIN
+## (2.0) GROUP ADMIN (PRIO 3)
 
 
 15. As a GA, I want to be able to see a list of all group members in my group
@@ -100,7 +100,7 @@ User
     - Task: Confirm/Cancel funktion till ta-bort knappen (Frontend)
     - Task: Delete group method (Backend)
 
-## (3.0) MAIN ADMIN
+## (3.0) MAIN ADMIN (PRIO 2)
 
 ### As Main Admin I want to have an account so that I can be in control of the website and manage the ?Data? being outputted on the website so that the website follows the guidelines/laws.
 
