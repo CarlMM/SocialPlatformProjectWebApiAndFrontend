@@ -22,4 +22,26 @@
 - Confirm/cancel funktion till add funktionen
 
 
+### Som GA vill jag kunna ta bort medlemmar från grupper
+
+- Ta bort knapp bredvid listnamn
+- Confirm/Cancel funktion remove funktionen
+
+### Som GA vill jag kunna editera inlägg i mina skapade grupper
+
+- Lägga till Edit knapp vid varje inlägg
+- Confirm/Cancel funktion vid editering
+
+
+### Som GA vill jag kunna ta bort kommentarer/inlägg från min grupp
+
+- Skapa ta-bort knapp vid varje inlägg
+- Confirm/Cancel funktion till ta-bort knappen
+
+
+### Som GA vill jag kunna ta bort min grupp
+
+- Skapa ta-bort knapp för mina skapade grupper på my group flik
+- Confirm/Cancel funktion till ta-bort knappen
+
 ## MAIN ADMIN
