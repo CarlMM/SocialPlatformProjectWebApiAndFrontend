@@ -32,9 +32,15 @@ User
 
 
 3. As a user i want to be able to edit or delete my profile
-
+    - Task: Be able to Edit my Profile Page, Edit Button, editable inputfields (Frontend)
+    - Task: Show Delete my Profile button(Frontend)
+    - Task: Edit and Delete method User (Backend)
+    
 4. As a user i want to be able to create group posts
-
+    - Task: My Groups Tab (Frontend)
+    - Task: On post page group button or label to allow switch between normal post + group post (Frontend)
+    - Task: Create group (Backend)
+    
 5. As a user i want to be administrator over my created group posts
 
 6. As a user i want to be able to invite users to my group
