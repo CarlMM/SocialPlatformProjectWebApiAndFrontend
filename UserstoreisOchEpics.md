@@ -1,11 +1,20 @@
 ## USER
+Create User
+As a user I want to be able to create an account
+as i user i want to be to log into my account
+As a user i want to be able to fill in my personal information
+As a user i want to be able to see my information
+As a user i want to know if my username have been taken
 
 
 
-
-
-
-
+User
+As a user i want to be able to create my own posts
+As a user i want to be able to Edit or delete my posts
+As a user i want to be able to edit or delete my profile
+As a user i want to be able to create group posts
+As a user i want to be administrator over my created group posts
+As a user i want to be able to invite users to my group
 
 ## GROUP ADMIN
 
