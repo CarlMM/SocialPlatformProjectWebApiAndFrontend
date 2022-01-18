@@ -1,4 +1,4 @@
-# FEATURES + USERSTORIES
+# FEATURES GHERKIN
 
 ------------------------------------------
 
