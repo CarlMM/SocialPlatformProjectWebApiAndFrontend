@@ -9,6 +9,14 @@ Daily Standup:
 09.10
 ------------------------
 
+PRELIMINÄRA GRUPPER ARBETSOMRÅDEN
+
+Frontend = Alex, Alexandar och Carl
+
+Backend = Samy, Jony och Thomas
+
+------------------------
+
 3 Levels of administration's
 
 User 1 "User": User can create, edit and remove their own posts and their own profile
@@ -56,7 +64,7 @@ Planera databas
 
 Databas klar
 
-
+MÅL ATT VARA KLAR MED ALLT 11/2 15:00
 
 Grovplanering för vecka 2
 
