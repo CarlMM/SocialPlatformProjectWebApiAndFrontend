@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Auth0.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SocialPlatformProjectWebApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +12,7 @@ namespace SocialPlatformProjectWebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -26,14 +30,21 @@ namespace SocialPlatformProjectWebApi.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            var context = new socialplatformContext();
+            var replies = context.Replies;
+            return null;
+        }
+        [HttpPost]
+        public async Task Login(string returnUrl = "/")
+        {
+            var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
+                // Indicate here where Auth0 should redirect the user after a login.
+                // Note that the resulting absolute Uri must be added to the
+                // **Allowed Callback URLs** settings for the app.
+                .WithRedirectUri(returnUrl)
+                .Build();
+
+            await HttpContext.ChallengeAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
         }
     }
 }

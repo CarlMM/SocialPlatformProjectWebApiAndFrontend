@@ -1,3 +1,4 @@
+using Auth0.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +33,12 @@ namespace SocialPlatformProjectWebApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SocialPlatformProjectWebApi", Version = "v1" });
             });
+            services.AddAuth0WebAppAuthentication(options => {
+            options.Domain = Configuration["Auth0:Domain"];
+            options.ClientId = Configuration["Auth0:ClientId"];
+        });
+
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,13 +48,18 @@ namespace SocialPlatformProjectWebApi
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SocialPlatformProjectWebApi v1"));
+                app.UseSwaggerUI(c => {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "SocialPlatformProjectWebApi v1");
+                    
+                    });
+                
             }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
