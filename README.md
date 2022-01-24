@@ -1,4 +1,7 @@
 # SocialPlatformProjectWebApiAndFrontend
+
+Fick göra ett nytt projekt pga klydd
+
 SocialPlatfromProject with both backend web api and frontend
 
 
