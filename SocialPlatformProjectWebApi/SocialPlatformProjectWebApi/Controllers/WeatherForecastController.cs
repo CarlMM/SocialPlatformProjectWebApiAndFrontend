@@ -27,12 +27,12 @@ namespace SocialPlatformProjectWebApi.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet] 
+        public IEnumerable<Reply> Get()
         {
-            var context = new socialplatformContext();
-            var replies = context.Replies;
-            return null;
+            var context = new SocialplatformContext();
+            return context.Replies;
+            
         }
         [HttpPost]
         public async Task Login(string returnUrl = "/")

@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace SocialPlatformProjectWebApi.Models
 {
-    public class socialplatformContext : DbContext
+    public class SocialplatformContext : DbContext
     {
-        public socialplatformContext()
+        public SocialplatformContext()
         {
         }
 
-        public socialplatformContext(DbContextOptions<socialplatformContext> options)
+        public SocialplatformContext(DbContextOptions<SocialplatformContext> options)
             : base(options)
         {
         }
@@ -33,6 +33,7 @@ namespace SocialPlatformProjectWebApi.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
             modelBuilder.Entity<Category>(entity =>

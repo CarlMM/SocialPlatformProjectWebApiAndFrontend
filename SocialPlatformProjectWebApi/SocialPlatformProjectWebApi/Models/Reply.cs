@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SocialPlatformProjectWebApi.Models
 {
-    public partial class Reply
+    public class Reply
     {
         public long Id { get; set; }
         public string Text { get; set; }

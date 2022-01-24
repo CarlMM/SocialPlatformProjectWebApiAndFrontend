@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SocialPlatformProjectWebApi.Models
 {
-    public partial class ThreadUser
+    public class ThreadUser
     {
         public long Id { get; set; }
         public long ThreadId { get; set; }
