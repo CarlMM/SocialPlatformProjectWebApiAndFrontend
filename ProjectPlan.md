@@ -62,7 +62,7 @@ Planera arbetsområden
 
 Planera databas
 
-Databas klar
+Databas PÅBÖRJA
 
 MÅL ATT VARA KLAR MED ALLT 11/2 15:00
 
@@ -71,6 +71,13 @@ Grovplanering för vecka 2
 ----------------
 VECKA 2:
 
+FRONTEND + BACKEND DESIGN BÖRJAR
+
+LISTA UT AUTH0
+
+DATABAS FORTSÄTTNING
+
+----------------
 
 VECKA 3:
 
