@@ -2,21 +2,23 @@
   <main>
       <Navbar/>
       <div>
-       <Body/>
+        <Category/>
       </div>
-    
+      <Footer/>
   </main>
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue'
-import Body from './components/Body.vue'
+import Category from './components/Category.vue'
+import Footer from './components/Footer.vue'
 
 export default{
   name: "App",
   components: {
     Navbar,
-    Body,
+    Category,
+    Footer,
   },
 }
 
@@ -24,5 +26,6 @@ export default{
 
 
 <style>
+
 
 </style>

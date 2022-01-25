@@ -1,46 +1,34 @@
 <template>
-<header id="header">
-				<div class="header-top">
-					<div class="container">
-			  		<div class="row align-items-center">
-			  			<div class="col-lg-6 col-sm-6 col-6 header-top-left">
-			  							
-			  			</div>
-			  			<div class="col-lg-6 col-sm-6 col- header-top-right">
-							<div class="nav-menu">
+      <header id="header">
+            <div class="header-top">
+					    <div class="container">
+			  		    <div class="row align-items-center">
+			  			    <div class="col-lg-6 col-sm-6 col-6 header-top-left">
+                    <div id="logo">
+                        <router-link to="/"><img src="/src/assets/Group_2.jpg" alt="" title="" ></router-link>
+                    </div>
+			  			    </div>
+			  			      <div class="col-lg-6 col-sm-6 col- header-top-right">
+							        <div class="nav-menu">
                         <div v-if="!loggedIn">
-                            <a href=""><router-link to="/login">Log in</router-link></a>
                             <a href="#"><router-link to="/registration">Register</router-link></a>
+                            <a href=""><router-link to="/login">Log in</router-link></a>
                         </div>
                         <div v-if="loggedIn">
                           <a  href="" @click="logout()">Log out</a>
                           <a  href=""><router-link to="/Profile">Profile</router-link></a>
                         </div>
-							</div>
+						          	</div>
                         <div id="user" v-if="loggedIn">
                           <ul>
                               <li ><a>{{user.email}}</a></li>
                          </ul>
-                        </div>
+                    </div>
 			  			</div>
 			  		</div>			  					
 					</div>
 				</div>
-				<div class=" main-menu">
-					<div class="row align-items-center justify-content-between d-flex">
-				      <div id="logo">
-                <router-link to="/"><img src="/src/assets/Group_2.jpg" alt="" title="" height="100"></router-link>
-                  <!-- <nav id="nav-menu-container">
-                    <ul class="nav-menu">
-                      <li><router-link to="/News">Computers</router-link></li>
-                      <li><router-link to="/Tourism">Fishing</router-link></li>
-                      <li><router-link to="/Contact">Studying</router-link></li>
-                    </ul>
-                  </nav>#nav-menu-container					      		   -->
-				      </div>
-					</div>
-				</div>
-			</header><!-- #header -->
+      </header>
 </template>
 
 <script>
@@ -56,6 +44,10 @@
 
 
 <style scoped>
+
+img {
+    height: 100px;
+}
 
 #user{
   color:rgb(204, 133, 52);
@@ -93,7 +85,7 @@ a {
 .header-top {
   font-size: 12px;
   padding: 6px 0px;
-  background-color: rgb(165, 47, 47);
+  background-color: rgb(71, 71, 71);
 }
 
 .header-top a {
@@ -108,16 +100,6 @@ a {
   color: #b16b2b;
 }
 
-.header-top ul li {
-  display: inline-block;
-  margin-right: 15px;
-}
-
-/* @media (max-width: 414px) {
-  .header-top ul li {
-    margin-right: 0px;
-  }
-} */
 
 .header-top .header-top-left a {
   margin-right: 8px;
@@ -140,76 +122,6 @@ a {
   color: #b16b2b;
 }
 
-.main-menu {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background: #33393a;
-  padding-left: 15px;
-  padding-right: 15px;
-  border-bottom:solid 2px;
-  border-color:black;
-}
-
-#header {
-  position:absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  transition: all 0.5s;
-  z-index: 997;
-} 
-
-
-/*--------------------------------------------------------------
-# Navigation Menu
---------------------------------------------------------------*/
-/* Nav Menu Essentials */
-.nav-menu, .nav-menu * {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.nav-menu ul {
-  position: absolute;
-  display: none;
-  top: 100%;
-  right: 0;
-  z-index: 99;
-}
-
-.nav-menu li {
-  position: relative;
-  white-space: nowrap;
-}
-
-.nav-menu > li {
-  float: left;
-}
-
-.nav-menu li:hover > ul,
-.nav-menu li.sfHover > ul {
-  display: block;
-}
-
-.nav-menu ul ul {
-  top: 0;
-  right: 100%;
-}
-
-.nav-menu ul li {
-  min-width: 180px;
-}
-
-
-
-/* Nav Meu Container */
-/* @media (max-width: 768px) {
-  #nav-menu-container {
-    display: none;
-  }
-  
-} */
 
 /* Nav Meu Styling */
 .nav-menu a {
