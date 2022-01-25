@@ -1,9 +1,17 @@
 <template>
-  <div>
-    <router-view/>
-  </div>
+    <div>
+        <createPost />
+        <router-view />
+    </div>
 </template>
 
-<style>
+<script>
+import createPost from './components/CreatePost.vue'
+export default {
+    components: {
+        createPost,
+    },
+}
+</script>
 
-</style>
+<style></style>
