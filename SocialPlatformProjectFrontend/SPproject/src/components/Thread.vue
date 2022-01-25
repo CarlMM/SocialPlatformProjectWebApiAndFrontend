@@ -1,5 +1,5 @@
- <template>
-       <div class="container">
+<template>
+  <div class="container">
          <div class="subform">
            <div class="subforum-title">
               <h1>General Information</h1>
@@ -17,7 +17,7 @@
                   <a class="post-link" href=""><router-link to="/">Save</router-link></a>
               </div>
          </div>
-       </div>
+  </div>
 </template>
 
 <script>
@@ -56,10 +56,12 @@
 
   /*Body*/
   .container{
-    margin: 20px;
+    /* margin: 20px; */
+    width: 500vh;
     padding:20px;
     background: rgb(173, 173, 173);
     border-radius: 5px;
+    
   }
 
   /* .div-container{

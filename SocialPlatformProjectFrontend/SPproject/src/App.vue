@@ -3,10 +3,10 @@
       <Navbar/>
       <div>
         <Category/>
-        <div id="Thread-control">
+        <!-- <div id="Thread-control">
           <Thread/>
-        </div>
-         <createPost />
+        </div> -->
+         <!-- <createPost /> -->
          <router-view />
       </div>
       <Footer/>
