@@ -3,14 +3,14 @@
     <div class="navbar">
         <nav class="navigation">
             <ul class="nav-menu">
-                <li class="nav-item"><router-link to="/Computer">Computer</router-link></li>
-            <li class="nav-item"><router-link to="/Fishing">Fishing</router-link></li>
                 <li class="nav-item"><router-link to="/Studies">Studies</router-link></li>
+            <li class="nav-item"><router-link to="/Fishing">Fishing</router-link></li>
+                <li class="nav-item"><router-link to="/Computer">Computer</router-link></li>
             </ul>
         </nav>
-        <div class="Thread-position">
+        <!-- <div class="Thread-position">
             <Thread/>
-        </div>
+        </div> -->
     </div>
   </header>
 </template>
@@ -33,7 +33,7 @@ export default {
 }
 
 .navbar {
-  margin: 10px;
+  margin: 20px;
   display:flex;
   align-items: center;
   background: #33393a;
@@ -62,39 +62,8 @@ export default {
   color: #fff;
 }
 
-/* Nav Meu Styling */
-/* .nav-menu a {
-  padding: 0 8px 0px 8px;
-  text-decoration: none;
-  display: inline-block;
-  color: rgb(255, 255, 255);
-  font-weight: bolder;
-  font-size: 20px;
-  text-transform: uppercase;
-  outline: none;
-} */
-
-
-/* .nav-menu ul {
-  margin: 22px 0 0 0;
-  padding: 0;
-  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-  background: rgb(141, 17, 17);
-} */
-
-/* .nav-menu > li {
-  display: inline-block;
+.Thread-position{
 }
-
-.nav-menu > li > a{
-    display:block;
-    padding: 20px 15px;
-    text-align: center;
-}
-
-.nav-menu li:hover > a {
-  color: #ac5317;
-} */
 
 
 </style>
