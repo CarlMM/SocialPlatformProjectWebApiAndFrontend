@@ -1,34 +1,67 @@
 <template>
   <header id="header">
     <div class="header-top">
-            <div id="logo">
-              <router-link to="/"
-                ><img src="/src/assets/Group_2.jpg" alt="" title=""
-              /></router-link>
-            </div>
-          </div>
-          <div class="authDiv">
-            <div v-if="!AuthState.loading">
-              <div v-if="!AuthState.isAuthenticated">
-                <button @click="login()" class="btn btn-primary">Login</button>
-              </div>
+      <div id="logo">
+        <router-link to="/">
+          <img src="/src/assets/Group_2.jpg" alt="" title="" />
+        </router-link>
+      </div>
+    </div>
+    <div class="authDiv">
+      <div v-if="!AuthState.loading">
+        <div v-if="!AuthState.isAuthenticated">
+          <button @click="login()" class="btn btn-primary">Login</button>
+        </div>
 
-              <div v-else>
-                <p>
-                  Welcome to VueAuth <strong>{{ AuthState.user.name }}</strong>
-                </p>
-                <button @click="logout()" class="btn btn-secondary">
-                  Logout
-                </button>
-              </div>
+        <div v-else>
+          <div>
+            <div>
+              <p>
+               Hello <strong>{{ AuthState.user.nickname }}!</strong>
+              </p>
             </div>
+            <div>
 
-            <div v-else>Loading ...</div>
+            <button @click="logout()" class="btn btn-secondary">Logout</button>
+            </div>
+            <!-- <div class="menu-item">
+              <li @mouseover="listOne = true" @mouseleave="listOne = false">
+                <router-link to="/">{{ AuthState.user.nickname }}</router-link>
+                <transition name="fade">
+                  <ul v-if="listOne">
+                    <li>
+                      <router-link to="/">My Profle</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/">My Posts</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/">My Groups</router-link>
+                    </li>
+                  </ul>
+                </transition>
+              </li>
+            </div> -->
           </div>
-      
-    
+        </div>
+      </div>
+
+      <div v-else>Loading ...</div>
+    </div>
   </header>
 </template>
+
+
+
+<script>
+export default {
+  // data() {
+  //   return {
+  //     listOne: false,
+  //   };
+  // },
+};
+</script>
 
 <script setup>
 import { useAuth0, AuthState } from "../auth0/useAuth0.js";
@@ -36,12 +69,60 @@ import { useAuth0, AuthState } from "../auth0/useAuth0.js";
 const { login, logout, initAuth } = useAuth0(AuthState);
 
 initAuth();
-
 </script>
 
 
 
 <style>
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: #4caf50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
 /* img {
   height: 100px;
 }
