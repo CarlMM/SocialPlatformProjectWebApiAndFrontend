@@ -17,31 +17,17 @@
           <div>
             <div>
               <p>
-               Hello <strong>{{ AuthState.user.nickname }}!</strong>
+               Hello <strong>{{AuthState.user.nickname}}!</strong>
+                
+               <img :src="AuthState.user.picture" id="avatarPic">
               </p>
+               
+               
             </div>
             <div>
 
             <button @click="logout()" class="btn btn-secondary">Logout</button>
             </div>
-            <!-- <div class="menu-item">
-              <li @mouseover="listOne = true" @mouseleave="listOne = false">
-                <router-link to="/">{{ AuthState.user.nickname }}</router-link>
-                <transition name="fade">
-                  <ul v-if="listOne">
-                    <li>
-                      <router-link to="/">My Profle</router-link>
-                    </li>
-                    <li>
-                      <router-link to="/">My Posts</router-link>
-                    </li>
-                    <li>
-                      <router-link to="/">My Groups</router-link>
-                    </li>
-                  </ul>
-                </transition>
-              </li>
-            </div> -->
           </div>
         </div>
       </div>
@@ -55,11 +41,11 @@
 
 <script>
 export default {
-  // data() {
-  //   return {
-  //     listOne: false,
-  //   };
-  // },
+   data() {
+     return {
+       listOne: false,
+     };
+  },
 };
 </script>
 
@@ -69,6 +55,11 @@ import { useAuth0, AuthState } from "../auth0/useAuth0.js";
 const { login, logout, initAuth } = useAuth0(AuthState);
 
 initAuth();
+
+
+
+
+
 </script>
 
 
