@@ -3,7 +3,6 @@
       <Navbar/>
       <div>
         <Category/>
-       
         <div id="Thread-control">
           <Thread/>
         </div>
