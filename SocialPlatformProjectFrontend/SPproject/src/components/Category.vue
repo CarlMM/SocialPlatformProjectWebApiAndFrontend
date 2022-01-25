@@ -16,13 +16,13 @@
 </template>
 
 <script>
-import Thread from './Thread.vue'
+// import Thread from './Thread.vue'
 
-export default {
-    components: {
-        Thread,
-    },
-}
+// export default {
+//     components: {
+//         Thread,
+//     },
+// }
 </script>
 
 <style scoped>
