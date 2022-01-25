@@ -5,7 +5,7 @@
             <ul class="nav-menu">
                 <li class="nav-item"><router-link to="/Studies">Studies</router-link></li>
             <li class="nav-item"><router-link to="/Fishing">Fishing</router-link></li>
-                <li class="nav-item"><router-link to="/Computer">Computer</router-link></li>
+                <li class="nav-item"><router-link to="/Computers">Computer</router-link></li>
             </ul>
         </nav>
         <!-- <div class="Thread-position">

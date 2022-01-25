@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '/src/components/Home.vue'
 import Post from '/src/components/Post.vue'
+import Computers from '/src/components/CategoryFolderPages/Computers.vue'
+import Fishing from '/src/components/CategoryFolderPages/Fishing.vue'
+import Studies from '/src/components/CategoryFolderPages/Studies.vue'
 
 const routes = [
     {
@@ -12,6 +15,21 @@ const routes = [
         path: '/Post',
         name: 'Post',
         component: Post,
+    },
+    {
+        path: '/Fishing',
+        name: 'Fishing',
+        component: Fishing,
+    },
+    {
+        path: '/Computers',
+        name: 'Computers',
+        component: Computers,
+    },
+    {
+        path: '/Studies',
+        name: 'Studies',
+        component: Studies,
     },
 ]
 
