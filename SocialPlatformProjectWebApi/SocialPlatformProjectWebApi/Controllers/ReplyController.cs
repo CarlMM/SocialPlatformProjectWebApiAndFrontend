@@ -14,9 +14,9 @@ namespace SocialPlatformProjectWebApi.Controllers
     [Route("[controller]")]
     public class ReplyController : Controller
     {
-        private readonly ReplyService _replyService;
+        private readonly IReplyService _replyService;
 
-        public ReplyController(ReplyService replyService)
+        public ReplyController(IReplyService replyService)
         {
             _replyService = replyService;
         }

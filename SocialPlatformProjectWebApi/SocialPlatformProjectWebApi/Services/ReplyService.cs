@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace SocialPlatformProjectWebApi.Services
 {
-    public class ReplyService : Controller
+    public class ReplyService : IReplyService
     {
-        private readonly ReplyRepository _replyRepository;
+        private readonly IReplyRepository _replyRepository;
 
-        public ReplyService(ReplyRepository replyRepository) 
+        public ReplyService(IReplyRepository replyRepository)
         {
             _replyRepository = replyRepository;
         }
 
         public IEnumerable<Reply> GetReplies()
         {
-            var template = GetReplies();
+            var template = _replyRepository.GetReplies();
 
             return template;
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SocialPlatformProjectWebApi.Repository
 {
-    public class ReplyRepository : Controller
+    public class ReplyRepository : IReplyRepository
     {
         private readonly SocialplatformContext _dbContext;
 
