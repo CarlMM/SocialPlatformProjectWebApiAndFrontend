@@ -1,65 +1,63 @@
 <template>
-      <header id="header">
-            <div class="header-top">
-					    <div class="container">
-			  		    <div class="row align-items-center">
-			  			    <div class="col-lg-6 col-sm-6 col-6 header-top-left">
-                    <div id="logo">
-                        <router-link to="/"><img src="/src/assets/Group_2.jpg" alt="" title="" ></router-link>
-                    </div>
-			  			    </div>
-			  			      <div class="col-lg-6 col-sm-6 col- header-top-right">
-							        <div class="nav-menu">
-                        <div v-if="!loggedIn">
-                            <a href="#"><router-link to="/registration">Register</router-link></a>
-                            <a href=""><router-link to="/login">Log in</router-link></a>
-                        </div>
-                        <div v-if="loggedIn">
-                          <a  href="" @click="logout()">Log out</a>
-                          <a  href=""><router-link to="/Profile">Profile</router-link></a>
-                        </div>
-						          	</div>
-                        <div id="user" v-if="loggedIn">
-                          <ul>
-                              <li ><a>{{user.email}}</a></li>
-                         </ul>
-                    </div>
-			  			</div>
-			  		</div>			  					
-					</div>
-				</div>
-      </header>
+  <header id="header">
+    <div class="header-top">
+            <div id="logo">
+              <router-link to="/"
+                ><img src="/src/assets/Group_2.jpg" alt="" title=""
+              /></router-link>
+            </div>
+          </div>
+          <div class="authDiv">
+            <div v-if="!AuthState.loading">
+              <div v-if="!AuthState.isAuthenticated">
+                <button @click="login()" class="btn btn-primary">Login</button>
+              </div>
+
+              <div v-else>
+                <p>
+                  Welcome to VueAuth <strong>{{ AuthState.user.name }}</strong>
+                </p>
+                <button @click="logout()" class="btn btn-secondary">
+                  Logout
+                </button>
+              </div>
+            </div>
+
+            <div v-else>Loading ...</div>
+          </div>
+      
+    
+  </header>
 </template>
 
-<script>
-// import { defineComponent } from '@vue/composition-api'
+<script setup>
+import { useAuth0, AuthState } from "../auth0/useAuth0.js";
 
-// export default defineComponent({
-//     setup() {
-        
-//     },
-// })
+const { login, logout, initAuth } = useAuth0(AuthState);
+
+initAuth();
+
 </script>
 
 
 
-<style scoped>
-
-img {
-    height: 100px;
+<style>
+/* img {
+  height: 100px;
 }
 
-#user{
-  color:rgb(204, 133, 52);
-  padding-right:25px;
+#user {
+  color: rgb(204, 133, 52);
+  padding-right: 25px;
 }
 
-nav#nav-menu-container{
-  display:inline-block;
-  padding-top:10px;
+nav#nav-menu-container {
+  display: inline-block;
+  padding-top: 10px;
 }
 
-ol, ul {
+ol,
+ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -82,6 +80,10 @@ a {
 
 /*Header*/
 
+/* .header{
+  display: inline-block;
+}
+
 .header-top {
   font-size: 12px;
   padding: 6px 0px;
@@ -99,7 +101,6 @@ a {
 .header-top a:hover {
   color: #b16b2b;
 }
-
 
 .header-top .header-top-left a {
   margin-right: 8px;
@@ -122,9 +123,8 @@ a {
   color: #b16b2b;
 }
 
-
 /* Nav Meu Styling */
-.nav-menu a {
+/* .nav-menu a {
   padding: 0 8px 0px 8px;
   text-decoration: none;
   display: inline-block;
@@ -134,7 +134,6 @@ a {
   text-transform: uppercase;
   outline: none;
 }
-
 
 .nav-menu li:hover > a {
   color: #aa4821;
@@ -171,6 +170,5 @@ a {
 .nav-menu ul ul {
   margin-right: 10px;
   margin-top: 0;
-}
-
+} */
 </style>
