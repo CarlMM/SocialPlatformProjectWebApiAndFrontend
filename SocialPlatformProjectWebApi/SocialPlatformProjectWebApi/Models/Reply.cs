@@ -13,6 +13,6 @@ namespace SocialPlatformProjectWebApi.Models
         public long? UserId { get; set; }
         public long ThreadId { get; set; }
 
-        public virtual Thread Thread { get; set; }
+        public virtual JsonResult Thread { get; set; }
     }
 }

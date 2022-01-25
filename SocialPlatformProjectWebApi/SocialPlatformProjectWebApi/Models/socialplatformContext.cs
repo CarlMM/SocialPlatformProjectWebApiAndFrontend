@@ -19,7 +19,7 @@ namespace SocialPlatformProjectWebApi.Models
 
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Reply> Replies { get; set; }
-        public virtual DbSet<Thread> Threads { get; set; }
+        public virtual DbSet<JsonResult> Threads { get; set; }
         public virtual DbSet<ThreadUser> ThreadUsers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -70,7 +70,7 @@ namespace SocialPlatformProjectWebApi.Models
                     .HasConstraintName("FK_Reply_Thread");
             });
 
-            modelBuilder.Entity<Thread>(entity =>
+            modelBuilder.Entity<JsonResult>(entity =>
             {
                 entity.ToTable("Thread");
 
