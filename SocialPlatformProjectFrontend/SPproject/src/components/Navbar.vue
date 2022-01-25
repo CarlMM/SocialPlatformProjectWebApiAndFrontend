@@ -1,65 +1,144 @@
 <template>
-      <header id="header">
-            <div class="header-top">
-					    <div class="container">
-			  		    <div class="row align-items-center">
-			  			    <div class="col-lg-6 col-sm-6 col-6 header-top-left">
-                    <div id="logo">
-                        <router-link to="/"><img src="/src/assets/Group_2.jpg" alt="" title="" ></router-link>
-                    </div>
-			  			    </div>
-			  			      <div class="col-lg-6 col-sm-6 col- header-top-right">
-							        <div class="nav-menu">
-                        <div v-if="!loggedIn">
-                            <a href="#"><router-link to="/registration">Register</router-link></a>
-                            <a href=""><router-link to="/login">Log in</router-link></a>
-                        </div>
-                        <div v-if="loggedIn">
-                          <a  href="" @click="logout()">Log out</a>
-                          <a  href=""><router-link to="/Profile">Profile</router-link></a>
-                        </div>
-						          	</div>
-                        <div id="user" v-if="loggedIn">
-                          <ul>
-                              <li ><a>{{user.email}}</a></li>
-                         </ul>
-                    </div>
-			  			</div>
-			  		</div>			  					
-					</div>
-				</div>
-      </header>
+  <header id="header">
+    <div class="header-top">
+      <div id="logo">
+        <router-link to="/">
+          <img src="/src/assets/Group_2.jpg" alt="" title="" />
+        </router-link>
+      </div>
+    </div>
+    <div class="authDiv">
+      <div v-if="!AuthState.loading">
+        <div v-if="!AuthState.isAuthenticated">
+          <button @click="login()" class="btn btn-primary">Login</button>
+        </div>
+
+        <div v-else>
+          <div>
+            <div>
+              <p>
+               Hello <strong>{{ AuthState.user.nickname }}!</strong>
+              </p>
+            </div>
+            <div>
+
+            <button @click="logout()" class="btn btn-secondary">Logout</button>
+            </div>
+            <!-- <div class="menu-item">
+              <li @mouseover="listOne = true" @mouseleave="listOne = false">
+                <router-link to="/">{{ AuthState.user.nickname }}</router-link>
+                <transition name="fade">
+                  <ul v-if="listOne">
+                    <li>
+                      <router-link to="/">My Profle</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/">My Posts</router-link>
+                    </li>
+                    <li>
+                      <router-link to="/">My Groups</router-link>
+                    </li>
+                  </ul>
+                </transition>
+              </li>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div v-else>Loading ...</div>
+    </div>
+  </header>
 </template>
 
-<script>
-// import { defineComponent } from '@vue/composition-api'
 
-// export default defineComponent({
-//     setup() {
-        
-//     },
-// })
+
+<script>
+export default {
+  // data() {
+  //   return {
+  //     listOne: false,
+  //   };
+  // },
+};
+</script>
+
+<script setup>
+import { useAuth0, AuthState } from "../auth0/useAuth0.js";
+
+const { login, logout, initAuth } = useAuth0(AuthState);
+
+initAuth();
 </script>
 
 
 
-<style scoped>
-
-img {
-    height: 100px;
+<style>
+/* Style The Dropdown Button */
+.dropbtn {
+  background-color: #4caf50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
 }
 
-#user{
-  color:rgb(204, 133, 52);
-  padding-right:25px;
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
 }
 
-nav#nav-menu-container{
-  display:inline-block;
-  padding-top:10px;
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
-ol, ul {
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+/* img {
+  height: 100px;
+}
+
+#user {
+  color: rgb(204, 133, 52);
+  padding-right: 25px;
+}
+
+nav#nav-menu-container {
+  display: inline-block;
+  padding-top: 10px;
+}
+
+ol,
+ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -82,6 +161,10 @@ a {
 
 /*Header*/
 
+/* .header{
+  display: inline-block;
+}
+
 .header-top {
   font-size: 12px;
   padding: 6px 0px;
@@ -99,7 +182,6 @@ a {
 .header-top a:hover {
   color: #b16b2b;
 }
-
 
 .header-top .header-top-left a {
   margin-right: 8px;
@@ -122,9 +204,8 @@ a {
   color: #b16b2b;
 }
 
-
 /* Nav Meu Styling */
-.nav-menu a {
+/* .nav-menu a {
   padding: 0 8px 0px 8px;
   text-decoration: none;
   display: inline-block;
@@ -134,7 +215,6 @@ a {
   text-transform: uppercase;
   outline: none;
 }
-
 
 .nav-menu li:hover > a {
   color: #aa4821;
@@ -171,6 +251,5 @@ a {
 .nav-menu ul ul {
   margin-right: 10px;
   margin-top: 0;
-}
-
+} */
 </style>
