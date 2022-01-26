@@ -1,22 +1,20 @@
 <template>
   <header>
     <div class="navbar">
-      <nav class="navigation">
+      <!-- <nav class="navigation">
         <ul class="nav-menu" v-for="categories in getCategories" :key="categories.Id">
           <li class="nav-item"><router-link :to="`/${categories.Title}/${categories.Id}`">{{ categories.Title }}</router-link></li>
         </ul>
-      </nav>
+      </nav> -->
       
-        <!-- <nav class="navigation">
-            <ul class="nav-menu">
-                <li class="nav-item"><router-link to="/Studies/3">Studies</router-link></li>
+        <nav class="navigation">
+            <ul class="nav-menu" v-for="categories in getCategories" :key="categories.Id">
+              <li class="nav-item"><router-link :to="`/${categories.Title}/${categories.Id}`">{{ categories.Title }}</router-link></li>
+                <!-- <li class="nav-item"><router-link to="/Studies/3">Studies</router-link></li>
                 <li class="nav-item"><router-link to="/Fishing/2">Fishing</router-link></li>
-                <li class="nav-item"><router-link to="/Computers/{{id}}">Computer</router-link></li>
+                <li class="nav-item"><router-link to="/Computers/{{id}}">Computer</router-link></li> -->
             </ul>
-        </nav> -->
-        <!-- <div class="Thread-position">
-            <Thread/>
-        </div> -->
+        </nav>
     </div>
   </header>
 </template>
@@ -56,8 +54,6 @@ export default{
 }
 
 .navigation{
-  padding: 10px;
-  width: 65%;
   display: inline-block;
   max-height: 12vh;
   margin-right: 10px;
@@ -69,13 +65,7 @@ export default{
 }
 
 .nav-menu a{
-  float:right;
-  display:block;
-  text-align:center;
-  margin-inline: 30px;
-  font-size: 25px;
-  padding: 10px;
   color: #fff;
-}
+} 
 
 </style>
