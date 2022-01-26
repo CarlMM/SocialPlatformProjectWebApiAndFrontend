@@ -1,5 +1,6 @@
 <template>
-  <header>
+<div>
+  <header class="header">
     <div class="navbar">
         <nav class="navigation">
             <ul class="nav-menu" v-for="categories in getCategories" :key="categories.Id">
@@ -11,6 +12,12 @@
         </nav>
     </div>
   </header>
+  <div class="create-post">
+     <!-- <a href=""></a> -->
+     <img src="/src/assets/Group_2.jpg" alt="">
+     <input class="create-input" type="text" name="createPost" placeholder="Create Post">
+  </div>
+</div>
 </template>
 
 <script>
@@ -23,28 +30,25 @@ export default{
   }
 }
 
-
-// import Thread from './Thread.vue'
-
-// export default {
-//     components: {
-//         Thread,
-//     },
-// }
 </script>
 
 <style scoped>
-/*navbar*/
+
 
 .header{
-}
-
-.navbar {
   margin: 20px;
   display:flex;
   align-items: center;
   background: #33393a;
+  border-radius: 5px;
 }
+.navbar {
+ 
+}
+
+.nav-menu a{
+  color: #fff;
+} 
 
 .navigation{
   max-height: 12vh;
@@ -55,20 +59,30 @@ export default{
   list-style-type: none;
   overflow: hidden;
 }
+/* 
+.btn{
+  display:inline-block;
+  background: rgb(129, 129, 129);
+  color: white;
+} */
 
-ul{
-  /* background: aquamarine; */
-  width: 400px; 
-	margin-left: auto; 
-	margin-right: auto; 
+.create-post{
+  padding: 20px;
+  margin: 20px;
+  background:#33393a;
+  border-radius: 5px;
 }
 
-li{
-  
+.create-post > img{
+  height: 6vh;
+  width: 3.5vw;
+  margin-right:20px;
 }
 
-.nav-menu a{
-  color: #fff;
-} 
+.create-post > input{
+  width: 60vw;
+  height: 5vh;
+}
+
 
 </style>

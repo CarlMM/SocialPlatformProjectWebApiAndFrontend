@@ -37,7 +37,5 @@ export default{
 
 <style>
 
-#Thread-control{
-}
 
 </style>

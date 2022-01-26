@@ -1,5 +1,10 @@
 <template>
   <div class="container">
+      <div class="category">
+          <div class="category-title">
+              <h1 >Category One</h1>
+          </div>
+      </div>
        <div v-for="threads in GetThreads" :key="threads.id" class="subforum-description">
          <div class="subforum-row">
          <div class="subforum-icon subforum-column center" > 
@@ -41,7 +46,7 @@ export default{
   computed:{
     GetThreads(){
       return this.$store.state.Thread
-    }
+    },
   }
 }
 
@@ -120,5 +125,17 @@ export default{
   .subforum-icon{
     font-size:30px;
   }
-   
+
+  /*Category*/
+   .category{
+   margin-top: 20px;
+  }
+
+.category-title{
+    background-color:rgb(119, 119, 119);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 4px;
+    margin-bottom:20px;
+}
 </style>

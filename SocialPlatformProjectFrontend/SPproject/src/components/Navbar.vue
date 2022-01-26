@@ -16,13 +16,13 @@
                       <div class="authDiv">
                           <div v-if="!AuthState.loading">
                               <div v-if="!AuthState.isAuthenticated">
-                                  <button @click="login()">Log in</button>
+                                  <a href="#" @click.prevent="login()">Log in - Register</a>
                               </div>
                               <div v-else>
                                   <div>
                                       <p>{{AuthState.user.nickname}}
                                         <img :src="AuthState.user.picture" alt="AvatarPic">
-                                        <button @click="logout()" >Logout</button>
+                                        <a href="#" @click.prevent="logout()" >Logout</a>
                                       </p>
                                   </div>
                               </div>
