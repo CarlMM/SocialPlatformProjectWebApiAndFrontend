@@ -1,6 +1,12 @@
 <template>
   <div class="container">
-         <div class="subform">
+       <div v-for="threads in GetThreads" :key="threads.id">  
+         <h1>{{ threads.Title }}</h1>
+         <h3> {{ threads.Text }} </h3>
+       </div>
+  </div>
+
+  <!-- <div class="subform">
            <div class="subforum-title">
               <h1>General Information</h1>
            </div>
@@ -16,18 +22,19 @@
                   <a class="post-link" href=""><router-link to="/Post">Reply</router-link></a>
                   <a class="post-link" href=""><router-link to="/">Save</router-link></a>
               </div>
-         </div>
-  </div>
+         </div> -->
 </template>
 
 <script>
-// import { defineComponent } from '@vue/composition-api'
 
-// export default defineComponent({
-//     setup() {
-        
-//     },
-// })
+export default{
+  computed:{
+    GetThreads(){
+      return this.$store.state.Thread
+    }
+  }
+}
+
 </script>
 
 
@@ -53,7 +60,7 @@
   }
 
   h1{
-    font-size: 16px;
+    /* font-size: 16px; */
     font-weight: bolder;
     color: white;
   }
