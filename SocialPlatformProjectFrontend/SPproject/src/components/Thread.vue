@@ -1,28 +1,38 @@
 <template>
   <div class="container">
-       <div v-for="threads in GetThreads" :key="threads.id">  
-         <h1>{{ threads.Title }}</h1>
-         <h3> {{ threads.Text }} </h3>
+       <div v-for="threads in GetThreads" :key="threads.id" class="subforum-description">
+         <div class="subforum-row">
+         <div class="subforum-icon subforum-column center" > 
+                    <i class="fas fa-laptop"></i>
+                </div>
+         <div class="subforum-description subforum-column" >
+            <h1>{{ threads.Title }} <small>Posted by <a href="">User</a> 15 Jan 2022</small></h1>
+            <p> {{ threads.Text }} </p>
+            <a class="post-link" href=""><router-link to="/Post">Reply</router-link></a>
+            <a class="post-link" href=""><router-link to="/">Save</router-link></a>
+          </div>
+          </div> 
        </div>
   </div>
-
-  <!-- <div class="subform">
-           <div class="subforum-title">
-              <h1>General Information</h1>
-           </div>
-         </div>
-         <div class="subforum-row">
-              <div class="subforum-icon subforum-column center" > 
-                  <i class="fas fa-laptop"></i>
-              </div>
-              <div class="subforum-description subforum-column">
-                  <h1>Descriptiption Title <small>Posted by <a href="">User</a> 15 Jan 2022</small></h1>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus sit amet est placerat. Lacus viverra vitae congue eu consequat ac felis donec et. 
-                    Tempus quam pellentesque nec nam aliquam sem et tortor. Mi proin sed libero enim. Purus non enim praesent elementum facilisis. Amet nisl purus in mollis nunc sed.</p>
-                  <a class="post-link" href=""><router-link to="/Post">Reply</router-link></a>
-                  <a class="post-link" href=""><router-link to="/">Save</router-link></a>
-              </div>
-         </div> -->
+  <!-- <div class="container" >
+    <div class="subform">
+            <div class="subforum-title">
+                <h1>General Information</h1>
+            </div>
+          </div>
+          <div class="subforum-row">
+                <div class="subforum-icon subforum-column center" > 
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <div class="subforum-description subforum-column">
+                    <h1>Descriptiption Title <small>Posted by <a href="">User</a> 15 Jan 2022</small></h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus sit amet est placerat. Lacus viverra vitae congue eu consequat ac felis donec et. 
+                      Tempus quam pellentesque nec nam aliquam sem et tortor. Mi proin sed libero enim. Purus non enim praesent elementum facilisis. Amet nisl purus in mollis nunc sed.</p>
+                    <a class="post-link" href=""><router-link to="/Post">Reply</router-link></a>
+                    <a class="post-link" href=""><router-link to="/">Save</router-link></a>
+                </div>
+          </div>
+  </div> -->
 </template>
 
 <script>
@@ -60,7 +70,7 @@ export default{
   }
 
   h1{
-    /* font-size: 16px; */
+    font-size: 18px;
     font-weight: bolder;
     color: white;
   }
