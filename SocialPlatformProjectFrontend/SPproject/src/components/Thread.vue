@@ -49,6 +49,10 @@ export default{
     font-weight: bolder;
   }
 
+  p{
+    color:white;
+  }
+
   .post-link > a{
     color: white;
     padding-right: 10px;
@@ -68,19 +72,15 @@ export default{
     padding:20px;
     background: rgb(173, 173, 173);
     border-radius: 5px;
-    
   }
 
-  /* .div-container{
-    align-self: center;
-  }
-   */
+
   .subforum{
     margin-top: 20px;
   }
 
   .subforum-title{
-    background-color:rgb(131, 54, 54);
+    background-color:rgb(119, 119, 119);
     padding: 10px;
     border-radius: 5px;
     margin: 4px;
@@ -94,7 +94,7 @@ export default{
   .subforum-column{
     border-radius: 5px;
     margin: 4px;
-    background-color: rgb(145, 39, 39);
+    background-color: rgb(48, 48, 48);
   }
 
   .subforum-description{
