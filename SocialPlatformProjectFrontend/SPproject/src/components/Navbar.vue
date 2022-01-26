@@ -7,7 +7,7 @@
               <div class="col-lg-6 col-sm-6 col-6 header-top-left"> 
                   <div id="logo">
                         <router-link to="/">
-                          <img src="/src/assets/Group_2.jpg" alt="" title="" height="110" />
+                          <img src="/src/assets/Group2_logo.jpg" alt="" title="" height="110" />
                         </router-link>
                       </div>
               </div>
@@ -16,13 +16,13 @@
                       <div class="authDiv">
                           <div v-if="!AuthState.loading">
                               <div v-if="!AuthState.isAuthenticated">
-                                  <a href="" @click="Login()">Logged in</a>
+                                  <a href="" @click="login()">Log in - </a>
                               </div>
                               <div v-else>
                                   <div>
                                       <p>{{AuthState.user.nickname}}
                                         <img :src="AuthState.user.picture" alt="AvatarPic">
-                                        <a href="" @click="Logout()" >Logout</a>
+                                        <a href="" @click="logout()" >Logout</a>
                                       </p>
                                   </div>
                               </div>
@@ -104,6 +104,7 @@ initAuth();
 
 
 <style scoped>
+
  #user{
   color:rgb(255, 153, 0);
   padding-right:25px;

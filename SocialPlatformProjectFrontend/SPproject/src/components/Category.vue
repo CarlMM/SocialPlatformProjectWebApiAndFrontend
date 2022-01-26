@@ -1,12 +1,6 @@
 <template>
   <header>
     <div class="navbar">
-      <!-- <nav class="navigation">
-        <ul class="nav-menu" v-for="categories in getCategories" :key="categories.Id">
-          <li class="nav-item"><router-link :to="`/${categories.Title}/${categories.Id}`">{{ categories.Title }}</router-link></li>
-        </ul>
-      </nav> -->
-      
         <nav class="navigation">
             <ul class="nav-menu" v-for="categories in getCategories" :key="categories.Id">
               <li class="nav-item"><router-link :to="`/${categories.Title}/${categories.Id}`">{{ categories.Title }}</router-link></li>
@@ -43,7 +37,6 @@ export default{
 /*navbar*/
 
 .header{
-   margin-inline: 10px;
 }
 
 .navbar {
@@ -54,7 +47,6 @@ export default{
 }
 
 .navigation{
-  display: inline-block;
   max-height: 12vh;
   margin-right: 10px;
 }
@@ -62,6 +54,17 @@ export default{
 .nav-menu{
   list-style-type: none;
   overflow: hidden;
+}
+
+ul{
+  /* background: aquamarine; */
+  width: 400px; 
+	margin-left: auto; 
+	margin-right: auto; 
+}
+
+li{
+  
 }
 
 .nav-menu a{
