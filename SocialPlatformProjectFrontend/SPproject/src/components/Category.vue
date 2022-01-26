@@ -1,13 +1,19 @@
 <template>
   <header>
     <div class="navbar">
-        <nav class="navigation">
+      <nav class="navigation">
+        <ul class="nav-menu" v-for="categories in getCategories" :key="categories.Id">
+          <li class="nav-item"><router-link :to="`/${categories.Title}/${categories.Id}`">{{ categories.Title }}</router-link></li>
+        </ul>
+      </nav>
+      
+        <!-- <nav class="navigation">
             <ul class="nav-menu">
                 <li class="nav-item"><router-link to="/Studies/3">Studies</router-link></li>
-            <li class="nav-item"><router-link to="/Fishing/2">Fishing</router-link></li>
-                <li class="nav-item"><router-link to="/Computers/1">Computer</router-link></li>
+                <li class="nav-item"><router-link to="/Fishing/2">Fishing</router-link></li>
+                <li class="nav-item"><router-link to="/Computers/{{id}}">Computer</router-link></li>
             </ul>
-        </nav>
+        </nav> -->
         <!-- <div class="Thread-position">
             <Thread/>
         </div> -->
@@ -16,6 +22,16 @@
 </template>
 
 <script>
+
+export default{
+  computed:{
+    getCategories(){
+      return this.$store.state.Category
+    }
+  }
+}
+
+
 // import Thread from './Thread.vue'
 
 // export default {
