@@ -3,9 +3,9 @@
     <div class="navbar">
         <nav class="navigation">
             <ul class="nav-menu">
-                <li class="nav-item"><router-link to="/Studies">Studies</router-link></li>
-            <li class="nav-item"><router-link to="/Fishing">Fishing</router-link></li>
-                <li class="nav-item"><router-link to="/Computers">Computer</router-link></li>
+                <li class="nav-item"><router-link to="/Studies/3">Studies</router-link></li>
+            <li class="nav-item"><router-link to="/Fishing/2">Fishing</router-link></li>
+                <li class="nav-item"><router-link to="/Computers/1">Computer</router-link></li>
             </ul>
         </nav>
         <!-- <div class="Thread-position">
