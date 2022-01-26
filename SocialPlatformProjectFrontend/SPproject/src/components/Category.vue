@@ -56,8 +56,8 @@
   float:right;
   display:block;
   text-align:center;
-  margin-inline: 20px;
-  font-size: 20px;
+  margin-inline: 30px;
+  font-size: 25px;
   padding: 10px;
   color: #fff;
 }
