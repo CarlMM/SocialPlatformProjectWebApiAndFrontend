@@ -62,8 +62,4 @@
   color: #fff;
 }
 
-.Thread-position{
-}
-
-
 </style>
