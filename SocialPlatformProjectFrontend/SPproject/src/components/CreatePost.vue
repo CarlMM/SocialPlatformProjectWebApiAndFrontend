@@ -1,6 +1,6 @@
 <template>
     <div id="createPost-page" class="full-height p-4">
-        <div class="container pt-3 border border-2">
+        <!-- <div class="container pt-3 border border-2">
             <div class="row pb-5">
                 <nav>
                     <div class="nav-left">
@@ -29,32 +29,32 @@
                     <textarea style="resize: none" name="" id=""></textarea>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script>
-import Dropdown from './Dropdown.vue'
-export default {
-    name: 'CreatePost',
-    components: {
-        Dropdown,
-    },
-    data() {
-        return {
-            category: {
-                groups: 'groups',
-                Drugs: 'Drugs',
-                Computers: 'Computers',
-            },
-        }
-    },
-}
+// import Dropdown from './Dropdown.vue'
+// export default {
+//     name: 'CreatePost',
+//     components: {
+//         Dropdown,
+//     },
+//     data() {
+//         return {
+//             category: {
+//                 groups: 'groups',
+//                 Drugs: 'Drugs',
+//                 Computers: 'Computers',
+//             },
+//         }
+//     },
+// }
 </script>
 
 <style scoped>
-#createPost-page {
-    /* background-color: red; */
+/* #createPost-page {
+    background-color: red;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -71,7 +71,7 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    /* background-color: red; */
+    background-color: red;
     height: 40%;
 }
 
@@ -103,10 +103,6 @@ textarea {
     box-sizing: border-box;
 }
 
-body {
-    background-color: #0a0a0a;
-}
-
 nav {
     width: 70vw;
     min-width: 600px;
@@ -131,7 +127,7 @@ a {
     font-size: 18px;
     letter-spacing: 0.5px;
     padding: 0 10px;
-    /* transform: 0.3s; */
+    transform: 0.3s;
 }
 a::after {
     content: '';
@@ -149,5 +145,5 @@ a:hover {
 }
 a:hover:after {
     width: 100%;
-}
+} */
 </style>

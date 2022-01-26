@@ -1,16 +1,16 @@
 <template>
-  <main>
-      <Navbar/>
-      <div>
-        <Category/>
-        <!-- <div id="Thread-control">
+    <main>
+        <Navbar />
+        <div>
+            <Category />
+            <!-- <div id="Thread-control">
           <Thread/>
         </div> -->
-         <!-- <createPost /> -->
-         <router-view />
-      </div>
-      <Footer/>
-  </main>
+            <!-- <createPost /> -->
+            <router-view />
+        </div>
+        <Footer />
+    </main>
 </template>
 
 <script>
@@ -20,24 +20,33 @@ import Footer from './components/Footer.vue'
 import Thread from './components/Thread.vue'
 import createPost from './components/CreatePost.vue'
 
+export default {
+    name: 'App',
+    components: {
+        createPost,
+        Navbar,
+        Category,
+        Thread,
+        Footer,
+    },
+    // data() {
+    //     return {
+    //         isModalVisible: false,
+    //     }
+    // },
+    // methods: {
+    //     showModal() {
+    //         this.isModalVisible = true
+    //     },
 
-export default{
-  name: "App",
-  components: {
-  createPost,
-    Navbar,
-    Category,
-    Thread,
-    Footer,
-  },
+    //     closeModal() {
+    //         this.isModalVisible = false
+    //     },
+    // },
 }
-
 </script>
 
-
 <style>
-
-#Thread-control{
-}
-
+/* #Thread-control {
+} */
 </style>
