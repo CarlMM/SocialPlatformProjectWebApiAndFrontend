@@ -1,9 +1,21 @@
 <template>
   <div>
     <h1>STUDIES CATEGORY</h1>
-    <p>
-      
-      
-    </p>
+        <div>
+            <Thread/>
+        </div>
   </div>
 </template>
+
+
+<script>
+import Thread from '/src/components/Thread.vue'
+
+export default{
+ 
+  components: {
+    Thread,
+  },
+}
+
+</script>

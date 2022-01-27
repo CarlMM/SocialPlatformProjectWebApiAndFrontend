@@ -36,7 +36,7 @@ const store = createStore({
          Id:3,
          Title:"Will Mike ever NOT discuss things?",
          Text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.",
-         CategoryId:1
+         CategoryId:3
          },
          {
          Id:4,
@@ -75,25 +75,25 @@ const store = createStore({
          CategoryId:2
          },
          {
-         Id:9,
+         Id:10,
          Title:"WALLE - E MIKE EDITION",
          Text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.",
          CategoryId:1
          },
          {
-         Id:9,
+         Id:11,
          Title:"MIKES FISH IS AMAZING MICROTRANSISTIONS",
          Text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.",
          CategoryId:2
          },
          {
-         Id:9,
+         Id:12,
          Title:"Study more, earn less",
          Text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.",
          CategoryId:3
          },
          {
-         Id:9,
+         Id:13,
          Title:"Fish Fish Fish",
          Text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.",
          CategoryId:2

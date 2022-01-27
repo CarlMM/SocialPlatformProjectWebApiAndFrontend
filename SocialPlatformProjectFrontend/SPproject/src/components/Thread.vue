@@ -5,18 +5,21 @@
               <h1 >Category One</h1>
           </div>
       </div>
-       <div v-for="threads in GetThreads" :key="threads.id" class="subforum-description">
-         <div class="subforum-row">
-         <div class="subforum-icon subforum-column center" > 
+       <div v-for="threads in GetThreads" :key="threads.Id" class="subforum-description">
+          <div class="subforum-row">
+            <div class="subforum-icon subforum-column center" > 
                     <i class="fas fa-laptop"></i>
                 </div>
-         <div class="subforum-description subforum-column" >
+            <div class="subforum-description subforum-column" >
             <h1>{{ threads.Title }} <small>Posted by <a href="">User</a> 15 Jan 2022</small></h1>
             <p> {{ threads.Text }} </p>
             <a class="post-link" href=""><router-link to="/Post">Reply</router-link></a>
             <a class="post-link" href=""><router-link to="/">Save</router-link></a>
           </div>
-          </div> 
+          
+         </div>
+
+
        </div>
   </div>
   <!-- <div class="container" >
@@ -47,16 +50,58 @@ export default{
   data(){
     return{
       cId: this.$route.params.Id,
+      
     }
   },
 
   computed:{
     GetThreads(){
-        console.log(this.$route.params.Id)
-        if(this.$store.state.Thread.CategoryId == this.cId){
         
-          return this.$store.state.Thread
+      let list = this.$store.state.Thread;
+      //let list2 = {...this.$store.state.Thread};
+      //let result = [];
+      console.log('urlCategoryId ' + this.cId)
+      console.log('Under här är listan')
+      console.log(list)
+      
+      let filterlist = list.filter(
+        
+        (item) =>{
+          return item.CategoryId == this.cId;
         }
+      );
+      console.log(filterlist);
+      return filterlist;
+
+
+
+      // for(let i = 0; i < list.length; i++){
+        
+      //   console.log('Detta är CategoryId i lists ' + list.CategoryId)
+
+      //   if(list.CategoryId == this.cId){
+      //     console.log('i If satsen')
+      //     console.log('cId i list' + list.CategoryId)
+      //     this.result += list[i];
+      //   }
+      //   console.log('result ' + this.result)
+      //   return this.result;
+      // }
+
+
+      
+      // if(list.CategoryId === this.cId){
+      //   for(let i = 0; i < list.length; i++){
+      //     result += list[i];
+      //   }
+      // }
+      // console.log(this.cId)
+      //    if(this.$store.state.Thread.CategoryId == this.cId){
+      //      console.log('kiss')
+      //   }
+          
+      //     return this.$store.state.Thread
+        
       
     },
   }
