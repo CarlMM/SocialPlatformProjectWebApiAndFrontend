@@ -66,22 +66,29 @@ export default{
   color: white;
 } */
 
+/*Create Post */
 .create-post{
-  padding: 20px;
+  padding: 15px;
   margin: 20px;
   background:#33393a;
   border-radius: 5px;
+  display:flex;
+  justify-content: space-around;
 }
 
 .create-post > img{
-  height: 6vh;
   width: 3.5vw;
-  margin-right:20px;
+  margin-right:15px;
 }
 
 .create-post > input{
-  width: 60vw;
-  height: 5vh;
+  width: 100%;
+  border-radius: 5px;
+  background-color:rgb(160, 160, 160);
+}
+
+.input:hover{
+  border: 1px solid white;
 }
 
 

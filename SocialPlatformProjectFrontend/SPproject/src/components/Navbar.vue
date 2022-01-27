@@ -19,7 +19,7 @@
                                   <a href="#" @click.prevent="login()">Log in - Register</a>
                               </div>
                               <div v-else>
-                                  <div>
+                                  <div class="logged-in">
                                       <p>{{AuthState.user.nickname}}
                                         <img :src="AuthState.user.picture" alt="AvatarPic">
                                         <a href="#" @click.prevent="logout()" >Logout</a>
@@ -104,6 +104,10 @@ initAuth();
 
 
 <style scoped>
+
+.logged-in > p > img{
+   height: 6vh;
+}
 
  #user{
   color:rgb(255, 153, 0);

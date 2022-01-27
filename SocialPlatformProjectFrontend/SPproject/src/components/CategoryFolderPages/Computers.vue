@@ -1,6 +1,5 @@
 <template>
     <div>
-        COMPUTER CATEGORY
         <div>
             <Thread/>
         </div>
