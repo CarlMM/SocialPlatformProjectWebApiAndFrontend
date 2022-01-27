@@ -6,5 +6,8 @@ namespace SocialPlatformProjectWebApi.Repository
     public interface IReplyRepository
     {
         IEnumerable<Reply> GetReplies();
+        IEnumerable<Category> GetCategories();
     }
+    
+
 }

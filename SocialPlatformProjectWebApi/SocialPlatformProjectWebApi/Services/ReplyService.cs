@@ -24,5 +24,11 @@ namespace SocialPlatformProjectWebApi.Services
 
             return template;
         }
+        public IEnumerable<Category> GetCategories()
+        {
+            var template = _replyRepository.GetCategories();
+
+            return template;
+        }
     }
 }
