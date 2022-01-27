@@ -35,10 +35,10 @@ namespace SocialPlatformProjectWebApi.Repository
             return result;
         }
 
-        public IEnumerable<Thread> GetThreads()
+        public IList<Thread> GetThreads()
         {
             var result = _dbContext.Threads;
-            return (IEnumerable<Thread>)result;
+            return (IList<Thread>)result;
         }
     }
 }

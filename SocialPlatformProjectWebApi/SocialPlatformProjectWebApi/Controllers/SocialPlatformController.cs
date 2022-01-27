@@ -47,7 +47,7 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         [HttpGet]
         [Route("GetThreads")]
-        public IEnumerable<Thread> GetThreads()
+        public IList<Thread> GetThreads()
         {
             var template = _replyService.GetThreads();
             return template;
