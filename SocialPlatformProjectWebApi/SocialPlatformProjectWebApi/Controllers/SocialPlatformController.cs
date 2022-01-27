@@ -19,22 +19,29 @@ namespace SocialPlatformProjectWebApi.Controllers
         public SocialPlatformController(IReplyService replyService)
         {
             _replyService = replyService;
-
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
+        [Route("GetReplies")]
         public IEnumerable<Reply> GetReplies()
         {
             var template = _replyService.GetReplies();
-
             return template;
         }
+
         [HttpGet]
         [Route("GetCategories")]
         public IEnumerable<Category> GetCategories()
         {
             var template = _replyService.GetCategories();
+            return template;
+        }
 
+        [HttpGet]
+        [Route("GetThreadUsers")]
+        public IEnumerable<ThreadUser> GetThreadUsers()
+        {
+            var template = _replyService.GetThreadUsers();
             return template;
         }
     }

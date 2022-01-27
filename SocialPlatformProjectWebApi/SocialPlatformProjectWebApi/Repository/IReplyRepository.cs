@@ -7,6 +7,7 @@ namespace SocialPlatformProjectWebApi.Repository
     {
         IEnumerable<Reply> GetReplies();
         IEnumerable<Category> GetCategories();
+        IEnumerable<ThreadUser> GetThreadUsers();
     }
     
 

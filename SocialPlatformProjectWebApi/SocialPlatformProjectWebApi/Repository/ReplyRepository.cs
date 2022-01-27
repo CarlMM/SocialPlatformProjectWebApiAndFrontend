@@ -22,10 +22,17 @@ namespace SocialPlatformProjectWebApi.Repository
             var template = _dbContext.Replies;
             return (IEnumerable<Reply>)template;
         }
+
         public IEnumerable<Category> GetCategories()
         {
             var template = _dbContext.Categories;
             return (IEnumerable<Category>)template;
+        }
+
+        public IEnumerable<ThreadUser> GetThreadUsers()
+        {
+            var template = _dbContext.ThreadUsers;
+            return template;
         }
     }
 }

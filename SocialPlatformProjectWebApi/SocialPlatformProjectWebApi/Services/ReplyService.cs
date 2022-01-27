@@ -21,14 +21,19 @@ namespace SocialPlatformProjectWebApi.Services
         public IEnumerable<Reply> GetReplies()
         {
             var template = _replyRepository.GetReplies();
-
             return template;
         }
+
         public IEnumerable<Category> GetCategories()
         {
             var template = _replyRepository.GetCategories();
-
             return template;
+        }
+
+        public IEnumerable<ThreadUser> GetThreadUsers()
+        {
+            var template = _replyRepository.GetThreadUsers();
+            return template;    
         }
     }
 }
