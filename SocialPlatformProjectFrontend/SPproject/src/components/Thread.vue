@@ -11,7 +11,10 @@
                     <i class="fas fa-laptop"></i>
                 </div>
             <div class="subforum-description subforum-column" >
-            <h1>{{ threads.Title }} <small>Posted by <a href="">User</a> 15 Jan 2022</small></h1>
+              <router-link type="button" :to="`/Post/${threads.Id}`">
+                <h1>{{ threads.Title }} </h1>
+              </router-link>
+              <h1><small>Posted by <a href="">User</a> 15 Jan 2022</small></h1>
             <p> {{ threads.Text }} </p>
             <a class="post-link" href=""><router-link to="/Post">Reply</router-link></a>
             <a class="post-link" href=""><router-link to="/">Save</router-link></a>
@@ -58,11 +61,6 @@ export default{
     GetThreads(){
         
       let list = this.$store.state.Thread;
-      //let list2 = {...this.$store.state.Thread};
-      //let result = [];
-      // console.log('urlCategoryId ' + this.cId)
-      // console.log('Under här är listan')
-      // console.log(list)
       
       let filterlist = list.filter(
         
@@ -72,6 +70,7 @@ export default{
       );
       console.log(filterlist);
       return filterlist;
+
       
     },
     GetCategory(){
@@ -87,8 +86,6 @@ export default{
       console.log("this is categorylist")
       console.log(filterList)
       return filterList;
-
-      // return this.$store.state.Category
     },
   }
 }
