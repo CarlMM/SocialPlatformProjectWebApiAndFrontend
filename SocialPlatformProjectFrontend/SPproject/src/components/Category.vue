@@ -48,7 +48,7 @@
                                     </div>
                                 </nav>
                             </div>
-                            <form>
+                            <form action="#" id="createPost-form">
                                 <div class="form-group">
                                     <label for="text-title">Title</label>
                                     <input
@@ -72,12 +72,13 @@
                                 </button>
                                 <p class="bottom-text"></p>
                             </form>
+                            <textarea name="comment" form="createPost-form">
+                                Enter text here...</textarea
+                            >
                         </div>
 
                         <!-- <CreatePost /> -->
                     </template>
-
-                    <template v-slot:footer> HEJSAN SVEJSAN FOOTER </template>
                 </Modal>
             </div>
             <!-- <div class="Thread-position">
@@ -168,7 +169,6 @@ export default {
 #container {
     margin: 30px auto;
     max-width: 600px;
-    padding: 20px;
     /* border: 1px solid red; */
 }
 
@@ -194,7 +194,6 @@ export default {
     display: block;
     width: 100%;
     padding: 10px;
-    margin-top: 30px;
     color: #fff;
     cursor: pointer;
 }

@@ -50,7 +50,7 @@ export default {
 
 .modal {
     max-width: 80%;
-    max-height: 80%;
+    max-height: 90%;
     background: #ffffff;
     box-shadow: 2px 2px 20px 1px;
     overflow-x: auto;
