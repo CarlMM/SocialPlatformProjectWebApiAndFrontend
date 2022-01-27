@@ -43,9 +43,21 @@
 <script>
 
 export default{
+
+  data(){
+    return{
+      cId: this.$route.params.Id,
+    }
+  },
+
   computed:{
     GetThreads(){
-      return this.$store.state.Thread
+        console.log(this.$route.params.Id)
+        if(this.$store.state.Thread.CategoryId == this.cId){
+        
+          return this.$store.state.Thread
+        }
+      
     },
   }
 }
