@@ -59,23 +59,22 @@
                                         />
                                     </div>
                                     <div class="form-group">
-                                        <label for="post-content"
+                                        <label for="post-thread"
                                             >Add content</label
                                         >
-                                        <input
-                                            type="text"
-                                            name="postContent"
-                                            id="post-content"
-                                        />
+                                        <textarea
+                                            placeholder="Remember, be nice!"
+                                            cols="78"
+                                            rows="4"
+                                            id="post-thread"
+                                            name="postThread"
+                                        ></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-form">
                                         Create post
                                     </button>
                                     <p class="bottom-text"></p>
                                 </form>
-                                <textarea name="comment" form="createPost-form">
-                                Enter text here...</textarea
-                                >
                             </div>
                         </template>
                     </Modal>
@@ -279,5 +278,9 @@ a:hover {
 }
 a:hover:after {
     width: 100%;
+}
+
+textarea {
+    resize: none;
 }
 </style>

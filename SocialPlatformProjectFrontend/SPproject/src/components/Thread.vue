@@ -62,9 +62,12 @@
                             placeholder="Remember, be nice!"
                             cols="78"
                             rows="5"
+                            v-model="replyMessage"
                         ></textarea>
                     </div>
-                    <button class="btn btn-reply">Reply</button>
+                    <button class="btn btn-reply" @click="saveInput()">
+                        Reply
+                    </button>
                 </div>
             </template>
         </Modal>
@@ -92,6 +95,7 @@
 
 <script>
 import Modal from './Modal.vue'
+import { mapMutations } from 'vuex'
 
 export default {
     components: {
@@ -105,6 +109,7 @@ export default {
             threadId: null,
             threadTitle: '',
             threadText: '',
+            replyMessage: '',
         }
     },
 
@@ -133,7 +138,6 @@ export default {
         showModal(threadId) {
             this.isModalVisible = true
             this.threadId = threadId
-            // let threadId = threadId
             let threadList = this.$store.state.Thread
 
             let specificThread = threadList.find(item => {
@@ -150,6 +154,15 @@ export default {
         closeModal() {
             this.isModalVisible = false
         },
+        ...mapMutations(['setReply']),
+        saveInput() {
+            this.setReply(this.replyMessage)
+            //Comment ---> create data spara message och date i ett objekt skicka till backend ingen aning vi ser.
+        },
+        // setReplyMessage(event) {
+        //     this.replyMessage = event.target.value
+        //     console.log(event, 'testar med event.target.value!!!')
+        // },
     },
 }
 </script>
