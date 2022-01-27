@@ -1,31 +1,75 @@
 <template>
-  <div class="container">
-      <div class="category">
-          <div v-for="category in GetCategory" :key="category.Id" class="category-title">
-              <h2>{{category.Title}}</h2>
-          </div>
-      </div>
-       <div v-for="threads in GetThreads" :key="threads.Id" class="subforum-description">
-          <div class="subforum-row">
-            <div class="subforum-icon subforum-column center" > 
+    <div class="container">
+        <div class="category">
+            <div
+                v-for="category in GetCategory"
+                :key="category.Id"
+                class="category-title"
+            >
+                <h2>{{ category.Title }}</h2>
+            </div>
+        </div>
+        <div
+            v-for="threads in GetThreads"
+            :key="threads.Id"
+            class="subforum-description"
+        >
+            <div class="subforum-row">
+                <div class="subforum-icon subforum-column center">
                     <i class="fas fa-laptop"></i>
                 </div>
-            <div class="subforum-description subforum-column" >
-              <router-link type="button" :to="`/Post/${threads.Id}`">
-                <h1>{{ threads.Title }} </h1>
-              </router-link>
-              <h1><small>Posted by <a href="">User</a> 15 Jan 2022</small></h1>
-            <p> {{ threads.Text }} </p>
-            <a class="post-link" href=""><router-link to="/Post">Reply</router-link></a>
-            <a class="post-link" href=""><router-link to="/">Save</router-link></a>
-          </div>
-          
-         </div>
+                <div class="subforum-description subforum-column">
+                    <router-link type="button" :to="`/Post/${threads.Id}`">
+                        <h1>{{ threads.Title }}</h1>
+                    </router-link>
+                    <h1>
+                        <small>Posted by <a href="">User</a> 15 Jan 2022</small>
+                    </h1>
+                    <p>{{ threads.Text }}</p>
+                    <a class="post-link" href=""
+                        ><router-link to="/Post">Reply</router-link></a
+                    >
+                    <button class="reply-btn" @click="showModal(threads.Id)">
+                        REPLY
+                    </button>
+                    <a class="post-link" href=""
+                        ><router-link to="/">Save</router-link></a
+                    >
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end mt-1">
+        <Modal v-show="isModalVisible" @close="closeModal">
+            <template v-slot:header>
+                <div class="text-uppercase">
+                    reply
+                    <span><i class="fas fa-comments"></i></span></div
+            ></template>
 
-
-       </div>
-  </div>
-  <!-- <div class="container" >
+            <template v-slot:body>
+                <div class="subforum-description subforum-column">
+                    <h1>{{ this.threadTitle }}</h1>
+                    <h1>
+                        <small>Posted by <a href="">User</a> 15 Jan 2022</small>
+                    </h1>
+                    <p>{{ this.threadText }}</p>
+                </div>
+                <div id="container">
+                    <div class="form-group">
+                        <label for="reply-content">Add content</label>
+                        <textarea
+                            placeholder="Remember, be nice!"
+                            cols="78"
+                            rows="5"
+                        ></textarea>
+                    </div>
+                    <button class="btn btn-reply">Reply</button>
+                </div>
+            </template>
+        </Modal>
+    </div>
+    <!-- <div class="container" >
     <div class="subform">
             <div class="subforum-title">
                 <h1>General Information</h1>
@@ -47,135 +91,186 @@
 </template>
 
 <script>
+import Modal from './Modal.vue'
 
-export default{
-
-  data(){
-    return{
-      cId: this.$route.params.Id,
-      catId: this.$route.params.Id
-    }
-  },
-
-  computed:{
-    GetThreads(){
-        
-      let list = this.$store.state.Thread;
-      
-      let filterlist = list.filter(
-        
-        (item) =>{
-          return item.CategoryId == this.cId;
-        }
-      );
-      console.log(filterlist);
-      return filterlist;
-
-      
+export default {
+    components: {
+        Modal,
     },
-    GetCategory(){
-
-      let categoryList = this.$store.state.Category
-
-      let filterList = categoryList.filter(
-        (item) => {
-          
-          return item.Id == this.catId;
+    data() {
+        return {
+            isModalVisible: false,
+            cId: this.$route.params.Id,
+            catId: this.$route.params.Id,
+            threadId: null,
+            threadTitle: '',
+            threadText: '',
         }
-      );
-      console.log("this is categorylist")
-      console.log(filterList)
-      return filterList;
     },
-  }
+
+    computed: {
+        GetThreads() {
+            let list = this.$store.state.Thread
+
+            let filterlist = list.filter(item => {
+                return item.CategoryId == this.cId
+            })
+            console.log(filterlist)
+            return filterlist
+        },
+        GetCategory() {
+            let categoryList = this.$store.state.Category
+
+            let filterList = categoryList.filter(item => {
+                return item.Id == this.catId
+            })
+            console.log('this is categorylist')
+            console.log(filterList)
+            return filterList
+        },
+    },
+    methods: {
+        showModal(threadId) {
+            this.isModalVisible = true
+            this.threadId = threadId
+            // let threadId = threadId
+            let threadList = this.$store.state.Thread
+
+            let specificThread = threadList.find(item => {
+                return item.Id == this.threadId
+            })
+
+            //Destrucure objektet i variabler
+            let { Id, Title, Text, CategoryId } = specificThread
+
+            this.threadTitle = Title
+            this.threadText = Text
+        },
+
+        closeModal() {
+            this.isModalVisible = false
+        },
+    },
 }
-
 </script>
 
-
 <style scoped>
+* {
+    box-sizing: border-box;
+}
 
-   *{
-     box-sizing: border-box;
-   }
-
-  a{
+a {
     color: rgb(153, 149, 163);
     font-weight: bolder;
-  }
+}
 
-  p{
-    color:white;
-  }
+p {
+    color: white;
+}
 
-  .post-link > a{
+.post-link > a {
     color: white;
     padding-right: 10px;
     font-size: 12px;
-  }
+}
 
-  h1{
+h1 {
     font-size: 18px;
     font-weight: bolder;
     color: white;
-  }
+}
 
-  /*Body*/
-  .container{
+/*Body*/
+.container {
     width: 500vh;
-    padding:20px;
+    padding: 20px;
     background: rgb(173, 173, 173);
     border-radius: 5px;
     margin-bottom: 20px;
-  }
+}
 
-
-  .subforum{
+.subforum {
     margin-top: 20px;
-  }
+}
 
-  .subforum-title{
-    background-color:rgb(119, 119, 119);
+.subforum-title {
+    background-color: rgb(119, 119, 119);
     padding: 10px;
     border-radius: 5px;
     margin: 4px;
-  }
+}
 
-  .subforum-row{
+.subforum-row {
     display: grid;
-    grid-template-columns: 7% 93% ;
-  }
+    grid-template-columns: 7% 93%;
+}
 
-  .subforum-column{
+.subforum-column {
     border-radius: 5px;
     margin: 4px;
     background-color: rgb(48, 48, 48);
-  }
+}
 
-  .subforum-description{
-    padding:10px;
-  }
+.subforum-description {
+    padding: 10px;
+}
 
-  .center{
-    display:flex;
+.center {
+    display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
 
-  .subforum-icon{
-    font-size:30px;
-  }
+.subforum-icon {
+    font-size: 30px;
+}
 
-  /*Category*/
-   .category{
-   margin-top: 20px;
-  }
+/*Category*/
+.category {
+    margin-top: 20px;
+}
 
-.category-title{
-    background-color:rgb(119, 119, 119);
+.category-title {
+    background-color: rgb(119, 119, 119);
     padding: 10px;
     border-radius: 5px;
     margin: 4px;
-    margin-bottom:20px;
+    margin-bottom: 20px;
+}
+
+/* Style inside modal */
+#container {
+    margin: 40px auto;
+    max-width: 600px;
+    /* border: 1px solid red; */
+}
+.form-group label {
+    font-size: 1.1rem;
+    display: block;
+    color: #666;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: rgb(158, 158, 158) 1px solid;
+    border-radius: 5px;
+}
+
+.btn-reply {
+    background-color: #43a78c;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btn-reply:hover {
+    background: #5ab6a6;
+}
+
+textarea {
+    resize: none;
 }
 </style>
