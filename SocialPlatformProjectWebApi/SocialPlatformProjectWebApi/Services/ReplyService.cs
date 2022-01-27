@@ -35,5 +35,10 @@ namespace SocialPlatformProjectWebApi.Services
             var template = _replyRepository.GetThreadUsers();
             return template;    
         }
+        public IEnumerable<Thread> GetThreads()
+        {
+            var template = _replyRepository.GetThreads();
+            return template;
+        }
     }
 }

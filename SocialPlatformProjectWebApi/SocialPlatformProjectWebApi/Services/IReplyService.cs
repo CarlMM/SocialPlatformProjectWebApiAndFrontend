@@ -1,5 +1,6 @@
 ﻿using SocialPlatformProjectWebApi.Models;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace SocialPlatformProjectWebApi.Services
 {
@@ -8,5 +9,6 @@ namespace SocialPlatformProjectWebApi.Services
         IEnumerable<Reply> GetReplies();
         IEnumerable<Category> GetCategories();
         IEnumerable<ThreadUser> GetThreadUsers();
+        IEnumerable<Thread> GetThreads();
     }
 }

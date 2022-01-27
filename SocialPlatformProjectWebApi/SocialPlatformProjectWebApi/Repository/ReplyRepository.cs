@@ -19,20 +19,26 @@ namespace SocialPlatformProjectWebApi.Repository
 
         public IEnumerable<Reply> GetReplies()
         {
-            var template = _dbContext.Replies;
-            return (IEnumerable<Reply>)template;
+            var result = _dbContext.Replies;
+            return result;
         }
 
         public IEnumerable<Category> GetCategories()
         {
-            var template = _dbContext.Categories;
-            return (IEnumerable<Category>)template;
+            var result = _dbContext.Categories;
+            return result;
         }
 
         public IEnumerable<ThreadUser> GetThreadUsers()
         {
-            var template = _dbContext.ThreadUsers;
-            return template;
+            var result = _dbContext.ThreadUsers;
+            return result;
+        }
+
+        public IEnumerable<Thread> GetThreads()
+        {
+            var result = _dbContext.Threads;
+            return (IEnumerable<Thread>)result;
         }
     }
 }
