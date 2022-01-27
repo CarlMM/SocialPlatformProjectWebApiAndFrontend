@@ -58,11 +58,6 @@ export default{
     GetThreads(){
         
       let list = this.$store.state.Thread;
-      //let list2 = {...this.$store.state.Thread};
-      //let result = [];
-      console.log('urlCategoryId ' + this.cId)
-      console.log('Under här är listan')
-      console.log(list)
       
       let filterlist = list.filter(
         
@@ -72,37 +67,6 @@ export default{
       );
       console.log(filterlist);
       return filterlist;
-
-
-
-      // for(let i = 0; i < list.length; i++){
-        
-      //   console.log('Detta är CategoryId i lists ' + list.CategoryId)
-
-      //   if(list.CategoryId == this.cId){
-      //     console.log('i If satsen')
-      //     console.log('cId i list' + list.CategoryId)
-      //     this.result += list[i];
-      //   }
-      //   console.log('result ' + this.result)
-      //   return this.result;
-      // }
-
-
-      
-      // if(list.CategoryId === this.cId){
-      //   for(let i = 0; i < list.length; i++){
-      //     result += list[i];
-      //   }
-      // }
-      // console.log(this.cId)
-      //    if(this.$store.state.Thread.CategoryId == this.cId){
-      //      console.log('kiss')
-      //   }
-          
-      //     return this.$store.state.Thread
-        
-      
     },
   }
 }
