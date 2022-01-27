@@ -1,8 +1,8 @@
 <template>
   <div class="container">
       <div class="category">
-          <div class="category-title">
-              <h1 >Category One</h1>
+          <div v-for="category in GetCategory" :key="category.Id" class="category-title">
+              <h2>{{category.Title}}</h2>
           </div>
       </div>
        <div v-for="threads in GetThreads" :key="threads.Id" class="subforum-description">
@@ -50,7 +50,7 @@ export default{
   data(){
     return{
       cId: this.$route.params.Id,
-      
+      catId: this.$route.params.Id
     }
   },
 
@@ -60,9 +60,9 @@ export default{
       let list = this.$store.state.Thread;
       //let list2 = {...this.$store.state.Thread};
       //let result = [];
-      console.log('urlCategoryId ' + this.cId)
-      console.log('Under här är listan')
-      console.log(list)
+      // console.log('urlCategoryId ' + this.cId)
+      // console.log('Under här är listan')
+      // console.log(list)
       
       let filterlist = list.filter(
         
@@ -72,37 +72,23 @@ export default{
       );
       console.log(filterlist);
       return filterlist;
-
-
-
-      // for(let i = 0; i < list.length; i++){
-        
-      //   console.log('Detta är CategoryId i lists ' + list.CategoryId)
-
-      //   if(list.CategoryId == this.cId){
-      //     console.log('i If satsen')
-      //     console.log('cId i list' + list.CategoryId)
-      //     this.result += list[i];
-      //   }
-      //   console.log('result ' + this.result)
-      //   return this.result;
-      // }
-
-
       
-      // if(list.CategoryId === this.cId){
-      //   for(let i = 0; i < list.length; i++){
-      //     result += list[i];
-      //   }
-      // }
-      // console.log(this.cId)
-      //    if(this.$store.state.Thread.CategoryId == this.cId){
-      //      console.log('kiss')
-      //   }
+    },
+    GetCategory(){
+
+      let categoryList = this.$store.state.Category
+
+      let filterList = categoryList.filter(
+        (item) => {
           
-      //     return this.$store.state.Thread
-        
-      
+          return item.Id == this.catId;
+        }
+      );
+      console.log("this is categorylist")
+      console.log(filterList)
+      return filterList;
+
+      // return this.$store.state.Category
     },
   }
 }
@@ -139,11 +125,11 @@ export default{
 
   /*Body*/
   .container{
-    /* margin: 20px; */
     width: 500vh;
     padding:20px;
     background: rgb(173, 173, 173);
     border-radius: 5px;
+    margin-bottom: 20px;
   }
 
 
