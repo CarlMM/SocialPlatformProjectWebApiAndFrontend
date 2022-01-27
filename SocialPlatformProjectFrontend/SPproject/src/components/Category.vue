@@ -11,14 +11,6 @@
             </ul>
         </nav>
         <div class="d-flex justify-content-end mt-1">
-                <button
-                    style="color: blue"
-                    type="button"
-                    class="btn"
-                    @click="showModal()"
-                >
-                    Create Post
-                </button>
                 <Modal v-show="isModalVisible" @close="closeModal">
                     <template v-slot:header>
                         <div class="text-uppercase">
@@ -72,8 +64,6 @@
                                 Enter text here...</textarea
                             >
                         </div>
-
-                        <!-- <CreatePost /> -->
                     </template>
                 </Modal>
             </div>
@@ -82,29 +72,27 @@
   <div class="create-post">
      <!-- <a href=""></a> -->
      <img src="/src/assets/Group_2.jpg" alt="">
-     <input class="create-input" type="text" name="createPost" placeholder="Create Post">
+     <input @click="showModal()" class="create-input" type="text" name="createPost" placeholder="Create Post">
   </div>
 </div>
 </template>
 
 <script>
 import Modal from './Modal.vue'
-import CreatePost from './CreatePost.vue'
 import Dropdown from './Dropdown.vue'
 
 export default{
 components: {
         Modal,
-        CreatePost,
         Dropdown,
     },
     data() {
         return {
             isModalVisible: false,
             category: {
-                groups: 'groups',
-                Drugs: 'Drugs',
-                Computers: 'Computers',
+                groups: 'Computer',
+                Drugs: 'Fishing',
+                Computers: 'Studies',
             },
         }
     },
