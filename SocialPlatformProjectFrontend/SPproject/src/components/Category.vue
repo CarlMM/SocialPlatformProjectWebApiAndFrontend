@@ -1,20 +1,16 @@
 <template>
-    <header>
-        <div class="navbar">
-            <nav class="navigation">
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <router-link to="/Studies">Studies</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/Fishing">Fishing</router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/Computers">Computer</router-link>
-                    </li>
-                </ul>
-            </nav>
-            <div class="d-flex justify-content-end mt-1">
+<div>
+  <header class="header">
+    <div class="navbar">
+        <nav class="navigation">
+            <ul class="nav-menu" v-for="categories in getCategories" :key="categories.Id">
+              <li class="nav-item"><router-link :to="`/${categories.Title}/${categories.Id}`">{{ categories.Title }}</router-link></li>
+                <!-- <li class="nav-item"><router-link to="/Studies/3">Studies</router-link></li>
+                <li class="nav-item"><router-link to="/Fishing/2">Fishing</router-link></li>
+                <li class="nav-item"><router-link to="/Computers/{{id}}">Computer</router-link></li> -->
+            </ul>
+        </nav>
+        <div class="d-flex justify-content-end mt-1">
                 <button
                     style="color: blue"
                     type="button"
@@ -81,26 +77,23 @@
                     </template>
                 </Modal>
             </div>
-            <!-- <div class="Thread-position">
-            <Thread/>
-        </div> -->
-        </div>
-    </header>
+    </div>
+  </header>
+  <div class="create-post">
+     <!-- <a href=""></a> -->
+     <img src="/src/assets/Group_2.jpg" alt="">
+     <input class="create-input" type="text" name="createPost" placeholder="Create Post">
+  </div>
+</div>
 </template>
 
 <script>
 import Modal from './Modal.vue'
 import CreatePost from './CreatePost.vue'
 import Dropdown from './Dropdown.vue'
-// import Thread from './Thread.vue'
 
-// export default {
-//     components: {
-//         Thread,
-//     },
-// }
-export default {
-    components: {
+export default{
+components: {
         Modal,
         CreatePost,
         Dropdown,
@@ -124,47 +117,74 @@ export default {
             this.isModalVisible = false
         },
     },
+  computed:{
+    getCategories(){
+      return this.$store.state.Category
+    }
+  }
 }
+
 </script>
 
 <style scoped>
-/*navbar*/
 
-.header {
-    margin-inline: 10px;
+.header{
+  margin: 20px;
+  display:flex;
+  align-items: center;
+  background: #33393a;
+  border-radius: 5px;
 }
-
 .navbar {
-    margin: 20px;
-    display: flex;
-    align-items: center;
-    background: #33393a;
+ 
 }
 
-.navigation {
-    padding: 10px;
-    width: 65%;
-    display: inline-block;
-    max-height: 12vh;
-    margin-right: 10px;
+.nav-menu a{
+  color: #fff;
+} 
+
+.navigation{
+  max-height: 12vh;
+  margin-right: 10px;
 }
 
-.nav-menu {
-    list-style-type: none;
-    overflow: hidden;
+.nav-menu{
+  list-style-type: none;
+  overflow: hidden;
+}
+/* 
+.btn{
+  display:inline-block;
+  background: rgb(129, 129, 129);
+  color: white;
+} */
+
+/*Create Post */
+.create-post{
+  padding: 15px;
+  margin: 20px;
+  background:#33393a;
+  border-radius: 5px;
+  display:flex;
+  justify-content: space-around;
 }
 
-.nav-menu a {
-    float: right;
-    display: block;
-    text-align: center;
-    margin-inline: 20px;
-    font-size: 20px;
-    padding: 10px;
-    color: #fff;
+.create-post > img{
+  width: 3.5vw;
+  margin-right:15px;
 }
 
-/* FORM STYLE INSIDE MODAL */
+.create-post > input{
+  width: 100%;
+  border-radius: 5px;
+  background-color:rgb(160, 160, 160);
+}
+
+.input:hover{
+  border: 1px solid white;
+}
+
+
 
 #container {
     margin: 30px auto;
@@ -257,7 +277,4 @@ a:hover {
 a:hover:after {
     width: 100%;
 }
-
-/* .Thread-position{
-} */
 </style>

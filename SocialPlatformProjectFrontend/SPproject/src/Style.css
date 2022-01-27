@@ -1,10 +1,10 @@
 html > body{
-    background-color: aquamarine;
+    background-color: rgb(199, 29, 29);
     display: flex;
     flex-direction: column;
 }
 
-#header{
+/* #header{
     display: flex;
 }
 
@@ -43,5 +43,5 @@ html > body{
 
 .menu-item{
    list-style: none;
-}
+} */
 

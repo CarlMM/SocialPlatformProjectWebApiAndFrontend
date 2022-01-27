@@ -1,5 +1,39 @@
 <template>
-    <div>
-        <h1>Hej Hej</h1>
+<div>
+    <div class="category">
+      <div class="category-title">
+        <h1>Category One</h1>
+     </div>
     </div>
+    <div class="category">
+      <div class="category-title">
+        <h1>Category Two</h1>
+     </div>
+    </div>
+    <div class="category">
+      <div class="category-title">
+        <h1>Category Three</h1>
+     </div>
+    </div>
+</div>
+          
 </template>
+
+<script>
+
+</script>
+
+<style scoped>
+.category{
+   margin-top: 20px;
+}
+
+.category-title{
+    background-color:rgb(119, 119, 119);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px;
+    margin-bottom:20px;
+    /* text-align: center; */
+}
+</style>

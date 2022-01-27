@@ -5,6 +5,7 @@ import Computers from '/src/components/CategoryFolderPages/Computers.vue'
 import Fishing from '/src/components/CategoryFolderPages/Fishing.vue'
 import Studies from '/src/components/CategoryFolderPages/Studies.vue'
 
+
 const routes = [
     {
         path: '/',
@@ -12,22 +13,22 @@ const routes = [
         component: Home,
     },
     {
-        path: '/Post',
+        path: '/Post/:Id',
         name: 'Post',
         component: Post,
     },
     {
-        path: '/Fishing',
-        name: 'Fishing',
-        component: Fishing,
-    },
-    {
-        path: '/Computers',
+        path: '/Computer/:Id',
         name: 'Computers',
         component: Computers,
     },
     {
-        path: '/Studies',
+        path: '/Fishing/:Id',
+        name: 'Fishing',
+        component: Fishing,
+    },
+    {
+        path: '/Studies/:Id',
         name: 'Studies',
         component: Studies,
     },
