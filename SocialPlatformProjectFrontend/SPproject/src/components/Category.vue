@@ -11,8 +11,8 @@
                         <li class="nav-item">
                             <router-link
                                 :to="`/${categories.Title}/${categories.Id}`"
-                                >{{ categories.Title }}</router-link
-                            >
+                                >{{ categories.Title }}
+                            </router-link>
                         </li>
                         <!-- <li class="nav-item"><router-link to="/Studies/3">Studies</router-link></li>
                 <li class="nav-item"><router-link to="/Fishing/2">Fishing</router-link></li>
@@ -45,10 +45,13 @@
                                                 id="category"
                                                 name="category"
                                                 :options="category"
+                                                @change="setCategoryIdFromDropdown($event.target.value)"
                                             ></Dropdown>
                                         </div>
                                     </nav>
                                 </div>
+                                <!-- @change="setPostTitleFromDropdown($event.target.value)" -->
+                                <!-- @change="setPostTextFromDropdown($event.target.value)" -->
                                 <form action="#" id="createPost-form">
                                     <div class="form-group">
                                         <label for="text-title">Title</label>
@@ -56,6 +59,7 @@
                                             type="text"
                                             name="textTitle"
                                             id="text-title"
+                                            v-model="newPostObject.postTitle"
                                         />
                                     </div>
                                     <div class="form-group">
@@ -68,9 +72,11 @@
                                             rows="4"
                                             id="post-thread"
                                             name="postThread"
+                                            v-model="newPostObject.postText"
                                         ></textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-form">
+                                    <button @click="createPost()"  class="btn btn-form">
+                                        <!-- type="submit" -->
                                         Create post
                                     </button>
                                     <p class="bottom-text"></p>
@@ -108,10 +114,17 @@ export default {
         return {
             isModalVisible: false,
             category: {
-                groups: 'Computer',
-                Drugs: 'Fishing',
-                Computers: 'Studies',
+                Computer: 1,
+                Fishing: 2,
+                Studies: 3,
             },
+            newPostObject:{
+                categoryID: null,
+                postTitle: '',
+                postText: '',
+            },
+            // postTitle2: '',
+            // postTitle2:'',
         }
     },
     methods: {
@@ -121,6 +134,17 @@ export default {
 
         closeModal() {
             this.isModalVisible = false
+        },
+        setCategoryIdFromDropdown(value){
+            console.log('Category Id from dropdown ' + value);
+            this.newPostObject.categoryID = value;
+        },
+        createPost(newPostObject){
+            
+            console.log(this.newPostObject.categoryID)
+            console.log(this.newPostObject.postTitle)
+            console.log(this.newPostObject.postText)
+            
         },
     },
     computed: {
