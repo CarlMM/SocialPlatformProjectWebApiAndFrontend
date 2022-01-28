@@ -1,88 +1,106 @@
 <template>
-<div>
-  <header class="header">
-    <div class="navbar">
-        <nav class="navigation">
-            <ul class="nav-menu" v-for="categories in getCategories" :key="categories.Id">
-              <li class="nav-item"><router-link :to="`/${categories.Title}/${categories.Id}`">{{ categories.Title }}</router-link></li>
-                <!-- <li class="nav-item"><router-link to="/Studies/3">Studies</router-link></li>
+    <div>
+        <header class="header">
+            <div class="navbar">
+                <nav class="navigation">
+                    <ul
+                        class="nav-menu"
+                        v-for="categories in getCategories"
+                        :key="categories.Id"
+                    >
+                        <li class="nav-item">
+                            <router-link
+                                :to="`/${categories.Title}/${categories.Id}`"
+                                >{{ categories.Title }}</router-link
+                            >
+                        </li>
+                        <!-- <li class="nav-item"><router-link to="/Studies/3">Studies</router-link></li>
                 <li class="nav-item"><router-link to="/Fishing/2">Fishing</router-link></li>
                 <li class="nav-item"><router-link to="/Computers/{{id}}">Computer</router-link></li> -->
-            </ul>
-        </nav>
-        <div class="d-flex justify-content-end mt-1">
-                <Modal v-show="isModalVisible" @close="closeModal">
-                    <template v-slot:header>
-                        <div class="text-uppercase">
-                            create post
-                            <span><i class="fas fa-comments"></i></span></div
-                    ></template>
+                    </ul>
+                </nav>
+                <div class="d-flex justify-content-end mt-1">
+                    <Modal v-show="isModalVisible" @close="closeModal">
+                        <template v-slot:header>
+                            <div class="text-uppercase">
+                                create post
+                                <span
+                                    ><i class="fas fa-comments"></i
+                                ></span></div
+                        ></template>
 
-                    <template v-slot:body>
-                        <div id="container">
-                            <div class="row pb-5">
-                                <nav class="nav-createPost">
-                                    <div class="nav-left">
-                                        <a href="#Home">Post</a>
-                                        <a href="#Home">Group post</a>
+                        <template v-slot:body>
+                            <div id="container">
+                                <div class="row pb-5">
+                                    <nav class="nav-createPost">
+                                        <div class="nav-left">
+                                            <a href="#Home">Post</a>
+                                            <a href="#Home">Group post</a>
+                                        </div>
+                                        <div class="nav-right form-group">
+                                            <label for="category"
+                                                >Category</label
+                                            >
+                                            <Dropdown
+                                                id="category"
+                                                name="category"
+                                                :options="category"
+                                            ></Dropdown>
+                                        </div>
+                                    </nav>
+                                </div>
+                                <form action="#" id="createPost-form">
+                                    <div class="form-group">
+                                        <label for="text-title">Title</label>
+                                        <input
+                                            type="text"
+                                            name="textTitle"
+                                            id="text-title"
+                                        />
                                     </div>
-                                    <div class="nav-right form-group">
-                                        <label for="category">Category</label>
-                                        <Dropdown
-                                            id="category"
-                                            name="category"
-                                            :options="category"
-                                        ></Dropdown>
+                                    <div class="form-group">
+                                        <label for="post-thread"
+                                            >Add content</label
+                                        >
+                                        <textarea
+                                            placeholder="Remember, be nice!"
+                                            cols="78"
+                                            rows="4"
+                                            id="post-thread"
+                                            name="postThread"
+                                        ></textarea>
                                     </div>
-                                </nav>
+                                    <button type="submit" class="btn btn-form">
+                                        Create post
+                                    </button>
+                                    <p class="bottom-text"></p>
+                                </form>
                             </div>
-                            <form action="#" id="createPost-form">
-                                <div class="form-group">
-                                    <label for="text-title">Title</label>
-                                    <input
-                                        type="text"
-                                        name="textTitle"
-                                        id="text-title"
-                                    />
-                                </div>
-                                <div class="form-group">
-                                    <label for="post-content"
-                                        >Add content</label
-                                    >
-                                    <input
-                                        type="text"
-                                        name="postContent"
-                                        id="post-content"
-                                    />
-                                </div>
-                                <button type="submit" class="btn btn-form">
-                                    Create post
-                                </button>
-                                <p class="bottom-text"></p>
-                            </form>
-                            <textarea name="comment" form="createPost-form">
-                                Enter text here...</textarea
-                            >
-                        </div>
-                    </template>
-                </Modal>
+                        </template>
+                    </Modal>
+                </div>
             </div>
+        </header>
+        <div class="create-post">
+            <!-- <a href=""></a> -->
+            <img src="/src/assets/Group_2.jpg" alt="" />
+            <input
+                @click="showModal()"
+                class="create-input"
+                type="text"
+                name="createPost"
+                placeholder="Create Post"
+            />
+        </div>
     </div>
-  </header>
-  <div class="create-post">
-     <!-- <a href=""></a> -->
-     <img src="/src/assets/Group_2.jpg" alt="">
-     <input @click="showModal()" class="create-input" type="text" name="createPost" placeholder="Create Post">
-  </div>
-</div>
 </template>
 
 <script>
 import Modal from './Modal.vue'
 import Dropdown from './Dropdown.vue'
 
-export default{
-components: {
+export default {
+    components: {
         Modal,
         Dropdown,
     },
@@ -105,40 +123,38 @@ components: {
             this.isModalVisible = false
         },
     },
-  computed:{
-    getCategories(){
-      return this.$store.state.Category
-    }
-  }
+    computed: {
+        getCategories() {
+            return this.$store.state.Category
+        },
+    },
 }
-
 </script>
 
 <style scoped>
-
-.header{
-  margin: 20px;
-  display:flex;
-  align-items: center;
-  background: #33393a;
-  border-radius: 5px;
+.header {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    background: #33393a;
+    border-radius: 5px;
 }
-.navbar {
+/* .navbar {
  
+} */
+
+.nav-menu a {
+    color: #fff;
 }
 
-.nav-menu a{
-  color: #fff;
-} 
-
-.navigation{
-  max-height: 12vh;
-  margin-right: 10px;
+.navigation {
+    max-height: 12vh;
+    margin-right: 10px;
 }
 
-.nav-menu{
-  list-style-type: none;
-  overflow: hidden;
+.nav-menu {
+    list-style-type: none;
+    overflow: hidden;
 }
 /* 
 .btn{
@@ -148,31 +164,29 @@ components: {
 } */
 
 /*Create Post */
-.create-post{
-  padding: 15px;
-  margin: 20px;
-  background:#33393a;
-  border-radius: 5px;
-  display:flex;
-  justify-content: space-around;
+.create-post {
+    padding: 15px;
+    margin: 20px;
+    background: #33393a;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
 }
 
-.create-post > img{
-  width: 3.5vw;
-  margin-right:15px;
+.create-post > img {
+    width: 3.5vw;
+    margin-right: 15px;
 }
 
-.create-post > input{
-  width: 100%;
-  border-radius: 5px;
-  background-color:rgb(160, 160, 160);
+.create-post > input {
+    width: 100%;
+    border-radius: 5px;
+    background-color: rgb(160, 160, 160);
 }
 
-.input:hover{
-  border: 1px solid white;
+.input:hover {
+    border: 1px solid white;
 }
-
-
 
 #container {
     margin: 30px auto;
@@ -180,9 +194,9 @@ components: {
     /* border: 1px solid red; */
 }
 
-.form-group {
-    /* margin-top: 10px; */
-}
+/* .form-group {
+    margin-top: 10px;
+} */
 
 .form-group label {
     font-size: 1.1rem;
@@ -264,5 +278,9 @@ a:hover {
 }
 a:hover:after {
     width: 100%;
+}
+
+textarea {
+    resize: none;
 }
 </style>
