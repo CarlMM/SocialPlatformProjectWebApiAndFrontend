@@ -137,23 +137,23 @@ export default {
             this.isModalVisible = false
         },
         setCategoryIdFromDropdown(value){
-            console.log('Category Id from dropdown ' + value);
+            console.log('Category Id from dropdown ', value);
             this.newPostObject.CategoryId = value;
         },
         createPostMethod(newPostObject){
 
-            console.log('Category from dropdown: ' + this.newPostObject.CategoryId)
+            console.log('Category from dropdown: ', this.newPostObject.CategoryId)
             console.log(newPostObject.CategoryId);
             
-            console.log('Title from input: ' + this.newPostObject.Title)
+            console.log('Title from input: ', this.newPostObject.Title)
             console.log(newPostObject.Title);
             
-            console.log('Text from "add content" input: ' + this.newPostObject.Text)
+            console.log('Text from "add content" input: ',  this.newPostObject.Text)
             console.log(newPostObject.Text);
             
             this.newPostObject.Id = 20;
 
-            console.log('ThreadId = ' + this.newPostObject.Id);
+            console.log('ThreadId = ', this.newPostObject.Id);
             console.log(newPostObject.Id);
 
 
@@ -164,7 +164,7 @@ export default {
             //      Id: this.newPostObject.Id,
             //  }
         
-            console.log(newPostObject);
+            console.log('Posten: ', newPostObject);
             // console.log(this.newPostObject.threadId)
 
             //console.log(newNewPostObject);

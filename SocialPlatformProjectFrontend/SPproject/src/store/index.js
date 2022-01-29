@@ -107,14 +107,15 @@ const store = createStore({
             state.reply = value
         },
         setNewPost(state, data){
-            console.log('inne i setNewPostMutatuon: ' + data);
-            state.Thread = data;
+            console.log('inne i setNewPostMutatuon: ', data);
+            state.Thread.push(data);
+            console.log(state.Thread);
         },
     },
     actions: {
 
         createNewPostMethod({commit}, newPostObject){
-            console.log('Inne i createNewPostMethod action: ' + newPostObject)
+            console.log('Inne i createNewPostMethod action: ', newPostObject)
 
             commit('setNewPost', newPostObject);
         }
