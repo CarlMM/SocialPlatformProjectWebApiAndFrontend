@@ -121,7 +121,7 @@ export default {
             newPostObject:{
                 Title: '',
                 Text: '',
-                CategoryID: '',
+                CategoryId: '',
                 Id: null,
             },
             // postTitle2: '',
@@ -138,12 +138,12 @@ export default {
         },
         setCategoryIdFromDropdown(value){
             console.log('Category Id from dropdown ' + value);
-            this.newPostObject.CategoryID = value;
+            this.newPostObject.CategoryId = value;
         },
         createPostMethod(newPostObject){
 
-            console.log('Category from dropdown: ' + this.newPostObject.CategoryID)
-            console.log(newPostObject.CategoryID);
+            console.log('Category from dropdown: ' + this.newPostObject.CategoryId)
+            console.log(newPostObject.CategoryId);
             
             console.log('Title from input: ' + this.newPostObject.Title)
             console.log(newPostObject.Title);
