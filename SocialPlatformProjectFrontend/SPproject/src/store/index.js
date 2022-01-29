@@ -106,8 +106,22 @@ const store = createStore({
         setReply(state, value) {
             state.reply = value
         },
+        setNewPost(state, data){
+            console.log('inne i setNewPostMutatuon: ' + data);
+            state.Thread = data;
+        },
     },
-    actions: {},
+    actions: {
+
+        createNewPostMethod({commit}, newPostObject){
+            console.log('Inne i createNewPostMethod action: ' + newPostObject)
+
+            commit('setNewPost', newPostObject);
+        }
+
+
+
+    },
 })
 
 export default store
