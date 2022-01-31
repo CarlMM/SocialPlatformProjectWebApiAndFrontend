@@ -152,19 +152,8 @@ export default {
 
             console.log('ThreadId = ', this.newPostObject.Id);
             console.log(newPostObject.Id);
-
-
-            // const newNewPostObject={
-            //      Title: this.newPostObject.Title,
-            //      Text: this.newPostObject.Text,
-            //      CategoryId: this.newPostObject.CategoryID,
-            //      Id: this.newPostObject.Id,
-            //  }
         
             console.log('Posten: ', newPostObject);
-            // console.log(this.newPostObject.threadId)
-
-            //console.log(newNewPostObject);
 
             this.closeModal();
             return this.$store.dispatch('createNewPostMethod', newPostObject);
