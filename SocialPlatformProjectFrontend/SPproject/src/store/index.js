@@ -100,6 +100,7 @@ const store = createStore({
                 CategoryId: 2,
             },
         ],
+
         reply: [
             {
                 Id: 1,
@@ -173,12 +174,26 @@ const store = createStore({
             },
         ],
     },
-    // mutations: {
-    //     setReply(state, value) {
-    //         state.reply = value
-    //     },
-    // },
-    actions: {},
+    mutations: {
+        setReply(state, value) {
+            state.reply = value
+        },
+        setNewPost(state, data){
+            console.log('inne i setNewPostMutatuon: ', data);
+            state.Thread.push(data);
+            console.log(state.Thread);
+        },
+    },
+    actions: {
+
+        createNewPostMethod({commit}, newPostObject){
+            console.log('Inne i createNewPostMethod action: ', newPostObject)
+
+            commit('setNewPost', newPostObject);
+        }
+
+    },
+
 })
 
 export default store

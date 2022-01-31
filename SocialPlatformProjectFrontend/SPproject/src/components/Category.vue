@@ -49,14 +49,14 @@
                                 </div>
                                 <!-- @change="setPostTitleFromDropdown($event.target.value)" -->
                                 <!-- @change="setPostTextFromDropdown($event.target.value)" -->
-                                <form action="#" id="createPost-form">
+                                <!-- <form action="#" id="createPost-form"> -->
                                     <div class="form-group">
                                         <label for="text-title">Title</label>
                                         <input
                                             type="text"
                                             name="textTitle"
                                             id="text-title"
-                                            v-model="newPostObject.postTitle"
+                                            v-model='newPostObject.Title'
                                         />
                                     </div>
                                     <div class="form-group">
@@ -69,15 +69,15 @@
                                             rows="4"
                                             id="post-thread"
                                             name="postThread"
-                                            v-model="newPostObject.postText"
+                                            v-model='newPostObject.Text'
                                         ></textarea>
                                     </div>
-                                    <button @click="createPost()"  class="btn btn-form">
+                                    <button @click="this.createPostMethod(newPostObject)" class="btn btn-form">
                                         <!-- type="submit" -->
                                         Create post
                                     </button>
                                     <p class="bottom-text"></p>
-                                </form>
+                                <!-- </form> -->
                             </div>
                         </template>
                     </Modal>
@@ -116,9 +116,10 @@ export default {
                 Studies: 3,
             },
             newPostObject:{
-                categoryID: null,
-                postTitle: '',
-                postText: '',
+                Title: '',
+                Text: '',
+                CategoryId: '',
+                Id: null,
             },
             // postTitle2: '',
             // postTitle2:'',
@@ -133,14 +134,40 @@ export default {
             this.isModalVisible = false
         },
         setCategoryIdFromDropdown(value){
-            console.log('Category Id from dropdown ' + value);
-            this.newPostObject.categoryID = value;
+            console.log('Category Id from dropdown ', value);
+            this.newPostObject.CategoryId = value;
         },
-        createPost(newPostObject){
+        createPostMethod(newPostObject){
+
+            console.log('Category from dropdown: ', this.newPostObject.CategoryId)
+            console.log(newPostObject.CategoryId);
             
-            console.log(this.newPostObject.categoryID)
-            console.log(this.newPostObject.postTitle)
-            console.log(this.newPostObject.postText)
+            console.log('Title from input: ', this.newPostObject.Title)
+            console.log(newPostObject.Title);
+            
+            console.log('Text from "add content" input: ',  this.newPostObject.Text)
+            console.log(newPostObject.Text);
+            
+            this.newPostObject.Id = 20;
+
+            console.log('ThreadId = ', this.newPostObject.Id);
+            console.log(newPostObject.Id);
+
+
+            // const newNewPostObject={
+            //      Title: this.newPostObject.Title,
+            //      Text: this.newPostObject.Text,
+            //      CategoryId: this.newPostObject.CategoryID,
+            //      Id: this.newPostObject.Id,
+            //  }
+        
+            console.log('Posten: ', newPostObject);
+            // console.log(this.newPostObject.threadId)
+
+            //console.log(newNewPostObject);
+
+            this.closeModal();
+            return this.$store.dispatch('createNewPostMethod', newPostObject);
             
         },
     },
