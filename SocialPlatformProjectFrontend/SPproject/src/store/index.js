@@ -202,6 +202,10 @@ const store = createStore({
             state.Users = data;
             console.log(data)
         },
+        setThreadUserFromBack(state, data){
+            state.ThreadUser = data;
+            console.log(data)
+        }
 
 
 
@@ -248,6 +252,13 @@ const store = createStore({
             let data = await response.json()
             console.log(data)
             commit('setUsersFromBack', data)
+        },
+
+        async getThreadUser({commit}){
+            let response = await fetch('')
+            let data = await response.json()
+            console.log(data)
+            commit('setThreadUserFromBack', data)
         },
 
 
