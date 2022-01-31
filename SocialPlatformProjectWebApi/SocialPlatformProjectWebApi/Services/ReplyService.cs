@@ -25,17 +25,6 @@ namespace SocialPlatformProjectWebApi.Services
             return template;
         }
 
-        public IEnumerable<Category> GetCategories()
-        {
-            var template = _replyRepository.GetCategories();
-            return template;
-        }
-
-        public IEnumerable<ThreadUser> GetThreadUsers()
-        {
-            var template = _replyRepository.GetThreadUsers();
-            return template;    
-        }
         public IList<Models.Thread> GetThreads()
         {
             var template = _replyRepository.GetThreads();

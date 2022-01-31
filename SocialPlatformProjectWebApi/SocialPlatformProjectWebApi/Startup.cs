@@ -33,6 +33,8 @@ namespace SocialPlatformProjectWebApi
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IReplyService, ReplyService>();
             services.AddTransient<IReplyRepository, ReplyRepository>();
+            services.AddTransient<IThreadUserService, ThreadUserService>();
+            services.AddTransient<IThreadUserRepository, ThreadUserRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

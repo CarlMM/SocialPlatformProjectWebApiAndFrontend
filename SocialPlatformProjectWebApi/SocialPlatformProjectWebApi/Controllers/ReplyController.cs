@@ -21,16 +21,14 @@ namespace SocialPlatformProjectWebApi.Controllers
             _replyService = replyService;
         }
 
-
         [HttpGet]
         [Route("GetReplies")]
         public async Task<IEnumerable<Reply>> GetReplies()
         {
-
             var template = await _replyService.GetReplies();
             return template;
-
         }
+
         [HttpGet]
         [Route("GetReply/{id}")]
         public async Task<ActionResult<Reply>>GetReply(int id)
@@ -48,18 +46,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             }
             return reply;
 
-
-            //return await _replyService.GetReply(id);
-            
-        }
-
-
-        [HttpGet]
-        [Route("GetThreadUsers")]
-        public IEnumerable<ThreadUser> GetThreadUsers()
-        {
-            var template = _replyService.GetThreadUsers();
-            return template;
+            //return await _replyService.GetReply(id);            
         }
 
         [HttpGet]
@@ -69,8 +56,5 @@ namespace SocialPlatformProjectWebApi.Controllers
             var template = _replyService.GetThreads();
             return template;
         }
-
-
-
     }
 }

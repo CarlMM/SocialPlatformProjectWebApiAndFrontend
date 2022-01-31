@@ -7,16 +7,8 @@ namespace SocialPlatformProjectWebApi.Services
 {
     public interface IReplyService
     {
-        Task<IEnumerable<Reply>> GetReplies();
-        IEnumerable<Category> GetCategories();
-        IEnumerable<ThreadUser> GetThreadUsers();
+        Task<IEnumerable<Reply>> GetReplies();         
         IList<Models.Thread> GetThreads();
-
         Task<Reply> GetReply(int id);
-
-
-
-
-
     }
 }

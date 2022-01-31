@@ -25,27 +25,15 @@ namespace SocialPlatformProjectWebApi.Repository
         //    return result;
         //}
 
-
-
-
         public async Task<IEnumerable<Reply>> GetReplies()
         {
-
             var result = await _dbContext.Replies.ToListAsync();
-            return result;
-
-           
+            return result;           
         }
 
         public IEnumerable<Category> GetCategories()
         {
             var result = _dbContext.Categories;
-            return result;
-        }
-
-        public IEnumerable<ThreadUser> GetThreadUsers()
-        {
-            var result = _dbContext.ThreadUsers;
             return result;
         }
 
@@ -59,8 +47,6 @@ namespace SocialPlatformProjectWebApi.Repository
         {
             var reply = await _dbContext.Replies.FirstOrDefaultAsync(x => x.Id == id);
             return reply;
-        }
-
-      
+        }      
     }
 }
