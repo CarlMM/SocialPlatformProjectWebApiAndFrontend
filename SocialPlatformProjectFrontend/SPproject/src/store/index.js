@@ -4,20 +4,20 @@ const store = createStore({
     state: {
         Category: [
             {
-                Id: 1,
-                Title: 'Computer',
-                Description: 'Bla bla bla Computers',
-            },
-            {
-                Id: 2,
-                Title: 'Fishing',
-                Description: 'Bla bla bla Fishing',
-            },
-            {
-                Id: 3,
-                Title: 'Studies',
-                Description: 'Bla bla bla Studies',
-            },
+            //     Id: 1,
+            //     Title: 'Computer',
+            //     Description: 'Bla bla bla Computers',
+            // },
+            // {
+            //     Id: 2,
+            //     Title: 'Fishing',
+            //     Description: 'Bla bla bla Fishing',
+            // },
+            // {
+            //     Id: 3,
+            //     Title: 'Studies',
+            //     Description: 'Bla bla bla Studies',
+             },
         ],
 
         Thread: [
@@ -185,6 +185,10 @@ const store = createStore({
         },
         setThreadsFromBack(state, data){
             state.Thread = data;
+        },
+        setCategoriesFromBackend(state, data){
+            state.Category = data;
+            console.log(data)
         }
     },
     actions: {
@@ -201,6 +205,15 @@ const store = createStore({
             console.log(data)
 
             commit('setThreadsFromBack', data);
+        },
+
+        async getAllCategories({commit}){
+            let response = await fetch('https://localhost:44300/api/Category/GetCategories');
+            let data = await response.json()
+            
+            console.log(data)
+
+            commit('setCategoriesFromBackend', data);
         }
 
     },

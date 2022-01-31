@@ -119,6 +119,10 @@ export default {
         }
     },
 
+    mounted(){
+        this.GetThreads();
+    },
+
     computed: {
         GetThreads() {
             let list = this.$store.state.Thread

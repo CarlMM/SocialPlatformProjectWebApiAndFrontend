@@ -10,8 +10,8 @@
                     >
                         <li class="nav-item">
                             <router-link
-                                :to="`/${categories.Title}/${categories.Id}`"
-                                >{{ categories.Title }}
+                                :to="`/${categories.title}/${categories.id}`"
+                                >{{ categories.title }}
                             </router-link>
                         </li>
                     </ul>
@@ -125,6 +125,11 @@ export default {
             // postTitle2:'',
         }
     },
+
+    created(){
+        this.fetchAllCategories();
+    },
+
     methods: {
         showModal() {
             this.isModalVisible = true
@@ -133,10 +138,18 @@ export default {
         closeModal() {
             this.isModalVisible = false
         },
+
+        async fetchAllCategories(){
+            this.$store.dispatch('getAllCategories')
+        },
+
         setCategoryIdFromDropdown(value){
             console.log('Category Id from dropdown ', value);
             this.newPostObject.CategoryId = value;
         },
+
+
+
         createPostMethod(newPostObject){
 
             console.log('Category from dropdown: ', this.newPostObject.CategoryId)
