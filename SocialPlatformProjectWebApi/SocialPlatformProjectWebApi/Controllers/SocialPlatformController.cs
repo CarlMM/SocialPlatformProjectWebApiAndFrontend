@@ -21,12 +21,37 @@ namespace SocialPlatformProjectWebApi.Controllers
             _replyService = replyService;
         }
 
+
+
         [HttpGet]
         [Route("GetReplies")]
-        public IEnumerable<Reply> GetReplies()
+        public async Task<IEnumerable<Reply>> GetReplies()
         {
-            var template = _replyService.GetReplies();
+
+            var template = await _replyService.GetReplies();
             return template;
+
+        }
+        [HttpGet]
+        [Route("GetReply/{id}")]
+        public async Task<ActionResult<Reply>>GetReply(int id)
+        {
+            if (id < 1)
+            {
+                return BadRequest("Detta id är för lågt");
+            }
+            
+            var reply = await _replyService.GetReply(id);
+
+            if (reply == null)
+            {
+                return NotFound();
+            }
+            return reply;
+
+
+            //return await _replyService.GetReply(id);
+            
         }
 
         [HttpGet]
@@ -47,10 +72,13 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         [HttpGet]
         [Route("GetThreads")]
-        public IList<Thread> GetThreads()
+        public IList<Models.Thread> GetThreads()
         {
             var template = _replyService.GetThreads();
             return template;
         }
+
+
+
     }
 }

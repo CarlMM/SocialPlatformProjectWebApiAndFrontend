@@ -1,14 +1,22 @@
 ﻿using SocialPlatformProjectWebApi.Models;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace SocialPlatformProjectWebApi.Services
 {
     public interface IReplyService
     {
-        IEnumerable<Reply> GetReplies();
+        Task<IEnumerable<Reply>> GetReplies();
         IEnumerable<Category> GetCategories();
         IEnumerable<ThreadUser> GetThreadUsers();
-        IList<Thread> GetThreads();
+        IList<Models.Thread> GetThreads();
+
+        Task<Reply> GetReply(int id);
+
+
+
+
+
     }
 }

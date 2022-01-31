@@ -16,11 +16,12 @@ namespace SocialPlatformProjectWebApi.Services
         public ReplyService(IReplyRepository replyRepository)
         {
             _replyRepository = replyRepository;
+
         }
 
-        public IEnumerable<Reply> GetReplies()
+        public async Task<IEnumerable<Reply>> GetReplies()
         {
-            var template = _replyRepository.GetReplies();
+            var template = await _replyRepository.GetReplies();
             return template;
         }
 
@@ -35,9 +36,15 @@ namespace SocialPlatformProjectWebApi.Services
             var template = _replyRepository.GetThreadUsers();
             return template;    
         }
-        public IList<Thread> GetThreads()
+        public IList<Models.Thread> GetThreads()
         {
             var template = _replyRepository.GetThreads();
+            return template;
+        }
+
+        public async Task<Reply> GetReply(int id)
+        {
+            var template = await _replyRepository.GetReply(id);
             return template;
         }
     }

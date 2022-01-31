@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace SocialPlatformProjectWebApi.Models
 {
-    public class JsonResult
+    public class Thread
     {
-        public JsonResult()
+        public Thread()
         {
             Replies = new HashSet<Reply>();
             ThreadUsers = new HashSet<ThreadUser>();

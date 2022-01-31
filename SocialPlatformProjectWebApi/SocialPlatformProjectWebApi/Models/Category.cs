@@ -9,13 +9,13 @@ namespace SocialPlatformProjectWebApi.Models
     {
         public Category()
         {
-            Threads = new HashSet<JsonResult>();
+            Threads = new HashSet<Thread>();
         }
 
         public long Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
 
-        public virtual ICollection<JsonResult> Threads { get; set; }
+        public virtual ICollection<Thread> Threads { get; set; }
     }
 }
