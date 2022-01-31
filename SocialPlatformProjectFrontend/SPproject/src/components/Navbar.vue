@@ -22,6 +22,12 @@
                                   <div class="logged-in">
                                       <p>{{AuthState.user.nickname}}
                                         <!-- authstate.user.sub = user token (id) -->
+                                        <select @change="changeRoute($event)">
+                                          <option selected value="" >Home</option>
+                                          <option value="Computer/1">Profile</option>
+                                          <option value="">My groups</option>
+                                          <option value="">My threads</option> 
+                                          </select>
                                         <img :src="AuthState.user.picture" alt="AvatarPic">
                                         <a href="#" @click.prevent="logout()" >Logout</a>
                                       </p>
@@ -47,6 +53,12 @@ export default {
        
      };
   },
+   methods:{
+    changeRoute(e){
+      console.log('bajs')
+      this.$router.push('/' + e.target.value)
+    },
+   }
 };
 </script>
 
