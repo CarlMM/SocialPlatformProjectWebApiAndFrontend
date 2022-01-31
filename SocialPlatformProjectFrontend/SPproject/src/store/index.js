@@ -186,10 +186,25 @@ const store = createStore({
         setThreadsFromBack(state, data){
             state.Thread = data;
         },
-        setCategoriesFromBackend(state, data){
+        setCategoriesFromBack(state, data){
             state.Category = data;
             console.log(data)
-        }
+        },
+        setReplyFromBack(state,data){
+            state.Reply = data;
+            console.log(data)
+        },
+        setUserFromBack(state, data){
+            state.User = data;
+            console.log(data)
+        },
+        setUsersFromBack(state, data){
+            state.Users = data;
+            console.log(data)
+        },
+
+
+
     },
     actions: {
 
@@ -210,11 +225,31 @@ const store = createStore({
         async getAllCategories({commit}){
             let response = await fetch('https://localhost:44300/api/Category/GetCategories');
             let data = await response.json()
-            
             console.log(data)
+            commit('setCategoriesFromBack', data);
+        },
+        
+        async GetAllReplies({commit}){
+            let response = await fetch('')
+            let data = await response.json()
+            console.log(data)
+            commit('setReplyFromBack', data)
+        },
 
-            commit('setCategoriesFromBackend', data);
-        }
+        async GetUser({commit}){
+            let response = await fetch('')
+            let data = await response.json()
+            console.log(data)
+            commit('setUserFromBack', data)
+        },
+
+        async getAllUsers({commit}){
+            let response = await fetch('')
+            let data = await response.json()
+            console.log(data)
+            commit('setUsersFromBack', data)
+        },
+
 
     },
 

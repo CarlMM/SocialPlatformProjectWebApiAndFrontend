@@ -95,6 +95,7 @@ import Modal from './Modal.vue'
 // import { mapMutations } from 'vuex'
 
 export default {
+    posts:["thread"],
     components: {
         Modal,
     },
