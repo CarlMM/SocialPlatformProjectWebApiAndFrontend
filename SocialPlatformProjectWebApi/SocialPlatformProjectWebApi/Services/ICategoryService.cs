@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace SocialPlatformProjectWebApi.Services
 {
-    public interface IReplyService
+    public interface ICategoryService
     {
-        Task<IEnumerable<Reply>> GetReplies();         
-        Task<Reply> GetReply(int id);
+        IEnumerable<Category> GetCategories();
+
     }
 }

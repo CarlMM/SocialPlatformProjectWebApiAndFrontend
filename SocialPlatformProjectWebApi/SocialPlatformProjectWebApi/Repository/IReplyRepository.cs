@@ -9,9 +9,7 @@ namespace SocialPlatformProjectWebApi.Repository
     {
         
         Task<IEnumerable<Reply>> GetReplies();
-        IEnumerable<Category> GetCategories();
-        IEnumerable<ThreadUser> GetThreadUsers();
-        
+
         Task<Reply> GetReply(int id);
 
     }

@@ -29,11 +29,14 @@ namespace SocialPlatformProjectWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IReplyService, ReplyService>();
             services.AddTransient<IReplyRepository, ReplyRepository>();
             services.AddTransient<IThreadService, ThreadService>();
             services.AddTransient<IThreadRepository, ThreadRepository>();
-            services.AddMvc();
+            services.AddTransient<IThreadUserService, ThreadUserService>();
+            services.AddTransient<IThreadUserRepository, ThreadUserRepository>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
