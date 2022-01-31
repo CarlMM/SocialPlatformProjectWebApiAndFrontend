@@ -19,7 +19,8 @@
                     <i class="fas fa-laptop"></i>
                 </div>
                 <div class="subforum-description subforum-column">
-                    <router-link type="button" :to="`/Post/${threads.Id}`">
+                    <router-link type="button" :to="{ name: 'Post'}">
+                    <!-- {`/Post/${threads.Id}`} -->
                         <h1>{{ threads.Title }}</h1>
                     </router-link>
                     <h1>
@@ -38,39 +39,39 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="d-flex justify-content-end mt-1">
-        <Modal v-show="isModalVisible" @close="closeModal">
-            <template v-slot:header>
-                <div class="text-uppercase">
-                    reply
-                    <span><i class="fas fa-comments"></i></span></div
-            ></template>
+            <div class="d-flex justify-content-end mt-1">
+                <Modal v-show="isModalVisible" @close="closeModal">
+                    <template v-slot:header>
+                        <div class="text-uppercase">
+                            reply
+                            <span><i class="fas fa-comments"></i></span></div
+                    ></template>
 
-            <template v-slot:body>
-                <div class="subforum-description subforum-column">
-                    <h1>{{ this.threadTitle }}</h1>
-                    <h1>
-                        <small>Posted by <a href="">User</a> 15 Jan 2022</small>
-                    </h1>
-                    <p>{{ this.threadText }}</p>
-                </div>
-                <div id="container">
-                    <div class="form-group">
-                        <label for="reply-content">Add content</label>
-                        <textarea
-                            placeholder="Remember, be nice!"
-                            cols="78"
-                            rows="5"
-                            v-model="replyMessage"
-                        ></textarea>
-                    </div>
-                    <button class="btn btn-reply" @click="saveInput()">
-                        Reply
-                    </button>
-                </div>
-            </template>
-        </Modal>
+                    <template v-slot:body>
+                        <div class="subforum-description subforum-column">
+                            <h1>{{ this.threadTitle }}</h1>
+                            <h1>
+                                <small>Posted by <a href="">User</a> 15 Jan 2022</small>
+                            </h1>
+                            <p>{{ this.threadText }}</p>
+                        </div>
+                        <div id="container">
+                            <div class="form-group">
+                                <label for="reply-content">Add content</label>
+                                <textarea
+                                    placeholder="Remember, be nice!"
+                                    cols="78"
+                                    rows="5"
+                                    v-model="replyMessage"
+                                ></textarea>
+                            </div>
+                            <button class="btn btn-reply" @click="saveInput()">
+                                Reply
+                            </button>
+                        </div>
+                    </template>
+                </Modal>
+            </div>
     </div>
     <!-- <div class="container" >
     <div class="subform">
