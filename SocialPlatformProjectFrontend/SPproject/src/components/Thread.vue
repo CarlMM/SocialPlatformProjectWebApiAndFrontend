@@ -19,9 +19,9 @@
                     <i class="fas fa-laptop"></i>
                 </div>
                 <div class="subforum-description subforum-column">
-                    <router-link type="button" :to="`/Post/${threads.Id}`">
+                    <router-link type="button" :to="`/Post/${threads.id}`">
                     <!-- :to="{ name: 'Post'} -->
-                        <h1>{{ threads.Title }}</h1>
+                        <h1>{{ threads.title }}</h1>
                     </router-link>
                     <h1>
                         <small>Posted by <a href="">User</a> 15 Jan 2022</small>
@@ -109,7 +109,7 @@ export default {
     data() {
         return {
             isModalVisible: false,
-            cId: this.$route.params.Id,
+            cId: this.$route.params.id,
             catId: this.$route.params.Id,
             threadId: null,
             threadTitle: '',
@@ -119,7 +119,7 @@ export default {
         }
     },
 
-    mounted(){
+    beforeMounted(){
         this.GetThreads();
     },
 
