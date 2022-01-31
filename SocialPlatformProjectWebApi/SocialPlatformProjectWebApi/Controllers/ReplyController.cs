@@ -12,15 +12,14 @@ namespace SocialPlatformProjectWebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SocialPlatformController : Controller
+    public class ReplyController : Controller
     {
         private readonly IReplyService _replyService;
 
-        public SocialPlatformController(IReplyService replyService)
+        public ReplyController(IReplyService replyService)
         {
             _replyService = replyService;
         }
-
 
 
         [HttpGet]
@@ -54,13 +53,6 @@ namespace SocialPlatformProjectWebApi.Controllers
             
         }
 
-        [HttpGet]
-        [Route("GetCategories")]
-        public IEnumerable<Category> GetCategories()
-        {
-            var template = _replyService.GetCategories();
-            return template;
-        }
 
         [HttpGet]
         [Route("GetThreadUsers")]
