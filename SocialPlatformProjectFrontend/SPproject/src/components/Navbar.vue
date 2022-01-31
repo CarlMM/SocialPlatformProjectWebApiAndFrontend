@@ -21,6 +21,7 @@
                               <div v-else>
                                   <div class="logged-in">
                                       <p>{{AuthState.user.nickname}}
+                                        <!-- authstate.user.sub = user token (id) -->
                                         <img :src="AuthState.user.picture" alt="AvatarPic">
                                         <a href="#" @click.prevent="logout()" >Logout</a>
                                       </p>
@@ -35,48 +36,6 @@
       </div>
   </div>
 </header>
-  <!-- <header id="header">
-    <div class="header-top">
-      <div class="container">
-        <div class="row align-items-center">
-          <div>
-
-          </div>
-          <div id="logo">
-            <router-link to="/">
-            <p>
-              <img src="/src/assets/Group_2.jpg" alt="" title="" height="110" />
-              Group 2 Inc
-            </p>
-            </router-link>
-          </div>
-            <div class="authDiv">
-              <div v-if="!AuthState.loading">
-                <div v-if="!AuthState.isAuthenticated">
-                  <button @click="login()" class="btn btn-primary">Login</button>
-                </div>
-
-                <div v-else>
-                  <div>
-                    <div>
-                      <p>
-                      Hello <strong>{{AuthState.user.nickname}}!</strong>
-                      <img :src="AuthState.user.picture" id="avatarPic">
-                      </p>
-                    </div>
-                    <div>
-                    <button @click="logout()" class="btn btn-secondary">Logout</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div v-else>Loading ...</div>
-            </div>
-        </div>
-        </div>
-      </div>
-  </header> -->
 </template>
 
 

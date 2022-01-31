@@ -1,21 +1,10 @@
 <template>
 <div id="test">
     <div class="category">
-      <div class="category-title">
-        <h1>Category One</h1>
-     </div>
+      <div class="category-title" >
         <Thread/>
+     </div >
     </div>
-    <!-- <div class="category">
-      <div class="category-title">
-        <h1>Category Two</h1>
-     </div>
-    </div>
-    <div class="category">
-      <div class="category-title">
-        <h1>Category Three</h1>
-     </div>
-    </div> -->
 </div>
           
 </template>
@@ -28,13 +17,22 @@
   components: {
     Thread,
   },
+
+  computed:{
+    GetAllThreads(){
+      return this.$store.state.Thread
+    },
+    GetAllCategories(){
+      return this.$store.state.Category
+    }
+  }
 }
 </script>
 
 <style scoped>
 /*temporary? for pushing down */
 #test{
-  height: 100vh;
+  height: 200vh;
 }
 
 .category{
