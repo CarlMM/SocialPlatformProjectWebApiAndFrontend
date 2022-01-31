@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SocialPlatformProjectWebApi.Models
 {
-    public class Category
+    public partial class Category
     {
         public Category()
         {

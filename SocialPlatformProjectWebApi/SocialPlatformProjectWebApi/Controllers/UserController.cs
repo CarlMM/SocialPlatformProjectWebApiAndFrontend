@@ -10,24 +10,23 @@ using System.Threading.Tasks;
 
 namespace SocialPlatformProjectWebApi.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
-    public class CategoryController : ControllerBase
+    [ApiController]
+    public class UserController : Controller
     {
-        private readonly ICategoryService _categoryService;
+        private readonly IUserService _userService;
 
-        public CategoryController(ICategoryService categoryService)
+        public UserController(IUserService userService)
         {
-            _categoryService = categoryService;
+            _userService = userService;
         }
 
         [HttpGet]
-        [Route("GetCategories")]
-        public IEnumerable<Category> GetCategories()
+        [Route("GetUsers")]
+        public IEnumerable<User> GetUsers()
         {
-            var template = _categoryService.GetCategories();
+            var template = _userService.GetUsers();
             return template;
         }
-
     }
 }

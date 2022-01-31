@@ -12,11 +12,11 @@ namespace SocialPlatformProjectWebApi.Repository
 {
     public class ReplyRepository : IReplyRepository/*, IRepository<Reply>*/
     {
-        private readonly SocialplatformContext _dbContext;
+        private readonly socialplatformContext _dbContext;
 
         public ReplyRepository()
         {
-            _dbContext = new SocialplatformContext();
+            _dbContext = new socialplatformContext();
         }
 
         //public Task<IEnumerable<Reply>> GetAll()

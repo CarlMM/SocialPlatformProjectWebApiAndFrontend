@@ -5,11 +5,11 @@ namespace SocialPlatformProjectWebApi.Repository
 {
     public class ThreadUserRepository : IThreadUserRepository
     {
-        private readonly SocialplatformContext _dbContext;
+        private readonly socialplatformContext _dbContext;
 
         public ThreadUserRepository()
         {
-            _dbContext = new SocialplatformContext();
+            _dbContext = new socialplatformContext();
         }
 
         public IEnumerable<ThreadUser> GetThreadUsers()
