@@ -1,15 +1,20 @@
 <template>
+<div>
     <div>
         <h1>POST YO</h1>
     </div>
     <div v-for="thread in getSpecificThread" :key="thread.Id">
-        {{ thread.Title }}
+        <h1>{{ thread.title }}</h1>
+        <p>{{thread.text}}</p>
+
+        
 
         <div class="subforum-description subforum-column">
             <div v-for="reply in getReplies" :key="reply.Id">
                 {{ reply.Text }}
             </div>
         </div>
+    </div>
     </div>
 </template>
 
@@ -27,7 +32,7 @@ export default {
             console.log(this.tId)
 
             let filteredThread = list.filter(item => {
-                return item.Id == this.tId
+                return item.id == this.tId
             })
             console.log(filteredThread)
             return filteredThread
