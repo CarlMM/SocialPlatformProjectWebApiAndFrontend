@@ -46,32 +46,35 @@
                             reply
                             <span><i class="fas fa-comments"></i></span></div
                     ></template>
-
-                    <template v-slot:body>
-                        <div class="subforum-description subforum-column">
-                            <h1>{{ this.threadTitle }}</h1>
-                            <h1>
-                                <small>Posted by <a href="">User</a> 15 Jan 2022</small>
-                            </h1>
-                            <p>{{ this.threadText }}</p>
-                        </div>
-                        <div id="container">
-                            <div class="form-group">
-                                <label for="reply-content">Add content</label>
-                                <textarea
-                                    placeholder="Remember, be nice!"
-                                    cols="78"
-                                    rows="5"
-                                    v-model="replyMessage"
-                                ></textarea>
-                            </div>
-                            <button class="btn btn-reply" @click="saveInput()">
-                                Reply
-                            </button>
-                        </div>
-                    </template>
-                </Modal>
-            </div>
+            <template v-slot:body>
+                <div class="subforum-description subforum-column">
+                    <h1>{{ this.threadTitle }}</h1>
+                    <h1>
+                        <small>Posted by <a href="">User</a> 15 Jan 2022</small>
+                    </h1>
+                    <p>{{ this.threadText }}</p>
+                </div>
+                <div id="container">
+                    <div class="form-group">
+                        <label for="reply-content">Add content</label>
+                        <textarea
+                            placeholder="Remember, be nice!"
+                            cols="78"
+                            rows="5"
+                            v-model="replyMessage"
+                        ></textarea>
+                    </div>
+                    <button class="btn btn-reply" @click="saveInput()">
+                        Reply
+                    </button>
+                    <div v-for="error in errors" :key="error.id">
+                        <ul>
+                            <li>{{ error }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </template>
+        </Modal>
     </div>
     <!-- <div class="container" >
     <div class="subform">
@@ -96,7 +99,7 @@
 
 <script>
 import Modal from './Modal.vue'
-import { mapMutations } from 'vuex'
+// import { mapMutations } from 'vuex'
 
 export default {
     components: {
@@ -111,6 +114,7 @@ export default {
             threadTitle: '',
             threadText: '',
             replyMessage: '',
+            errors: [],
         }
     },
 
@@ -153,17 +157,21 @@ export default {
         },
 
         closeModal() {
-            this.isModalVisible = false
+            this.errors == []
+            this.replyMessage == '', (this.isModalVisible = false)
         },
-        ...mapMutations(['setReply']),
+        // ...mapMutations(['setReply']),
         saveInput() {
-            this.setReply(this.replyMessage)
+            // this.setReply(this.replyMessage)
             //Comment ---> create data spara message och date i ett objekt skicka till backend ingen aning vi ser.
+            if (this.replyMessage == '') {
+                this.errors = []
+                this.errors.push('Please enter some text!')
+            } else if (this.replyMessage != '') {
+                this.errors = []
+                this.closeModal()
+            }
         },
-        // setReplyMessage(event) {
-        //     this.replyMessage = event.target.value
-        //     console.log(event, 'testar med event.target.value!!!')
-        // },
     },
 }
 </script>
@@ -171,6 +179,10 @@ export default {
 <style scoped>
 * {
     box-sizing: border-box;
+}
+
+li {
+    list-style: none;
 }
 
 a {
