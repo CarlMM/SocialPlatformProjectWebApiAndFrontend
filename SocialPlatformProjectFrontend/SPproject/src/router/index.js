@@ -18,17 +18,17 @@ const routes = [
         component: Post,
     },
     {
-        path: '/Computer/:Id',
+        path: '/Computer/:id',
         name: 'Computers',
         component: Computers,
     },
     {
-        path: '/Fishing/:Id',
+        path: '/Fishing/:id',
         name: 'Fishing',
         component: Fishing,
     },
     {
-        path: '/Studies/:Id',
+        path: '/Studies/:id',
         name: 'Studies',
         component: Studies,
     },

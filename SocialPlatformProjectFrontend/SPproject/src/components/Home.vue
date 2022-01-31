@@ -1,13 +1,6 @@
 <template>
-<div id="test">
-    <div class="category">
-      <div class="category-title" >
+<div>
         <Thread/>
-     </div >
-     <div v-for="threads in fetchAllThreads" :key="threads.id">
-       <h1>{{threads.title}}</h1>
-     </div>
-    </div>
 </div>
           
 </template>
