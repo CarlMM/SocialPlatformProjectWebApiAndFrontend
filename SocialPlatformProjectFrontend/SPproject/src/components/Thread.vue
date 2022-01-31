@@ -19,8 +19,8 @@
                     <i class="fas fa-laptop"></i>
                 </div>
                 <div class="subforum-description subforum-column">
-                    <router-link type="button" :to="{ name: 'Post'}">
-                    <!-- {`/Post/${threads.Id}`} -->
+                    <router-link type="button" :to="`/Post/${threads.Id}`">
+                    <!-- :to="{ name: 'Post'} -->
                         <h1>{{ threads.Title }}</h1>
                     </router-link>
                     <h1>
@@ -75,6 +75,7 @@
                 </div>
             </template>
         </Modal>
+        </div>
     </div>
     <!-- <div class="container" >
     <div class="subform">
