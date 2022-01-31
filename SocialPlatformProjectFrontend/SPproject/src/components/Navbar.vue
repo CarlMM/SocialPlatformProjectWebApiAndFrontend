@@ -24,9 +24,9 @@
                                         <!-- authstate.user.sub = user token (id) -->
                                         <select @change="changeRoute($event)">
                                           <option selected value="" >Home</option>
-                                          <option value="Computer/1">Profile</option>
-                                          <option value="">My groups</option>
-                                          <option value="">My threads</option> 
+                                          <option value="MyProfile">Profile</option>
+                                          <option value="MyGroups">My groups</option>
+                                          <option value="MyThreads">My threads</option> 
                                           </select>
                                         <img :src="AuthState.user.picture" alt="AvatarPic">
                                         <a href="#" @click.prevent="logout()" >Logout</a>
@@ -55,7 +55,6 @@ export default {
   },
    methods:{
     changeRoute(e){
-      console.log('bajs')
       this.$router.push('/' + e.target.value)
     },
    }

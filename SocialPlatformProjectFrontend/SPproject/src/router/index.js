@@ -5,7 +5,7 @@ import Computers from '/src/components/CategoryFolderPages/Computers.vue'
 import Fishing from '/src/components/CategoryFolderPages/Fishing.vue'
 import Studies from '/src/components/CategoryFolderPages/Studies.vue'
 import MyProfile from '/src/components/ProfilePages/MyProfile.vue'
-import MyGroups from '/src/components/ProfilePages/MyGroups.vue'
+import MyGroups from '/src/components/ProfilePages/Mygroups.vue'
 import MyThreads from '/src/components/ProfilePages/MyThreads.vue'
 
 
