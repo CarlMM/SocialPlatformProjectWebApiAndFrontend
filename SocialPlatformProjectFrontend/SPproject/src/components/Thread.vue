@@ -20,6 +20,7 @@
                 </div>
                 <div class="subforum-description subforum-column">
                     <router-link type="button" :to="`/Post/${threads.Id}`">
+                    <!-- :to="{ name: 'Post'} -->
                         <h1>{{ threads.Title }}</h1>
                     </router-link>
                     <h1>
@@ -38,15 +39,13 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="d-flex justify-content-end mt-1">
-        <Modal v-show="isModalVisible" @close="closeModal">
-            <template v-slot:header>
-                <div class="text-uppercase">
-                    reply
-                    <span><i class="fas fa-comments"></i></span></div
-            ></template>
-
+            <div class="d-flex justify-content-end mt-1">
+                <Modal v-show="isModalVisible" @close="closeModal">
+                    <template v-slot:header>
+                        <div class="text-uppercase">
+                            reply
+                            <span><i class="fas fa-comments"></i></span></div
+                    ></template>
             <template v-slot:body>
                 <div class="subforum-description subforum-column">
                     <h1>{{ this.threadTitle }}</h1>
@@ -68,9 +67,15 @@
                     <button class="btn btn-reply" @click="saveInput()">
                         Reply
                     </button>
+                    <div v-for="error in errors" :key="error.id">
+                        <ul>
+                            <li>{{ error }}</li>
+                        </ul>
+                    </div>
                 </div>
             </template>
         </Modal>
+        </div>
     </div>
     <!-- <div class="container" >
     <div class="subform">
@@ -95,7 +100,7 @@
 
 <script>
 import Modal from './Modal.vue'
-import { mapMutations } from 'vuex'
+// import { mapMutations } from 'vuex'
 
 export default {
     components: {
@@ -110,6 +115,7 @@ export default {
             threadTitle: '',
             threadText: '',
             replyMessage: '',
+            errors: [],
         }
     },
 
@@ -152,17 +158,21 @@ export default {
         },
 
         closeModal() {
-            this.isModalVisible = false
+            this.errors == []
+            this.replyMessage == '', (this.isModalVisible = false)
         },
-        ...mapMutations(['setReply']),
+        // ...mapMutations(['setReply']),
         saveInput() {
-            this.setReply(this.replyMessage)
+            // this.setReply(this.replyMessage)
             //Comment ---> create data spara message och date i ett objekt skicka till backend ingen aning vi ser.
+            if (this.replyMessage == '') {
+                this.errors = []
+                this.errors.push('Please enter some text!')
+            } else if (this.replyMessage != '') {
+                this.errors = []
+                this.closeModal()
+            }
         },
-        // setReplyMessage(event) {
-        //     this.replyMessage = event.target.value
-        //     console.log(event, 'testar med event.target.value!!!')
-        // },
     },
 }
 </script>
@@ -170,6 +180,10 @@ export default {
 <style scoped>
 * {
     box-sizing: border-box;
+}
+
+li {
+    list-style: none;
 }
 
 a {

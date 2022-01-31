@@ -100,7 +100,79 @@ const store = createStore({
                 CategoryId: 2,
             },
         ],
-        reply: [],
+
+        reply: [
+            {
+                Id: 1,
+                Text: 'reply to thread id 2',
+                CreatedDate: '2022-01-01',
+                UserId: 22,
+                ThreadId: 2,
+            },
+            {
+                Id: 2,
+                Text: 'reply to thread id 1',
+                CreatedDate: '2022-01-01',
+                UserId: 22,
+                ThreadId: 1,
+            },
+            {
+                Id: 1,
+                Text: 'reply to thread id 3',
+                CreatedDate: '2022-01-01',
+                UserId: 22,
+                ThreadId: 3,
+            },
+            {
+                Id: 1,
+                Text: 'reply to thread id 4',
+                CreatedDate: '2022-01-01',
+                UserId: 22,
+                ThreadId: 4,
+            },
+            {
+                Id: 1,
+                Text: 'reply to thread id 5',
+                CreatedDate: '2022-01-01',
+                UserId: 22,
+                ThreadId: 5,
+            },
+            {
+                Id: 1,
+                Text: 'reply to thread id 6',
+                CreatedDate: '2022-01-01',
+                UserId: 22,
+                ThreadId: 6,
+            },
+            {
+                Id: 1,
+                Text: 'reply to thread id 7',
+                CreatedDate: '2022-01-01',
+                UserId: 22,
+                ThreadId: 7,
+            },
+            {
+                Id: 1,
+                Text: 'reply to thread id 8',
+                CreatedDate: '2022-01-01',
+                UserId: 22,
+                ThreadId: 8,
+            },
+            {
+                Id: 1,
+                Text: 'reply to thread id 9',
+                CreatedDate: '2022-01-01',
+                UserId: 22,
+                ThreadId: 9,
+            },
+            {
+                Id: 1,
+                Text: 'reply to thread id 10',
+                CreatedDate: '2022-01-01',
+                UserId: 22,
+                ThreadId: 10,
+            },
+        ],
     },
     mutations: {
         setReply(state, value) {
@@ -120,9 +192,8 @@ const store = createStore({
             commit('setNewPost', newPostObject);
         }
 
-
-
     },
+
 })
 
 export default store

@@ -4,8 +4,11 @@
     </div>
     <div v-for="thread in getSpecificThread" :key="thread.Id">
         {{ thread.Title }}
-        <div>
-            {{ getReplies }}
+
+        <div class="subforum-description subforum-column">
+            <div v-for="reply in getReplies" :key="reply.Id">
+                {{ reply.Text }}
+            </div>
         </div>
     </div>
 </template>
@@ -30,9 +33,15 @@ export default {
             return filteredThread
         },
         getReplies() {
-            return this.$store.state.reply > 0
-                ? this.$store.state.reply
-                : `NO POST MIKAEL DUVRINGE JAG HATAR AGILT`
+            let replyList = this.$store.state.reply
+            console.log(replyList)
+            console.log(this.tId, 'THREAD ID!!!!!')
+            let filterReplylist = replyList.filter(item => {
+                console.log(item.ThreadId)
+                return item.ThreadId == this.tId
+            })
+            console.log(filterReplylist)
+            return filterReplylist
         },
     },
 }

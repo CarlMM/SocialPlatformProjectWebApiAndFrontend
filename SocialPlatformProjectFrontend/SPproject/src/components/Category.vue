@@ -14,9 +14,6 @@
                                 >{{ categories.Title }}
                             </router-link>
                         </li>
-                        <!-- <li class="nav-item"><router-link to="/Studies/3">Studies</router-link></li>
-                <li class="nav-item"><router-link to="/Fishing/2">Fishing</router-link></li>
-                <li class="nav-item"><router-link to="/Computers/{{id}}">Computer</router-link></li> -->
                     </ul>
                 </nav>
                 <div class="d-flex justify-content-end mt-1">
@@ -190,9 +187,7 @@ export default {
     background: #33393a;
     border-radius: 5px;
 }
-/* .navbar {
- 
-} */
+
 
 .nav-menu a {
     color: #fff;
@@ -207,12 +202,6 @@ export default {
     list-style-type: none;
     overflow: hidden;
 }
-/* 
-.btn{
-  display:inline-block;
-  background: rgb(129, 129, 129);
-  color: white;
-} */
 
 /*Create Post */
 .create-post {
