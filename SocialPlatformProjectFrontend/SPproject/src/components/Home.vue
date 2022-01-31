@@ -4,6 +4,9 @@
       <div class="category-title" >
         <Thread/>
      </div >
+     <div v-for="threads in fetchAllThreads" :key="threads.id">
+       <h1>{{threads.title}}</h1>
+     </div>
     </div>
 </div>
           
@@ -18,14 +21,30 @@
     Thread,
   },
 
+    created(){
+    this.fetchThreads();
+  },
+
+   methods:{
+     async fetchThreads(){
+       this.$store.dispatch('getAllThreads')
+     }
+    
+  },
+
+
   computed:{
     GetAllThreads(){
       return this.$store.state.Thread
     },
     GetAllCategories(){
       return this.$store.state.Category
+    },
+    fetchAllThreads(){
+      return this.$store.state.Thread
     }
   }
+
 }
 </script>
 

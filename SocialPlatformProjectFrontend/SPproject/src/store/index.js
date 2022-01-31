@@ -183,6 +183,9 @@ const store = createStore({
             state.Thread.push(data);
             console.log(state.Thread);
         },
+        setThreadsFromBack(state, data){
+            state.Thread = data;
+        }
     },
     actions: {
 
@@ -190,6 +193,14 @@ const store = createStore({
             console.log('Inne i createNewPostMethod action: ', newPostObject)
 
             commit('setNewPost', newPostObject);
+        },
+        async getAllThreads({commit}){
+            let response = await fetch('https://localhost:44300/api/Thread/GetThreads');
+            let data = await response.json()
+            
+            console.log(data)
+
+            commit('setThreadsFromBack', data);
         }
 
     },
