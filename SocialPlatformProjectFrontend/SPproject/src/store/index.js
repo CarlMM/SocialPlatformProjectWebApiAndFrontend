@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 
 const store = createStore({
     state: {
+        GroupThreads:[],
         Category: [
             {
             //     Id: 1,
@@ -260,6 +261,14 @@ const store = createStore({
             console.log(data)
             commit('setThreadUserFromBack', data)
         },
+
+        // async getAllThreadByUser({commit}, userId){
+        //     let response = await fetch('https://localhost:44300/api/Threads/GetThreadsByUser' + userId);
+        //     let data = await response.json()
+
+        //     console.log(data)
+        //     commit('setInMutation' , data)
+        // }
 
 
     },
