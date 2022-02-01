@@ -61,6 +61,11 @@ namespace SocialPlatformProjectWebApi.Models
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
+                entity.Property(e => e.UserIdSub)
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
+                    .HasColumnName("UserId_Sub");
+
                 entity.HasOne(d => d.Thread)
                     .WithMany(p => p.Replies)
                     .HasForeignKey(d => d.ThreadId)
@@ -83,6 +88,11 @@ namespace SocialPlatformProjectWebApi.Models
                     .IsRequired()
                     .HasMaxLength(250)
                     .IsUnicode(false);
+
+                entity.Property(e => e.UserIdSub)
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
+                    .HasColumnName("UserId_Sub");
 
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Threads)

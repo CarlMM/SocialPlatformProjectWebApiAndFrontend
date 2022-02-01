@@ -19,6 +19,7 @@ namespace SocialPlatformProjectWebApi.Models
         public DateTime CreatedDate { get; set; }
         public long? CategoryId { get; set; }
         public bool? ThreadType { get; set; }
+        public string UserIdSub { get; set; }
 
         public virtual Category Category { get; set; }
         public virtual ICollection<Reply> Replies { get; set; }

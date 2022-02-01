@@ -10,8 +10,8 @@ namespace SocialPlatformProjectWebApi.Models
         public long Id { get; set; }
         public string Text { get; set; }
         public DateTime? CreatedDate { get; set; }
-        public long? UserId { get; set; }
         public long ThreadId { get; set; }
+        public string UserIdSub { get; set; }
 
         public virtual Thread Thread { get; set; }
     }
