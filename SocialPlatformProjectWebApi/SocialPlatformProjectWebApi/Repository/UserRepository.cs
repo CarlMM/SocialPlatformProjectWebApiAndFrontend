@@ -6,24 +6,23 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-//using hej = Models.Thread;
+
 
 namespace SocialPlatformProjectWebApi.Repository
 {
-    public class CategoryRepository : ICategoryRepository
+    public class UserRepository : IUserRepository
     {
         private readonly socialplatformContext _dbContext;
 
-        public CategoryRepository()
+        public UserRepository()
         {
             _dbContext = new socialplatformContext();
         }
 
-        public IEnumerable<Category> GetCategories()
+        public IEnumerable<User> GetUsers()
         {
-            var result = _dbContext.Categories;
+            var result = _dbContext.Users;
             return result;
         }
-      
     }
 }
