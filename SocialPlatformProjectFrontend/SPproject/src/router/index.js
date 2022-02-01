@@ -36,16 +36,19 @@ const routes = [
         component: Studies,
     },
     {
+        //Behövs inte /:id för denna
         path: '/MyProfile',
         name: 'MyProfile',
         component: MyProfile,
     },
     {
+        //Behövs troligen ett /:id
         path: '/MyGroups',
         name: 'MyGroups',
         component: MyGroups,
     },
     {
+        //Behövs troligen ett /:id
         path: '/MyThreads',
         name: 'MyThreads',
         component: MyThreads,
