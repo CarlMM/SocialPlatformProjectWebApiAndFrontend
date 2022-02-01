@@ -33,7 +33,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetThreadByCategoryId/{categoryId]")]
+        [Route("GetThreadByCategoryId/{categoryId}")]
         public async Task<IList<Models.Thread>> GetThreadByCategoryId(int categoryId)
         {
             var template = await _threadService.GetThreadByCategoryId(categoryId);
