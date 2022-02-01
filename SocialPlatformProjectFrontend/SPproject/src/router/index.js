@@ -4,6 +4,9 @@ import Post from '/src/components/Post.vue'
 import Computers from '/src/components/CategoryFolderPages/Computers.vue'
 import Fishing from '/src/components/CategoryFolderPages/Fishing.vue'
 import Studies from '/src/components/CategoryFolderPages/Studies.vue'
+import MyProfile from '/src/components/ProfilePages/MyProfile.vue'
+import MyGroups from '/src/components/ProfilePages/Mygroups.vue'
+import MyThreads from '/src/components/ProfilePages/MyThreads.vue'
 
 
 const routes = [
@@ -31,6 +34,24 @@ const routes = [
         path: '/Studies/:id',
         name: 'Studies',
         component: Studies,
+    },
+    {
+        //Behövs inte /:id för denna
+        path: '/MyProfile',
+        name: 'MyProfile',
+        component: MyProfile,
+    },
+    {
+        //Behövs troligen ett /:id
+        path: '/MyGroups',
+        name: 'MyGroups',
+        component: MyGroups,
+    },
+    {
+        //Behövs troligen ett /:id
+        path: '/MyThreads',
+        name: 'MyThreads',
+        component: MyThreads,
     },
 ]
 

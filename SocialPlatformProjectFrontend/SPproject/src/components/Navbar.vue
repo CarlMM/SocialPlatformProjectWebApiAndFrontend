@@ -31,39 +31,19 @@
                                                 <!-- authstate.user.sub = user token (id) -->
                                                 <!-- <select @change="changeRoute($event)">
                                           <option selected value="" >Home</option>
-                                          <option value="Computer/1">Profile</option>
-                                          <option value="">My groups</option>
-                                          <option value="">My threads</option> 
-                                          </select> -->
-                                                <Dropdown
-                                                    id="profileCategory"
-                                                    name="profileCategory"
-                                                    :options="profileCategory"
-                                                    @change="
-                                                        chooseProfileCategory(
-                                                            $event.target.value
-                                                        )
-                                                    "
-                                                ></Dropdown>
-                                                <img
-                                                    :src="
-                                                        AuthState.user.picture
-                                                    "
-                                                    alt="AvatarPic"
-                                                />
-                                                <a
-                                                    href="#"
-                                                    @click.prevent="logout()"
-                                                    >Logout</a
-                                                >
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div v-else>Loading ...</div>
-                            </div>
-                        </div>
-                    </div>
+
+                                          <option value="MyProfile">Profile</option>
+                                          <option value="MyGroups">My groups</option>
+                                          <option value="MyThreads">My threads</option> 
+                                          </select>
+                                        <img :src="AuthState.user.picture" alt="AvatarPic">
+                                        <a href="#" @click.prevent="logout()" >Logout</a>
+                                      </p>
+                                  </div>
+                              </div>
+                          </div>
+                          <div v-else>Loading ...</div>
+                      </div>
                 </div>
             </div>
         </div>
@@ -73,28 +53,16 @@
 <script>
 import Dropdown from './Dropdown.vue'
 export default {
-    components: {
-        Dropdown,
+   data() {
+     return {
+       
+     };
+  },
+   methods:{
+    changeRoute(e){
+      this.$router.push('/' + e.target.value)
+
     },
-    data() {
-        return {
-            profileCategory: {
-                myGroups: 'myGroups',
-                myThreads: 'myThreads',
-            },
-        }
-    },
-    methods: {
-        changeRoute(e) {
-            console.log('bajs')
-            this.$router.push('/' + e.target.value)
-        },
-        chooseProfileCategory(event) {
-            console.log(this.AuthState.user)
-            event == this.myGroups
-                ? this.$router.push({ name: 'Home' })
-                : this.$router.push({ name: 'Home' })
-        },
     },
 }
 </script>
