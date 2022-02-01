@@ -1,8 +1,6 @@
 ﻿using SocialPlatformProjectWebApi.Repository;
 using SocialPlatformProjectWebApi.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SocialPlatformProjectWebApi.Services
@@ -16,16 +14,22 @@ namespace SocialPlatformProjectWebApi.Services
             _threadRepository = threadRepository;
 
         }
-        public IList<Models.Thread> GetThreads()
+        public IList<Thread> GetThreads()
         {
             var template = _threadRepository.GetThreads();
             return template;
         }
 
-        public async Task<IList<Models.Thread>> GetThreadByCategoryId(int categoryId)
+        public async Task<IList<Thread>> GetThreadByCategoryId(int categoryId)
         {
             var template = await _threadRepository.GetThreadByCategoryId(categoryId);
             return template;
+        }
+
+        public async Task<IList<Thread>> GetThreadByThreadType(bool threadType)
+        {
+            var types = await _threadRepository.GetThreadByThreadType(threadType);
+            return types;
         }
     }
 }

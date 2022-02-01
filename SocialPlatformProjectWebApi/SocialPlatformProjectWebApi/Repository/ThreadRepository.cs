@@ -16,7 +16,7 @@ namespace SocialPlatformProjectWebApi.Repository
             _dbContext = new socialplatformContext();
         }
 
-        public IList<Models.Thread> GetThreads()
+        public IList<Thread> GetThreads()
         {
             var result = _dbContext.Threads;
             return result.ToList();
@@ -26,6 +26,12 @@ namespace SocialPlatformProjectWebApi.Repository
         {
             var template = await _dbContext.Threads.Where(x => x.CategoryId == categoryId).ToListAsync();
             return template;
+        }
+
+        public async Task<IList<Thread>> GetThreadByThreadType(bool threadType)
+        {
+            var types = await _dbContext.Threads.Where(x => x.ThreadType == threadType).ToListAsync();
+            return types;
         }
     }
 }

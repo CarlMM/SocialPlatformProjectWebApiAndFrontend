@@ -40,6 +40,13 @@ namespace SocialPlatformProjectWebApi.Controllers
             return template;
         }
 
+        [HttpGet]
+        [Route("GetThreadByThreadType/{threadType}")]
 
+        public async Task<IList<Models.Thread>> GetThreadByThreadType(bool threadType)
+        {
+            var types = await _threadService.GetThreadByThreadType(threadType);
+            return types;
+        }
     }
 }
