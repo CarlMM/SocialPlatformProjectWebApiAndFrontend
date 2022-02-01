@@ -4,20 +4,20 @@ const store = createStore({
     state: {
         Category: [
             {
-            //     Id: 1,
-            //     Title: 'Computer',
-            //     Description: 'Bla bla bla Computers',
-            // },
-            // {
-            //     Id: 2,
-            //     Title: 'Fishing',
-            //     Description: 'Bla bla bla Fishing',
-            // },
-            // {
-            //     Id: 3,
-            //     Title: 'Studies',
-            //     Description: 'Bla bla bla Studies',
-             },
+                //     Id: 1,
+                //     Title: 'Computer',
+                //     Description: 'Bla bla bla Computers',
+                // },
+                // {
+                //     Id: 2,
+                //     Title: 'Fishing',
+                //     Description: 'Bla bla bla Fishing',
+                // },
+                // {
+                //     Id: 3,
+                //     Title: 'Studies',
+                //     Description: 'Bla bla bla Studies',
+            },
         ],
 
         Thread: [
@@ -102,122 +102,136 @@ const store = createStore({
         ],
 
         reply: [
-            {
-                Id: 1,
-                Text: 'reply to thread id 2',
-                CreatedDate: '2022-01-01',
-                UserId: 22,
-                ThreadId: 2,
-            },
-            {
-                Id: 2,
-                Text: 'reply to thread id 1',
-                CreatedDate: '2022-01-01',
-                UserId: 22,
-                ThreadId: 1,
-            },
-            {
-                Id: 1,
-                Text: 'reply to thread id 3',
-                CreatedDate: '2022-01-01',
-                UserId: 22,
-                ThreadId: 3,
-            },
-            {
-                Id: 1,
-                Text: 'reply to thread id 4',
-                CreatedDate: '2022-01-01',
-                UserId: 22,
-                ThreadId: 4,
-            },
-            {
-                Id: 1,
-                Text: 'reply to thread id 5',
-                CreatedDate: '2022-01-01',
-                UserId: 22,
-                ThreadId: 5,
-            },
-            {
-                Id: 1,
-                Text: 'reply to thread id 6',
-                CreatedDate: '2022-01-01',
-                UserId: 22,
-                ThreadId: 6,
-            },
-            {
-                Id: 1,
-                Text: 'reply to thread id 7',
-                CreatedDate: '2022-01-01',
-                UserId: 22,
-                ThreadId: 7,
-            },
-            {
-                Id: 1,
-                Text: 'reply to thread id 8',
-                CreatedDate: '2022-01-01',
-                UserId: 22,
-                ThreadId: 8,
-            },
-            {
-                Id: 1,
-                Text: 'reply to thread id 9',
-                CreatedDate: '2022-01-01',
-                UserId: 22,
-                ThreadId: 9,
-            },
-            {
-                Id: 1,
-                Text: 'reply to thread id 10',
-                CreatedDate: '2022-01-01',
-                UserId: 22,
-                ThreadId: 10,
-            },
+            // {
+            //     Id: 1,
+            //     Text: 'reply to thread id 2',
+            //     CreatedDate: '2022-01-01',
+            //     UserId: 22,
+            //     ThreadId: 2,
+            // },
+            // {
+            //     Id: 2,
+            //     Text: 'reply to thread id 1',
+            //     CreatedDate: '2022-01-01',
+            //     UserId: 22,
+            //     ThreadId: 1,
+            // },
+            // {
+            //     Id: 1,
+            //     Text: 'reply to thread id 3',
+            //     CreatedDate: '2022-01-01',
+            //     UserId: 22,
+            //     ThreadId: 3,
+            // },
+            // {
+            //     Id: 1,
+            //     Text: 'reply to thread id 4',
+            //     CreatedDate: '2022-01-01',
+            //     UserId: 22,
+            //     ThreadId: 4,
+            // },
+            // {
+            //     Id: 1,
+            //     Text: 'reply to thread id 5',
+            //     CreatedDate: '2022-01-01',
+            //     UserId: 22,
+            //     ThreadId: 5,
+            // },
+            // {
+            //     Id: 1,
+            //     Text: 'reply to thread id 6',
+            //     CreatedDate: '2022-01-01',
+            //     UserId: 22,
+            //     ThreadId: 6,
+            // },
+            // {
+            //     Id: 1,
+            //     Text: 'reply to thread id 7',
+            //     CreatedDate: '2022-01-01',
+            //     UserId: 22,
+            //     ThreadId: 7,
+            // },
+            // {
+            //     Id: 1,
+            //     Text: 'reply to thread id 8',
+            //     CreatedDate: '2022-01-01',
+            //     UserId: 22,
+            //     ThreadId: 8,
+            // },
+            // {
+            //     Id: 1,
+            //     Text: 'reply to thread id 9',
+            //     CreatedDate: '2022-01-01',
+            //     UserId: 22,
+            //     ThreadId: 9,
+            // },
+            // {
+            //     Id: 1,
+            //     Text: 'reply to thread id 10',
+            //     CreatedDate: '2022-01-01',
+            //     UserId: 22,
+            //     ThreadId: 10,
+            // },
         ],
     },
     mutations: {
         setReply(state, value) {
             state.reply = value
         },
-        setNewPost(state, data){
-            console.log('inne i setNewPostMutatuon: ', data);
-            state.Thread.push(data);
-            console.log(state.Thread);
+        setNewPost(state, data) {
+            console.log('inne i setNewPostMutatuon: ', data)
+            state.Thread.push(data)
+            console.log(state.Thread)
         },
-        setThreadsFromBack(state, data){
-            state.Thread = data;
+        setThreadsFromBack(state, data) {
+            state.Thread = data
         },
-        setCategoriesFromBackend(state, data){
-            state.Category = data;
+        setCategoriesFromBackend(state, data) {
+            state.Category = data
             console.log(data)
-        }
+        },
+        setRepliesFromBacked(state, data) {
+            state.reply = data
+        },
     },
     actions: {
-
-        createNewPostMethod({commit}, newPostObject){
+        createNewPostMethod({ commit }, newPostObject) {
             console.log('Inne i createNewPostMethod action: ', newPostObject)
 
-            commit('setNewPost', newPostObject);
+            commit('setNewPost', newPostObject)
         },
-        async getAllThreads({commit}){
-            let response = await fetch('https://localhost:44300/api/Thread/GetThreads');
+        async getAllThreads({ commit }) {
+            let response = await fetch(
+                'https://localhost:44300/api/Thread/GetThreads'
+            )
             let data = await response.json()
-            
+
             console.log(data)
 
-            commit('setThreadsFromBack', data);
+            commit('setThreadsFromBack', data)
         },
 
-        async getAllCategories({commit}){
-            let response = await fetch('https://localhost:44300/api/Category/GetCategories');
+        async getAllCategories({ commit }) {
+            let response = await fetch(
+                'https://localhost:44300/api/Category/GetCategories'
+            )
             let data = await response.json()
-            
+
             console.log(data)
 
-            commit('setCategoriesFromBackend', data);
-        }
+            commit('setCategoriesFromBackend', data)
+        },
+        async getAllReplies({ commit }) {
+            let response = await fetch(
+                'https://localhost:44300/Reply/GetReplies'
+            )
+            let data = await response.json()
 
+            console.log(data)
+
+            commit('setRepliesFromBacked', data)
+        },
     },
-
 })
 
 export default store
