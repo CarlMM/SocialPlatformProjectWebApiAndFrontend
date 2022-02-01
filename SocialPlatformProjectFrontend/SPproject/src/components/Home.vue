@@ -1,13 +1,6 @@
 <template>
-<div id="test">
-    <div class="category">
-      <div class="category-title" >
-        <Thread/>
-     </div >
-     <div v-for="threads in fetchAllThreads" :key="threads.id">
-       <h1>{{threads.title}}</h1>
-     </div>
-    </div>
+<div>
+        <Thread :post="thread" v-for="(thread, index) in GetAllThreads" :key="index"/>
 </div>
           
 </template>
@@ -35,7 +28,9 @@
 
   computed:{
     GetAllThreads(){
-      return this.$store.state.Thread
+      const result = this.$store.state.Thread
+      console.log('Get All Threads', result)
+      return result
     },
     GetAllCategories(){
       return this.$store.state.Category

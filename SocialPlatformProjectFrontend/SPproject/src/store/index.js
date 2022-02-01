@@ -186,13 +186,29 @@ const store = createStore({
         setThreadsFromBack(state, data) {
             state.Thread = data
         },
+
         setCategoriesFromBackend(state, data) {
             state.Category = data
             console.log(data)
         },
         setRepliesFromBacked(state, data) {
             state.reply = data
+          console.log(data)
         },
+
+        setUserFromBack(state, data){
+            state.User = data;
+            console.log(data)
+        },
+        setUsersFromBack(state, data){
+            state.Users = data;
+            console.log(data)
+        },
+        setThreadUserFromBack(state, data){
+            state.ThreadUser = data;
+            console.log(data)
+        }
+
     },
     actions: {
         createNewPostMethod({ commit }, newPostObject) {
@@ -216,21 +232,39 @@ const store = createStore({
                 'https://localhost:44300/api/Category/GetCategories'
             )
             let data = await response.json()
-
             console.log(data)
-
-            commit('setCategoriesFromBackend', data)
+            commit('setCategoriesFromBackend', data);
         },
-        async getAllReplies({ commit }) {
-            let response = await fetch(
-                'https://localhost:44300/Reply/GetReplies'
-            )
+        
+        async GetAllReplies({commit}){
+            let response = await fetch('https://localhost:44300/Reply/GetReplies')
             let data = await response.json()
-
             console.log(data)
-
             commit('setRepliesFromBacked', data)
         },
+                    
+        async GetUser({commit}){
+            let response = await fetch('')
+            let data = await response.json()
+            console.log(data)
+            commit('setUserFromBack', data)
+        },
+
+        async getAllUsers({commit}){
+            let response = await fetch('')
+            let data = await response.json()
+            console.log(data)
+            commit('setUsersFromBack', data)
+        },
+
+        async getThreadUser({commit}){
+            let response = await fetch('')
+            let data = await response.json()
+            console.log(data)
+            commit('setThreadUserFromBack', data)
+        },
+                
+       
     },
 })
 
