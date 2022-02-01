@@ -29,12 +29,11 @@
                                             <p>
                                                 {{ AuthState.user.nickname }}
                                                 <!-- authstate.user.sub = user token (id) -->
-                                                <!-- <select @change="changeRoute($event)">
-                                          <option selected value="" >Home</option>
-
-                                          <option value="MyProfile">Profile</option>
-                                          <option value="MyGroups">My groups</option>
-                                          <option value="MyThreads">My threads</option> 
+                                          <select @change="changeRoute($event)"> 
+                                              <option selected>Home</option>
+                                            <option value="MyProfile">Profile</option>
+                                            <option value="MyGroups">My groups</option>
+                                            <option value="MyThreads">My threads</option> 
                                           </select>
                                         <img :src="AuthState.user.picture" alt="AvatarPic">
                                         <a href="#" @click.prevent="logout()" >Logout</a>
@@ -47,11 +46,14 @@
                 </div>
             </div>
         </div>
+            </div>
+        </div>
     </header>
 </template>
 
 <script>
 import Dropdown from './Dropdown.vue'
+
 export default {
    data() {
      return {
@@ -62,7 +64,7 @@ export default {
     changeRoute(e){
       this.$router.push('/' + e.target.value)
 
-    },
+     }
     },
 }
 </script>
