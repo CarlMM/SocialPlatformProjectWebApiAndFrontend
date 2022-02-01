@@ -1,14 +1,6 @@
 <template>
     <div class="container">
-        <div class="category">
-            <div
-                v-for="category in GetCategory"
-                :key="category.Id"
-                class="category-title"
-            >
-                <h2>{{ category.Title }}</h2>
-            </div>
-        </div>
+        
         <div
             v-for="threads in GetThreads"
             :key="threads.Id"
@@ -103,6 +95,7 @@ import Modal from './Modal.vue'
 // import { mapMutations } from 'vuex'
 
 export default {
+    posts:["thread"],
     components: {
         Modal,
     },
