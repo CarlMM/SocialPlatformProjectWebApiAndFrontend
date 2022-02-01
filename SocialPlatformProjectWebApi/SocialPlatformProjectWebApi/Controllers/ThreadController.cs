@@ -32,6 +32,14 @@ namespace SocialPlatformProjectWebApi.Controllers
             return template;
         }
 
+        [HttpGet]
+        [Route("GetThreadByCategoryId/{categoryId]")]
+        public IList<Models.Thread> GetThreadByCategoryId(int categoryId)
+        {
+            var template = _threadService.GetThreadByCategoryId(categoryId);
+            return template;
+        }
+
 
     }
 }

@@ -21,5 +21,11 @@ namespace SocialPlatformProjectWebApi.Services
             var template = _threadRepository.GetThreads();
             return template;
         }
+
+        public IList<Models.Thread> GetThreadByCategoryId(int categoryId)
+        {
+            var template = _threadRepository.GetThreadByCategoryId(categoryId);
+            return template;
+        }
     }
 }
