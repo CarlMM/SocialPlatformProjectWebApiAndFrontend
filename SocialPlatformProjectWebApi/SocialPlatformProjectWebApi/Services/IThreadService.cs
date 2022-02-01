@@ -8,6 +8,7 @@ namespace SocialPlatformProjectWebApi.Services
     public interface IThreadService
     {
         IList<Models.Thread> GetThreads();
-        IList<Models.Thread> GetThreadByCategoryId(int categoryId);
+
+        Task<IList<Models.Thread>> GetThreadByCategoryId(int categoryId);
     }
 }

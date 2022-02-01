@@ -37,7 +37,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         public IList<Models.Thread> GetThreadByCategoryId(int categoryId)
         {
             var template = _threadService.GetThreadByCategoryId(categoryId);
-            return template;
+            return (IList<Models.Thread>)template;
         }
 
 
