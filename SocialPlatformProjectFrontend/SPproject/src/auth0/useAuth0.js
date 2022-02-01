@@ -6,6 +6,7 @@ export const AuthState = reactive({
     loading: false,
     isAuthenticated: false,
     auth0: null,
+    
 });
 
 const config = {
@@ -20,6 +21,7 @@ export const useAuth0 = (state) => {
         state.isAuthenticated = !!(await state.auth0.isAuthenticated());
         state.user = await state.auth0.getUser();
         state.loading = false;
+        state.claims = await state.auth0.getIdTokenClaims();
     }
 
     const initAuth = () => {
@@ -39,6 +41,7 @@ export const useAuth0 = (state) => {
         await state.auth0.loginWithPopup();
         await handleStateChange();
         console.log(state.user)
+        console.log(user.app_metadata)
     };
 
     const logout = async () => {
