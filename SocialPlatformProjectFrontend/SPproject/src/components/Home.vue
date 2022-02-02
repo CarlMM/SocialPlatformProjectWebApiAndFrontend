@@ -1,6 +1,7 @@
 <template>
 <div>
-        <Thread :post="thread" v-for="(thread, index) in GetAllThreads" :key="index"/>
+        <Thread/>
+        <!-- :post="thread" v-for="(thread, index) in GetAllThreads" :key="index" -->
 </div>
           
 </template>

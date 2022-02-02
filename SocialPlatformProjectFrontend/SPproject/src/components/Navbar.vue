@@ -25,7 +25,7 @@
                   <div v-else>
                     <div class="logged-in">
                       <p>
-                        {{ AuthState.user.nickname }}
+                        User: {{ AuthState.user.nickname }}
                         <!-- authstate.user.sub = user token (id) -->
                         <img :src="AuthState.user.picture" alt="AvatarPic" />
                         <select class="dropdown-nav" @change="changeRoute($event)">
@@ -75,10 +75,11 @@ initAuth();
 <style scoped>
 .logged-in > p > img {
   height: 6vh;
+  margin: 20px;
 }
 
 #user {
-  color: rgb(255, 153, 0);
+  color: #2576e0;
   padding-right: 25px;
 }
 
@@ -96,7 +97,7 @@ a {
 
 p {
   font-size: 18px;
-  font-weight: bolder;
+  font-weight: 600;
   color: #fff;
 }
 
@@ -105,6 +106,7 @@ i {
   font-weight: bolder;
   color: #fff;
 }
+
 
 /*Header*/
 .header-top {
@@ -122,7 +124,7 @@ i {
 }
 
 .header-top a:hover {
-  color: #ff9900;
+  color: #2576e0;
 }
 
 .header-top .header-top-left a {
@@ -143,7 +145,7 @@ i {
 }
 
 .header-top .header-top-right .header-social a:hover {
-  color: #ff7b00;
+  color: #1a4e92;
 }
 
 .main-menu {

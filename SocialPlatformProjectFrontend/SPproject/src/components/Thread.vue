@@ -17,7 +17,7 @@
                         <small>Posted by <a href="">User</a> 15 Jan 2022</small>
                     </h1>
                     <p>{{ threads.Text }}</p>
-                    <button class="post-btn" @click="showModal(threads.Id)">Reply</button>
+                    <button class="post-btn" @click="showModal(threads.Id)">comment</button>
                     <button class="post-btn">Save</button>
                 </div>
             </div>

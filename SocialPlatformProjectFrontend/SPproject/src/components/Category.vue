@@ -239,7 +239,6 @@ nav{
 }
 
 .nav-links{
-    position:relative;
     display:flex;
     flex:1;
     align-items:center;
@@ -258,7 +257,8 @@ nav{
 .link{
     text-decoration: none;
     font-family: 'Poppins' sans-serif;
-    font-size: 30px;
+    font-size: 28px;
+    margin-left: 10vw;
 }
 
 /*Create Post */
@@ -314,7 +314,7 @@ textarea{
 }
 
 .btn-form {
-    background-color: #868686;
+    background-color: #3975c4;
     display: block;
     width: 100%;
     padding: 10px;
@@ -323,7 +323,7 @@ textarea{
 }
 
 .btn-form:hover {
-    background: #5ab6a6;
+    background: #2576e0;
 }
 
 /* HOOVER STYLE CATEGORY WHEN CREATE POST*/

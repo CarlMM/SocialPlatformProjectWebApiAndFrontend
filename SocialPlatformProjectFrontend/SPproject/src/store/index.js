@@ -16,7 +16,7 @@ const store = createStore({
                 },
                 {
                     id: 3,
-                    Title: 'Studies',
+                    title: 'Studies',
                     description: 'Bla bla bla Studies',
             },
         ],
