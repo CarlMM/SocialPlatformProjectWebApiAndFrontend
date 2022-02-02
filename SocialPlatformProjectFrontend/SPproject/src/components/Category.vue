@@ -137,7 +137,7 @@ export default {
     },
     data() {
         return {
-            badWords: ['carl', 'alex', 'samy', 'jony', 'thomas'],
+            badWords: ['', '', '', '', ''],
             isModalVisible: false,
             postTypeChosen: null,
             errorMessage: [],
