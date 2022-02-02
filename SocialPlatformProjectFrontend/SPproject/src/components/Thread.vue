@@ -12,7 +12,7 @@
                 <div class="subforum-description subforum-column">
                     <router-link type="button" :to="`/Post/${threads.id}`">
                         <!-- :to="{ name: 'Post'} -->
-                        <h1>{{ threads.title }}</h1>
+                        <h1>{{ threads.Title }}</h1>
                     </router-link>
                     <h1>
                         <small>Posted by <a href="">User</a> 15 Jan 2022</small>
@@ -39,7 +39,7 @@
                 ></template>
                 <template v-slot:body>
                     <div class="subforum-description subforum-column">
-                        <h1>{{ this.threadTitle }}</h1>
+                        <h1>{{ this.threadtitle }}</h1>
                         <h1>
                             <small
                                 >Posted by <a href="">User</a> 15 Jan

@@ -112,7 +112,7 @@
                 </div>
             </div>
         </header>
-        <div class="create-post">
+        <div class="create-post" v-if="AuthState.isAuthenticated">
             <!-- <a href=""></a> -->
             <img src="/src/assets/Group_2.jpg" alt="" />
             <input
@@ -123,8 +123,21 @@
                 placeholder="Create Post"
             />
         </div>
+        <div v-else>
+            <!-- Här ska synas create post fältet -->
+        </div>
     </div>
 </template>
+
+<script setup>
+import { useAuth0, AuthState } from '/src/auth0/useAuth0.js'
+
+const { initAuth } = useAuth0(AuthState)
+
+initAuth()
+</script>
+
+
 
 <script>
 import Modal from './Modal.vue'

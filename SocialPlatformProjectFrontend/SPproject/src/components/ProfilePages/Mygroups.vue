@@ -17,7 +17,7 @@
 <script setup>
 import { useAuth0, AuthState } from '/src/auth0/useAuth0.js'
 
-const { login, logout, initAuth } = useAuth0(AuthState)
+const { initAuth } = useAuth0(AuthState)
 
 initAuth()
 </script>
