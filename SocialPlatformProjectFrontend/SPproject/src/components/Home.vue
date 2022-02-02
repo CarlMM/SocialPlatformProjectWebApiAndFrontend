@@ -1,8 +1,8 @@
 <template>
-<div>
-        <Thread :post="thread" v-for="(thread, index) in GetAllThreads" :key="index"/>
-</div>
-          
+  <div>
+        <Thread/>
+  </div>
+          <!-- :post="thread" v-for="(thread, index) in GetAllThreads" :key="index" -->
 </template>
 
 <script>
