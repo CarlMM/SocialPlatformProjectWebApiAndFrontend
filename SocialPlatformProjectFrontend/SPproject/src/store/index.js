@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 
 const store = createStore({
     state: {
-        GroupThreads:[],
+        GroupThreads: [],
         Category: [
             {
                     id: 1,
@@ -23,6 +23,7 @@ const store = createStore({
 
         Thread: [
             {
+
                 id: 1,
                 title: 'Will computers take over the world?',
                 text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.',
@@ -99,6 +100,83 @@ const store = createStore({
                 title: 'Fish Fish Fish',
                 text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.',
                 categoryId: 2,
+=======
+                Id: 1,
+                Title: 'Will computers take over the world?',
+                Text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.',
+                CategoryId: 1,
+            },
+            {
+                Id: 2,
+                Title: 'Will computers NOT take over the world?',
+                Text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.',
+                CategoryId: 1,
+            },
+            {
+                Id: 3,
+                Title: 'Will Mike ever NOT discuss things?',
+                Text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.',
+                CategoryId: 3,
+            },
+            {
+                Id: 4,
+                Title: 'How good is Newton?',
+                Text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.',
+                CategoryId: 3,
+            },
+            {
+                Id: 5,
+                Title: 'I swear look at this fish?',
+                Text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.',
+                CategoryId: 2,
+            },
+            {
+                Id: 6,
+                Title: 'Do studies make you depressed?',
+                Text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.',
+                CategoryId: 3,
+            },
+            {
+                Id: 7,
+                Title: 'STUDIES MAKE YOU RICH INVEST EVERYTHING',
+                Text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.',
+                CategoryId: 3,
+            },
+            {
+                Id: 8,
+                Title: 'Super computer 30000',
+                Text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.',
+                CategoryId: 1,
+            },
+            {
+                Id: 9,
+                Title: 'BIG FISH THREAD',
+                Text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.',
+                CategoryId: 2,
+            },
+            {
+                Id: 10,
+                Title: 'WALLE - E MIKE EDITION',
+                Text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.',
+                CategoryId: 1,
+            },
+            {
+                Id: 11,
+                Title: 'MIKES FISH IS AMAZING MICROTRANSISTIONS',
+                Text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.',
+                CategoryId: 2,
+            },
+            {
+                Id: 12,
+                Title: 'Study more, earn less',
+                Text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.',
+                CategoryId: 3,
+            },
+            {
+                Id: 13,
+                Title: 'Fish Fish Fish',
+                Text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.',
+                CategoryId: 2,
             },
         ],
 
@@ -194,22 +272,21 @@ const store = createStore({
         },
         setRepliesFromBacked(state, data) {
             state.reply = data
-          console.log(data)
+            console.log(data)
         },
 
-        setUserFromBack(state, data){
-            state.User = data;
+        setUserFromBack(state, data) {
+            state.User = data
             console.log(data)
         },
-        setUsersFromBack(state, data){
-            state.Users = data;
+        setUsersFromBack(state, data) {
+            state.Users = data
             console.log(data)
         },
-        setThreadUserFromBack(state, data){
-            state.ThreadUser = data;
+        setThreadUserFromBack(state, data) {
+            state.ThreadUser = data
             console.log(data)
-        }
-
+        },
     },
     actions: {
         createNewPostMethod({ commit }, newPostObject) {
@@ -234,37 +311,38 @@ const store = createStore({
             )
             let data = await response.json()
             console.log(data)
-            commit('setCategoriesFromBackend', data);
+            commit('setCategoriesFromBackend', data)
         },
-        
-        async GetAllReplies({commit}){
-            let response = await fetch('https://localhost:44300/Reply/GetReplies')
+
+        async GetAllReplies({ commit }) {
+            let response = await fetch(
+                'https://localhost:44300/Reply/GetReplies'
+            )
             let data = await response.json()
             console.log(data)
             commit('setRepliesFromBacked', data)
         },
-                    
-        async GetUser({commit}){
+
+        async GetUser({ commit }) {
             let response = await fetch('')
             let data = await response.json()
             console.log(data)
             commit('setUserFromBack', data)
         },
 
-        async getAllUsers({commit}){
+        async getAllUsers({ commit }) {
             let response = await fetch('')
             let data = await response.json()
             console.log(data)
             commit('setUsersFromBack', data)
         },
 
-        async getThreadUser({commit}){
+        async getThreadUser({ commit }) {
             let response = await fetch('')
             let data = await response.json()
             console.log(data)
             commit('setThreadUserFromBack', data)
         },
-
 
         // async getAllThreadByUser({commit}, userId){
         //     let response = await fetch('https://localhost:44300/api/Threads/GetThreadsByUser' + userId);
@@ -273,7 +351,6 @@ const store = createStore({
         //     console.log(data)
         //     commit('setInMutation' , data)
         // }
-
     },
 })
 
