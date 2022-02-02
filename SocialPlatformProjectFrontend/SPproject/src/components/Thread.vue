@@ -1,6 +1,5 @@
 <template>
     <div class="container">
-        
         <div
             v-for="threads in GetThreads"
             :key="threads.Id"
@@ -12,7 +11,7 @@
                 </div>
                 <div class="subforum-description subforum-column">
                     <router-link type="button" :to="`/Post/${threads.id}`">
-                    <!-- :to="{ name: 'Post'} -->
+                        <!-- :to="{ name: 'Post'} -->
                         <h1>{{ threads.title }}</h1>
                     </router-link>
                     <h1>
@@ -31,42 +30,45 @@
                 </div>
             </div>
         </div>
-            <div class="d-flex justify-content-end mt-1">
-                <Modal v-show="isModalVisible" @close="closeModal">
-                    <template v-slot:header>
-                        <div class="text-uppercase">
-                            reply
-                            <span><i class="fas fa-comments"></i></span></div
-                    ></template>
-            <template v-slot:body>
-                <div class="subforum-description subforum-column">
-                    <h1>{{ this.threadTitle }}</h1>
-                    <h1>
-                        <small>Posted by <a href="">User</a> 15 Jan 2022</small>
-                    </h1>
-                    <p>{{ this.threadText }}</p>
-                </div>
-                <div id="container">
-                    <div class="form-group">
-                        <label for="reply-content">Add content</label>
-                        <textarea
-                            placeholder="Remember, be nice!"
-                            cols="78"
-                            rows="5"
-                            v-model="replyMessage"
-                        ></textarea>
+        <div class="d-flex justify-content-end mt-1">
+            <Modal v-show="isModalVisible" @close="closeModal">
+                <template v-slot:header>
+                    <div class="text-uppercase">
+                        reply
+                        <span><i class="fas fa-comments"></i></span></div
+                ></template>
+                <template v-slot:body>
+                    <div class="subforum-description subforum-column">
+                        <h1>{{ this.threadTitle }}</h1>
+                        <h1>
+                            <small
+                                >Posted by <a href="">User</a> 15 Jan
+                                2022</small
+                            >
+                        </h1>
+                        <p>{{ this.threadText }}</p>
                     </div>
-                    <button class="btn btn-reply" @click="saveInput()">
-                        Reply
-                    </button>
-                    <div v-for="error in errors" :key="error.id">
-                        <ul>
-                            <li>{{ error }}</li>
-                        </ul>
+                    <div id="container">
+                        <div class="form-group">
+                            <label for="reply-content">Add content</label>
+                            <textarea
+                                placeholder="Remember, be nice!"
+                                cols="78"
+                                rows="5"
+                                v-model="replyMessage"
+                            ></textarea>
+                        </div>
+                        <button class="btn btn-reply" @click="saveInput()">
+                            Reply
+                        </button>
+                        <div v-for="error in errors" :key="error.id">
+                            <ul>
+                                <li>{{ error }}</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            </template>
-        </Modal>
+                </template>
+            </Modal>
         </div>
     </div>
     <!-- <div class="container" >
@@ -95,12 +97,13 @@ import Modal from './Modal.vue'
 // import { mapMutations } from 'vuex'
 
 export default {
-    posts:["thread"],
+    posts: ['thread'],
     components: {
         Modal,
     },
     data() {
         return {
+            badWords: ['carl', 'alex', 'samy', 'jony', 'thomas'],
             isModalVisible: false,
             cId: this.$route.params.id,
             catId: this.$route.params.Id,
@@ -112,8 +115,8 @@ export default {
         }
     },
 
-    beforeMounted(){
-        this.GetThreads();
+    beforeMounted() {
+        this.GetThreads()
     },
 
     computed: {
@@ -156,15 +159,25 @@ export default {
 
         closeModal() {
             this.errors == []
-            this.replyMessage == '', (this.isModalVisible = false)
+            this.replyMessage = ''
+            this.isModalVisible = false
         },
-        // ...mapMutations(['setReply']),
+
+        filterWords(array) {
+            let filteredWordsArray = array.toLowerCase().split(' ')
+            let catchBadWords = filteredWordsArray.filter(item =>
+                this.badWords.includes(item)
+            )
+            return catchBadWords
+        },
+
         saveInput() {
-            // this.setReply(this.replyMessage)
-            //Comment ---> create data spara message och date i ett objekt skicka till backend ingen aning vi ser.
-            if (this.replyMessage == '') {
-                this.errors = []
-                this.errors.push('Please enter some text!')
+            this.errors = []
+            let catchBadWords = this.filterWords(this.replyMessage)
+            if (this.replyMessage == '' || catchBadWords.length > 0) {
+                this.replyMessage == ''
+                    ? this.errors.push('Please enter some text!')
+                    : this.errors.push('Please be nice!')
             } else if (this.replyMessage != '') {
                 this.errors = []
                 this.closeModal()
