@@ -23,23 +23,37 @@
                         <template v-slot:body>
                             <div id="container">
                                 <div class="row pb-5">
-                                    <nav class="nav-createPost">
-                                        <div class="nav-left">
-                                            <a href="#Home">Post</a>
-                                            <a href="#Home">Group post</a>
+                                   <nav class="nav-createPost">
+                                        <div class="nav-left form-group">
+                                            <label for="postType"
+                                                >Post Type</label
+                                            >
+                                            <Dropdown
+                                                id="postType"
+                                                name="postType"
+                                                selected
+                                                :options="postType"
+                                                @change="
+                                                    setPostTypeId(
+                                                        $event.target.value
+                                                    )
+                                                "
+                                            ></Dropdown>
                                         </div>
                                         <div class="nav-right form-group">
                                             <label for="category"
                                                 >Category</label
                                             >
-                                            <div class="dropdown">
-                                                <Dropdown
-                                                    id="category"
-                                                    name="category"
-                                                    :options="category"
-                                                    @change="setCategoryIdFromDropdown($event.target.value)"
-                                                ></Dropdown>
-                                            </div>
+                                            <Dropdown
+                                                id="category"
+                                                name="category"
+                                                :options="category"
+                                                @change="
+                                                    setCategoryIdFromDropdown(
+                                                        $event.target.value
+                                                    )
+                                                "
+                                            ></Dropdown>
                                         </div>
                                     </nav>
                                 </div>
@@ -96,7 +110,6 @@
 <script>
 import Modal from './Modal.vue'
 import Dropdown from './Dropdown.vue'
-
 export default {
     components: {
         Modal,
@@ -104,68 +117,102 @@ export default {
     },
     data() {
         return {
+            badWords: ['', '', '', '', ''],
             isModalVisible: false,
+            postTypeChosen: null,
+            errorMessage: [],
             category: {
                 Computer: 1,
                 Fishing: 2,
                 Studies: 3,
             },
-            newPostObject:{
+            postType: {
+                post: 0,
+                GroupPost: 1,
+            },
+            newPostObject: {
                 Title: '',
                 Text: '',
                 CategoryId: '',
                 Id: null,
             },
-            // postTitle2: '',
-            // postTitle2:'',
         }
     },
-
-    created(){
-        this.fetchAllCategories();
+    created() {
+        this.fetchAllCategories()
     },
-
     methods: {
         showModal() {
             this.isModalVisible = true
         },
-
         closeModal() {
+            this.newPostObject.Title = ''
+            this.newPostObject.Text = ''
+            this.newPostObject.CategoryId = ''
             this.isModalVisible = false
         },
-
-        async fetchAllCategories(){
+        setPostTypeId(value) {
+            console.log('postType Id', value)
+            if (value == 0) {
+                this.postTypeChosen = 0
+                console.log(this.postTypeChosen)
+            } else {
+                this.postTypeChosen = 1
+                console.log(this.postTypeChosen)
+            }
+        },
+        async fetchAllCategories() {
             this.$store.dispatch('getAllCategories')
         },
-
-        setCategoryIdFromDropdown(value){
-            console.log('Category Id from dropdown ', value);
-            this.newPostObject.CategoryId = value;
+        setCategoryIdFromDropdown(value) {
+            console.log('Category Id from dropdown ', value)
+            this.newPostObject.CategoryId = value
         },
-
-
-
-        createPostMethod(newPostObject){
-
-            console.log('Category from dropdown: ', this.newPostObject.CategoryId)
-            console.log(newPostObject.CategoryId);
-            
-            console.log('Title from input: ', this.newPostObject.Title)
-            console.log(newPostObject.Title);
-            
-            console.log('Text from "add content" input: ',  this.newPostObject.Text)
-            console.log(newPostObject.Text);
-            
-            this.newPostObject.Id = 20;
-
-            console.log('ThreadId = ', this.newPostObject.Id);
-            console.log(newPostObject.Id);
-        
-            console.log('Posten: ', newPostObject);
-
-            this.closeModal();
-            return this.$store.dispatch('createNewPostMethod', newPostObject);
-            
+        filterWords(array) {
+            let filteredWordsArray = array.toLowerCase().split(' ')
+            let catchBadWords = filteredWordsArray.filter(item =>
+                this.badWords.includes(item)
+            )
+            return catchBadWords
+        },
+        createPostMethod(newPostObject) {
+            let catchBadWords = this.filterWords(this.newPostObject.Text)
+            let catchBadWordsTitle = this.filterWords(this.newPostObject.Title)
+            this.errorMessage = []
+            if (this.postTypeChosen === null || this.postTypeChosen === null) {
+                this.errorMessage.push('Please choose post type!')
+            }
+            if (this.newPostObject.Title == '') {
+                this.errorMessage.push('Please enter a title!')
+            }
+            if (this.newPostObject.Text == '') {
+                this.errorMessage.push('Please enter some text!')
+            }
+            if (this.newPostObject.CategoryId == '') {
+                this.errorMessage.push('Please choose category!')
+            }
+            if (catchBadWords.length > 0) {
+                this.errorMessage.push('Remember to be nice!')
+            }
+            if (catchBadWordsTitle.length > 0) {
+                this.errorMessage.push('Remember to be nice Title!')
+            }
+            if (
+                this.newPostObject.Text !== '' &&
+                this.newPostObject.Title !== '' &&
+                this.newPostObject.CategoryId !== '' &&
+                this.postTypeChosen !== null &&
+                this.postTypeChosen !== null &&
+                catchBadWords.length == 0 &&
+                catchBadWordsTitle.length == 0
+            ) {
+                this.errorMessage = []
+                this.closeModal()
+                return this.$store.dispatch(
+                    'createNewPostMethod',
+                    newPostObject
+                )
+            }
         },
     },
     computed: {

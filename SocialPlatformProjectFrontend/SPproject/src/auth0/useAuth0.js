@@ -40,6 +40,7 @@ export const useAuth0 = (state) => {
     const login = async () => {
         await state.auth0.loginWithPopup();
         await handleStateChange();
+        location.reload()
         console.log(state.user)
         console.log(user.app_metadata)
     };

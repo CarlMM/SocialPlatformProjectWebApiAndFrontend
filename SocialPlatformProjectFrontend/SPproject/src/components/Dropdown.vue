@@ -25,14 +25,12 @@
 <script>
 export default {
     name: 'Dropdown',
-
     props: {
         options: {
             type: Object,
             required: true,
         },
     },
-
     data() {
         return {
             selected: true,
@@ -42,7 +40,6 @@ export default {
     mounted() {
         this.selectedOption = this.value
     },
-
     watch: {
         value: function (newValue) {
             this.selectedOption = newValue
