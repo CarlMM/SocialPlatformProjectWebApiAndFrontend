@@ -1,12 +1,12 @@
 <template>
-    <main>
+    <div class="app-wrapper">
+     <div class="app">
         <Navbar />
-        <div>
-            <Category />
-            <router-view />
-        </div>
+        <Category />
+        <router-view />
         <Footer />
-    </main>
+    </div>
+    </div>
 </template>
 
 <script>
@@ -28,6 +28,17 @@ export default {
 </script>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
 
 </style>

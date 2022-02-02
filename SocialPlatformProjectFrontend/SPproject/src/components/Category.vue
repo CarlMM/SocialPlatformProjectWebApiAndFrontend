@@ -1,20 +1,14 @@
 <template>
     <div>
         <header class="header">
-            <div class="navbar">
-                <nav class="navigation">
-                    <ul
-                        class="nav-menu"
-                        v-for="categories in getCategories"
-                        :key="categories.Id"
-                    >
-                        <li class="nav-item">
-                            <router-link
-                                :to="`/${categories.title}/${categories.id}`"
-                                >{{ categories.title }}
+                <nav class="container">
+                    <div class="nav-links">
+                        <ul class="nav-menu" v-for="categories in getCategories" :key="categories.Id">
+                            <router-link class="link"
+                                :to="`/${categories.title}/${categories.id}`">{{ categories.title }}
                             </router-link>
-                        </li>
-                    </ul>
+                        </ul>
+                    </div>
                 </nav>
                 <div class="d-flex justify-content-end mt-1">
                     <Modal v-show="isModalVisible" @close="closeModal">
@@ -38,12 +32,14 @@
                                             <label for="category"
                                                 >Category</label
                                             >
-                                            <Dropdown
-                                                id="category"
-                                                name="category"
-                                                :options="category"
-                                                @change="setCategoryIdFromDropdown($event.target.value)"
-                                            ></Dropdown>
+                                            <div class="dropdown">
+                                                <Dropdown
+                                                    id="category"
+                                                    name="category"
+                                                    :options="category"
+                                                    @change="setCategoryIdFromDropdown($event.target.value)"
+                                                ></Dropdown>
+                                            </div>
                                         </div>
                                     </nav>
                                 </div>
@@ -82,7 +78,6 @@
                         </template>
                     </Modal>
                 </div>
-            </div>
         </header>
         <div class="create-post">
             <!-- <a href=""></a> -->
@@ -184,30 +179,44 @@ export default {
 <style scoped>
 .header {
     margin: 20px;
-    display: flex;
-    align-items: center;
-    background: #33393a;
+    background-color: #303030;
+    padding: 0 25px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
     border-radius: 5px;
+    z-index:99;
 }
 
+nav{
+    display:flex;
+    align-items: center;
+}
 
-.nav-menu a {
+.nav-links{
+    position:relative;
+    display:flex;
+    flex:1;
+    align-items:center;
+    padding: 25px;
+    margin-top:18px;
+}
+
+.nav-menu > a{
     color: #fff;
 }
 
-.navigation {
-    max-height: 12vh;
-    margin-right: 10px;
+.nav-links >  ul{
+    margin-right:22px;
 }
 
-.nav-menu {
-    list-style-type: none;
-    overflow: hidden;
+.link{
+    text-decoration: none;
+    font-family: 'Poppins' sans-serif;
+    font-size: 30px;
 }
 
 /*Create Post */
 .create-post {
-    padding: 15px;
+    padding: 20px;
     margin: 20px;
     background: #33393a;
     border-radius: 5px;
@@ -223,7 +232,7 @@ export default {
 .create-post > input {
     width: 100%;
     border-radius: 5px;
-    background-color: rgb(160, 160, 160);
+    background-color: rgb(223, 223, 223);
 }
 
 .input:hover {
@@ -253,8 +262,12 @@ export default {
     border-radius: 5px;
 }
 
+textarea{
+    width:100%
+}
+
 .btn-form {
-    background-color: #43a78c;
+    background-color: #868686;
     display: block;
     width: 100%;
     padding: 10px;
@@ -268,13 +281,14 @@ export default {
 
 /* HOOVER STYLE CATEGORY WHEN CREATE POST*/
 
-*,
+/* *,
 *::before,
 *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
+
 
 .nav-createPost {
     width: 70vw;
@@ -292,21 +306,21 @@ export default {
     justify-content: space-around;
 }
 
-a {
+.nav-left  > a {
     position: relative;
     text-decoration: none;
     font-family: 'Poppins' sans-serif;
-    color: #838383;
+    color: rgb(0, 0, 0);
     font-size: 20px;
     letter-spacing: 0.5px;
     padding: 0 10px;
     /* transform: 0.3s; */
 }
-a::after {
+.nav-left > a::after {
     content: '';
     position: absolute;
     text-decoration: none;
-    background-color: #45b989;
+    background-color: #464646;
     height: 3px;
     width: 0;
     left: 0;
@@ -314,11 +328,11 @@ a::after {
     transition: 0.3s;
 }
 
-a:hover {
+.nav-left > a:hover {
     color: #333;
     text-decoration: none;
 }
-a:hover:after {
+.nav-left > a:hover:after {
     width: 100%;
 }
 

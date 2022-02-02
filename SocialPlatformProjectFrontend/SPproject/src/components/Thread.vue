@@ -1,11 +1,9 @@
 <template>
     <div class="container">
-        
         <div
             v-for="threads in GetThreads"
             :key="threads.Id"
-            class="subforum-description"
-        >
+            class="subforum-description">
             <div class="subforum-row">
                 <div class="subforum-icon subforum-column center">
                     <i class="fas fa-laptop"></i>
@@ -19,15 +17,8 @@
                         <small>Posted by <a href="">User</a> 15 Jan 2022</small>
                     </h1>
                     <p>{{ threads.Text }}</p>
-                    <a class="post-link" href=""
-                        ><router-link to="/Post">Reply</router-link></a
-                    >
-                    <button class="reply-btn" @click="showModal(threads.Id)">
-                        REPLY
-                    </button>
-                    <a class="post-link" href=""
-                        ><router-link to="/">Save</router-link></a
-                    >
+                    <button class="post-btn" @click="showModal(threads.Id)">Reply</button>
+                    <button class="post-btn">Save</button>
                 </div>
             </div>
         </div>

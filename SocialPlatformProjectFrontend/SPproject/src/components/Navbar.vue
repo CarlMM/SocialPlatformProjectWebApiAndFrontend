@@ -27,13 +27,13 @@
                       <p>
                         {{ AuthState.user.nickname }}
                         <!-- authstate.user.sub = user token (id) -->
-                        <select @change="changeRoute($event)">
+                        <img :src="AuthState.user.picture" alt="AvatarPic" />
+                        <select class="dropdown-nav" @change="changeRoute($event)">
                           <option selected value="">Home</option>
                           <option value="MyProfile">Profile</option>
                           <option value="MyGroups">My groups</option>
                           <option value="MyThreads">My threads</option>
                         </select>
-                        <img :src="AuthState.user.picture" alt="AvatarPic" />
                         <a href="#" @click.prevent="logout()">Logout</a>
                       </p>
                     </div>
