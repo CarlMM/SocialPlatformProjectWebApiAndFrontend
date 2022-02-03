@@ -1,16 +1,20 @@
 <template>
   <div class="side-by-side">
-      <Thread/>
+      <Thread :list="GetAllThreads"/>
        <!-- :post="thread" v-for="(thread, index) in GetAllThreads" :key="index" -->
   </div>
   <div class="side-by-side">
     <h2>random text</h2>
   </div>
-
 </template>
 
 <script>
   import Thread from '/src/components/Thread.vue'
+import { useAuth0, AuthState } from '../auth0/useAuth0.js'
+
+const {initAuth } = useAuth0(AuthState)
+
+
 
   export default{
  
@@ -22,12 +26,25 @@
     this.fetchThreads();
   },
 
+  
+
    methods:{
      async fetchThreads(){
        this.$store.dispatch('getAllThreads')
      }
     
   },
+
+  mounted() {
+        if (AuthState.isAuthenticated == true) {
+            if (
+                AuthState.user['http://localhost:3000/roles'][0] == 'AdminUser'
+            ) 
+            {
+                this.$store.state.isAdmin = true
+            }
+        }
+    },
 
 
   computed:{
@@ -36,12 +53,6 @@
       console.log('Get All Threads', result)
       return result
     },
-    GetAllCategories(){
-      return this.$store.state.Category
-    },
-    fetchAllThreads(){
-      return this.$store.state.Thread
-    }
   }
 
 }
