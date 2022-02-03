@@ -51,7 +51,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetReply/{CategoryThreadId}")]
+        [Route("GetReplyByCategoryThreadId/{categoryThreadId}")]
         public async Task<IList<Reply>> GetReplyByCategoryThreadId(int categoryThreadId)
         {
             var reply = await _replyService.GetReplyByCategoryThreadId(categoryThreadId);
