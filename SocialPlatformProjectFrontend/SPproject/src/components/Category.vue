@@ -1,20 +1,14 @@
 <template>
     <div>
         <header class="header">
-            <div class="navbar">
-                <nav class="navigation">
-                    <ul
-                        class="nav-menu"
-                        v-for="categories in getCategories"
-                        :key="categories.Id"
-                    >
-                        <li class="nav-item">
-                            <router-link
-                                :to="`/${categories.title}/${categories.id}`"
-                                >{{ categories.title }}
+                <nav class="nav">
+                    <div class="nav-links">
+                        <ul class="nav-menu" v-for="categories in getCategories" :key="categories.Id">
+                            <router-link class="link"
+                                :to="`/${categories.title}/${categories.id}`">{{ categories.title }}
                             </router-link>
-                        </li>
-                    </ul>
+                        </ul>
+                    </div>
                 </nav>
                 <div class="d-flex justify-content-end mt-1">
                     <Modal v-show="isModalVisible" @close="closeModal">
@@ -29,7 +23,7 @@
                         <template v-slot:body>
                             <div id="container">
                                 <div class="row pb-5">
-                                    <nav class="nav-createPost">
+                                   <nav class="nav-createPost">
                                         <div class="nav-left form-group">
                                             <label for="postType"
                                                 >Post Type</label
@@ -110,11 +104,10 @@
                         </template>
                     </Modal>
                 </div>
-            </div>
         </header>
         <div class="create-post" v-if="AuthState.isAuthenticated">
             <!-- <a href=""></a> -->
-            <img src="/src/assets/Group_2.jpg" alt="" />
+            <img :src="AuthState.user.picture" alt="" />
             <input
                 @click="showModal()"
                 class="create-input"
@@ -123,17 +116,20 @@
                 placeholder="Create Post"
             />
         </div>
-        <div v-else>
-            <!-- Här ska synas create post fältet -->
+        <div v-else >
+            <div class="No-CreatePost">
+                <h1>Welcome To Group2 Forum</h1>
+            </div>
+            <div class="No-CreatePost">
+                <p>You need to log in before you can create posts!</p>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
 import { useAuth0, AuthState } from '/src/auth0/useAuth0.js'
-
 const { initAuth } = useAuth0(AuthState)
-
 initAuth()
 </script>
 
@@ -142,7 +138,6 @@ initAuth()
 <script>
 import Modal from './Modal.vue'
 import Dropdown from './Dropdown.vue'
-
 export default {
     components: {
         Modal,
@@ -175,17 +170,14 @@ export default {
     created() {
         this.fetchAllCategories()
     },
-
     methods: {
         showModal() {
             this.isModalVisible = true
         },
-
         closeModal() {
             this.newPostObject.Title = ''
             this.newPostObject.Text = ''
             this.newPostObject.CategoryId = ''
-
             this.isModalVisible = false
         },
 
@@ -199,11 +191,9 @@ export default {
                 console.log(this.postTypeChosen)
             }
         },
-
         async fetchAllCategories() {
             this.$store.dispatch('getAllCategories')
         },
-
         setCategoryIdFromDropdown(value) {
             console.log('Category Id from dropdown ', value)
             this.newPostObject.CategoryId = value
@@ -267,51 +257,118 @@ export default {
 </script>
 
 <style scoped>
+
 .header {
     margin: 20px;
-    display: flex;
-    align-items: center;
-    background: #33393a;
+    background-color: #303030;
     border-radius: 5px;
+    z-index:99;
 }
 
-.nav-menu a {
-    color: #fff;
+nav{
+    display:flex;
+    align-items: center;
 }
 
-.navigation {
-    max-height: 12vh;
-    margin-right: 10px;
+.nav-links{
+    display:flex;
+    flex:1;
+    align-items:center;
+    margin-top:18px;
 }
 
-.nav-menu {
-    list-style-type: none;
-    overflow: hidden;
+.nav-menu > a{
+    color: #ffffff;
+
 }
+
+.nav-menu > a:hover{
+    color: #2576e0;
+}
+.nav-links >  ul{
+    display:flex;
+    margin-right:22px;
+}
+
+.link{
+    text-decoration: none;
+    font-family: 'Poppins' sans-serif;
+    font-size: 25px;
+    margin-left: 15vw;
+    letter-spacing: 0.5px;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+}
+
+@media(max-width: 1300px){
+    .link{
+       margin-left: 12vw; 
+    }
+}
+
+@media(max-width: 1000px){
+    .link{
+       margin-left: 8vw; 
+    }
+}
+
+@media(max-width: 800px){
+    .link{
+       margin-left: 3vw; 
+    }
+}
+
+@media(max-width: 500px){
+    .link{
+       margin-left: 4px; 
+    }
+}
+
 
 /*Create Post */
 .create-post {
-    padding: 15px;
-    margin: 20px;
-    background: #33393a;
+    padding: 14px;
+    margin-bottom: 20px;
+    background: #505455;
     border-radius: 5px;
     display: flex;
     justify-content: space-around;
 }
 
 .create-post > img {
-    width: 3.5vw;
+    width: 2.5vw;
     margin-right: 15px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .create-post > input {
     width: 100%;
     border-radius: 5px;
-    background-color: rgb(160, 160, 160);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(0, 0, 0);
 }
 
-.input:hover {
-    border: 1px solid white;
+.No-CreatePost{
+    display:flex;
+    align-content: center;
+    padding: 20px;
+    justify-content: space-around;
+}
+
+.No-CreatePost > h1{
+    color:rgb(29, 99, 204);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+}
+
+.No-CreatePost > p{
+    color:#2576e0;
+    font-size:18px;
+    font-weight: bolder;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 #container {
@@ -333,32 +390,37 @@ export default {
 .form-group input {
     width: 100%;
     padding: 10px;
-    border: rgb(158, 158, 158) 1px solid;
+    border: rgb(233, 227, 227) 1px solid;
     border-radius: 5px;
 }
 
+textarea{
+    width:100%
+}
+
 .btn-form {
-    background-color: #43a78c;
+    background-color: #3975c4;
     display: block;
     width: 100%;
     padding: 10px;
-    color: #fff;
+    color: #ffffff;
     cursor: pointer;
 }
 
 .btn-form:hover {
-    background: #5ab6a6;
+    background: #2576e0;
 }
 
 /* HOOVER STYLE CATEGORY WHEN CREATE POST*/
 
-*,
+/* *,
 *::before,
 *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
+
 
 .nav-createPost {
     width: 70vw;
@@ -376,21 +438,21 @@ export default {
     justify-content: space-around;
 } */
 
-a {
+.nav-left  > a {
     position: relative;
     text-decoration: none;
     font-family: 'Poppins' sans-serif;
-    color: #838383;
+    color: rgb(0, 0, 0);
     font-size: 20px;
     letter-spacing: 0.5px;
     padding: 0 10px;
     /* transform: 0.3s; */
 }
-a::after {
+.nav-left > a::after {
     content: '';
     position: absolute;
     text-decoration: none;
-    background-color: #45b989;
+    background-color: #464646;
     height: 3px;
     width: 0;
     left: 0;
@@ -398,11 +460,11 @@ a::after {
     transition: 0.3s;
 }
 
-a:hover {
+.nav-left > a:hover {
     color: #333;
     text-decoration: none;
 }
-a:hover:after {
+.nav-left > a:hover:after {
     width: 100%;
 }
 

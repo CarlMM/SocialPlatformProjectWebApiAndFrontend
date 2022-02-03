@@ -1,3 +1,4 @@
+8 lines (32 sloc) 941 Bytes
 <template>
     <div>
         <div v-if="AuthState.isAuthenticated">
@@ -31,8 +32,7 @@ export default {
 
 <script setup>
 import { useAuth0, AuthState } from '/src/auth0/useAuth0.js'
-
 const { login, logout, initAuth } = useAuth0(AuthState)
-
 initAuth()
 </script>
+

@@ -1,8 +1,12 @@
 <template>
-  <div>
-        <Thread/>
+  <div class="side-by-side">
+      <Thread/>
+       <!-- :post="thread" v-for="(thread, index) in GetAllThreads" :key="index" -->
   </div>
-          <!-- :post="thread" v-for="(thread, index) in GetAllThreads" :key="index" -->
+  <div class="side-by-side">
+    <h2>random text</h2>
+  </div>
+
 </template>
 
 <script>
@@ -44,12 +48,12 @@
 </script>
 
 <style scoped>
-/*temporary? for pushing down */
-#test{
-  height: 200vh;
+
+h2{
+  color:white;
 }
 
-.category{
+/* .category{
    margin-top: 20px;
 }
 
@@ -59,6 +63,19 @@
     border-radius: 5px;
     margin: 20px;
     margin-bottom:20px;
-    /* text-align: center; */
-}
+    text-align: center; 
+} */
+
+ /* .test {
+        display: grid;
+        grid-template-columns: 80% 20%; 
+        grid-template-rows: 99%;
+        grid-column-gap: 5px;
+      }
+      
+      .side-by-side {
+      background: #ce8888;
+ 
+       
+      } */
 </style>

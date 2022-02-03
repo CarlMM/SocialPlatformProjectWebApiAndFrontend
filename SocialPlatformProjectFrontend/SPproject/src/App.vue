@@ -1,12 +1,10 @@
 <template>
-    <main>
         <Navbar />
-        <div>
-            <Category />
-            <router-view />
-        </div>
+     <div class="test">
+        <Category />
+        <router-view />
+    </div>
         <Footer />
-    </main>
 </template>
 
 <script>
@@ -28,6 +26,25 @@ export default {
 </script>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.test{
+  padding: 20px 60px;
+}
+
+html > body{
+    background-color: rgb(36, 36, 36);
+}
 
 
 </style>
