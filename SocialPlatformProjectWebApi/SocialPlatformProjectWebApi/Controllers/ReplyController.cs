@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace SocialPlatformProjectWebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ReplyController : Controller
     {
         private readonly IReplyService _replyService;

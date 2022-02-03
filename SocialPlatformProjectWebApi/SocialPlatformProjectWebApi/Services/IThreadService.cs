@@ -1,12 +1,15 @@
 ﻿using SocialPlatformProjectWebApi.Models;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace SocialPlatformProjectWebApi.Services
 {
     public interface IThreadService
     {
-        IList<Models.Thread> GetThreads();
+        IList<Thread> GetThreads();
+
+        Task<IList<Thread>> GetThreadByCategoryId(int categoryId);
+
+        Task<IList<Thread>> GetThreadByThreadType(bool threadType);
     }
 }
