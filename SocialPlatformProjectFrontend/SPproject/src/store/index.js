@@ -3,6 +3,7 @@ import { createStore } from 'vuex'
 const store = createStore({
     state: {
         GroupThreads: [],
+        UserThread:[],
         Category: [
             // {
             //         id: 1,
@@ -145,7 +146,7 @@ const store = createStore({
             console.log('Vi är i mutation nu ',  data)
         },
         setUserThreads(state, data){
-            state.Thread = data;
+            state.UserThread = data;
             console.log('userThreads: ', data)
         }
     },
