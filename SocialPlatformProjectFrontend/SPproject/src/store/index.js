@@ -143,6 +143,10 @@ const store = createStore({
         setReplyToSpecificPost(state, data){
             state.Reply = data;
             console.log('Vi är i mutation nu ',  data)
+        },
+        setUserThreads(state, data){
+            state.Thread = data;
+            console.log('userThreads: ', data)
         }
     },
     actions: {
@@ -186,6 +190,14 @@ const store = createStore({
             let data = await response.json()
             console.log(data)
             commit('setRepliesFromBacked', data)
+        },
+
+        async GetThreadsFromUser({commit}, userId){
+            let response = await fetch(`https://localhost:44300/api/CategoryThread/GetCategoryThreadByUserId/${userId}`)
+            
+            let data = await response.json();
+            console.log(data)
+            commit('setUserThreads', data)
         },
 
         async GetUser({ commit }) {
