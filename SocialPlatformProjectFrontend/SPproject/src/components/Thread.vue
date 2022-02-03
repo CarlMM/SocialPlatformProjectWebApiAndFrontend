@@ -116,7 +116,7 @@ export default {
             let list = this.$store.state.Thread
 
             let filterlist = list.filter(item => {
-                return item.CategoryId == this.cId
+                return item.categoryId == this.cId
             })
             console.log(filterlist)
             return filterlist
