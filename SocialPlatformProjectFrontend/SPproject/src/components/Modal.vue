@@ -12,13 +12,6 @@
                 <section class="modal-body">
                     <slot name="body"> </slot>
                 </section>
-
-                <footer class="modal-footer">
-                    <slot name="footer"> </slot>
-                    <button type="button" class="btn-green" @click="close" >
-                        Close
-                    </button>
-                </footer>
             </div>
         </div>
     </transition>
@@ -49,11 +42,12 @@ export default {
 }
 
 .modal {
-    max-width: 80%;
-    max-height: 90%;
-    background: #ffffff;
+    max-width: 65%;
+    max-height: 75%;
+    background: #f0f0f0;
     box-shadow: 2px 2px 20px 1px;
     overflow-x: auto;
+    border-radius: 10px;
 
     display: flex;
     flex-direction: column;
@@ -73,8 +67,7 @@ export default {
 
 .modal-header {
     position: relative;
-    border-bottom: 1px solid #1fa89d;
-    color: #4aae9b;
+    color: #5c5c5c;
     justify-content: space-between;
 }
 
@@ -98,7 +91,7 @@ export default {
     padding: 10px;
     cursor: pointer;
     font-weight: bold;
-    color: #4aae9b;
+    color: #3f3f3f;
     background: transparent;
 }
 
