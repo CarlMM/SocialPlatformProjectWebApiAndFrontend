@@ -43,6 +43,7 @@ namespace SocialPlatformProjectWebApi.Services
         {
             var template = await _categorythreadRepository.AddCategoryThread(categoryThread);
             return template;
+        }
 
         public async Task<IList<CategoryThread>> GetCategoryThreadById(int Id)
         {
