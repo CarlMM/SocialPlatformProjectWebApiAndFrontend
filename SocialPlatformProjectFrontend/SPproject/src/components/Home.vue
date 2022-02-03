@@ -1,56 +1,64 @@
 <template>
-  <div class="side-by-side">
-      <Thread/>
-       <!-- :post="thread" v-for="(thread, index) in GetAllThreads" :key="index" -->
-  </div>
-  <div class="side-by-side">
-    <h2>random text</h2>
-  </div>
-
+    <div class="side-by-side">
+        <Thread />
+        <!-- :post="thread" v-for="(thread, index) in GetAllThreads" :key="index" -->
+    </div>
+    <div class="side-by-side">
+        <h2>random text</h2>
+    </div>
 </template>
 
 <script>
-  import Thread from '/src/components/Thread.vue'
+import Thread from '/src/components/Thread.vue'
 
-  export default{
- 
-  components: {
-    Thread,
-  },
+import { useAuth0, AuthState } from '../auth0/useAuth0.js'
 
-    created(){
-    this.fetchThreads();
-  },
+const { login, logout, initAuth } = useAuth0(AuthState)
 
-   methods:{
-     async fetchThreads(){
-       this.$store.dispatch('getAllThreads')
-     }
-    
-  },
-
-
-  computed:{
-    GetAllThreads(){
-      const result = this.$store.state.Thread
-      console.log('Get All Threads', result)
-      return result
+export default {
+    components: {
+        Thread,
     },
-    GetAllCategories(){
-      return this.$store.state.Category
-    },
-    fetchAllThreads(){
-      return this.$store.state.Thread
-    }
-  }
 
+    created() {
+        this.fetchThreads()
+    },
+
+    methods: {
+        async fetchThreads() {
+            this.$store.dispatch('getAllThreads')
+        },
+    },
+
+    mounted() {
+        if (AuthState.isAuthenticated == true) {
+            if (
+                AuthState.user['http://localhost:3000/roles'][0] == 'NormalUser'
+            ) {
+                this.$store.state.isAdmin = true
+            }
+        }
+    },
+
+    computed: {
+        GetAllThreads() {
+            const result = this.$store.state.Thread
+            console.log('Get All Threads', result)
+            return result
+        },
+        GetAllCategories() {
+            return this.$store.state.Category
+        },
+        fetchAllThreads() {
+            return this.$store.state.Thread
+        },
+    },
 }
 </script>
 
 <style scoped>
-
-h2{
-  color:white;
+h2 {
+    color: white;
 }
 
 /* .category{
@@ -66,7 +74,7 @@ h2{
     text-align: center; 
 } */
 
- /* .test {
+/* .test {
         display: grid;
         grid-template-columns: 80% 20%; 
         grid-template-rows: 99%;

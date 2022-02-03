@@ -9,7 +9,6 @@ import MyProfile from '/src/components/ProfilePages/MyProfile.vue'
 import MyGroups from '/src/components/ProfilePages/Mygroups.vue'
 import MyThreads from '/src/components/ProfilePages/MyThreads.vue'
 
-
 const routes = [
     {
         path: '/',

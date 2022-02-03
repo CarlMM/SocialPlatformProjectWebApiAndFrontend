@@ -2,22 +2,23 @@ import { createStore } from 'vuex'
 
 const store = createStore({
     state: {
+        isAdmin: false,
         GroupThreads: [],
         Category: [
             {
-                    id: 1,
-                    title: 'Computer',
-                    description: 'Bla bla bla Computers',
-                },
-                {
-                    id: 2,
-                    title: 'Fishing',
-                    description: 'Bla bla bla Fishing',
-                },
-                {
-                    id: 3,
-                    title: 'Studies',
-                    description: 'Bla bla bla Studies',
+                id: 1,
+                title: 'Computer',
+                description: 'Bla bla bla Computers',
+            },
+            {
+                id: 2,
+                title: 'Fishing',
+                description: 'Bla bla bla Fishing',
+            },
+            {
+                id: 3,
+                title: 'Studies',
+                description: 'Bla bla bla Studies',
             },
         ],
 
@@ -99,7 +100,6 @@ const store = createStore({
                 title: 'Fish Fish Fish',
                 text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.',
                 categoryId: 2,
-
             },
         ],
 
