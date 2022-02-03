@@ -49,5 +49,12 @@ namespace SocialPlatformProjectWebApi.Controllers
 
             //return await _replyService.GetReply(id);            
         }
+
+        [HttpPost]
+        public async Task<Reply> AddReply([FromBody] Reply reply)
+        {
+            var template = await _replyService.AddReply(reply);
+            return template;
+        }
     }
 }

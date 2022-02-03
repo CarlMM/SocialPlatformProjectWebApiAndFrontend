@@ -23,13 +23,17 @@ namespace SocialPlatformProjectWebApi.Services
         {
             var template = await _replyRepository.GetReplies();
             return template;
-        }
-
-       
+        }     
 
         public async Task<IList<Reply>> GetReply(int userId)
         {
             var template = await _replyRepository.GetReply(userId);
+            return template;
+        }
+
+        public async Task<Reply> AddReply(Reply reply)
+        {
+            var template = await AddReply(reply);
             return template;
         }
     }
