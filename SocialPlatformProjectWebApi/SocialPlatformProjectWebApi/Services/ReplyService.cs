@@ -33,7 +33,7 @@ namespace SocialPlatformProjectWebApi.Services
 
         public async Task<Reply> AddReply(Reply reply)
         {
-            var template = await AddReply(reply);
+            var template = await _replyRepository.AddReply(reply);
             return template;
         }
     }

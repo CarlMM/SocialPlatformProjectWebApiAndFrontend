@@ -12,6 +12,8 @@ namespace SocialPlatformProjectWebApi.Repository
 
         Task<IList<Reply>> GetReply(int userId);
 
+        Task<Reply> AddReply(Reply reply);
+
     }
     //public interface IRepository <T> where T : class
     //{
