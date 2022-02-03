@@ -1,7 +1,7 @@
 <template>
     <div>
         <header class="header">
-                <nav class="container">
+                <nav class="nav">
                     <div class="nav-links">
                         <ul class="nav-menu" v-for="categories in getCategories" :key="categories.Id">
                             <router-link class="link"
@@ -93,9 +93,9 @@
                     </Modal>
                 </div>
         </header>
-        <div class="create-post">
+        <div class="create-post" v-if="AuthState.isAuthenticated">
             <!-- <a href=""></a> -->
-            <img src="/src/assets/Group_2.jpg" alt="" />
+            <img :src="AuthState.user.picture" alt="" />
             <input
                 @click="showModal()"
                 class="create-input"
@@ -104,8 +104,24 @@
                 placeholder="Create Post"
             />
         </div>
+        <div v-else >
+            <div class="No-CreatePost">
+                <h1>Welcome To Group2 Forum</h1>
+            </div>
+            <div class="No-CreatePost">
+                <p>You need to log in before you can create posts!</p>
+            </div>
+        </div>
     </div>
 </template>
+
+<script setup>
+import { useAuth0, AuthState } from '/src/auth0/useAuth0.js'
+const { initAuth } = useAuth0(AuthState)
+initAuth()
+</script>
+
+
 
 <script>
 import Modal from './Modal.vue'
@@ -224,11 +240,10 @@ export default {
 </script>
 
 <style scoped>
+
 .header {
     margin: 20px;
     background-color: #303030;
-    padding: 0 25px;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
     border-radius: 5px;
     z-index:99;
 }
@@ -242,48 +257,100 @@ nav{
     display:flex;
     flex:1;
     align-items:center;
-    padding: 25px;
     margin-top:18px;
 }
 
 .nav-menu > a{
-    color: #fff;
+    color: #ffffff;
 }
 
+.nav-menu > a:hover{
+    color: #2576e0;
+}
 .nav-links >  ul{
+    display:flex;
     margin-right:22px;
 }
 
 .link{
     text-decoration: none;
     font-family: 'Poppins' sans-serif;
-    font-size: 28px;
-    margin-left: 10vw;
+    font-size: 25px;
+    margin-left: 15vw;
+    letter-spacing: 0.5px;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
 }
+
+@media(max-width: 1300px){
+    .link{
+       margin-left: 12vw; 
+    }
+}
+
+@media(max-width: 1000px){
+    .link{
+       margin-left: 8vw; 
+    }
+}
+
+@media(max-width: 800px){
+    .link{
+       margin-left: 3vw; 
+    }
+}
+
+@media(max-width: 500px){
+    .link{
+       margin-left: 4px; 
+    }
+}
+
 
 /*Create Post */
 .create-post {
-    padding: 20px;
-    margin: 20px;
-    background: #33393a;
+    padding: 14px;
+    margin-bottom: 20px;
+    background: #505455;
     border-radius: 5px;
     display: flex;
     justify-content: space-around;
 }
 
 .create-post > img {
-    width: 3.5vw;
+    width: 2.5vw;
     margin-right: 15px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .create-post > input {
     width: 100%;
     border-radius: 5px;
-    background-color: rgb(223, 223, 223);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(0, 0, 0);
 }
 
-.input:hover {
-    border: 1px solid white;
+.No-CreatePost{
+    display:flex;
+    align-content: center;
+    padding: 20px;
+    justify-content: space-around;
+}
+
+.No-CreatePost > h1{
+    color:rgb(29, 99, 204);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bolder;
+}
+
+.No-CreatePost > p{
+    color:#2576e0;
+    font-size:18px;
+    font-weight: bolder;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 #container {
@@ -305,7 +372,7 @@ nav{
 .form-group input {
     width: 100%;
     padding: 10px;
-    border: rgb(158, 158, 158) 1px solid;
+    border: rgb(233, 227, 227) 1px solid;
     border-radius: 5px;
 }
 
@@ -318,7 +385,7 @@ textarea{
     display: block;
     width: 100%;
     padding: 10px;
-    color: #fff;
+    color: #ffffff;
     cursor: pointer;
 }
 

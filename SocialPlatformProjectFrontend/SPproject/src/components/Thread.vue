@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="outer-box">
         <div
             v-for="threads in GetThreads"
             :key="threads.Id"
@@ -10,7 +10,6 @@
                 </div>
                 <div class="subforum-description subforum-column">
                     <router-link type="button" :to="`/Post/${threads.id}`">
-                    <!-- :to="{ name: 'Post'} -->
                         <h1>{{ threads.title }}</h1>
                     </router-link>
                     <h1>
@@ -24,41 +23,41 @@
         </div>
             <div class="d-flex justify-content-end mt-1">
                 <Modal v-show="isModalVisible" @close="closeModal">
-                    <template v-slot:header>
-                        <div class="text-uppercase">
-                            reply
-                            <span><i class="fas fa-comments"></i></span></div
-                    ></template>
-            <template v-slot:body>
-                <div class="subforum-description subforum-column">
-                    <h1>{{ this.threadTitle }}</h1>
-                    <h1>
-                        <small>Posted by <a href="">User</a> 15 Jan 2022</small>
-                    </h1>
-                    <p>{{ this.threadText }}</p>
-                </div>
-                <div id="container">
-                    <div class="form-group">
-                        <label for="reply-content">Add content</label>
-                        <textarea
-                            placeholder="Remember, be nice!"
-                            cols="78"
-                            rows="5"
-                            v-model="replyMessage"
-                        ></textarea>
-                    </div>
-                    <button class="btn btn-reply" @click="saveInput()">
-                        Reply
-                    </button>
-                    <div v-for="error in errors" :key="error.id">
-                        <ul>
-                            <li>{{ error }}</li>
-                        </ul>
-                    </div>
-                </div>
-            </template>
-        </Modal>
-        </div>
+                            <template v-slot:header>
+                                <div class="text-uppercase">
+                                    reply
+                                    <span><i class="fas fa-comments"></i></span></div
+                            ></template>
+                    <template v-slot:body>
+                        <div class="subforum-description subforum-column">
+                            <h1>{{ this.threadTitle }}</h1>
+                            <h1>
+                                <small>Posted by <a href="">User</a> 15 Jan 2022</small>
+                            </h1>
+                            <p>{{ this.threadText }}</p>
+                        </div>
+                        <div id="container">
+                            <div class="form-group">
+                                <label for="reply-content">Add content</label>
+                                <textarea
+                                    placeholder="Remember, be nice!"
+                                    cols="78"
+                                    rows="5"
+                                    v-model="replyMessage"
+                                ></textarea>
+                            </div>
+                            <button class="btn btn-reply" @click="saveInput()">
+                                Reply
+                            </button>
+                            <div v-for="error in errors" :key="error.id">
+                                <ul>
+                                    <li>{{ error }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </template>
+                </Modal>
+            </div>
     </div>
 </template>
 
@@ -177,9 +176,7 @@ h1 {
 }
 
 /*Body*/
-.container {
-    width: 500vh;
-    padding: 20px;
+.outer-box {
     background: rgb(173, 173, 173);
     border-radius: 5px;
     margin-bottom: 20px;

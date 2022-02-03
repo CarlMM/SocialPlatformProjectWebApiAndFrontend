@@ -1,12 +1,10 @@
 <template>
-    <div class="app-wrapper">
-     <div class="app">
         <Navbar />
+     <div class="test">
         <Category />
         <router-view />
+    </div>
         <Footer />
-    </div>
-    </div>
 </template>
 
 <script>
@@ -38,6 +36,14 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.test{
+  padding: 20px 60px;
+}
+
+html > body{
+    background-color: rgb(36, 36, 36);
 }
 
 
