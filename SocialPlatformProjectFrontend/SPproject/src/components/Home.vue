@@ -1,6 +1,6 @@
 <template>
   <div class="side-by-side">
-      <Thread  />
+      <Thread :list="GetAllThreads"/>
        <!-- :post="thread" v-for="(thread, index) in GetAllThreads" :key="index" -->
   </div>
   <div class="side-by-side">
@@ -35,12 +35,6 @@
       console.log('Get All Threads', result)
       return result
     },
-    GetAllCategories(){
-      return this.$store.state.Category
-    },
-    fetchAllThreads(){
-      return this.$store.state.Thread
-    }
   }
 
 }

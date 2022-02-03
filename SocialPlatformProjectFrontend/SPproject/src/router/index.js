@@ -29,16 +29,19 @@ const routes = [
         path: '/Computer/:id',
         name: 'Computers',
         component: Computers,
+        props: {data: null}
     },
     {
         path: '/Fishing/:id',
         name: 'Fishing',
         component: Fishing,
+        props: {data: null}
     },
     {
         path: '/Studies/:id',
         name: 'Studies',
         component: Studies,
+        props: {data: null}
     },
     {
         //Behövs inte /:id för denna

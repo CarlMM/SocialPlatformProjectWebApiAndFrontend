@@ -222,7 +222,9 @@ const store = createStore({
                 'https://localhost:44300/api/CategoryThread/GetCategoryThreads'
             )
             let data = await response.json()
+
             console.log(data)
+
             commit('setThreadsFromBack', data)
         },
 

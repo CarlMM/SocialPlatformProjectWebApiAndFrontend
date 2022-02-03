@@ -1,13 +1,12 @@
 <template>
     <div class="outer-box">
         <div
-            v-for="threads in GetAllThreads"
+            v-for="threads in list"
             :key="threads.Id"
             class="subforum-description">
             <div class="subforum-row">
                 <div class="subforum-icon subforum-column center">
                     <img src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" alt="">
-                    <!-- <i class="fas fa-laptop"></i> -->
                 </div>
                 <div class="subforum-description subforum-column">
                     <router-link type="button" :to="`/Post/${threads.id}`">
@@ -123,6 +122,7 @@ import Modal from './Modal.vue'
 
 export default {
     posts: ['thread'],
+    props: ["list"],
     components: {
         Modal,
     },
@@ -156,12 +156,7 @@ export default {
         },
         GetAllThreads() {
             let list = this.$store.state.Thread
-
-            let filterlist = list.filter(item => {
-                return item.CategoryId == this.cId
-            })
-            console.log(filterlist)
-            return filterlist
+            return list
         },
         GetCategory() {
             let categoryList = this.$store.state.Category
