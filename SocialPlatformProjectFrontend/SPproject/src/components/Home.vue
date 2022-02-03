@@ -9,30 +9,15 @@
 </template>
 
 <script>
-  import Thread from '/src/components/Thread.vue'
+import Thread from '/src/components/Thread.vue'
 import { useAuth0, AuthState } from '../auth0/useAuth0.js'
 
 const {initAuth } = useAuth0(AuthState)
 
-
-
-  export default{
+export default{
  
   components: {
     Thread,
-  },
-
-    created(){
-    this.fetchThreads();
-  },
-
-  
-
-   methods:{
-     async fetchThreads(){
-       this.$store.dispatch('getAllThreads')
-     }
-    
   },
 
   mounted() {
