@@ -18,8 +18,8 @@ namespace SocialPlatformProjectWebApi.Models
         }
 
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<CategoryThread> CategoryThreads { get; set; }
         public virtual DbSet<Reply> Replies { get; set; }
-        public virtual DbSet<Thread> Threads { get; set; }
         public virtual DbSet<ThreadUser> ThreadUsers { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
@@ -50,32 +50,9 @@ namespace SocialPlatformProjectWebApi.Models
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<Reply>(entity =>
+            modelBuilder.Entity<CategoryThread>(entity =>
             {
-                entity.ToTable("Reply");
-
-                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
-
-                entity.Property(e => e.Text)
-                    .IsRequired()
-                    .HasMaxLength(500)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UserIdSub)
-                    .HasMaxLength(500)
-                    .IsUnicode(false)
-                    .HasColumnName("UserId_Sub");
-
-                entity.HasOne(d => d.Thread)
-                    .WithMany(p => p.Replies)
-                    .HasForeignKey(d => d.ThreadId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Reply_Thread");
-            });
-
-            modelBuilder.Entity<Thread>(entity =>
-            {
-                entity.ToTable("Thread");
+                entity.ToTable("CategoryThread");
 
                 entity.Property(e => e.CreatedDate).HasColumnType("datetime");
 
@@ -95,9 +72,32 @@ namespace SocialPlatformProjectWebApi.Models
                     .HasColumnName("UserId_Sub");
 
                 entity.HasOne(d => d.Category)
-                    .WithMany(p => p.Threads)
+                    .WithMany(p => p.CategoryThreads)
                     .HasForeignKey(d => d.CategoryId)
                     .HasConstraintName("FK_Thread_Category");
+            });
+
+            modelBuilder.Entity<Reply>(entity =>
+            {
+                entity.ToTable("Reply");
+
+                entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Text)
+                    .IsRequired()
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UserIdSub)
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
+                    .HasColumnName("UserId_Sub");
+
+                entity.HasOne(d => d.CategoryThread)
+                    .WithMany(p => p.Replies)
+                    .HasForeignKey(d => d.CategoryThreadId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Reply_Thread");
             });
 
             modelBuilder.Entity<ThreadUser>(entity =>
@@ -109,9 +109,9 @@ namespace SocialPlatformProjectWebApi.Models
                     .IsUnicode(false)
                     .HasColumnName("UserId_Sub");
 
-                entity.HasOne(d => d.Thread)
+                entity.HasOne(d => d.CategoryThread)
                     .WithMany(p => p.ThreadUsers)
-                    .HasForeignKey(d => d.ThreadId)
+                    .HasForeignKey(d => d.CategoryThreadId)
                     .HasConstraintName("FK_ThreadUsers_Thread");
 
                 entity.HasOne(d => d.UserIdSubNavigation)
