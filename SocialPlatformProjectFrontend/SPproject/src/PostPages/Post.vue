@@ -36,6 +36,9 @@ export default {
         //this.fetchRepliesForPost();
         this.fetchReplyForPost();
     },
+    created(){
+        this.$store.dispatch('GetRepliesForSpecificPost')
+    },
 
     computed: {
         getSpecificThread() {
