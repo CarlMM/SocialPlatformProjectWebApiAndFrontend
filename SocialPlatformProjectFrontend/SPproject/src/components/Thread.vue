@@ -6,18 +6,31 @@
             class="subforum-description">
             <div class="subforum-row">
                 <div class="subforum-icon subforum-column center">
-                    <i class="fas fa-laptop"></i>
+                    <img src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" alt="">
+                    <!-- <i class="fas fa-laptop"></i> -->
                 </div>
                 <div class="subforum-description subforum-column">
                     <router-link type="button" :to="`/Post/${threads.id}`">
                         <h1>{{ threads.title }}</h1>
                     </router-link>
-                    <h1>
-                        <small>Posted by <a href="">User</a> 15 Jan 2022</small>
-                    </h1>
+                    <span><p>Posted by<a href="">User</a>15 jan 2022</p></span>
                     <p>{{ threads.Text }}</p>
-                    <button class="post-btn" @click="showModal(threads.Id)">comment</button>
-                    <button class="post-btn">Save</button>
+                    <button class="post-btn" @click="showModal(threads.Id)">
+                        <i class="far fa-comment icon"></i>
+                        <span>Comment</span>
+                    </button>
+                    <button class="post-btn">
+                        <i class="far fa-surprise icon"></i>
+                        <span>Surprise</span>
+                    </button>
+                    <button class="post-btn">
+                        <i class="far fa-share-square icon"></i>
+                        <span>Share</span>
+                    </button>
+                    <button class="post-btn">
+                        <i class="far fa-flag icon"></i>
+                        <span>Report</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -177,7 +190,7 @@ h1 {
 
 /*Body*/
 .outer-box {
-    background: rgb(173, 173, 173);
+    background: #484848;
     border-radius: 5px;
     margin-bottom: 20px;
 }
@@ -200,12 +213,12 @@ h1 {
 
 .subforum-column {
     border-radius: 5px;
-    margin: 4px;
+    margin: 1px;
     background-color: rgb(48, 48, 48);
 }
 
 .subforum-description {
-    padding: 10px;
+    padding: 2px;
 }
 
 .center {
@@ -214,8 +227,14 @@ h1 {
     align-items: center;
 }
 
-.subforum-icon {
-    font-size: 30px;
+/* picture or icons?*/
+/*.subforum-icon {
+    font-size:30px;
+} */
+.subforum-icon > img {
+    height: 95%;
+    width: 95%;
+    border-radius: 3px;
 }
 
 /*Category*/
@@ -227,9 +246,38 @@ h1 {
     background-color: rgb(119, 119, 119);
     padding: 10px;
     border-radius: 5px;
-    margin: 4px;
     margin-bottom: 20px;
 }
+
+/*Buttons */
+.post-btn{
+    height: 35px;
+    padding: 0 22px;
+    background:inherit;
+    color:#ffff;
+    border: none;
+    user-select: none;
+    white-space: nowrap;
+    transition: all .05s linear;
+    font-family: inherit;
+}
+
+.post-btn:active{
+    color: white;
+    box-shadow: 0 0.2rem #dfd9d9;
+    transform: translateY(0.2rem);
+}
+
+.post-btn:disabled{
+    cursor:auto;
+    color:grey;
+}
+
+.icon{
+    font-size:20px;
+    margin-right:8px;
+}
+
 
 /* Style inside modal */
 #container {
