@@ -13,5 +13,7 @@ namespace SocialPlatformProjectWebApi.Repository
         Task<IList<CategoryThread>> GetCategoryThreadByThreadType(bool threadType);
 
         Task<IList<CategoryThread>> GetCategoryThreadByUserId(string userId);
+
+        Task<CategoryThread> AddCategoryThread(CategoryThread categoryThread);
     }
 }

@@ -37,5 +37,11 @@ namespace SocialPlatformProjectWebApi.Services
             var types = await _categorythreadRepository.GetCategoryThreadByUserId(userId);
             return types;
         }
+
+        public async Task<CategoryThread> AddCategoryThread(CategoryThread categoryThread)
+        {
+            var template = await _categorythreadRepository.AddCategoryThread(categoryThread);
+            return template;
+        }
     }
 }

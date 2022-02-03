@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SocialPlatformProjectWebApi.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,6 +40,28 @@ namespace SocialPlatformProjectWebApi.Repository
         {
             var result = await _dbContext.CategoryThreads.Where(x => x.UserIdSub == userId).ToListAsync();
             return result;
+        }
+
+        public async Task<CategoryThread> AddCateoryThread(CategoryThread categoryThread)
+        {
+            DateTime date = DateTime.Now;
+
+            //var template = categoryThread;
+            //_dbContext.Add(template);
+
+            var template = new CategoryThread
+            {
+                Title = categoryThread.Title,
+                Text = categoryThread.Text,
+                CreatedDate = date,
+                CategoryId = categoryThread.CategoryId,
+                ThreadType = categoryThread.ThreadType,
+                UserIdSub = categoryThread.UserIdSub,
+            };
+
+            await _dbContext.AddAsync(template);
+
+            return template;
         }
     }
 }

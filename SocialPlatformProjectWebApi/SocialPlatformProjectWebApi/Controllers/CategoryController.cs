@@ -24,6 +24,5 @@ namespace SocialPlatformProjectWebApi.Controllers
             return template;
         }
 
-
     }
 }
