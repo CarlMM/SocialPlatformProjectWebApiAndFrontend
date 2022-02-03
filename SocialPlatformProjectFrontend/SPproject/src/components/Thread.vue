@@ -1,35 +1,41 @@
 <template>
-    <div class="container">
+    <div class="outer-box">
+
         <div
             v-for="threads in GetThreads"
             :key="threads.Id"
-            class="subforum-description"
-        >
+            class="subforum-description">
             <div class="subforum-row">
                 <div class="subforum-icon subforum-column center">
-                    <i class="fas fa-laptop"></i>
+                    <img src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" alt="">
+                    <!-- <i class="fas fa-laptop"></i> -->
                 </div>
                 <div class="subforum-description subforum-column">
                     <router-link type="button" :to="`/Post/${threads.id}`">
-                        <!-- :to="{ name: 'Post'} -->
-                        <h1>{{ threads.Title }}</h1>
+                        <h1>{{ threads.title }}</h1>
                     </router-link>
-                    <h1>
-                        <small>Posted by <a href="">User</a> 15 Jan 2022</small>
-                    </h1>
+                    <span><p>Posted by<a href="">User</a>15 jan 2022</p></span>
                     <p>{{ threads.Text }}</p>
-                    <a class="post-link" href=""
-                        ><router-link to="/Post">Reply</router-link></a
-                    >
-                    <button class="reply-btn" @click="showModal(threads.Id)">
-                        REPLY
+                    <button class="post-btn" @click="showModal(threads.Id)">
+                        <i class="far fa-comment icon"></i>
+                        <span>Comment</span>
                     </button>
-                    <a class="post-link" href=""
-                        ><router-link to="/">Save</router-link></a
-                    >
+                    <button class="post-btn">
+                        <i class="far fa-surprise icon"></i>
+                        <span>Surprise</span>
+                    </button>
+                    <button class="post-btn">
+                        <i class="far fa-share-square icon"></i>
+                        <span>Share</span>
+                    </button>
+                    <button class="post-btn">
+                        <i class="far fa-flag icon"></i>
+                        <span>Report</span>
+                    </button>
                 </div>
             </div>
         </div>
+
         <div class="d-flex justify-content-end mt-1">
             <Modal v-show="isModalVisible" @close="closeModal">
                 <template v-slot:header>
@@ -76,20 +82,7 @@
             <div class="subforum-title">
                 <h1>General Information</h1>
             </div>
-          </div>
-          <div class="subforum-row">
-                <div class="subforum-icon subforum-column center" > 
-                    <i class="fas fa-laptop"></i>
-                </div>
-                <div class="subforum-description subforum-column">
-                    <h1>Descriptiption Title <small>Posted by <a href="">User</a> 15 Jan 2022</small></h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus sit amet est placerat. Lacus viverra vitae congue eu consequat ac felis donec et. 
-                      Tempus quam pellentesque nec nam aliquam sem et tortor. Mi proin sed libero enim. Purus non enim praesent elementum facilisis. Amet nisl purus in mollis nunc sed.</p>
-                    <a class="post-link" href=""><router-link to="/Post">Reply</router-link></a>
-                    <a class="post-link" href=""><router-link to="/">Save</router-link></a>
-                </div>
-          </div>
-  </div> -->
+    </div>
 </template>
 
 <script>
@@ -218,10 +211,8 @@ h1 {
 }
 
 /*Body*/
-.container {
-    width: 500vh;
-    padding: 20px;
-    background: rgb(173, 173, 173);
+.outer-box {
+    background: #484848;
     border-radius: 5px;
     margin-bottom: 20px;
 }
@@ -244,12 +235,12 @@ h1 {
 
 .subforum-column {
     border-radius: 5px;
-    margin: 4px;
+    margin: 1px;
     background-color: rgb(48, 48, 48);
 }
 
 .subforum-description {
-    padding: 10px;
+    padding: 2px;
 }
 
 .center {
@@ -258,8 +249,10 @@ h1 {
     align-items: center;
 }
 
-.subforum-icon {
-    font-size: 30px;
+.subforum-icon > img {
+    height: 95%;
+    width: 95%;
+    border-radius: 3px;
 }
 
 /*Category*/
@@ -271,9 +264,38 @@ h1 {
     background-color: rgb(119, 119, 119);
     padding: 10px;
     border-radius: 5px;
-    margin: 4px;
     margin-bottom: 20px;
 }
+
+/*Buttons in thread */
+.post-btn{
+    height: 35px;
+    padding: 0 15px;
+    background:inherit;
+    color:#ffff;
+    border: none;
+    user-select: none;
+    white-space: nowrap;
+    transition: all .05s linear;
+    font-family: inherit;
+}
+
+.post-btn:active{
+    color: white;
+    box-shadow: 0 0.2rem #dfd9d9;
+    transform: translateY(0.2rem);
+}
+
+.post-btn:disabled{
+    cursor:auto;
+    color:grey;
+}
+
+.icon{
+    font-size:20px;
+    margin-right:10px;
+}
+
 
 /* Style inside modal */
 #container {
