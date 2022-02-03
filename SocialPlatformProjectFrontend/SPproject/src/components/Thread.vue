@@ -140,9 +140,12 @@ export default {
         }
     },
 
-    beforeMounted() {
-        this.GetThreads()
+    created(){
+        this.$store.dispatch('getAllThreads')
     },
+    // beforeMounted() {
+    //     this.GetThreads()
+    // },
 
     computed: {
         GetThreads() {
@@ -154,10 +157,10 @@ export default {
             console.log(filterlist)
             return filterlist
         },
-        GetAllThreads() {
-            let list = this.$store.state.Thread
-            return list
-        },
+        // GetAllThreads() {
+        //     let list = this.$store.state.Thread
+        //     return list
+        // },
         GetCategory() {
             let categoryList = this.$store.state.Category
 

@@ -16,8 +16,21 @@ export default{
     Thread,
   },
 
+  data(){
+    return{
+      idFromUrl: this.$route.params
+    }
+  },
+
+  created(){
+    // console.log(this.idFromUrl)
+    // this.$store.dispatch('getThreadsByCategoryId')
+  },
+
   computed:{
     GetThreads() {
+      // // console.log(this.$route.params)
+      // // console.log(this.idFromUrl)
             let list = this.$store.state.Thread
 
             let filterlist = list.filter(item => {

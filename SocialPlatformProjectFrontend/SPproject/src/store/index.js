@@ -49,6 +49,9 @@ const store = createStore({
         setUserThreads(state, data){
             state.UserThread = data;
             console.log('userThreads: ', data)
+        },
+        setThreadsByCategoryId(state, data){
+
         }
     },
     actions: {
@@ -67,6 +70,14 @@ const store = createStore({
 
             commit('setThreadsFromBack', data)
         },
+
+        // async getThreadsByCategoryId({commit}){
+        //     let response = await fetch(`https://localhost:44300/api/CategoryThread/GetCategoryThreadByCategoryId/1`)
+
+        //     let data = await response.json();
+
+        //     commit('setThreadsByCategoryId', data)
+        // },
 
         async getAllCategories({ commit }) {
             let response = await fetch(
