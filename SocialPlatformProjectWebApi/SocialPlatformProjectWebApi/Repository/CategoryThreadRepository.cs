@@ -42,7 +42,7 @@ namespace SocialPlatformProjectWebApi.Repository
             return result;
         }
 
-        public async Task<CategoryThread> AddCateoryThread(CategoryThread categoryThread)
+        public async Task<CategoryThread> AddCategoryThread(CategoryThread categoryThread)
         {
             DateTime date = DateTime.Now;
 
