@@ -58,10 +58,11 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> AddCategoryThread([FromBody] CategoryThread categoryThread)
+        [Route("AddCategoryThread")]
+        public async Task<CategoryThread> AddCategoryThread([FromBody]CategoryThread categoryThread)
         {
             var template = await _categorythreadService.AddCategoryThread(categoryThread);
-            return Json(template);
+            return template;
         }
     }
 }

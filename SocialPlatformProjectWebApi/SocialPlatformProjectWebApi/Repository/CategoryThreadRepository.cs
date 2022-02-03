@@ -51,6 +51,7 @@ namespace SocialPlatformProjectWebApi.Repository
 
             var template = new CategoryThread
             {
+                
                 Title = categoryThread.Title,
                 Text = categoryThread.Text,
                 CreatedDate = date,
@@ -60,7 +61,8 @@ namespace SocialPlatformProjectWebApi.Repository
             };
 
             await _dbContext.AddAsync(template);
-
+            await _dbContext.SaveChangesAsync();
+                    
             return template;
         }
     }
