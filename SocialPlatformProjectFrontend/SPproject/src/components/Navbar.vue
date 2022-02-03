@@ -29,7 +29,8 @@
                         <!-- authstate.user.sub = user token (id) -->
                         <img :src="AuthState.user.picture" alt="AvatarPic" />
                         <select class="dropdown-nav" @change="changeRoute($event)">
-                          <option selected value="">Home</option>
+                          <option disabled selected>Choose route</option>
+                          <option value="">Home</option>
                           <option value="MyProfile">Profile</option>
                           <option value="MyGroups">My groups</option>
                           <option value="MyThreads">My threads</option>
