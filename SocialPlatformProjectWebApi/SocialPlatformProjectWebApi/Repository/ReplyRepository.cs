@@ -48,6 +48,7 @@ namespace SocialPlatformProjectWebApi.Repository
 
             var template = new Reply
             {
+                Text = reply.Text,
                 CreatedDate = date,
                 CategoryThreadId = reply.CategoryThreadId,
                 UserIdSub = reply.UserIdSub,
