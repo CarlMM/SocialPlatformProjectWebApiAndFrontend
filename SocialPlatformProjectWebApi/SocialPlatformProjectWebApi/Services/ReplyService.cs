@@ -31,6 +31,13 @@ namespace SocialPlatformProjectWebApi.Services
             return template;
         }
 
+        public async Task<IList<Reply>> GetReplyByCategoryThreadId(int categoryThreadId)
+        {
+            var template = await _replyRepository.GetReplyByCategoryThreadId(categoryThreadId);
+            return template;
+        }
+
+
         public async Task<Reply> AddReply(Reply reply)
         {
             var template = await _replyRepository.AddReply(reply);

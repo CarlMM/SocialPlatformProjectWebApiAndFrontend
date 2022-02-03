@@ -12,5 +12,6 @@ namespace SocialPlatformProjectWebApi.Services
         Task<IList<Reply>> GetReply(int userId);
         Task<Reply> AddReply([FromBody] Reply reply);
         Task<Reply> DeleteReply(int id);
+        Task<IList<Reply>> GetReplyByCategoryThreadId(int categoryThreadId);
     }
 }

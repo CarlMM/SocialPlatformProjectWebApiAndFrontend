@@ -50,6 +50,14 @@ namespace SocialPlatformProjectWebApi.Controllers
             //return await _replyService.GetReply(id);            
         }
 
+        [HttpGet]
+        [Route("GetReply/{CategoryThreadId}")]
+        public async Task<IList<Reply>> GetReplyByCategoryThreadId(int categoryThreadId)
+        {
+            var reply = await _replyService.GetReplyByCategoryThreadId(categoryThreadId);
+            return reply;
+        }
+
         [HttpPost]
         public async Task<Reply> AddReply([FromBody] Reply reply)
         {

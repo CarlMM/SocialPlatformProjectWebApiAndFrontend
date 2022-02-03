@@ -37,6 +37,12 @@ namespace SocialPlatformProjectWebApi.Repository
             return reply;
         }
 
+        public async Task<IList<Reply>> GetReplyByCategoryThreadId(int categoryThreadId)
+        {
+            var reply = await _dbContext.Replies.Where(x => x.CategoryThreadId == categoryThreadId).ToListAsync();
+            return reply;
+        }
+
         public async Task<Reply> AddReply(Reply reply)
         {
             DateTime date = DateTime.Now;
