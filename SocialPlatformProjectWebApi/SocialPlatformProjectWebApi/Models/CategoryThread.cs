@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace SocialPlatformProjectWebApi.Models
 {
-    public partial class Thread
+    public partial class CategoryThread
     {
-        public Thread()
+        public CategoryThread()
         {
             Replies = new HashSet<Reply>();
             ThreadUsers = new HashSet<ThreadUser>();

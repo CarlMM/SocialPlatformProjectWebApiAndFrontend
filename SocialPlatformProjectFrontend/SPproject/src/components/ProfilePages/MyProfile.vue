@@ -1,10 +1,9 @@
 8 lines (32 sloc) 941 Bytes
 <template>
     <div>
-        <div v-if="AuthState.isAuthenticated">
+        <div v-if="AuthState.isAuthenticated" class="temp">
             <h1>My profile</h1>
             <p>Loopa ut användarens data, så som nickname email osv?</p>
-
             <form>
                 <img :src="AuthState.user.picture" alt="AvatarPic" />
                 <br />
@@ -36,3 +35,10 @@ const { login, logout, initAuth } = useAuth0(AuthState)
 initAuth()
 </script>
 
+<style scoped>
+
+.temp{
+    color:#ffff;
+}
+
+</style>

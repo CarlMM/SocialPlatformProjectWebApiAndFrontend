@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="AuthState.isAuthenticated">
+        <div v-if="AuthState.isAuthenticated" class="temp">
             <h1>My groupthreads</h1>
             <p>Loopa ut alla trådar som har användarens userId</p>
             <div v-for="threads in this.tomArray" :key="threads.Id">
@@ -48,6 +48,10 @@ export default {
     // }
     
 }
-
-
 </script>
+
+<style scoped>
+.temp{
+    color:#ffff;
+}
+</style>
