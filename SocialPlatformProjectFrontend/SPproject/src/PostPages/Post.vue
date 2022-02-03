@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="temp">
     <div>
         <h1>POST YO</h1>
     </div>
@@ -51,3 +51,10 @@ export default {
     },
 }
 </script>
+
+
+<style scoped>
+.temp{
+    color:#ffff;
+}
+</style>
