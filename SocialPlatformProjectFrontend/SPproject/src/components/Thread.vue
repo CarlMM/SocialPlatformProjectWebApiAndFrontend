@@ -77,12 +77,11 @@
             </Modal>
         </div>
     </div>
-    <!-- <div class="container" >
-    <div class="subform">
+    <!-- <div class="subform">
             <div class="subforum-title">
                 <h1>General Information</h1>
             </div>
-    </div>
+    </div> -->
 </template>
 
 <script>

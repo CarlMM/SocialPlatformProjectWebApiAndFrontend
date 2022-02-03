@@ -39,7 +39,6 @@ export const useAuth0 = state => {
     const login = async () => {
         await state.auth0.loginWithPopup()
         await handleStateChange()
-        formergA-release1.0
         location.reload()
         console.log(state.user)
         console.log(user.app_metadata)

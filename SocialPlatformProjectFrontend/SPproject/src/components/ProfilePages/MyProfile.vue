@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import NotAuthantication from '../../Views/NotAutherized.vue'
+import NotAuthantication from '../../Views/NotAuthorized.vue'
 
 export default {
     components: {
