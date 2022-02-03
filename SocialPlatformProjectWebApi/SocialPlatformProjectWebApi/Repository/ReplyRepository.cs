@@ -59,5 +59,13 @@ namespace SocialPlatformProjectWebApi.Repository
 
             return template;
         }
+
+        public async Task<Reply> DeleteReply(int id)
+        {
+            var deleteReply = await _dbContext.Replies.SingleAsync(x => x.Id == id);
+            _dbContext.Replies.Remove(deleteReply);
+            await _dbContext.SaveChangesAsync();
+            return deleteReply;
+        }
     }
 }

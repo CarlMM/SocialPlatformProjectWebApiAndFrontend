@@ -36,5 +36,11 @@ namespace SocialPlatformProjectWebApi.Services
             var template = await _replyRepository.AddReply(reply);
             return template;
         }
+
+        public async Task<Reply> DeleteReply(int id)
+        {
+            var template = await _replyRepository.DeleteReply(id);
+            return template;
+        }
     }
 }
