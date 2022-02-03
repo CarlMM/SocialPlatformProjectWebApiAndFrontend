@@ -9,7 +9,6 @@ import MyProfile from '/src/components/ProfilePages/MyProfile.vue'
 import MyGroups from '/src/components/ProfilePages/Mygroups.vue'
 import MyThreads from '/src/components/ProfilePages/MyThreads.vue'
 
-
 const routes = [
     {
         path: '/',
@@ -30,16 +29,19 @@ const routes = [
         path: '/Computer/:id',
         name: 'Computers',
         component: Computers,
+        props: {data: null}
     },
     {
         path: '/Fishing/:id',
         name: 'Fishing',
         component: Fishing,
+        props: {data: null}
     },
     {
         path: '/Studies/:id',
         name: 'Studies',
         component: Studies,
+        props: {data: null}
     },
     {
         //Behövs inte /:id för denna
