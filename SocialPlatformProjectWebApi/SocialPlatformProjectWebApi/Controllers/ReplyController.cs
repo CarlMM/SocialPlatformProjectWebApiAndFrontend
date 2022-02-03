@@ -30,27 +30,45 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetReply/{id}")]
-        public async Task<ActionResult<Reply>> GetReply(int id)
+        [Route("GetReply/{userId}")]
+        public async Task<IList<Reply>> GetReply(int userId)
         {
-            if (id < 1)
-            {
-                return BadRequest("Detta id är för lågt");
-            }
+            //if (id < 1)
+            //{
+            //    return BadRequest("Detta id är för lågt");
+            //}
 
-            var reply = await _replyService.GetReply(id);
-
-            if (reply == null)
-            {
-                return NotFound();
-            }
+            var reply = await _replyService.GetReply(userId);
             return reply;
 
             //if (reply == null)
             //{
             //    return NotFound();
             //}
+
             //return await _replyService.GetReply(id);            
+        }
+
+        [HttpGet]
+        [Route("GetReplyByCategoryThreadId/{categoryThreadId}")]
+        public async Task<IList<Reply>> GetReplyByCategoryThreadId(int categoryThreadId)
+        {
+            var reply = await _replyService.GetReplyByCategoryThreadId(categoryThreadId);
+            return reply;
+        }
+
+        [HttpPost]
+        public async Task<Reply> AddReply([FromBody] Reply reply)
+        {
+            var template = await _replyService.AddReply(reply);
+            return template;
+        }
+
+        [HttpDelete]
+        public async Task<Reply> DeleteReply(int id)
+        {
+            var template = await _replyService.DeleteReply(id);
+            return template;
         }
     }
 }

@@ -30,12 +30,48 @@ namespace SocialPlatformProjectWebApi.Repository
             var result = await _dbContext.Replies.ToListAsync();
             return result;           
         }
-
-      
-        public async Task<Reply> GetReply(int id)
+   
+        public async Task<IList<Reply>> GetReply(int userId)
         {
-            var reply = await _dbContext.Replies.FirstOrDefaultAsync(x => x.Id == id);
+            var reply = await _dbContext.Replies.Where(x => x.Id == userId).ToListAsync();
             return reply;
-        }      
+        }
+
+        public async Task<IList<Reply>> GetReplyByCategoryThreadId(int categoryThreadId)
+        {
+            var reply = await _dbContext.Replies.Where(x => x.CategoryThreadId == categoryThreadId).ToListAsync();
+            return reply;
+        }
+
+        public async Task<Reply> AddReply(Reply reply)
+        {
+            DateTime date = DateTime.Now;
+
+            //var incomingObject = reply;
+            //_dbContext.Replies.AddAsync(incomingObject);
+            //_dbContext.SaveChangesAsync();
+
+
+            var template = new Reply
+            {
+                Text = reply.Text,
+                CreatedDate = date,
+                CategoryThreadId = reply.CategoryThreadId,
+                UserIdSub = reply.UserIdSub,
+            };
+
+            await _dbContext.AddAsync(template);
+            await _dbContext.SaveChangesAsync();
+
+            return template;
+        }
+
+        public async Task<Reply> DeleteReply(int id)
+        {
+            var deleteReply = await _dbContext.Replies.SingleAsync(x => x.Id == id);
+            _dbContext.Replies.Remove(deleteReply);
+            await _dbContext.SaveChangesAsync();
+            return deleteReply;
+        }
     }
 }

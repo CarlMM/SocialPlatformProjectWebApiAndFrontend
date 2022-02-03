@@ -10,7 +10,13 @@ namespace SocialPlatformProjectWebApi.Repository
         
         Task<IEnumerable<Reply>> GetReplies();
 
-        Task<Reply> GetReply(int id);
+        Task<IList<Reply>> GetReply(int userId);
+
+        Task<Reply> AddReply(Reply reply);
+
+        Task<Reply> DeleteReply(int id);
+
+        Task<IList<Reply>> GetReplyByCategoryThreadId(int categoryThreadId);
 
     }
     //public interface IRepository <T> where T : class
