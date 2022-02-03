@@ -7,6 +7,9 @@
         <div v-else>
             <NotAuthantication />
         </div>
+        <div v-for="userThreads in this.$store.state.UserThread" :key="userThreads.id">
+            <h1 style="color:white">{{userThreads.title}}</h1>
+        </div>  
     </div>
 </template>
 
@@ -18,6 +21,14 @@ export default {
     components: {
         NotAuthantication,
     },
+    methods:{
+        fetchAllUserThreads(){
+            this.$store.dispatch('GetThreadsFromUser', this.AuthState.user.sub)
+        }
+    },
+    mounted(){
+        this.fetchAllUserThreads();
+    }
 }
 </script>
 

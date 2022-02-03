@@ -46,7 +46,6 @@ namespace SocialPlatformProjectWebApi.Controllers
             //    return NotFound();
             //}
 
-
             //return await _replyService.GetReply(id);            
         }
 
