@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 
 const store = createStore({
     state: {
-        GroupThreads:[],
+        GroupThreads: [],
         Category: [
             {
                     id: 1,
@@ -99,6 +99,7 @@ const store = createStore({
                 title: 'Fish Fish Fish',
                 text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet sequi illo sint reprehenderit voluptate. Minus commodi non nesciunt nihil obcaecati provident quae, fugiat quidem. Facilis soluta inventore quidem id natus.',
                 categoryId: 2,
+
             },
         ],
 
@@ -194,22 +195,21 @@ const store = createStore({
         },
         setRepliesFromBacked(state, data) {
             state.reply = data
-          console.log(data)
+            console.log(data)
         },
 
-        setUserFromBack(state, data){
-            state.User = data;
+        setUserFromBack(state, data) {
+            state.User = data
             console.log(data)
         },
-        setUsersFromBack(state, data){
-            state.Users = data;
+        setUsersFromBack(state, data) {
+            state.Users = data
             console.log(data)
         },
-        setThreadUserFromBack(state, data){
-            state.ThreadUser = data;
+        setThreadUserFromBack(state, data) {
+            state.ThreadUser = data
             console.log(data)
-        }
-
+        },
     },
     actions: {
         createNewPostMethod({ commit }, newPostObject) {
@@ -234,37 +234,38 @@ const store = createStore({
             )
             let data = await response.json()
             console.log(data)
-            commit('setCategoriesFromBackend', data);
+            commit('setCategoriesFromBackend', data)
         },
-        
-        async GetAllReplies({commit}){
-            let response = await fetch('https://localhost:44300/Reply/GetReplies')
+
+        async GetAllReplies({ commit }) {
+            let response = await fetch(
+                'https://localhost:44300/Reply/GetReplies'
+            )
             let data = await response.json()
             console.log(data)
             commit('setRepliesFromBacked', data)
         },
-                    
-        async GetUser({commit}){
+
+        async GetUser({ commit }) {
             let response = await fetch('')
             let data = await response.json()
             console.log(data)
             commit('setUserFromBack', data)
         },
 
-        async getAllUsers({commit}){
+        async getAllUsers({ commit }) {
             let response = await fetch('')
             let data = await response.json()
             console.log(data)
             commit('setUsersFromBack', data)
         },
 
-        async getThreadUser({commit}){
+        async getThreadUser({ commit }) {
             let response = await fetch('')
             let data = await response.json()
             console.log(data)
             commit('setThreadUserFromBack', data)
         },
-
 
         // async getAllThreadByUser({commit}, userId){
         //     let response = await fetch('https://localhost:44300/api/Threads/GetThreadsByUser' + userId);
@@ -273,7 +274,6 @@ const store = createStore({
         //     console.log(data)
         //     commit('setInMutation' , data)
         // }
-
     },
 })
 

@@ -28,6 +28,7 @@
                                             <label for="postType"
                                                 >Post Type</label
                                             >
+
                                             <Dropdown
                                                 id="postType"
                                                 name="postType"
@@ -60,33 +61,44 @@
                                 <!-- @change="setPostTitleFromDropdown($event.target.value)" -->
                                 <!-- @change="setPostTextFromDropdown($event.target.value)" -->
                                 <!-- <form action="#" id="createPost-form"> -->
-                                    <div class="form-group">
-                                        <label for="text-title">Title</label>
-                                        <input
-                                            type="text"
-                                            name="textTitle"
-                                            id="text-title"
-                                            v-model='newPostObject.Title'
-                                        />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="post-thread"
-                                            >Add content</label
-                                        >
-                                        <textarea
-                                            placeholder="Remember, be nice!"
-                                            cols="78"
-                                            rows="4"
-                                            id="post-thread"
-                                            name="postThread"
-                                            v-model='newPostObject.Text'
-                                        ></textarea>
-                                    </div>
-                                    <button @click="this.createPostMethod(newPostObject)" class="btn btn-form">
-                                        <!-- type="submit" -->
-                                        Create post
-                                    </button>
-                                    <p class="bottom-text"></p>
+                                <div class="form-group">
+                                    <label for="text-title">Title</label>
+                                    <input
+                                        type="text"
+                                        name="textTitle"
+                                        id="text-title"
+                                        v-model="newPostObject.Title"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="post-thread">Add content</label>
+                                    <textarea
+                                        placeholder="Remember, be nice!"
+                                        cols="78"
+                                        rows="4"
+                                        id="post-thread"
+                                        name="postThread"
+                                        v-model="newPostObject.Text"
+                                    ></textarea>
+                                </div>
+                                <button
+                                    @click="
+                                        this.createPostMethod(newPostObject)
+                                    "
+                                    class="btn btn-form"
+                                >
+                                    <!-- type="submit" -->
+                                    Create post
+                                </button>
+                                <div
+                                    v-for="error in this.errorMessage"
+                                    :key="error.Id"
+                                >
+                                    <ul>
+                                        <li>{{ error }}</li>
+                                    </ul>
+                                </div>
+                                <p class="bottom-text"></p>
                                 <!-- </form> -->
                             </div>
                         </template>
@@ -154,6 +166,7 @@ export default {
             },
         }
     },
+
     created() {
         this.fetchAllCategories()
     },
@@ -167,6 +180,7 @@ export default {
             this.newPostObject.CategoryId = ''
             this.isModalVisible = false
         },
+
         setPostTypeId(value) {
             console.log('postType Id', value)
             if (value == 0) {
@@ -184,6 +198,7 @@ export default {
             console.log('Category Id from dropdown ', value)
             this.newPostObject.CategoryId = value
         },
+
         filterWords(array) {
             let filteredWordsArray = array.toLowerCase().split(' ')
             let catchBadWords = filteredWordsArray.filter(item =>
@@ -191,10 +206,12 @@ export default {
             )
             return catchBadWords
         },
+
         createPostMethod(newPostObject) {
             let catchBadWords = this.filterWords(this.newPostObject.Text)
             let catchBadWordsTitle = this.filterWords(this.newPostObject.Title)
             this.errorMessage = []
+
             if (this.postTypeChosen === null || this.postTypeChosen === null) {
                 this.errorMessage.push('Please choose post type!')
             }
@@ -262,6 +279,7 @@ nav{
 
 .nav-menu > a{
     color: #ffffff;
+
 }
 
 .nav-menu > a:hover{
@@ -413,12 +431,12 @@ textarea{
     margin: auto;
 }
 
-.nav-left {
+/* .nav-left {
     width: 35%;
     display: flex;
     align-items: center;
     justify-content: space-around;
-}
+} */
 
 .nav-left  > a {
     position: relative;

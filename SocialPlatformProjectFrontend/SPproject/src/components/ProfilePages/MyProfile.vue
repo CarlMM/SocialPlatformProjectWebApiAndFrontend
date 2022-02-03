@@ -22,6 +22,7 @@
 
 <script>
 import NotAuthantication from '../../Views/NotAutherized.vue'
+
 export default {
     components: {
         NotAuthantication,
@@ -34,3 +35,4 @@ import { useAuth0, AuthState } from '/src/auth0/useAuth0.js'
 const { login, logout, initAuth } = useAuth0(AuthState)
 initAuth()
 </script>
+

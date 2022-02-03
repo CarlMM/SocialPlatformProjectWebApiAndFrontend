@@ -6,6 +6,7 @@
   <div class="side-by-side">
     <h2>random text</h2>
   </div>
+
 </template>
 
 <script>
