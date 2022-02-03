@@ -32,9 +32,9 @@ namespace SocialPlatformProjectWebApi.Repository
         }
 
       
-        public async Task<Reply> GetReply(int id)
+        public async Task<IList<Reply>> GetReply(int userId)
         {
-            var reply = await _dbContext.Replies.FirstOrDefaultAsync(x => x.Id == id);
+            var reply = await _dbContext.Replies.Where(x => x.Id == userId).ToListAsync();
             return reply;
         }      
     }

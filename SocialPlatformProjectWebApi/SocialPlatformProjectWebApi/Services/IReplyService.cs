@@ -7,7 +7,7 @@ namespace SocialPlatformProjectWebApi.Services
 {
     public interface IReplyService
     {
-        Task<IEnumerable<Reply>> GetReplies();         
-        Task<Reply> GetReply(int id);
+        Task<IEnumerable<Reply>> GetReplies();
+        Task<IList<Reply>> GetReply(int userId);
     }
 }

@@ -27,9 +27,9 @@ namespace SocialPlatformProjectWebApi.Services
 
        
 
-        public async Task<Reply> GetReply(int id)
+        public async Task<IList<Reply>> GetReply(int userId)
         {
-            var template = await _replyRepository.GetReply(id);
+            var template = await _replyRepository.GetReply(userId);
             return template;
         }
     }
