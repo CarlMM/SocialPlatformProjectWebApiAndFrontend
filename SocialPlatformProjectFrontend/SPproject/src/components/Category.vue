@@ -1,109 +1,107 @@
 <template>
     <div>
         <header class="header">
-                <nav class="nav">
-                    <div class="nav-links">
-                        <ul class="nav-menu" v-for="categories in getCategories" :key="categories.Id">
-                            <router-link class="link"
-                                :to="`/${categories.title}/${categories.id}`">{{ categories.title }}
-                            </router-link>
-                        </ul>
-                    </div>
-                </nav>
-                <div class="d-flex justify-content-end mt-1">
-                    <Modal v-show="isModalVisible" @close="closeModal">
-                        <template v-slot:header>
-                            <div class="text-uppercase">
-                                create post
-                                <span
-                                    ><i class="fas fa-comments"></i
-                                ></span></div
-                        ></template>
-
-                        <template v-slot:body>
-                            <div id="container">
-                                <div class="row pb-5">
-                                   <nav class="nav-createPost">
-                                        <div class="nav-left form-group">
-                                            <label for="postType"
-                                                >Post Type</label
-                                            >
-
-                                            <Dropdown
-                                                id="postType"
-                                                name="postType"
-                                                selected
-                                                :options="postType"
-                                                @change="
-                                                    setPostTypeId(
-                                                        $event.target.value
-                                                    )
-                                                "
-                                            ></Dropdown>
-                                        </div>
-                                        <div class="nav-right form-group">
-                                            <label for="category"
-                                                >Category</label
-                                            >
-                                            <Dropdown
-                                                id="category"
-                                                name="category"
-                                                :options="category"
-                                                @change="
-                                                    setCategoryIdFromDropdown(
-                                                        $event.target.value
-                                                    )
-                                                "
-                                            ></Dropdown>
-                                        </div>
-                                    </nav>
-                                </div>
-                                <!-- @change="setPostTitleFromDropdown($event.target.value)" -->
-                                <!-- @change="setPostTextFromDropdown($event.target.value)" -->
-                                <!-- <form action="#" id="createPost-form"> -->
-                                <div class="form-group">
-                                    <label for="text-title">Title</label>
-                                    <input
-                                        type="text"
-                                        name="textTitle"
-                                        id="text-title"
-                                        v-model="newPostObject.Title"
-                                    />
-                                </div>
-                                <div class="form-group">
-                                    <label for="post-thread">Add content</label>
-                                    <textarea
-                                        placeholder="Remember, be nice!"
-                                        cols="78"
-                                        rows="4"
-                                        id="post-thread"
-                                        name="postThread"
-                                        v-model="newPostObject.Text"
-                                    ></textarea>
-                                </div>
-                                <button
-                                    @click="
-                                        this.createPostMethod(newPostObject)
-                                    "
-                                    class="btn btn-form"
-                                >
-                                    <!-- type="submit" -->
-                                    Create post
-                                </button>
-                                <div
-                                    v-for="error in this.errorMessage"
-                                    :key="error.Id"
-                                >
-                                    <ul>
-                                        <li>{{ error }}</li>
-                                    </ul>
-                                </div>
-                                <p class="bottom-text"></p>
-                                <!-- </form> -->
-                            </div>
-                        </template>
-                    </Modal>
+            <nav class="nav">
+                <div class="nav-links">
+                    <ul
+                        class="nav-menu"
+                        v-for="categories in getCategories"
+                        :key="categories.Id"
+                    >
+                        <router-link
+                            class="link"
+                            :to="`/${categories.title}/${categories.id}`"
+                            >{{ categories.title }}
+                        </router-link>
+                    </ul>
                 </div>
+            </nav>
+            <div class="d-flex justify-content-end mt-1">
+                <Modal v-show="isModalVisible" @close="closeModal">
+                    <template v-slot:header>
+                        <div class="text-uppercase">
+                            create post
+                            <span><i class="fas fa-comments"></i></span></div
+                    ></template>
+
+                    <template v-slot:body>
+                        <div id="container">
+                            <div class="row pb-5">
+                                <nav class="nav-createPost">
+                                    <div class="nav-left form-group">
+                                        <label for="postType">Post Type</label>
+
+                                        <Dropdown
+                                            id="postType"
+                                            name="postType"
+                                            selected
+                                            :options="postType"
+                                            @change="
+                                                setPostTypeId(
+                                                    $event.target.value
+                                                )
+                                            "
+                                        ></Dropdown>
+                                    </div>
+                                    <div class="nav-right form-group">
+                                        <label for="category">Category</label>
+                                        <Dropdown
+                                            id="category"
+                                            name="category"
+                                            :options="category"
+                                            @change="
+                                                setCategoryIdFromDropdown(
+                                                    $event.target.value
+                                                )
+                                            "
+                                        ></Dropdown>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- @change="setPostTitleFromDropdown($event.target.value)" -->
+                            <!-- @change="setPostTextFromDropdown($event.target.value)" -->
+                            <!-- <form action="#" id="createPost-form"> -->
+                            <div class="form-group">
+                                <label for="text-title">Title</label>
+                                <input
+                                    type="text"
+                                    name="textTitle"
+                                    id="text-title"
+                                    v-model="newPostObject.Title"
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="post-thread">Add content</label>
+                                <textarea
+                                    placeholder="Remember, be nice!"
+                                    cols="78"
+                                    rows="4"
+                                    id="post-thread"
+                                    name="postThread"
+                                    v-model="newPostObject.Text"
+                                ></textarea>
+                            </div>
+                            <button
+                                @click="this.createPostMethod(newPostObject)"
+                                class="btn btn-form"
+                            >
+                                <!-- type="submit" -->
+                                Create post
+                            </button>
+                            <div
+                                v-for="error in this.errorMessage"
+                                :key="error.Id"
+                            >
+                                <ul>
+                                    <li>{{ error }}</li>
+                                </ul>
+                            </div>
+                            <p class="bottom-text"></p>
+                            <!-- </form> -->
+                        </div>
+                    </template>
+                </Modal>
+            </div>
         </header>
         <div class="create-post" v-if="AuthState.isAuthenticated">
             <!-- <a href=""></a> -->
@@ -116,7 +114,7 @@
                 placeholder="Create Post"
             />
         </div>
-        <div v-else >
+        <div v-else>
             <div class="No-CreatePost">
                 <h1>Welcome To Group2 Forum</h1>
             </div>
@@ -132,8 +130,6 @@ import { useAuth0, AuthState } from '/src/auth0/useAuth0.js'
 const { initAuth } = useAuth0(AuthState)
 initAuth()
 </script>
-
-
 
 <script>
 import Modal from './Modal.vue'
@@ -162,7 +158,7 @@ export default {
                 Title: '',
                 Text: '',
                 CategoryId: '',
-                Id: null,
+                UserId_Sub: '',
             },
         }
     },
@@ -208,6 +204,9 @@ export default {
         },
 
         createPostMethod(newPostObject) {
+            this.newPostObject.UserId_Sub = AuthState.user.sub
+            console.log(this.newPostObject.UserId_Sub)
+
             let catchBadWords = this.filterWords(this.newPostObject.Text)
             let catchBadWordsTitle = this.filterWords(this.newPostObject.Title)
             this.errorMessage = []
@@ -257,40 +256,38 @@ export default {
 </script>
 
 <style scoped>
-
 .header {
     margin: 20px;
     background-color: #303030;
     border-radius: 5px;
-    z-index:99;
+    z-index: 99;
 }
 
-nav{
-    display:flex;
+nav {
+    display: flex;
     align-items: center;
 }
 
-.nav-links{
-    display:flex;
-    flex:1;
-    align-items:center;
-    margin-top:18px;
+.nav-links {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    margin-top: 18px;
 }
 
-.nav-menu > a{
+.nav-menu > a {
     color: #ffffff;
-
 }
 
-.nav-menu > a:hover{
+.nav-menu > a:hover {
     color: #2576e0;
 }
-.nav-links >  ul{
-    display:flex;
-    margin-right:22px;
+.nav-links > ul {
+    display: flex;
+    margin-right: 22px;
 }
 
-.link{
+.link {
     text-decoration: none;
     font-family: 'Poppins' sans-serif;
     font-size: 25px;
@@ -302,30 +299,29 @@ nav{
     transition: all 0.3s ease 0s;
 }
 
-@media(max-width: 1300px){
-    .link{
-       margin-left: 12vw; 
+@media (max-width: 1300px) {
+    .link {
+        margin-left: 12vw;
     }
 }
 
-@media(max-width: 1000px){
-    .link{
-       margin-left: 8vw; 
+@media (max-width: 1000px) {
+    .link {
+        margin-left: 8vw;
     }
 }
 
-@media(max-width: 800px){
-    .link{
-       margin-left: 3vw; 
+@media (max-width: 800px) {
+    .link {
+        margin-left: 3vw;
     }
 }
 
-@media(max-width: 500px){
-    .link{
-       margin-left: 4px; 
+@media (max-width: 500px) {
+    .link {
+        margin-left: 4px;
     }
 }
-
 
 /*Create Post */
 .create-post {
@@ -341,7 +337,6 @@ nav{
     width: 2.5vw;
     margin-right: 15px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
 }
 
 .create-post > input {
@@ -351,24 +346,26 @@ nav{
     border: 1px solid rgb(0, 0, 0);
 }
 
-.No-CreatePost{
-    display:flex;
+.No-CreatePost {
+    display: flex;
     align-content: center;
     padding: 20px;
     justify-content: space-around;
 }
 
-.No-CreatePost > h1{
-    color:rgb(29, 99, 204);
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+.No-CreatePost > h1 {
+    color: rgb(29, 99, 204);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+        'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: bolder;
 }
 
-.No-CreatePost > p{
-    color:#2576e0;
-    font-size:18px;
+.No-CreatePost > p {
+    color: #2576e0;
+    font-size: 18px;
     font-weight: bolder;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+        'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 #container {
@@ -394,8 +391,8 @@ nav{
     border-radius: 5px;
 }
 
-textarea{
-    width:100%
+textarea {
+    width: 100%;
 }
 
 .btn-form {
@@ -421,7 +418,6 @@ textarea{
     box-sizing: border-box;
 } */
 
-
 .nav-createPost {
     width: 70vw;
     min-width: 600px;
@@ -438,7 +434,7 @@ textarea{
     justify-content: space-around;
 } */
 
-.nav-left  > a {
+.nav-left > a {
     position: relative;
     text-decoration: none;
     font-family: 'Poppins' sans-serif;
