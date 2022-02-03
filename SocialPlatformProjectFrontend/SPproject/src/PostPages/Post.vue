@@ -1,20 +1,20 @@
 <template>
 <div class="temp">
     
-    <div v-for="thread in getSpecificThread" :key="thread.id">
+    <div v-for="thread in getPost" :key="thread.id">
         <h1>{{ thread.title }}</h1>
         <p>{{thread.text}}</p>
         <p>{{thread.id}}</p>
         
     </div>
-    <div class="subforum-description subforum-column">
+    <!-- <div class="subforum-description subforum-column">
         <h1>Detta är replies</h1>
             <div v-for="item in this.$store.state.Reply" :key="item.id">
-                <!-- {{reply.id}} -->
+                {{reply.id}}
                 {{ item.categoryThreadId }}
                 {{ item.text }}
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -34,23 +34,32 @@ export default {
 
     mounted(){
         //this.fetchRepliesForPost();
-        this.fetchReplyForPost();
+        //this.fetchReplyForPost();
     },
     created(){
-        this.$store.dispatch('GetRepliesForSpecificPost')
+        console.log('id from url', this.tId)
+        this.$store.dispatch('GetThreadFromSpecificId', this.tId);
+        //this.$store.dispatch('GetRepliesForSpecificPost', this.tId);
+        
     },
 
     computed: {
-        getSpecificThread() {
-            let list = this.$store.state.Thread
-            console.log(this.tId)
+        // getSpecificThread() {
+        //     console.log('id from url ', this.tId)
+        //     let list = this.$store.state.Thread
+        //     console.log(this.tId)
 
-            let filteredThread = list.filter(item => {
-                return item.id == this.tId
-            })
-            console.log(filteredThread)
-            return filteredThread
-        },
+        //     let filteredThread = list.filter(item => {
+        //         return item.id == this.tId
+        //     })
+        //     console.log('filteredThread: ', filteredThread)
+        //     return filteredThread
+        // },
+
+        getPost(){
+            console.log('getPostmetod i Post.vue: ', this.$store.state.SpecificPostThread)
+            return this.$store.state.SpecificPostThread
+        }
         
     },
 
@@ -66,9 +75,9 @@ export default {
         //     // this.$store.dispatch('GetRepliesForSpecificPost', id)
         // },
 
-        async fetchReplyForPost(){
-            this.$store.dispatch('GetRepliesForSpecificPost', this.tId)
-        }
+        // async fetchReplyForPost(){
+        //      this.$store.dispatch('GetRepliesForSpecificPost', this.tId)
+        // }
     },
 
     

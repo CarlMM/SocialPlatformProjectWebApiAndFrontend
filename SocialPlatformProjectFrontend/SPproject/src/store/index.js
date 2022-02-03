@@ -8,6 +8,7 @@ const store = createStore({
         Category: [],
         Thread: [],
         Reply: [],
+        SpecificPostThread:[], 
     },
     mutations: {
        
@@ -50,8 +51,9 @@ const store = createStore({
             state.UserThread = data;
             console.log('userThreads: ', data)
         },
-        setThreadsByCategoryId(state, data){
-
+        setSpecificPostFromThread(state, data){
+            state.SpecificPostThread = data;
+            console.log('SpecificPostThreadMutation: ', data)
         }
     },
     actions: {
@@ -69,6 +71,17 @@ const store = createStore({
             console.log(data)
 
             commit('setThreadsFromBack', data)
+        },
+
+        async GetThreadFromSpecificId({commit}, id){
+            let response = await fetch(
+                `https://localhost:44300/api/CategoryThread/GetCategoryThreadById/${id}`
+                
+            )
+            let data = await response.json()
+
+            console.log('GetThreadFromSpecificId Action: ', data)
+            commit('setSpecificPostFromThread', data)
         },
 
         // async getThreadsByCategoryId({commit}){
