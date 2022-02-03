@@ -31,5 +31,11 @@ namespace SocialPlatformProjectWebApi.Services
             var types = await _threadRepository.GetThreadByThreadType(threadType);
             return types;
         }
+
+        public async Task<IList<Models.Thread>> GetThreadByUserId(string userId)
+        {
+            var types = await _threadRepository.GetThreadByUserId(userId);
+            return types;
+        }
     }
 }

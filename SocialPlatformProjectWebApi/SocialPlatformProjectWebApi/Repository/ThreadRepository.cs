@@ -33,5 +33,11 @@ namespace SocialPlatformProjectWebApi.Repository
             var types = await _dbContext.Threads.Where(x => x.ThreadType == threadType).ToListAsync();
             return types;
         }
+
+        public async Task<IList<Thread>> GetThreadByUserId(string userId)
+        {
+            var result = await _dbContext.Threads.Where(x => x.UserIdSub == userId).ToListAsync();
+            return result;
+        }
     }
 }

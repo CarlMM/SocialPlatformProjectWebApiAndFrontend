@@ -10,5 +10,7 @@ namespace SocialPlatformProjectWebApi.Repository
         Task<IList<Models.Thread>> GetThreadByCategoryId(int categoryId);
 
         Task<IList<Models.Thread>> GetThreadByThreadType(bool threadType);
+
+        Task<IList<Models.Thread>> GetThreadByUserId(string userId);
     }
 }

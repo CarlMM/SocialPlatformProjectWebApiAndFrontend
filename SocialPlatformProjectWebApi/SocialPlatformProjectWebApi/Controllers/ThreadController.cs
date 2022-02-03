@@ -43,10 +43,17 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         [HttpGet]
         [Route("GetThreadByThreadType/{threadType}")]
-
         public async Task<IList<Models.Thread>> GetThreadByThreadType(bool threadType)
         {
             var types = await _threadService.GetThreadByThreadType(threadType);
+            return types;
+        }
+
+        [HttpGet]
+        [Route("GetThreadByUserId/{UserId}")]
+        public async Task<IList<Models.Thread>> GetThreadByUserId(string userId)
+        {
+            var types = await _threadService.GetThreadByUserId(userId);
             return types;
         }
     }
