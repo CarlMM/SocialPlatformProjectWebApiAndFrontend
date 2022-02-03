@@ -227,10 +227,6 @@ h1 {
     align-items: center;
 }
 
-/* picture or icons?*/
-/*.subforum-icon {
-    font-size:30px;
-} */
 .subforum-icon > img {
     height: 95%;
     width: 95%;
@@ -249,10 +245,10 @@ h1 {
     margin-bottom: 20px;
 }
 
-/*Buttons */
+/*Buttons in thread */
 .post-btn{
     height: 35px;
-    padding: 0 22px;
+    padding: 0 15px;
     background:inherit;
     color:#ffff;
     border: none;
@@ -275,7 +271,7 @@ h1 {
 
 .icon{
     font-size:20px;
-    margin-right:8px;
+    margin-right:10px;
 }
 
 
