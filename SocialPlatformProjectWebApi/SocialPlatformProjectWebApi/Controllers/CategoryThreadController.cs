@@ -74,5 +74,13 @@ namespace SocialPlatformProjectWebApi.Controllers
             return types;
 
         }
+
+        [HttpDelete]
+        public async Task<CategoryThread> DeleteCategoryThread(int id)
+        {
+            var template = await _categorythreadService.DeleteCategoryThread(id);
+            return template;
+        }
+
     }
 }

@@ -18,5 +18,7 @@ namespace SocialPlatformProjectWebApi.Repository
 
         Task<IList<CategoryThread>> GetCategoryThreadById(int Id);
 
+        Task<CategoryThread> DeleteCategoryThread(int id);
+
     }
 }

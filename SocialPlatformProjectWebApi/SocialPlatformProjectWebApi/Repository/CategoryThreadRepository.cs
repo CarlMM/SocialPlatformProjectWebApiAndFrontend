@@ -71,7 +71,14 @@ namespace SocialPlatformProjectWebApi.Repository
         {
             var types = await _dbContext.CategoryThreads.Where(x => x.Id == Id).ToListAsync();
             return types;
+        }
 
+        public async Task<CategoryThread> DeleteCategoryThread(int id)
+        {
+            var deleteCategoryThread = await _dbContext.CategoryThreads.SingleAsync(x => x.Id == id);
+            _dbContext.CategoryThreads.Remove(deleteCategoryThread);
+            await _dbContext.SaveChangesAsync();
+            return deleteCategoryThread;
         }
     }
 }
