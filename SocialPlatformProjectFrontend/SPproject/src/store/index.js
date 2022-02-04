@@ -44,10 +44,15 @@ const store = createStore({
             console.log(data)
         },
 
-        setReplyToSpecificPost(state, data){
+        fetchReplyToSpecificPost(state, data){
             state.Reply = data;
             console.log('Vi är i mutation nu ',  data)
         },
+
+        setNewReplyToPost(state, data){
+            state.Reply = data;
+        },
+
         setUserThreads(state, data){
             state.UserThread = data;
             console.log('userThreads: ', data)
@@ -123,14 +128,14 @@ const store = createStore({
 
             let data = await response.json();
             console.log('GetRepliesForSpecificPost Action: ', data)
-            commit('setReplyToSpecificPost', data);
+            commit('fetchReplyToSpecificPost', data);
         },
 
         async PostReplyToSpecificPost({commit}, replyObject){
             let response = await fetch(`https://localhost:44300/api/Reply/AddReply/${replyObject}`, {
                 method:'post',
                 headers:{'Content-type': 'application/json'},
-                body: JSON.stringify(newPostObject)
+                body: JSON.stringify(replyObject)
             })
 
             let data = response.json();

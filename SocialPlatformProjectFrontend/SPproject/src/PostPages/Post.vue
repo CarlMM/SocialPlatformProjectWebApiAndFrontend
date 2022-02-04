@@ -33,10 +33,10 @@
                                     placeholder="Remember, be nice!"
                                     cols="78"
                                     rows="5"
-                                    v-model="replyMessage"
+                                    v-model="newReplyPost.Text"
                                 ></textarea>
                             </div>
-                            <button class="btn btn-reply" @click="reply()">
+                            <button class="btn btn-reply" @click="this.reply(newReplyPost)">
                                 Reply
                             </button>
                             <div v-for="error in errorMessage" :key="error.id">
@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import { AuthState } from '../auth0/useAuth0'
 import Modal from '/src/components/Modal.vue'
 
 export default {
@@ -72,6 +73,11 @@ export default {
             threadText: '',
             errorMessage: [],
             missingTextMessage: '',
+            newReplyPost:{
+                Text:'',
+                UserIdSub: '',
+                CategoryThreadId: null,
+            }
         }
     },
     components: {
@@ -145,7 +151,7 @@ export default {
             return catchBadWords
         },
 
-        reply() {
+        reply(newReplyPost) {
             this.errorMessage = []
             let catchBadWords = this.filterWords(this.replyMessage)
             console.log(this.replyMessage, 'REPLY MESSAGE')
@@ -159,6 +165,9 @@ export default {
                 this.errors = []
                 this.closeModal()
             }
+            this.newReplyPost.UserIdSub = AuthState.user.sub;
+            this.newReplyPost.CategoryThreadId = this.tId;
+            console.log('ReplyMethod: ', newReplyPost)
         },
     },
 }
