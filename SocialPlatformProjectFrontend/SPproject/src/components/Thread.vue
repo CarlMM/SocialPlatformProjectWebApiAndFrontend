@@ -3,14 +3,11 @@
         <div
             v-for="threads in list"
             :key="threads.Id"
-            class="subforum-description"
-        >
+            class="subforum-description">
             <div class="subforum-row element">
                 <div class="subforum-icon subforum-column center">
                     <img
-                        src="https://via.placeholder.com/300.png/ https://placeholder.com/ "
-                        alt=""
-                    />
+                        src="https://via.placeholder.com/300.png/ https://placeholder.com/ " alt=""/>
                 </div>
                 <div class="subforum-description subforum-column">
                     <div class="text">
@@ -20,8 +17,7 @@
                         <span
                             ><p>
                                 Posted by <a href="#"> User </a> 15 jan 2022
-                            </p></span
-                        >
+                            </p></span>
                         <p>{{ threads.Text }}</p>
                     </div>
                     <button class="post-btn">
@@ -146,6 +142,7 @@ a {
 
 .text {
     margin-left: 5px;
+    margin-top: 20px;
 }
 
 p {
@@ -168,24 +165,17 @@ h1 {
 .outer-box {
     background: #484848;
     border-radius: 5px;
-    margin-bottom: 20px;
 }
 
 .subforum {
     margin-top: 20px;
 }
 
-/* .subforum-title {
-    background-color: rgb(119, 119, 119);
-    padding: 10px;
-    border-radius: 5px;
-    margin: 4px;
-} */
-
 .subforum-row {
     display: grid;
     grid-template-columns: 10% 90%;
 }
+
 
 .subforum-column {
     background-color: rgb(48, 48, 48);
@@ -202,9 +192,15 @@ h1 {
 }
 
 .subforum-icon > img {
-    height: 95%;
-    width: 95%;
+    height: 100%;
+    min-width: 80px;
     border-radius: 3px;
+}
+
+@media(max-width: 900px){
+    .subforum-icon > img{
+        min-width: 60px;
+    }
 }
 
 .element {
@@ -220,6 +216,7 @@ element:active {
 .post-btn {
     height: 35px;
     padding: 0 15px;
+    margin-top: 4.9vh;
     background: inherit;
     color: #ffff;
     border: none;
