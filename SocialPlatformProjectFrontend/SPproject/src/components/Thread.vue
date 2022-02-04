@@ -322,8 +322,8 @@ h1 {
  }
     
 .post-btn:active{
-     color: #fff;
-     box-shadow: 0 0.2rem #dfd9d9;
+     color: #3f99e7;
+     box-shadow: 0 0.2rem #3f99e7;
      transform: translateY(0.2rem);
 }
     
