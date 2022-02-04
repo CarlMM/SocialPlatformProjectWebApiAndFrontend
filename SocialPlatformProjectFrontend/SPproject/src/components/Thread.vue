@@ -1,53 +1,56 @@
 <template>
     <div class="outer-box">
-        <div
-            v-for="threads in list"
-            :key="threads.Id"
-            class="subforum-description">
-            <div class="subforum-row">
-                <div class="subforum-icon subforum-column center">
-                    <img src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" alt="">
-                </div>
-                <div class="subforum-description subforum-column">
-                    <router-link type="button" :to="`/Post/${threads.id}`">
-                        <h1>{{ threads.title }}</h1>
-                    </router-link>
-                    <span><p>Posted by<a href="">User</a>15 jan 2022</p></span>
-                    <p>{{ threads.Text }}</p>
-                    <button class="post-btn" @click="showModal(threads.Id)">
-                        <i class="far fa-comment icon"></i>
-                        <span>Comment</span>
-                    </button>
-                    <button class="post-btn">
-                        <i class="far fa-surprise icon"></i>
-                        <span>Surprise</span>
-                    </button>
-                    <button class="post-btn">
-                        <i class="far fa-share-square icon"></i>
-                        <span>Share</span>
-                    </button>
-                    <button class="post-btn">
-                        <i class="far fa-flag icon"></i>
-                        <span>Report</span>
-                    </button>
+            <div
+                v-for="threads in list"
+                :key="threads.Id"
+                class="subforum-description">
+                <div class="subforum-row element">
+                    <div class="subforum-icon subforum-column center">
+                        <img src="https://via.placeholder.com/300.png/ https://placeholder.com/ " alt="">
+                    </div>
+                    <div class="subforum-description subforum-column">
+                        <div class="text">
+                            <router-link type="button" :to="`/Post/${threads.id}`">
+                                <h1>{{ threads.title }}</h1>
+                            </router-link>
+                            <span><p>Posted by <a href="#"> User </a> 15 jan 2022</p></span>
+                            <p>{{ threads.Text }}</p>
+                        </div>
+                        <button class="post-btn" @click="showModal(threads.Id)">
+                            <i class="far fa-comment icon"></i>
+                            <span>Comment</span>
+                        </button>
+                        <button class="post-btn">
+                            <i class="far fa-surprise icon"></i>
+                            <span>Surprise</span>
+                        </button>
+                        <button class="post-btn">
+                            <i class="far fa-share-square icon"></i>
+                            <span>Share</span>
+                        </button>
+                        <button class="post-btn">
+                            <i class="far fa-flag icon"></i>
+                            <span>Report</span>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
         <div
             v-for="threads in GetThreads"
             :key="threads.Id"
             class="subforum-description">
-            <div class="subforum-row">
+            <div class="subforum-row element">
                 <div class="subforum-icon subforum-column center">
-                    <img src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" alt="">
-                    <!-- <i class="fas fa-laptop"></i> -->
-                </div>
+                    <img src="https://via.placeholder.com/300.png/ https://placeholder.com/ " alt="">
+                </div >
                 <div class="subforum-description subforum-column">
-                    <router-link type="button" :to="`/Post/${threads.id}`">
-                        <h1>{{ threads.title }}</h1>
-                    </router-link>
-                    <span><p>Posted by<a href="">User</a>15 jan 2022</p></span>
-                    <p>{{ threads.Text }}</p>
+                    <div class="text">
+                        <router-link type="button" :to="`/Post/${threads.id}`">
+                            <h1>{{ threads.title }}</h1>
+                        </router-link>
+                        <span><p>Posted by <a href="#"> User </a> 15 jan 2022</p></span>
+                        <p>{{ threads.Text }}</p>
+                    </div>
                     <button class="post-btn" @click="showModal(threads.Id)">
                         <i class="far fa-comment icon"></i>
                         <span>Comment</span>
@@ -230,7 +233,12 @@ li {
 
 a {
     color: rgb(153, 149, 163);
-    font-weight: bolder;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+.text{
+    margin-left: 5px;
 }
 
 p {
@@ -260,26 +268,24 @@ h1 {
     margin-top: 20px;
 }
 
-.subforum-title {
+/* .subforum-title {
     background-color: rgb(119, 119, 119);
     padding: 10px;
     border-radius: 5px;
     margin: 4px;
-}
+} */
 
 .subforum-row {
     display: grid;
-    grid-template-columns: 7% 93%;
+    grid-template-columns:10% 90%;
 }
 
 .subforum-column {
-    border-radius: 5px;
-    margin: 1px;
     background-color: rgb(48, 48, 48);
 }
 
 .subforum-description {
-    padding: 2px;
+    padding: 1px;
 }
 
 .center {
@@ -292,6 +298,14 @@ h1 {
     height: 95%;
     width: 95%;
     border-radius: 3px;
+}
+
+.element{
+    box-shadow:none;
+}
+
+.element:hover, element:active{
+     box-shadow: 0 0 5px #fff, inset 0 0 10px #43a78c;
 }
 
 /*Category*/
