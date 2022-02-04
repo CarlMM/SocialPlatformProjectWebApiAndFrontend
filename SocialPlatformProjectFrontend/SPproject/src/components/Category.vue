@@ -159,6 +159,7 @@ export default {
                 Text: '',
                 CategoryId: '',
                 UserId_Sub: '',
+                chosenType: null,
             },
         }
     },
@@ -172,20 +173,19 @@ export default {
         },
         closeModal() {
             this.errorMessage = []
-            this.newPostObject.Title = ''
-            this.newPostObject.Text = ''
-            this.newPostObject.CategoryId = ''
+            // this.newPostObject.Title = ''
+            // this.newPostObject.Text = ''
+            // this.newPostObject.CategoryId = ''
             this.isModalVisible = false
         },
 
         setPostTypeId(value) {
-            console.log('postType Id', value)
             if (value == 0) {
-                this.postTypeChosen = 0
-                console.log(this.postTypeChosen)
+                this.newPostObject.chosenType = 0
+                console.log(this.newPostObject.chosenType, 'INNE I IF SATSEN 1')
             } else {
-                this.postTypeChosen = 1
-                console.log(this.postTypeChosen)
+                this.newPostObject.chosenType = 1
+                console.log(this.newPostObject.chosenType, 'INNE I IF SATSEN 2')
             }
         },
         async fetchAllCategories() {
@@ -212,7 +212,7 @@ export default {
             let catchBadWordsTitle = this.filterWords(this.newPostObject.Title)
             this.errorMessage = []
 
-            if (this.postTypeChosen === null || this.postTypeChosen === null) {
+            if (this.newPostObject.chosenType === null) {
                 this.errorMessage.push('Please choose post type!')
             }
             if (this.newPostObject.Title == '') {
@@ -235,13 +235,13 @@ export default {
                 this.newPostObject.Text !== '' &&
                 this.newPostObject.Title !== '' &&
                 this.newPostObject.CategoryId !== '' &&
-                this.postTypeChosen !== null &&
-                this.postTypeChosen !== null &&
+                this.newPostObject.chosenType !== null &&
                 catchBadWords.length == 0 &&
                 catchBadWordsTitle.length == 0
             ) {
                 this.errorMessage = []
                 this.closeModal()
+                console.log(this.newPostObject, 'THIS IS THE OBJECT WE SENDING')
                 return this.$store.dispatch(
                     'createNewPostMethod',
                     newPostObject
