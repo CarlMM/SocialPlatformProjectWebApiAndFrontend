@@ -42,6 +42,7 @@ namespace SocialPlatformProjectWebApi.Repository
             return result;
         }
 
+
         public async Task<CategoryThread> AddCategoryThread(CategoryThread categoryThread)
         {
             DateTime date = DateTime.Now;
@@ -51,7 +52,7 @@ namespace SocialPlatformProjectWebApi.Repository
 
             var template = new CategoryThread
             {
-                
+
                 Title = categoryThread.Title,
                 Text = categoryThread.Text,
                 CreatedDate = date,
@@ -62,8 +63,22 @@ namespace SocialPlatformProjectWebApi.Repository
 
             await _dbContext.AddAsync(template);
             await _dbContext.SaveChangesAsync();
-                    
+
             return template;
+        }
+
+        public async Task<IList<CategoryThread>> GetCategoryThreadById(int Id)
+        {
+            var types = await _dbContext.CategoryThreads.Where(x => x.Id == Id).ToListAsync();
+            return types;
+        }
+
+        public async Task<CategoryThread> DeleteCategoryThread(int id)
+        {
+            var deleteCategoryThread = await _dbContext.CategoryThreads.SingleAsync(x => x.Id == id);
+            _dbContext.CategoryThreads.Remove(deleteCategoryThread);
+            await _dbContext.SaveChangesAsync();
+            return deleteCategoryThread;
         }
     }
 }

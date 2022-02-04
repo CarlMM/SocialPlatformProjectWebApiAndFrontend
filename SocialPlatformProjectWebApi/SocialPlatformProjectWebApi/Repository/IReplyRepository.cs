@@ -14,6 +14,10 @@ namespace SocialPlatformProjectWebApi.Repository
 
         Task<Reply> AddReply(Reply reply);
 
+        Task<Reply> DeleteReply(int id);
+
+        Task<IList<Reply>> GetReplyByCategoryThreadId(int categoryThreadId);
+
     }
     //public interface IRepository <T> where T : class
     //{

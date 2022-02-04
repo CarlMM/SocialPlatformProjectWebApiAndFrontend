@@ -37,6 +37,12 @@ namespace SocialPlatformProjectWebApi.Repository
             return reply;
         }
 
+        public async Task<IList<Reply>> GetReplyByCategoryThreadId(int categoryThreadId)
+        {
+            var reply = await _dbContext.Replies.Where(x => x.CategoryThreadId == categoryThreadId).ToListAsync();
+            return reply;
+        }
+
         public async Task<Reply> AddReply(Reply reply)
         {
             DateTime date = DateTime.Now;
@@ -48,6 +54,7 @@ namespace SocialPlatformProjectWebApi.Repository
 
             var template = new Reply
             {
+                Text = reply.Text,
                 CreatedDate = date,
                 CategoryThreadId = reply.CategoryThreadId,
                 UserIdSub = reply.UserIdSub,
@@ -57,6 +64,14 @@ namespace SocialPlatformProjectWebApi.Repository
             await _dbContext.SaveChangesAsync();
 
             return template;
+        }
+
+        public async Task<Reply> DeleteReply(int id)
+        {
+            var deleteReply = await _dbContext.Replies.SingleAsync(x => x.Id == id);
+            _dbContext.Replies.Remove(deleteReply);
+            await _dbContext.SaveChangesAsync();
+            return deleteReply;
         }
     }
 }

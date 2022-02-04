@@ -45,15 +45,28 @@ namespace SocialPlatformProjectWebApi.Controllers
             //{
             //    return NotFound();
             //}
-
-
             //return await _replyService.GetReply(id);            
+        }
+
+        [HttpGet]
+        [Route("GetReplyByCategoryThreadId/{categoryThreadId}")]
+        public async Task<IList<Reply>> GetReplyByCategoryThreadId(int categoryThreadId)
+        {
+            var reply = await _replyService.GetReplyByCategoryThreadId(categoryThreadId);
+            return reply;
         }
 
         [HttpPost]
         public async Task<Reply> AddReply([FromBody] Reply reply)
         {
             var template = await _replyService.AddReply(reply);
+            return template;
+        }
+
+        [HttpDelete]
+        public async Task<Reply> DeleteReply(int id)
+        {
+            var template = await _replyService.DeleteReply(id);
             return template;
         }
     }
