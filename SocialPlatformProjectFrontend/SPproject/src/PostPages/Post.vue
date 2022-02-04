@@ -7,14 +7,14 @@
         <p>{{thread.id}}</p>
         
     </div>
-    <!-- <div class="subforum-description subforum-column">
+    <div class="subforum-description subforum-column">
         <h1>Detta är replies</h1>
-            <div v-for="item in this.$store.state.Reply" :key="item.id">
-                {{reply.id}}
+            <div v-for="item in this.$store.state.Reply" :key="item.Id">
+                {{item.Id}}
                 {{ item.categoryThreadId }}
                 {{ item.text }}
             </div>
-        </div> -->
+        </div>
     </div>
 </template>
 
@@ -39,7 +39,7 @@ export default {
     created(){
         console.log('id from url', this.tId)
         this.$store.dispatch('GetThreadFromSpecificId', this.tId);
-        //this.$store.dispatch('GetRepliesForSpecificPost', this.tId);
+        this.$store.dispatch('GetRepliesForSpecificPost', this.tId);
         
     },
 
