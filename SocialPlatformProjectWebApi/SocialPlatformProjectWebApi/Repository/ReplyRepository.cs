@@ -51,7 +51,6 @@ namespace SocialPlatformProjectWebApi.Repository
             //_dbContext.Replies.AddAsync(incomingObject);
             //_dbContext.SaveChangesAsync();
 
-
             var template = new Reply
             {
                 Text = reply.Text,
@@ -70,8 +69,20 @@ namespace SocialPlatformProjectWebApi.Repository
         {
             var deleteReply = await _dbContext.Replies.SingleAsync(x => x.Id == id);
             _dbContext.Replies.Remove(deleteReply);
+
             await _dbContext.SaveChangesAsync();
+
             return deleteReply;
+        }
+
+        public async Task<Reply> EditReplyText(int id, string text)
+        {
+            var editReply = await _dbContext.Replies.SingleAsync(x => x.Id == id);
+            editReply.Text = text;
+
+            await _dbContext.SaveChangesAsync();
+
+            return editReply;
         }
     }
 }
