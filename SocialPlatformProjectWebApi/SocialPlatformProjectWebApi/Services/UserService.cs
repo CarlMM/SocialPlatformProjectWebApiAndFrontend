@@ -1,7 +1,7 @@
 ﻿using SocialPlatformProjectWebApi.Models;
 using SocialPlatformProjectWebApi.Repository;
 using System.Collections.Generic;
-
+using System.Threading.Tasks;
 
 namespace SocialPlatformProjectWebApi.Services
 {
@@ -20,10 +20,6 @@ namespace SocialPlatformProjectWebApi.Services
             return template;
         }
 
-        //public ThreadUserService(IEnumerable<IThreadUserRepository> threadUserRepository)
-        //{
-        //    this.threadUserRepository = (IThreadUserRepository)threadUserRepository;
-        //}
     }
     
 

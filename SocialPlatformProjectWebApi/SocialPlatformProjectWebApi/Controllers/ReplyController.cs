@@ -74,7 +74,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
          [HttpPut]
-         [Route("EditReply/{id, text}")]
+         [Route("EditReply")]
          public async Task<Reply> EditReplyText(int id, string text)
         {
             var template = await _replyService.EditReplyText(id, text);

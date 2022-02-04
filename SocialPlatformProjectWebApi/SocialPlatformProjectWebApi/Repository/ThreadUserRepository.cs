@@ -1,5 +1,6 @@
 ﻿using SocialPlatformProjectWebApi.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SocialPlatformProjectWebApi.Repository
 {
@@ -16,6 +17,21 @@ namespace SocialPlatformProjectWebApi.Repository
         {
             var result = _dbContext.ThreadUsers;
             return result;
+        }
+
+        public async Task<ThreadUser> AddThreadUser(int threadId, string userId)
+        {
+            var user = new ThreadUser
+            {
+                CategoryThreadId = threadId,
+                UserIdSub = userId
+            };
+
+            await _dbContext.ThreadUsers.AddAsync(user);
+            await _dbContext.SaveChangesAsync();
+
+            return user;
+
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using SocialPlatformProjectWebApi.Models;
 using SocialPlatformProjectWebApi.Repository;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SocialPlatformProjectWebApi.Services
 {
@@ -21,6 +22,12 @@ namespace SocialPlatformProjectWebApi.Services
         public IEnumerable<ThreadUser> GetThreadUsers()
         {
             var template = _threadUserRepository.GetThreadUsers();
+            return template;
+        }
+
+        public async Task<ThreadUser> AddThreadUser(int threadId, string userId)
+        {
+            var template = await _threadUserRepository.AddThreadUser(threadId, userId);
             return template;
         }
     }
