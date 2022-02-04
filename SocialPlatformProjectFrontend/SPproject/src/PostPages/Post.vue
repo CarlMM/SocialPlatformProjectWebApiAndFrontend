@@ -152,22 +152,23 @@ export default {
         },
 
         reply(newReplyPost) {
-            this.errorMessage = []
-            let catchBadWords = this.filterWords(this.replyMessage)
-            console.log(this.replyMessage, 'REPLY MESSAGE')
-            if (this.replyMessage == '') {
-                this.errorMessage.push('Please enter some text!')
-            }
-            if (catchBadWords.length > 0) {
-                this.errorMessage.push('Remember to be nice!')
-            } else if (this.replyMessage != '' && catchBadWords.length == 0) {
-                this.replyMessage = ''
-                this.errors = []
-                this.closeModal()
-            }
+            // this.errorMessage = []
+            // let catchBadWords = this.filterWords(this.replyMessage)
+            // console.log(this.replyMessage, 'REPLY MESSAGE')
+            // if (this.replyMessage == '') {
+            //     this.errorMessage.push('Please enter some text!')
+            // }
+            // if (catchBadWords.length > 0) {
+            //     this.errorMessage.push('Remember to be nice!')
+            // } else if (this.replyMessage != '' && catchBadWords.length == 0) {
+            //     this.replyMessage = ''
+            //     this.errors = []
+                 this.closeModal()
+            // }
             this.newReplyPost.UserIdSub = AuthState.user.sub;
             this.newReplyPost.CategoryThreadId = this.tId;
             console.log('ReplyMethod: ', newReplyPost)
+            return this.$store.dispatch('PostReplyToSpecificPost', newReplyPost)
         },
     },
 }
