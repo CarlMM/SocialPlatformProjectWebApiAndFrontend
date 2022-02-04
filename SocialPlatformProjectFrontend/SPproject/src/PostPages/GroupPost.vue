@@ -49,7 +49,7 @@ export default {
 
 .bodyDiv{
     display: flex;
-   
+    color:#ffff;
 }
 .forumDiv{
     float:left;

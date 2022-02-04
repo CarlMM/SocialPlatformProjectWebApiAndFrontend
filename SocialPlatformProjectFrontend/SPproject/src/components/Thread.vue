@@ -1,6 +1,38 @@
 <template>
     <div class="outer-box">
-
+        <div
+            v-for="threads in list"
+            :key="threads.Id"
+            class="subforum-description">
+            <div class="subforum-row">
+                <div class="subforum-icon subforum-column center">
+                    <img src="https://hatrabbits.com/wp-content/uploads/2017/01/random.jpg" alt="">
+                </div>
+                <div class="subforum-description subforum-column">
+                    <router-link type="button" :to="`/Post/${threads.id}`">
+                        <h1>{{ threads.title }}</h1>
+                    </router-link>
+                    <span><p>Posted by<a href="">User</a>15 jan 2022</p></span>
+                    <p>{{ threads.Text }}</p>
+                    <button class="post-btn" @click="showModal(threads.Id)">
+                        <i class="far fa-comment icon"></i>
+                        <span>Comment</span>
+                    </button>
+                    <button class="post-btn">
+                        <i class="far fa-surprise icon"></i>
+                        <span>Surprise</span>
+                    </button>
+                    <button class="post-btn">
+                        <i class="far fa-share-square icon"></i>
+                        <span>Share</span>
+                    </button>
+                    <button class="post-btn">
+                        <i class="far fa-flag icon"></i>
+                        <span>Report</span>
+                    </button>
+                </div>
+            </div>
+        </div>
         <div
             v-for="threads in GetThreads"
             :key="threads.Id"
@@ -90,6 +122,7 @@ import Modal from './Modal.vue'
 
 export default {
     posts: ['thread'],
+    props: ["list"],
     components: {
         Modal,
     },
@@ -107,20 +140,27 @@ export default {
         }
     },
 
-    beforeMounted() {
-        this.GetThreads()
+    created(){
+        this.$store.dispatch('getAllThreads')
     },
+    // beforeMounted() {
+    //     this.GetThreads()
+    // },
 
     computed: {
         GetThreads() {
             let list = this.$store.state.Thread
 
             let filterlist = list.filter(item => {
-                return item.CategoryId == this.cId
+                return item.categoryId == this.cId
             })
             console.log(filterlist)
             return filterlist
         },
+        // GetAllThreads() {
+        //     let list = this.$store.state.Thread
+        //     return list
+        // },
         GetCategory() {
             let categoryList = this.$store.state.Category
 
