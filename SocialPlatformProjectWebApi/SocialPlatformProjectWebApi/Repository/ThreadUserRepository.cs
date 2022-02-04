@@ -21,16 +21,17 @@ namespace SocialPlatformProjectWebApi.Repository
 
         public async Task<ThreadUser> AddThreadUser(int threadId, string userId)
         {
-            var user = new ThreadUser
+            var threadUser = new ThreadUser
             {
+               
                 CategoryThreadId = threadId,
                 UserIdSub = userId
             };
 
-            await _dbContext.ThreadUsers.AddAsync(user);
+            await _dbContext.ThreadUsers.AddAsync(threadUser);
             await _dbContext.SaveChangesAsync();
 
-            return user;
+            return threadUser;
 
         }
     }
