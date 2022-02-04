@@ -158,8 +158,8 @@ export default {
                 Title: '',
                 Text: '',
                 CategoryId: '',
-                UserId_Sub: '',
-                chosenType: null,
+                UserIdSub: '',
+                ThreadType: false,
             },
         }
     },
@@ -181,11 +181,11 @@ export default {
 
         setPostTypeId(value) {
             if (value == 0) {
-                this.newPostObject.chosenType = 0
-                console.log(this.newPostObject.chosenType, 'INNE I IF SATSEN 1')
+                this.newPostObject.ThreadType = false;
+                console.log(this.newPostObject.ThreadType, 'INNE I IF SATSEN 1')
             } else {
-                this.newPostObject.chosenType = 1
-                console.log(this.newPostObject.chosenType, 'INNE I IF SATSEN 2')
+                this.newPostObject.ThreadType = true;
+                console.log(this.newPostObject.ThreadType, 'INNE I IF SATSEN 2')
             }
         },
         async fetchAllCategories() {
@@ -205,8 +205,8 @@ export default {
         },
 
         createPostMethod(newPostObject) {
-            this.newPostObject.UserId_Sub = AuthState.user.sub
-            console.log(this.newPostObject.UserId_Sub)
+            this.newPostObject.UserIdSub = AuthState.user.sub
+            console.log(this.newPostObject.UserIdSub)
 
             let catchBadWords = this.filterWords(this.newPostObject.Text)
             let catchBadWordsTitle = this.filterWords(this.newPostObject.Title)
@@ -241,11 +241,9 @@ export default {
             ) {
                 this.errorMessage = []
                 this.closeModal()
+                console.log('Our UserId_Sub', this.newPostObject.UserId_Sub)
                 console.log(this.newPostObject, 'THIS IS THE OBJECT WE SENDING')
-                return this.$store.dispatch(
-                    'createNewPostMethod',
-                    newPostObject
-                )
+                return this.$store.dispatch('createNewPostMethod', newPostObject)
             }
         },
     },

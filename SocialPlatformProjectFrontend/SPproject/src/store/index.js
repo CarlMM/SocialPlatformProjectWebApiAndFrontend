@@ -62,10 +62,18 @@ const store = createStore({
         }
     },
     actions: {
-        createNewPostMethod({ commit }, newPostObject) {
-            console.log('Inne i createNewPostMethod action: ', newPostObject)
+        async createNewPostMethod({ commit }, newPostObject) {
+            //console.log('Inne i createNewPostMethod action: ', newPostObject)
 
-            commit('setNewPost', newPostObject)
+             let response = await fetch(`https://localhost:44300/api/CategoryThread/AddCategoryThread/${newPostObject}`,{
+                 method:'post',
+                 headers:{'Content-type': 'application/json'},
+                 body: JSON.stringify(newPostObject)
+             })
+
+            let data = response.json();
+             console.log(data)
+            commit('setNewPost', data)
         },
 
 
