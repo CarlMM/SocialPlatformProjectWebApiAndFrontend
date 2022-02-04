@@ -9,6 +9,7 @@
         </div>
         <div v-for="userThreads in this.$store.state.UserThread" :key="userThreads.id">
             <h1 style="color:white">{{userThreads.title}}</h1>
+            <button @click="RemoveThread(userThreads.id)">Ta bort</button>
         </div>  
     </div>
 </template>
@@ -24,9 +25,16 @@ export default {
     methods:{
         fetchAllUserThreads(){
             this.$store.dispatch('GetThreadsFromUser', this.AuthState.user.sub)
+        },
+        RemoveThread(id){
+            this.$store.dispatch('delelteSpecificThread', id)
+            
         }
     },
     mounted(){
+        this.fetchAllUserThreads();
+    },
+    created(){
         this.fetchAllUserThreads();
     }
 }
