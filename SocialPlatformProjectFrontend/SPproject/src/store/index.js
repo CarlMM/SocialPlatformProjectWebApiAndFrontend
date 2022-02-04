@@ -50,7 +50,9 @@ const store = createStore({
         },
 
         setNewReplyToPost(state, data){
+            state.Reply.push(data);
             state.Reply = data;
+
         },
 
         setUserThreads(state, data){
@@ -138,7 +140,7 @@ const store = createStore({
                 body: JSON.stringify(replyObject)
             })
 
-            let data = response.json();
+            let data = await response.json();
             console.log(data)
             commit('setNewReplyToPost', data)
         },
@@ -160,12 +162,12 @@ const store = createStore({
             commit('setUserThreads', data)
         },
 
-        async GetUser({ commit }) {
-            let response = await fetch('')
-            let data = await response.json()
-            console.log(data)
-            commit('setUserFromBack', data)
-        },
+        // async GetUser({ commit }) {
+        //     let response = await fetch('')
+        //     let data = await response.json()
+        //     console.log(data)
+        //     commit('setUserFromBack', data)
+        // },
 
         async getAllUsers({ commit }) {
             let response = await fetch('https://localhost:44300/api/User/GetUsers')
@@ -174,12 +176,12 @@ const store = createStore({
             commit('setUsersFromBack', data)
         },
 
-        async getThreadUser({ commit }) {
-            let response = await fetch('')
-            let data = await response.json()
-            console.log(data)
-            commit('setThreadUserFromBack', data)
-        },
+        // async getThreadUser({ commit }) {
+        //     let response = await fetch('')
+        //     let data = await response.json()
+        //     console.log(data)
+        //     commit('setThreadUserFromBack', data)
+        // },
 
         // async getAllThreadByUser({commit}, userId){
         //     let response = await fetch('https://localhost:44300/api/Threads/GetThreadsByUser' + userId);

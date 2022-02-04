@@ -36,7 +36,7 @@
                                     v-model="newReplyPost.Text"
                                 ></textarea>
                             </div>
-                            <button class="btn btn-reply" @click="this.reply(newReplyPost)">
+                            <button class="btn btn-reply" v-on:click="this.reply(newReplyPost)">
                                 Reply
                             </button>
                             <div v-for="error in errorMessage" :key="error.id">
@@ -48,9 +48,9 @@
                     </template>
                 </Modal>
             </div>
-            <div v-for="item in this.$store.state.Reply" :key="item.Id">
-                {{ item.Id }}
-                {{ item.categoryThreadId }}
+            <div v-for="item in getReplies" :key="item.id">
+                {{ item.id }}
+                <!-- {{ item.categoryThreadId }} -->
                 <p>{{ item.text }}</p>
             </div>
         </div>
@@ -67,7 +67,7 @@ export default {
             badWords: ['fuck', 'kuk', 'snopp', 'whore', 'dick'],
             tId: this.$route.params.Id,
             isModalVisible: false,
-            replyMessage: '',
+            //replyMessage: '',
             threadId: null,
             threadTitle: '',
             threadText: '',
@@ -90,8 +90,9 @@ export default {
     },
     created() {
         console.log('id from url', this.tId)
+        
         this.$store.dispatch('GetThreadFromSpecificId', this.tId)
-        this.$store.dispatch('GetRepliesForSpecificPost', this.tId)
+        this.$store.dispatch('GetRepliesForSpecificPost', this.tId).then(() => console.log('for science'));
     },
 
     computed: {
@@ -101,6 +102,9 @@ export default {
                 this.$store.state.SpecificPostThread
             )
             return this.$store.state.SpecificPostThread
+        },
+        getReplies(){
+            return this.$store.state.Reply
         },
 
     },
@@ -113,6 +117,7 @@ export default {
     },
 
     methods: {
+
         showModal() {
             this.isModalVisible = true
             let threadList = this.$store.state.SpecificPostThread
@@ -152,22 +157,23 @@ export default {
         },
 
         reply(newReplyPost) {
-            // this.errorMessage = []
-            // let catchBadWords = this.filterWords(this.replyMessage)
-            // console.log(this.replyMessage, 'REPLY MESSAGE')
-            // if (this.replyMessage == '') {
-            //     this.errorMessage.push('Please enter some text!')
-            // }
-            // if (catchBadWords.length > 0) {
-            //     this.errorMessage.push('Remember to be nice!')
-            // } else if (this.replyMessage != '' && catchBadWords.length == 0) {
-            //     this.replyMessage = ''
-            //     this.errors = []
-                 this.closeModal()
-            // }
+            //  this.errorMessage = []
+            //  let catchBadWords = this.filterWords(this.newReplyPost)
+            //  console.log(this.newReplyPost, 'REPLY MESSAGE')
+            //  if (this.newReplyPost.Text == '') {
+            //      this.errorMessage.push('Please enter some text!')
+            //  }
+            //  if (catchBadWords.length > 0) {
+            //      this.errorMessage.push('Remember to be nice!')
+            //  } else if (this.newReplyPost.Text != '' && catchBadWords.length == 0) {
+            //      this.newReplyPost.Text = ''
+            //      this.errors = []
+                  this.closeModal()
+            //  }
             this.newReplyPost.UserIdSub = AuthState.user.sub;
             this.newReplyPost.CategoryThreadId = this.tId;
             console.log('ReplyMethod: ', newReplyPost)
+            console.log('Log in ReplyMethod, this is reply store: ', this.$store.state.Reply)
             return this.$store.dispatch('PostReplyToSpecificPost', newReplyPost)
         },
     },
