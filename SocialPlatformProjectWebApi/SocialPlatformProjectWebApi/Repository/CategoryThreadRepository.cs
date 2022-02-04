@@ -80,5 +80,22 @@ namespace SocialPlatformProjectWebApi.Repository
             await _dbContext.SaveChangesAsync();
             return deleteCategoryThread;
         }
+
+        public async Task<CategoryThread> EditCategoryThreadText(int id, string text)
+        {
+            var editCategoryThread = await _dbContext.CategoryThreads.SingleAsync(x => x.Id == id);
+            editCategoryThread.Text = text;
+            await _dbContext.SaveChangesAsync();
+
+            //Option to only return Id and Text, not the complete object
+            //var template = new CategoryThread
+            //{
+            //    Id = editCategoryThread.Id,
+            //    Text = editCategoryThread.Text,
+            //};
+            //return template;
+
+            return editCategoryThread;
+        }
     }
 }

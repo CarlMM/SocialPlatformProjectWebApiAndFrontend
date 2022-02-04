@@ -72,5 +72,13 @@ namespace SocialPlatformProjectWebApi.Controllers
             var template = await _replyService.DeleteReply(id);
             return template;
         }
+
+         [HttpPut]
+         [Route("EditReply/{id, text}")]
+         public async Task<Reply> EditReplyText(int id, string text)
+        {
+            var template = await _replyService.EditReplyText(id, text);
+            return template;
+        }
     }
 }

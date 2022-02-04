@@ -54,6 +54,9 @@ const store = createStore({
         setSpecificPostFromThread(state, data){
             state.SpecificPostThread = data;
             console.log('SpecificPostThreadMutation: ', data)
+        },
+        deleteSpecificThread(state, data){
+            state.UserThread = data;
         }
     },
     actions: {
@@ -61,6 +64,19 @@ const store = createStore({
             console.log('Inne i createNewPostMethod action: ', newPostObject)
 
             commit('setNewPost', newPostObject)
+        },
+
+
+        async delelteSpecificThread({commit}, id){
+            let response = await fetch(`https://localhost:44300/api/CategoryThread?id=${id}`,{
+                method:'delete',
+                headers:{'Content-type': 'application/json'},
+                body: JSON.stringify(this.state.UserThread)
+            })
+            let data = await response.json()
+            console.log(data, 'I action')
+
+            commit('deleteSpecificThread', data)
         },
         async getAllThreads({ commit }) {
             let response = await fetch(
@@ -84,13 +100,7 @@ const store = createStore({
             commit('setSpecificPostFromThread', data)
         },
 
-        // async getThreadsByCategoryId({commit}){
-        //     let response = await fetch(`https://localhost:44300/api/CategoryThread/GetCategoryThreadByCategoryId/1`)
-
-        //     let data = await response.json();
-
-        //     commit('setThreadsByCategoryId', data)
-        // },
+        
 
         async getAllCategories({ commit }) {
             let response = await fetch(
