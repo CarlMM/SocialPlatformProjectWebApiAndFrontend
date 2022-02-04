@@ -134,7 +134,7 @@ const store = createStore({
         },
 
         async getAllUsers({ commit }) {
-            let response = await fetch('')
+            let response = await fetch('https://localhost:44300/api/User/GetUsers')
             let data = await response.json()
             console.log(data)
             commit('setUsersFromBack', data)
