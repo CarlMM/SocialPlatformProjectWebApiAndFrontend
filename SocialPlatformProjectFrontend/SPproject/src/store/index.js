@@ -102,7 +102,7 @@ const store = createStore({
         },
 
         async GetRepliesForSpecificPost({ commit }, id){
-            let response = await fetch(`https://localhost:44300/api/Reply/GetReply/${id}`)
+            let response = await fetch(`https://localhost:44300/api/Reply/GetReplyByCategoryThreadId/${id}`)
 
             let data = await response.json();
             console.log('GetRepliesForSpecificPost Action: ', data)
