@@ -57,5 +57,11 @@ namespace SocialPlatformProjectWebApi.Services
             var template = await _categorythreadRepository.DeleteCategoryThread(id);
             return template;
         }
+
+        public async Task<CategoryThread> EditCategoryThreadText(int id, string text)
+        {
+            var template = await _categorythreadRepository.EditCategoryThreadText(id, text);
+            return template;
+        }    
     }
 }

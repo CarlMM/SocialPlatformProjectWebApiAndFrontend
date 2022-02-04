@@ -65,7 +65,6 @@ namespace SocialPlatformProjectWebApi.Controllers
             return types;
         }
 
-
         [HttpPost]
         [Route("AddCategoryThread/{CategoryThread}")]
         public async Task<CategoryThread> AddCategoryThread([FromBody] CategoryThread categoryThread)
@@ -79,6 +78,15 @@ namespace SocialPlatformProjectWebApi.Controllers
         public async Task<CategoryThread> DeleteCategoryThread(int id)
         {
             var template = await _categorythreadService.DeleteCategoryThread(id);
+            return template;
+        }
+
+        [HttpPut]
+        [Route("EditCategoryThreadText")]
+
+        public async Task<CategoryThread> EditCategoryThreadText(int id, string text)
+        {
+            var template = await _categorythreadService.EditCategoryThreadText(id, text);
             return template;
         }
     }

@@ -20,5 +20,7 @@ namespace SocialPlatformProjectWebApi.Repository
 
         Task<CategoryThread> DeleteCategoryThread(int id);
 
+        Task<CategoryThread> EditCategoryThreadText(int id, string text);
+
     }
 }
