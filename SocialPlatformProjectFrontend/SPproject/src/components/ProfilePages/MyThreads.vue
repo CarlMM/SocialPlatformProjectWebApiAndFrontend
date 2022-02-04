@@ -8,7 +8,9 @@
             <NotAuthantication />
         </div>
         <div v-for="userThreads in this.$store.state.UserThread" :key="userThreads.id">
-            <h1 style="color:white">{{userThreads.title}}</h1>
+            <router-link type="button" :to="`/Post/${userThreads.id}`">
+                <h1 style="color:white">{{userThreads.title}}</h1>
+            </router-link>
             <button @click="RemoveThread(userThreads.id)">Ta bort</button>
         </div>  
     </div>
@@ -28,14 +30,20 @@ export default {
         },
         RemoveThread(id){
             this.$store.dispatch('delelteSpecificThread', id)
-            
         }
     },
     mounted(){
         this.fetchAllUserThreads();
+        this.$store.state.UserThread;
+        console.log('Bajs created(): ', this.$store.state.UserThread)
     },
     created(){
-        this.fetchAllUserThreads();
+        this.$store.state.UserThread;
+        console.log('Bajs created(): ', this.$store.state.UserThread)
+    },
+    beforeCreate(){
+        this.$store.state.UserThread;
+        console.log('beforeCreate ', this.$store.state.UserThread)
     }
 }
 </script>
@@ -51,5 +59,8 @@ initAuth()
 <style scoped>
 .temp{
     color: #ffff;
+}
+li{ 
+    list-style: none;
 }
 </style>
