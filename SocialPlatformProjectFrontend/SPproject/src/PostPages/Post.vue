@@ -96,6 +96,14 @@ export default {
             )
             return this.$store.state.SpecificPostThread
         },
+
+    },
+    
+    mounted(){
+        if(this.$store.state.comingFromThreads == true){
+            this.showModal()
+            this.$store.state.comingFromThreads = false
+        }
     },
 
     methods: {

@@ -20,7 +20,7 @@
                             </p></span>
                         <p>{{ threads.Text }}</p>
                     </div>
-                    <button class="post-btn">
+                    <button class="post-btn" @click="goPost(threads.id)">
                         <i class="far fa-comment icon"></i>
                         <span>Comment</span>
                     </button>
@@ -63,7 +63,7 @@
                         >
                         <p>{{ threads.Text }}</p>
                     </div>
-                    <button class="post-btn">
+                    <button class="post-btn" @click="goPost(threads.id)">
                         <i class="far fa-comment icon"></i>
                         <span>Comment</span>
                     </button>
@@ -121,6 +121,12 @@ export default {
             console.log(filterList)
             return filterList
         },
+    },
+    methods:{
+        goPost(id){
+            this.$router.push('/Post/' + id)
+            this.$store.state.comingFromThreads = true
+        }
     },
 }
 </script>

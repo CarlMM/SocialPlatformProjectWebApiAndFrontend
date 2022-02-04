@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 
 const store = createStore({
     state: {
+        comingFromThreads: false,
         isAdmin: false,
         GroupThreads: [],
         UserThread:[],
