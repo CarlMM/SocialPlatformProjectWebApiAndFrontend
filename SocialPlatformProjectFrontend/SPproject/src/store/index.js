@@ -57,6 +57,8 @@ const store = createStore({
         },
         deleteSpecificThread(state, data){
             state.UserThread = data;
+            state.UserThread.push(data)
+            console.log(data);
         }
     },
     actions: {
@@ -67,40 +69,36 @@ const store = createStore({
         },
 
 
-        async delelteSpecificThread({commit}, id){
-            let response = await fetch(`https://localhost:44300/api/CategoryThread?id=${id}`,{
-                method:'delete',
-                headers:{'Content-type': 'application/json'},
-                body: JSON.stringify(this.state.UserThread)
-            })
-            let data = await response.json()
-            console.log(data, 'I action')
-
-            commit('deleteSpecificThread', data)
-        },
-        async getAllThreads({ commit }) {
-            let response = await fetch(
-                'https://localhost:44300/api/CategoryThread/GetCategoryThreads'
-            )
-            let data = await response.json()
-
-            console.log(data)
-
-            commit('setThreadsFromBack', data)
-        },
-
-        async GetThreadFromSpecificId({commit}, id){
-            let response = await fetch(
-                `https://localhost:44300/api/CategoryThread/GetCategoryThreadById/${id}`
+        async getAllThreads({ commit })
+        {
+            let response = await fetch('https://localhost:44300/api/CategoryThread/GetCategoryThreads')
+                let data = await response.json()
                 
-            )
-            let data = await response.json()
+                console.log(data)
+                commit('setThreadsFromBack', data)
+        },
+            
 
-            console.log('GetThreadFromSpecificId Action: ', data)
-            commit('setSpecificPostFromThread', data)
+        async GetThreadFromSpecificId({commit}, id)
+        {
+                let response = await fetch(`https://localhost:44300/api/CategoryThread/GetCategoryThreadById/${id}`)
+                    let data = await response.json()
+                    
+                    console.log('GetThreadFromSpecificId Action: ', data)
+                    commit('setSpecificPostFromThread', data)
         },
 
+        async delelteSpecificThread({commit}, id){
+                    let response = await fetch(`https://localhost:44300/api/CategoryThread/DeleteCategoryThread/${id}`,{
+                        method:'delete',
+                        headers:{'Content-type': 'application/json'},
+                        body: JSON.stringify(this.state.UserThread)
+                    })
+                    let data = await response.json()
+                    console.log(data, 'I action')
         
+                    commit('deleteSpecificThread', data)
+        },
 
         async getAllCategories({ commit }) {
             let response = await fetch(
