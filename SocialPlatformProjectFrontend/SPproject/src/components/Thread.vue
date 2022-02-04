@@ -308,45 +308,45 @@ h1 {
      box-shadow: 0 0 5px #fff, inset 0 0 10px #43a78c;
 }
 
+/*Buttons in thread */
+.post-btn{
+     height: 35px;
+     padding: 0 15px;
+    background:inherit;
+     color:#ffff;
+     border: none;
+     user-select: none;
+     white-space: nowrap;
+     transition: all .05s linear;
+    font-family: inherit;
+ }
+    
+.post-btn:active{
+     color: #fff;
+     box-shadow: 0 0.2rem #dfd9d9;
+     transform: translateY(0.2rem);
+}
+    
+.post-btn:disabled{
+    cursor:auto;
+    color:grey;
+}
+    
+.icon{
+    font-size:20px;
+    margin-right:10px;
+}
+
 /*Category*/
 .category {
     margin-top: 20px;
 }
 
 .category-title {
-    background-color: rgb(119, 119, 119);
+    background-color: rgb(119, 119, 119);    
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 20px;
-}
-
-/*Buttons in thread */
-.post-btn{
-    height: 35px;
-    padding: 0 15px;
-    background:inherit;
-    color:#ffff;
-    border: none;
-    user-select: none;
-    white-space: nowrap;
-    transition: all .05s linear;
-    font-family: inherit;
-}
-
-.post-btn:active{
-    color: white;
-    box-shadow: 0 0.2rem #dfd9d9;
-    transform: translateY(0.2rem);
-}
-
-.post-btn:disabled{
-    cursor:auto;
-    color:grey;
-}
-
-.icon{
-    font-size:20px;
-    margin-right:10px;
 }
 
 
