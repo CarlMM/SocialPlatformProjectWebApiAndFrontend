@@ -58,6 +58,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpPost]
+        [Route("AddReply/{Reply}")]
         public async Task<Reply> AddReply([FromBody] Reply reply)
         {
             var template = await _replyService.AddReply(reply);
@@ -65,6 +66,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpDelete]
+        [Route("DeleteReply/{id}")]
         public async Task<Reply> DeleteReply(int id)
         {
             var template = await _replyService.DeleteReply(id);
