@@ -50,37 +50,36 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetCategoryThreadByUserId/{UserId}")]
+        [Route("GetCategoryThreadByUserId/{userId}")]
         public async Task<IList<CategoryThread>> GetCategoryThreadByUserId(string userId)
         {
             var types = await _categorythreadService.GetCategoryThreadByUserId(userId);
             return types;
         }
 
+        [HttpGet]
+        [Route("GetCategoryThreadById/{id}")]
+        public async Task<IList<CategoryThread>> GetCategoryThreadById(int id)
+        {
+            var types = await _categorythreadService.GetCategoryThreadById(id);
+            return types;
+        }
+
 
         [HttpPost]
-        [Route("AddCategoryThread")]
+        [Route("AddCategoryThread/{CategoryThread}")]
         public async Task<CategoryThread> AddCategoryThread([FromBody] CategoryThread categoryThread)
         {
             var template = await _categorythreadService.AddCategoryThread(categoryThread);
             return template;
         }
 
-        [HttpGet]
-        [Route("GetCategoryThreadById/{Id}")]
-        public async Task<IList<CategoryThread>> GetCategoryThreadById(int Id)
-        {
-            var types = await _categorythreadService.GetCategoryThreadById(Id);
-            return types;
-
-        }
-
         [HttpDelete]
+        [Route("DeleteCategoryThread/{id}")]
         public async Task<CategoryThread> DeleteCategoryThread(int id)
         {
             var template = await _categorythreadService.DeleteCategoryThread(id);
             return template;
         }
-
     }
 }
