@@ -141,7 +141,7 @@ export default {
     },
     data() {
         return {
-            badWords: ['', '', '', '', ''],
+            badWords: ['fuck', 'kuk', 'snopp', 'whore', 'dick'],
             isModalVisible: false,
             postTypeChosen: null,
             errorMessage: [],
@@ -171,6 +171,7 @@ export default {
             this.isModalVisible = true
         },
         closeModal() {
+            this.errorMessage = []
             this.newPostObject.Title = ''
             this.newPostObject.Text = ''
             this.newPostObject.CategoryId = ''
@@ -225,6 +226,7 @@ export default {
             }
             if (catchBadWords.length > 0) {
                 this.errorMessage.push('Remember to be nice!')
+                console.log(this.errorMessage)
             }
             if (catchBadWordsTitle.length > 0) {
                 this.errorMessage.push('Remember to be nice Title!')
