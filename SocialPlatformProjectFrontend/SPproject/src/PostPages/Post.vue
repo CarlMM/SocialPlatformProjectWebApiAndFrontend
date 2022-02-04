@@ -51,7 +51,7 @@
             <div v-for="item in this.$store.state.Reply" :key="item.Id">
                 {{ item.Id }}
                 {{ item.categoryThreadId }}
-                {{ item.text }}
+                <p>{{ item.text }}</p>
             </div>
         </div>
     </div>

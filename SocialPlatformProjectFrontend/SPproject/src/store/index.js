@@ -126,6 +126,18 @@ const store = createStore({
             commit('setReplyToSpecificPost', data);
         },
 
+        async PostReplyToSpecificPost({commit}, replyObject){
+            let response = await fetch(`https://localhost:44300/api/Reply/AddReply/${replyObject}`, {
+                method:'post',
+                headers:{'Content-type': 'application/json'},
+                body: JSON.stringify(newPostObject)
+            })
+
+            let data = response.json();
+            console.log(data)
+            commit('setNewReplyToPost', data)
+        },
+
         async GetAllReplies({ commit }) {
             let response = await fetch(
                 'https://localhost:44300/api/Reply/GetReplies'
