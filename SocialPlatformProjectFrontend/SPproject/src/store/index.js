@@ -51,7 +51,7 @@ const store = createStore({
 
         setNewReplyToPost(state, data){
             state.Reply.push(data);
-            state.Reply = data;
+            //state.Reply = data;
 
         },
 

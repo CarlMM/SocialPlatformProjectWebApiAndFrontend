@@ -60,6 +60,7 @@
 <script>
 import { AuthState } from '../auth0/useAuth0'
 import Modal from '/src/components/Modal.vue'
+import { mapMutations } from 'vuex'
 
 export default {
     data() {
@@ -155,7 +156,7 @@ export default {
             )
             return catchBadWords
         },
-
+        ...mapMutations(['setNewReplyToPost']),
         reply(newReplyPost) {
             //  this.errorMessage = []
             //  let catchBadWords = this.filterWords(this.newReplyPost)
@@ -176,6 +177,27 @@ export default {
             console.log('Log in ReplyMethod, this is reply store: ', this.$store.state.Reply)
             return this.$store.dispatch('PostReplyToSpecificPost', newReplyPost)
         },
+
+        // reply(newReplyPost) {
+        //     //  this.errorMessage = []
+        //     //  let catchBadWords = this.filterWords(this.newReplyPost)
+        //     //  console.log(this.newReplyPost, 'REPLY MESSAGE')
+        //     //  if (this.newReplyPost.Text == '') {
+        //     //      this.errorMessage.push('Please enter some text!')
+        //     //  }
+        //     //  if (catchBadWords.length > 0) {
+        //     //      this.errorMessage.push('Remember to be nice!')
+        //     //  } else if (this.newReplyPost.Text != '' && catchBadWords.length == 0) {
+        //     //      this.newReplyPost.Text = ''
+        //     //      this.errors = []
+        //           this.closeModal()
+        //     //  }
+        //     this.newReplyPost.UserIdSub = AuthState.user.sub;
+        //     this.newReplyPost.CategoryThreadId = this.tId;
+        //     console.log('ReplyMethod: ', newReplyPost)
+        //     console.log('Log in ReplyMethod, this is reply store: ', this.$store.state.Reply)
+        //     return this.$store.dispatch('PostReplyToSpecificPost', newReplyPost)
+        // },
     },
 }
 </script>
