@@ -79,7 +79,7 @@ const store = createStore({
                  body: JSON.stringify(newPostObject)
              })
 
-            let data = response.json();
+            let data = await response.json();
              console.log(data)
             commit('setNewPost', data)
         },
