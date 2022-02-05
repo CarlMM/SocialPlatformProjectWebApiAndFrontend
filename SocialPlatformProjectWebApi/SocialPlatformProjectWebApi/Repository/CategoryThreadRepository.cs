@@ -77,6 +77,11 @@ namespace SocialPlatformProjectWebApi.Repository
         public async Task<CategoryThread> DeleteCategoryThread(int id)
         {
             var deleteCategoryThread = await _dbContext.CategoryThreads.SingleAsync(x => x.Id == id);
+            var repliesInThread = await _dbContext.Replies.Where(y => y.CategoryThreadId == id).ToListAsync();
+            repliesInThread.RemoveAll(z => z.CategoryThreadId == id);
+
+            await _dbContext.SaveChangesAsync();
+
             _dbContext.CategoryThreads.Remove(deleteCategoryThread);
             await _dbContext.SaveChangesAsync();
             return deleteCategoryThread;

@@ -96,14 +96,11 @@ namespace SocialPlatformProjectWebApi.Models
                 entity.HasOne(d => d.CategoryThread)
                     .WithMany(p => p.Replies)
                     .HasForeignKey(d => d.CategoryThreadId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Reply_Thread");
             });
 
             modelBuilder.Entity<ThreadUser>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.UserIdSub)
                     .HasMaxLength(500)
                     .IsUnicode(false)
