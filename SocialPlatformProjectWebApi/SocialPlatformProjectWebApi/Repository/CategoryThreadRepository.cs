@@ -45,16 +45,16 @@ namespace SocialPlatformProjectWebApi.Repository
 
         public async Task<CategoryThread> AddCategoryThread(CategoryThread categoryThread)
         {
-            DateTime date = DateTime.Now;
+            DateTime date = DateTime.UtcNow.Date;
 
-            var user = new ThreadUser
-            {
-                CategoryThreadId = categoryThread.Id,
-                UserIdSub = categoryThread.UserIdSub,
-            };
+            //var user = new ThreadUser
+            //{
+            //    CategoryThreadId = categoryThread.Id,
+            //    UserIdSub = categoryThread.UserIdSub,
+            //};
 
-            _dbContext.ThreadUsers.Add(user);
-            await _dbContext.AddAsync(user);
+            //_dbContext.ThreadUsers.Add(user);
+            //await _dbContext.AddAsync(user);
 
             var template = new CategoryThread
             {
