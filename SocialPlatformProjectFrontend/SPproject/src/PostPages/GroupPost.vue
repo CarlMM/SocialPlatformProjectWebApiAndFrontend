@@ -83,7 +83,6 @@ export default {
     overflow: auto;
     width: 400px;
     height: 200px;
-    
 }
 
 
