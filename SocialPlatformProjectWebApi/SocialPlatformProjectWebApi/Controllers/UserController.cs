@@ -23,9 +23,9 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         [HttpGet]
         [Route("GetUsers")]
-        public IEnumerable<User> GetUsers()
+        public async Task<IList<User>> GetUsers()
         {
-            var template = _userService.GetUsers();
+            var template = await _userService.GetUsers();
             return template;
         }
 
