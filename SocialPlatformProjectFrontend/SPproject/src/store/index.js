@@ -45,10 +45,17 @@ const store = createStore({
             console.log(data)
         },
 
-        setReplyToSpecificPost(state, data){
+        fetchReplyToSpecificPost(state, data){
             state.Reply = data;
             console.log('Vi är i mutation nu ',  data)
         },
+
+        setNewReplyToPost(state, data){
+            state.Reply.push(data);
+            //state.Reply = data;
+
+        },
+
         setUserThreads(state, data){
             state.UserThread = data;
             console.log('userThreads: ', data)
@@ -78,7 +85,7 @@ const store = createStore({
                  body: JSON.stringify(newPostObject)
              })
 
-            let data = response.json();
+            let data = await response.json();
              console.log(data)
             commit('setNewPost', data)
         },
@@ -138,7 +145,19 @@ const store = createStore({
 
             let data = await response.json();
             console.log('GetRepliesForSpecificPost Action: ', data)
-            commit('setReplyToSpecificPost', data);
+            commit('fetchReplyToSpecificPost', data);
+        },
+
+        async PostReplyToSpecificPost({commit}, replyObject){
+            let response = await fetch(`https://localhost:44300/api/Reply/AddReply/${replyObject}`, {
+                method:'post',
+                headers:{'Content-type': 'application/json'},
+                body: JSON.stringify(replyObject)
+            })
+
+            let data = await response.json();
+            console.log(data)
+            commit('setNewReplyToPost', data)
         },
 
         async GetAllReplies({ commit }) {
@@ -158,12 +177,12 @@ const store = createStore({
             commit('setUserThreads', data)
         },
 
-        async GetUser({ commit }) {
-            let response = await fetch('')
-            let data = await response.json()
-            console.log(data)
-            commit('setUserFromBack', data)
-        },
+        // async GetUser({ commit }) {
+        //     let response = await fetch('')
+        //     let data = await response.json()
+        //     console.log(data)
+        //     commit('setUserFromBack', data)
+        // },
 
         async getAllUsers({ commit }) {
             let response = await fetch('https://localhost:44300/api/User/GetUsers')
@@ -172,12 +191,12 @@ const store = createStore({
             commit('setUsersFromBack', data)
         },
 
-        async getThreadUser({ commit }) {
-            let response = await fetch('')
-            let data = await response.json()
-            console.log(data)
-            commit('setThreadUserFromBack', data)
-        },
+        // async getThreadUser({ commit }) {
+        //     let response = await fetch('')
+        //     let data = await response.json()
+        //     console.log(data)
+        //     commit('setThreadUserFromBack', data)
+        // },
 
         // async getAllThreadByUser({commit}, userId){
         //     let response = await fetch('https://localhost:44300/api/Threads/GetThreadsByUser' + userId);
