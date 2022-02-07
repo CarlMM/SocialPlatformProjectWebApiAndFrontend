@@ -15,11 +15,15 @@
         </div>
         
         <div class="userInListDiv">
-            <div class="diplayUsersInListDiv">
-                Username, Username, Username, Username, Username, Username, Username,
-                Username, Username, Username, Username, Username, Username, Username,
-                Username
-                <!-- Lägg till removeknapp bredvid varje user när vi loopar ut -->
+            <div class="diplayUsersInListDiv" >
+                <!-- Exempel hur userlistan kan se ut -->
+                <p id="userNamesInThread" v-for="threads in GetThreads" :key="threads.Id">
+                    {{threads.title}}
+
+                    <!-- Lägg till userId i removeMetoden -->
+                    <button @click="removeUserFromThreadButton()">Ta bort</button>
+                </p>
+
             </div>
             <button @click="addUserButton()">Add user to Thread</button>
         </div>
@@ -37,9 +41,22 @@ export default {
         }
     },
 
+    created(){
+        this.$store.dispatch('getAllThreads')
+    },
+
     methods:{
         addUserButton(){
             alert('Tjofräs')
+        },
+        removeUserFromThreadButton(){
+            alert('Tjoflöjt')
+        }
+
+    },
+    computed:{
+        GetThreads(){
+            return this.$store.state.Thread
         }
     }
 }
@@ -55,13 +72,22 @@ export default {
     float:left;
     text-align: center;
 }
-.userInListDiv{
+/* .userInListDiv{
     
-}
+} */
 
 .diplayUsersInListDiv{
     border-style: solid;
     border-width: thin;
     text-align: left;
+    overflow: auto;
+    width: 400px;
+    height: 200px;
+    
+}
+
+
+#userNamesInThread{
+    font-weight: bold;
 }
 </style>
