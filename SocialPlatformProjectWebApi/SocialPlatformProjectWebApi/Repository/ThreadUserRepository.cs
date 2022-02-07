@@ -38,7 +38,7 @@ namespace SocialPlatformProjectWebApi.Repository
 
             return threadUser;
         }
-        public async Task<IList<ThreadUser>> DeleteThreadUser(int categoryThreadId, string userIdSub)
+        public async Task<IList<ThreadUser>> DeleteThreadUser(string userIdSub)
         {
             var deleteThreadUser = await _dbContext.ThreadUsers.Where(x => x.UserIdSub == userIdSub).ToListAsync();
 
