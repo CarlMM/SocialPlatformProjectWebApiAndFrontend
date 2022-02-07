@@ -1,6 +1,11 @@
-﻿using SocialPlatformProjectWebApi.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using SocialPlatformProjectWebApi.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+
+
+
 
 namespace SocialPlatformProjectWebApi.Repository
 {
@@ -32,7 +37,21 @@ namespace SocialPlatformProjectWebApi.Repository
             await _dbContext.SaveChangesAsync();
 
             return threadUser;
+        }
+        public async Task<IList<ThreadUser>> DeleteThreadUser(int categoryThreadId, string userIdSub)
+        {
+            var deleteThreadUser = await _dbContext.ThreadUsers.Where(x => x.UserIdSub == userIdSub).ToListAsync();
 
+            for (int i = deleteThreadUser.Count - 1; i >= 0; i--)
+            {
+                _dbContext.ThreadUsers.Remove(deleteThreadUser[i]);
+            }
+
+            await _dbContext.SaveChangesAsync();
+
+            return deleteThreadUser;
+            
+            
         }
     }
 }
