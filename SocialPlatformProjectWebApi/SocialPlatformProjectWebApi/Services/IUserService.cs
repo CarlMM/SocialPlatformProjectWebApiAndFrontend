@@ -7,6 +7,9 @@ namespace SocialPlatformProjectWebApi.Services
     public interface IUserService
     {
         IEnumerable<User> GetUsers();
+
+        Task<User> DeleteUser(string idSub);
+
     }
 }
 

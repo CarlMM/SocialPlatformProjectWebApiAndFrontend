@@ -20,6 +20,12 @@ namespace SocialPlatformProjectWebApi.Services
             return template;
         }
 
+        public async Task<User> DeleteUser(string idSub)
+        {
+            var template = await _userRepository.DeleteUserByIdSub(idSub);
+            return template;
+        }
+
     }
     
 

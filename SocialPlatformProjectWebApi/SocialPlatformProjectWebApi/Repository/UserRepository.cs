@@ -25,5 +25,12 @@ namespace SocialPlatformProjectWebApi.Repository
             return result;
         }
 
+        public async Task<User> DeleteUserByIdSub(string idSub)
+        {
+            var userDelete = await _dbContext.Users.SingleAsync(x => x.IdSub == idSub);
+            _dbContext.Users.Remove(userDelete);
+            await _dbContext.SaveChangesAsync();
+            return userDelete;
+        }
     }
 }

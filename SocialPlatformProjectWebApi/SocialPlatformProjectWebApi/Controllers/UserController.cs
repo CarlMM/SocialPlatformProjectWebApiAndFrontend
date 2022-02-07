@@ -28,5 +28,14 @@ namespace SocialPlatformProjectWebApi.Controllers
             var template = _userService.GetUsers();
             return template;
         }
+
+        [HttpDelete]
+        [Route("DeleteUserByIdSub/{idSub}")]
+
+        public async Task<User> DeleteUser(string idSub)
+        {
+            var template = await _userService.DeleteUser(idSub);
+            return template;
+        }
     }
 }
