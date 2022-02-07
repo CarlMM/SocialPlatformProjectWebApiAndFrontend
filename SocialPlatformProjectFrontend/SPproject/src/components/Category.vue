@@ -141,7 +141,7 @@ export default {
     },
     data() {
         return {
-            badWords: ['', '', '', '', ''],
+            badWords: ['fuck', 'kuk', 'snopp', 'whore', 'dick'],
             isModalVisible: false,
             postTypeChosen: null,
             errorMessage: [],
@@ -158,7 +158,8 @@ export default {
                 Title: '',
                 Text: '',
                 CategoryId: '',
-                UserId_Sub: '',
+                UserIdSub: '',
+                ThreadType: false,
             },
         }
     },
@@ -171,20 +172,20 @@ export default {
             this.isModalVisible = true
         },
         closeModal() {
-            this.newPostObject.Title = ''
-            this.newPostObject.Text = ''
-            this.newPostObject.CategoryId = ''
+            this.errorMessage = []
+            // this.newPostObject.Title = ''
+            // this.newPostObject.Text = ''
+            // this.newPostObject.CategoryId = ''
             this.isModalVisible = false
         },
 
         setPostTypeId(value) {
-            console.log('postType Id', value)
             if (value == 0) {
-                this.postTypeChosen = 0
-                console.log(this.postTypeChosen)
+                this.newPostObject.ThreadType = false;
+                console.log(this.newPostObject.ThreadType, 'INNE I IF SATSEN 1')
             } else {
-                this.postTypeChosen = 1
-                console.log(this.postTypeChosen)
+                this.newPostObject.ThreadType = true;
+                console.log(this.newPostObject.ThreadType, 'INNE I IF SATSEN 2')
             }
         },
         async fetchAllCategories() {
@@ -204,14 +205,14 @@ export default {
         },
 
         createPostMethod(newPostObject) {
-            this.newPostObject.UserId_Sub = AuthState.user.sub
-            console.log(this.newPostObject.UserId_Sub)
+            this.newPostObject.UserIdSub = AuthState.user.sub
+            console.log(this.newPostObject.UserIdSub)
 
             let catchBadWords = this.filterWords(this.newPostObject.Text)
             let catchBadWordsTitle = this.filterWords(this.newPostObject.Title)
             this.errorMessage = []
 
-            if (this.postTypeChosen === null || this.postTypeChosen === null) {
+            if (this.newPostObject.chosenType === null) {
                 this.errorMessage.push('Please choose post type!')
             }
             if (this.newPostObject.Title == '') {
@@ -225,6 +226,7 @@ export default {
             }
             if (catchBadWords.length > 0) {
                 this.errorMessage.push('Remember to be nice!')
+                console.log(this.errorMessage)
             }
             if (catchBadWordsTitle.length > 0) {
                 this.errorMessage.push('Remember to be nice Title!')
@@ -233,17 +235,15 @@ export default {
                 this.newPostObject.Text !== '' &&
                 this.newPostObject.Title !== '' &&
                 this.newPostObject.CategoryId !== '' &&
-                this.postTypeChosen !== null &&
-                this.postTypeChosen !== null &&
+                this.newPostObject.chosenType !== null &&
                 catchBadWords.length == 0 &&
                 catchBadWordsTitle.length == 0
             ) {
                 this.errorMessage = []
                 this.closeModal()
-                return this.$store.dispatch(
-                    'createNewPostMethod',
-                    newPostObject
-                )
+                console.log('Our UserId_Sub', this.newPostObject.UserId_Sub)
+                console.log(this.newPostObject, 'THIS IS THE OBJECT WE SENDING')
+                return this.$store.dispatch('createNewPostMethod', newPostObject)
             }
         },
     },

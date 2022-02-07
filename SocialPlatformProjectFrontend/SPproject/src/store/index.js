@@ -2,6 +2,8 @@ import { createStore } from 'vuex'
 
 const store = createStore({
     state: {
+        token:"",
+        comingFromThreads: false,
         isAdmin: false,
         GroupThreads: [],
         UserThread:[],
@@ -59,19 +61,41 @@ const store = createStore({
             state.UserThread = data;
             state.UserThread.push(data)
             console.log(data);
+        },
+
+        setToken(state, data){
+            state.token = data;
+            console.log(data)
         }
     },
     actions: {
-        createNewPostMethod({ commit }, newPostObject) {
-            console.log('Inne i createNewPostMethod action: ', newPostObject)
+        async createNewPostMethod({ commit }, newPostObject) {
+            //console.log('Inne i createNewPostMethod action: ', newPostObject)
 
-            commit('setNewPost', newPostObject)
+             let response = await fetch(`https://localhost:44300/api/CategoryThread/AddCategoryThread/${newPostObject}`,{
+                 method:'post',
+                 headers:{'Content-type': 'application/json'},
+                 body: JSON.stringify(newPostObject)
+             })
+
+            let data = response.json();
+             console.log(data)
+            commit('setNewPost', data)
         },
 
 
         async getAllThreads({ commit })
         {
-            let response = await fetch('https://localhost:44300/api/CategoryThread/GetCategoryThreads')
+
+            //console.log(this.state.token)
+            let response = await fetch('https://localhost:44300/api/CategoryThread/GetCategoryThreads',{
+                method: 'get',
+                headers:{
+                    'Authorization': "Bearer " + this.state.token,
+                    'Content-type': 'application/json',
+                },
+                //body: JSON.stringify(this.state.token)
+            })
                 let data = await response.json()
                 
                 console.log(data)
@@ -163,6 +187,10 @@ const store = createStore({
         //     commit('setInMutation' , data)
         // }
     },
+
+    getters:{
+        fetchToken: state => {return state.token},
+    }
 })
 
 export default store

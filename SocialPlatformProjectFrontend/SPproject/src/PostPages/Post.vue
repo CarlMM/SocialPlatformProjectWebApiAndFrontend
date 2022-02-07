@@ -7,7 +7,7 @@
         </div>
         <div class="subforum-description subforum-column">
             <h1>Detta är replies</h1>
-            <button @click="showModal(this.tId)">Reply to post</button>
+            <button @click="showModal()">Reply to post</button>
             <div class="d-flex justify-content-end mt-1">
                 <Modal v-show="isModalVisible" @close="closeModal">
                     <template v-slot:header>
@@ -17,13 +17,13 @@
                     ></template>
                     <template v-slot:body>
                         <div class="subforum-description subforum-column">
-                            <h1 style="color: red">{{ this.threadtitle }}</h1>
                             <h1>
                                 <small
                                     >Posted by <a href="">User</a> 15 Jan
                                     2022</small
                                 >
                             </h1>
+                            <h1>{{ this.threadTitle }}</h1>
                             <p>{{ this.threadText }}</p>
                         </div>
                         <div id="container">
@@ -36,12 +36,12 @@
                                     v-model="replyMessage"
                                 ></textarea>
                             </div>
-                            <button class="btn btn-reply" @click="saveInput()">
+                            <button class="btn btn-reply" @click="reply()">
                                 Reply
                             </button>
-                            <div v-for="error in errors" :key="error.id">
+                            <div v-for="error in errorMessage" :key="error.id">
                                 <ul>
-                                    <li>{{ error }}</li>
+                                    <li style="color: #333">{{ error }}</li>
                                 </ul>
                             </div>
                         </div>
@@ -59,19 +59,19 @@
 
 <script>
 import Modal from '/src/components/Modal.vue'
-import { mapActions } from 'vuex'
 
 export default {
     data() {
         return {
-            badWords: ['carl', 'alex', 'samy', 'jony', 'thomas'],
+            badWords: ['fuck', 'kuk', 'snopp', 'whore', 'dick'],
             tId: this.$route.params.Id,
             isModalVisible: false,
             replyMessage: '',
             threadId: null,
             threadTitle: '',
             threadText: '',
-            errors: [],
+            errorMessage: [],
+            missingTextMessage: '',
         }
     },
     components: {
@@ -89,18 +89,6 @@ export default {
     },
 
     computed: {
-        // getSpecificThread() {
-        //     console.log('id from url ', this.tId)
-        //     let list = this.$store.state.Thread
-        //     console.log(this.tId)
-
-        //     let filteredThread = list.filter(item => {
-        //         return item.id == this.tId
-        //     })
-        //     console.log('filteredThread: ', filteredThread)
-        //     return filteredThread
-        // },
-
         getPost() {
             console.log(
                 'getPostmetod i Post.vue: ',
@@ -108,26 +96,19 @@ export default {
             )
             return this.$store.state.SpecificPostThread
         },
+
+    },
+    
+    mounted(){
+        if(this.$store.state.comingFromThreads == true){
+            this.showModal()
+            this.$store.state.comingFromThreads = false
+        }
     },
 
     methods: {
-        // ...mapActions(["GetRepliesForSpecificPost"]),
-        // async fetchRepliesForPost(){
-        //     // id = this.tId;
-
-        //     this.GetRepliesForSpecificPost(this.tId)
-
-        //     // id = this.tId;
-        //     // console.log('Reply', this.$store.state.reply)
-        //     // this.$store.dispatch('GetRepliesForSpecificPost', id)
-        // },
-
-        // async fetchReplyForPost(){
-        //      this.$store.dispatch('GetRepliesForSpecificPost', this.tId)
-        // }
-        showModal(threadId) {
+        showModal() {
             this.isModalVisible = true
-            this.threadId = threadId
             let threadList = this.$store.state.SpecificPostThread
 
             //Destrucure objektet i variabler
@@ -151,27 +132,30 @@ export default {
         },
 
         closeModal() {
-            this.errors = []
+            this.errorsMessage = []
             this.replyMessage = ''
             this.isModalVisible = false
         },
 
-        filterWords(array) {
-            let filteredWordsArray = array.toLowerCase().split(' ')
+        filterWords(message) {
+            let filteredWordsArray = message.toLowerCase().split(' ')
             let catchBadWords = filteredWordsArray.filter(item =>
                 this.badWords.includes(item)
             )
             return catchBadWords
         },
 
-        saveInput() {
-            this.errors = []
+        reply() {
+            this.errorMessage = []
             let catchBadWords = this.filterWords(this.replyMessage)
-            if (this.replyMessage == '' || catchBadWords.length > 0) {
-                this.replyMessage == ''
-                    ? this.errors.push('Please enter some text!')
-                    : this.errors.push('Please be nice!')
-            } else if (this.replyMessage != '') {
+            console.log(this.replyMessage, 'REPLY MESSAGE')
+            if (this.replyMessage == '') {
+                this.errorMessage.push('Please enter some text!')
+            }
+            if (catchBadWords.length > 0) {
+                this.errorMessage.push('Remember to be nice!')
+            } else if (this.replyMessage != '' && catchBadWords.length == 0) {
+                this.replyMessage = ''
                 this.errors = []
                 this.closeModal()
             }

@@ -1,4 +1,5 @@
 using Auth0.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -22,6 +23,7 @@ namespace SocialPlatformProjectWebApi
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -50,10 +52,34 @@ namespace SocialPlatformProjectWebApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SocialPlatformProjectWebApi", Version = "v1" });
             });
-            services.AddAuth0WebAppAuthentication(options => {
-            options.Domain = Configuration["Auth0:Domain"];
-            options.ClientId = Configuration["Auth0:ClientId"];
-        });
+        //    services.AddAuth0WebAppAuthentication(options => {
+        //    options.Domain = Configuration["Auth0:Domain"];
+        //    options.ClientId = Configuration["Auth0:ClientId"];
+        //});
+
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                //options.Authority = Configuration["Authentication:Domain"];
+                //options.Audience = Configuration["Authentication:Audience"];
+
+                options.Authority = "https://dev-dzje4s8y.us.auth0.com/";
+                options.Audience = "https://auth0sucks/api";
+                
+            });
+
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("CheckThreads", policy => policy.RequireClaim("permissions", "read:specificCategoryThreads"));
+
+                options.AddPolicy("DeleteUser", policy => policy.RequireClaim("permissions", "delete:user"));
+
+            });
 
             services.AddControllersWithViews();
         }
@@ -70,14 +96,18 @@ namespace SocialPlatformProjectWebApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "SocialPlatformProjectWebApi v1");
-                    
-                    });
+                   
+
+                });
                 
             }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+
+            app.UseStaticFiles();
 
             app.UseAuthentication();
             app.UseAuthorization();
