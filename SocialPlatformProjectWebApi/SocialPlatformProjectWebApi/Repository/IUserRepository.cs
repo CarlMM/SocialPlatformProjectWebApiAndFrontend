@@ -7,8 +7,10 @@ namespace SocialPlatformProjectWebApi.Repository
 {
     public interface IUserRepository
     {
-        IEnumerable<User> GetUsers();
+        Task<IList<User>> GetUsers();
 
         Task<User> DeleteUserByIdSub(string idSub);
+
+        Task<User> AddUser(string Id_sub, string userName, string email);
     }
 }
