@@ -28,5 +28,13 @@ namespace SocialPlatformProjectWebApi.Controllers
             var template = _threadUserService.GetThreadUsers();
             return template;
         }
+
+        [HttpPost]
+        [Route("AddThreadUser")]
+        public async Task<ThreadUser> AddThreadUser(int threadId, string userId)
+        {
+            var template = await _threadUserService.AddThreadUser(threadId, userId);
+            return template;
+        }
     }
 }

@@ -86,6 +86,11 @@
 </template>
 
 <script>
+import Modal from './Modal.vue'
+// import { mapMutations } from 'vuex'
+import { useAuth0, AuthState } from '/src/auth0/useAuth0.js'
+
+
 export default {
     posts: ['thread'],
     props: ['list'],
@@ -97,7 +102,10 @@ export default {
         }
     },
 
-    created() {
+
+    created(){
+        this.$store.commit('setToken', AuthState.token)
+
         this.$store.dispatch('getAllThreads')
     },
 

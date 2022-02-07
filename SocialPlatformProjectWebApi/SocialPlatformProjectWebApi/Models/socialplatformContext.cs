@@ -102,8 +102,6 @@ namespace SocialPlatformProjectWebApi.Models
 
             modelBuilder.Entity<ThreadUser>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.UserIdSub)
                     .HasMaxLength(500)
                     .IsUnicode(false)

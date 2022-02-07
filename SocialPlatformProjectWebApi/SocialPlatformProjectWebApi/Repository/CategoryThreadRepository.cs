@@ -47,8 +47,14 @@ namespace SocialPlatformProjectWebApi.Repository
         {
             DateTime date = DateTime.Now;
 
-            //var template = categoryThread;
-            //_dbContext.Add(template);
+            var user = new ThreadUser
+            {
+                CategoryThreadId = categoryThread.Id,
+                UserIdSub = categoryThread.UserIdSub,
+            };
+
+            _dbContext.ThreadUsers.Add(user);
+            await _dbContext.AddAsync(user);
 
             var template = new CategoryThread
             {

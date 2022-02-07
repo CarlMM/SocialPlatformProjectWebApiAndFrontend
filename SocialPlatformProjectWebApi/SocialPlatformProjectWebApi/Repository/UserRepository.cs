@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-
+using SocialPlatformProjectWebApi.Services;
 
 namespace SocialPlatformProjectWebApi.Repository
 {
@@ -24,5 +24,6 @@ namespace SocialPlatformProjectWebApi.Repository
             var result = _dbContext.Users;
             return result;
         }
+
     }
 }
