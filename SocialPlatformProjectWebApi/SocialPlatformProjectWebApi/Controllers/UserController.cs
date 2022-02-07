@@ -21,13 +21,13 @@ namespace SocialPlatformProjectWebApi.Controllers
             _userService = userService;
         }
 
-        [HttpGet]
-        [Route("GetUsers")]
-        public async Task<IList<User>> GetUsers()
-        {
-            var template = await _userService.GetUsers();
-            return template;
-        }
+        //[HttpGet]
+        //[Route("GetUsers")]
+        //public async Task<IList<User>> GetUsers()
+        //{
+        //    var template = await _userService.GetUsers();
+        //    return template;
+        //}
 
         [HttpDelete]
         [Route("DeleteUserByIdSub/{idSub}")]
