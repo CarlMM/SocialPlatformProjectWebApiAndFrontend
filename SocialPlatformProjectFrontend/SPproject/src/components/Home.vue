@@ -1,52 +1,47 @@
 <template>
-  <div class="side-by-side">
-      <Thread :list="GetAllThreads"/>
-       <!-- :post="thread" v-for="(thread, index) in GetAllThreads" :key="index" -->
-  </div>
-  <div class="side-by-side">
-    <h2>random text</h2>
-  </div>
+    <div class="side-by-side">
+        <Thread :list="GetAllThreads" />
+        <!-- :post="thread" v-for="(thread, index) in GetAllThreads" :key="index" -->
+    </div>
+    <div class="side-by-side">
+        <h2>random text</h2>
+    </div>
 </template>
 
 <script>
 import Thread from '/src/components/Thread.vue'
 import { useAuth0, AuthState } from '../auth0/useAuth0.js'
 
-const {initAuth } = useAuth0(AuthState)
+const { initAuth } = useAuth0(AuthState)
 
-export default{
- 
-  components: {
-    Thread,
-  },
+export default {
+    components: {
+        Thread,
+    },
 
-  mounted() {
+    mounted() {
         if (AuthState.isAuthenticated == true) {
             if (
                 AuthState.user['http://localhost:3000/roles'][0] == 'AdminUser'
-            ) 
-            {
+            ) {
                 this.$store.state.isAdmin = true
             }
         }
     },
 
-
-  computed:{
-    GetAllThreads(){
-      const result = this.$store.state.Thread
-      console.log('Get All Threads', result)
-      return result
+    computed: {
+        GetAllThreads() {
+            const result = this.$store.state.Thread
+            console.log('Get All Threads', result)
+            return result
+        },
     },
-  }
-
 }
 </script>
 
 <style scoped>
-
-h2{
-  color:white;
+h2 {
+    color: white;
 }
 
 /* .category{
@@ -62,7 +57,7 @@ h2{
     text-align: center; 
 } */
 
- /* .test {
+/* .test {
         display: grid;
         grid-template-columns: 80% 20%; 
         grid-template-rows: 99%;
