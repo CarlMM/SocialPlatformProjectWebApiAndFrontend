@@ -1,14 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SocialPlatformProjectWebApi.Models;
 using SocialPlatformProjectWebApi.Services;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using Thread = SocialPlatformProjectWebApi.Models.CategoryThread;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -86,10 +81,17 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         [HttpDelete]
         [Route("DeleteCategoryThread/{id}")]
-        public async Task<CategoryThread> DeleteCategoryThread(int id)
+        public async Task<IActionResult> DeleteCategoryThread(int id)
         {
-            var template = await _categorythreadService.DeleteCategoryThread(id);
-            return template;
+            if (id <= 0)
+            {
+                return BadRequest("Not a valid id");
+            }
+            else
+            {
+                await _categorythreadService.DeleteCategoryThread(id);
+                return Ok();
+            }
         }
 
         [HttpPut]

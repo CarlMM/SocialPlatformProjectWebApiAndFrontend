@@ -35,6 +35,7 @@ namespace SocialPlatformProjectWebApi.Repository
 
         public async Task<User> AddUser(string Id_sub, string userName, string email)
         {
+            // eventuellt be service sköta logiken
             var users = _dbContext.Users.Where(x => x.IdSub == Id_sub);
             bool has = users.Any(x => x.IdSub == Id_sub);
 
@@ -56,7 +57,7 @@ namespace SocialPlatformProjectWebApi.Repository
             }
             else
             {
-                throw new Exception("användaren (Id_sub) finns redan");
+                throw new Exception($"användaren {userName} | {Id_sub} finns redan");
             }
 
 

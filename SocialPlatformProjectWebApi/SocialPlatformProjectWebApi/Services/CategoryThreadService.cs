@@ -57,10 +57,10 @@ namespace SocialPlatformProjectWebApi.Services
 
         }
 
-        public async Task<CategoryThread> DeleteCategoryThread(int id)
+        public async Task<bool> DeleteCategoryThread(int id)
         {
-            var template = await _categorythreadRepository.DeleteCategoryThread(id);
-            return template;
+            var result = await _categorythreadRepository.DeleteCategoryThread(id);
+            return result;
         }
 
         public async Task<CategoryThread> EditCategoryThreadText(int id, string text)

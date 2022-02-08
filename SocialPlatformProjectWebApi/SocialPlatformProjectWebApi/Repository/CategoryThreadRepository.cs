@@ -88,12 +88,29 @@ namespace SocialPlatformProjectWebApi.Repository
             return types;
         }
 
-        public async Task<CategoryThread> DeleteCategoryThread(int id)
+        public async Task<bool> DeleteCategoryThread(int id)
         {
             var deleteCategoryThread = await _dbContext.CategoryThreads.SingleAsync(x => x.Id == id);
+
+            if (deleteCategoryThread == null)
+            {
+                return false;
+            }
+
             _dbContext.CategoryThreads.Remove(deleteCategoryThread);
-            await _dbContext.SaveChangesAsync();
-            return deleteCategoryThread;
+            return (await _dbContext.SaveChangesAsync() > 0);
+
+            //try
+            //{
+            //    var deleteCategoryThread = await _dbContext.CategoryThreads.SingleAsync(x => x.Id == id);
+            //    _dbContext.CategoryThreads.Remove(deleteCategoryThread);
+            //    await _dbContext.SaveChangesAsync();
+            //    return true;         
+            //}
+            //catch
+            //{
+            //    throw new Exception("something went wrong in the repository");
+            //}
         }
 
         public async Task<CategoryThread> EditCategoryThreadText(int id, string text)
