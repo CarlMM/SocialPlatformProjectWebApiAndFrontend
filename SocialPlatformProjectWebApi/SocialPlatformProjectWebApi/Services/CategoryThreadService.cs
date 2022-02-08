@@ -38,9 +38,9 @@ namespace SocialPlatformProjectWebApi.Services
             return types;
         }
 
-        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(int categoryThreadId, string IdSub)
+        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string IdSub)
         {
-            var getGroupCategoryThreadByUserId = await _categorythreadRepository.GetGroupCategoryThreadByUserId(categoryThreadId, IdSub);
+            var getGroupCategoryThreadByUserId = await _categorythreadRepository.GetGroupCategoryThreadByUserId(IdSub);
             return getGroupCategoryThreadByUserId;
         }
 

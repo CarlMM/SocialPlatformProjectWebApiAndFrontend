@@ -42,10 +42,9 @@ namespace SocialPlatformProjectWebApi.Repository
             return result;
         }
 
-        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(int categoryThreadId, string IdSub)
+        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string IdSub)
         {
             var getGroupCategoryThreadByUserId = await _dbContext.CategoryThreads.Where(x => x.UserIdSub == IdSub)
-                .Where(x => x.Id == categoryThreadId)
                 .Where(x => x.ThreadType == true).ToListAsync();
 
             return getGroupCategoryThreadByUserId;

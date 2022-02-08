@@ -21,7 +21,7 @@ namespace SocialPlatformProjectWebApi.Services
         Task<CategoryThread> DeleteCategoryThread(int id);
 
         Task<CategoryThread> EditCategoryThreadText(int id, string text);
-        Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(int categoryThreadId, string IdSub);
+        Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string IdSub);
 
     }
 }
