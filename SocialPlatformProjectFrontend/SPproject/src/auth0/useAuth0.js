@@ -55,9 +55,13 @@ export const useAuth0 = state => {
         })
     }
 
+
+  
+
     return {
         login,
         logout,
-        initAuth,
+        initAuth
+        
     }
 }

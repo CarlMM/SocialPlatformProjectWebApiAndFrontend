@@ -12,6 +12,7 @@ const store = createStore({
         Reply: [],
         SpecificPostThread: [],
         groupThreadsAdmin: [],
+        Users:[],
     },
     mutations: {
         setNewPost(state, data) {
@@ -69,7 +70,7 @@ const store = createStore({
         },
         deleteSpecificThread(state, data) {
             state.UserThread = data
-            state.UserThread.push(data)
+            state.UserThread.sort(data)
             console.log(data)
         },
 
@@ -77,6 +78,10 @@ const store = createStore({
             state.token = data
             console.log(data)
         },
+        setNewUser(state, data){
+            state.Users = data;
+            console.log(data)
+        }
     },
     actions: {
         async createNewPostMethod({ commit }, newPostObject) {
@@ -211,6 +216,20 @@ const store = createStore({
             commit('setUserThreads', data)
         },
 
+        async CreateUserToDatabase({commit}, createUserObject){
+
+            
+            let response = await fetch(`https://localhost:44300/api/User/AddUser?Id_sub=${createUserObject.idSub}&userName=${createUserObject.username}&email=${createUserObject.email}`,{
+                method: 'post',
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify(createUserObject)
+                
+
+            })
+            let data = await response.json()
+            console.log(data)
+            commit('setNewUser', data)
+        },
         // async GetUser({ commit }) {
         //     let response = await fetch('')
         //     let data = await response.json()

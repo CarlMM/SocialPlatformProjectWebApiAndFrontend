@@ -55,6 +55,7 @@
                                                         My threads
                                                     </option>
                                                 </select>
+                                                <button @click="createUser()">Lägga till användare</button>
                                                 <a
                                                     href="#"
                                                     @click.prevent="logout()"
@@ -78,12 +79,31 @@ import Dropdown from './Dropdown.vue'
 
 export default {
     data() {
-        return {}
+        return {
+            userToSend:{
+                idSub:'',
+                username: '',
+                email:''
+            },
+        }
     },
     methods: {
         changeRoute(e) {
             this.$router.push('/' + e.target.value)
         },
+        createUser(){
+             this.userToSend.idSub = AuthState.user.sub;
+             this.userToSend.username = AuthState.user.nickname;
+             this.userToSend.email = AuthState.user.email;
+
+            // this.userToSend.idSub = '123456789';
+            // this.userToSend.username = 'AllanBallaTrallan';
+            // this.userToSend.email = 'allisballistrallis@gmail.com';
+
+
+            console.log('Userinfo: ', this.userToSend.idSub, this.userToSend.username, this.userToSend.email)
+            this.$store.dispatch('CreateUserToDatabase', this.userToSend)
+        }
     },
 }
 </script>

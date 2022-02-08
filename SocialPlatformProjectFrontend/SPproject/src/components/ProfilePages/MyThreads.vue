@@ -11,7 +11,7 @@
             <router-link type="button" :to="`/Post/${userThreads.id}`">
                 <h1 style="color:white">{{userThreads.title}}</h1>
             </router-link>
-            <button @click="RemoveThread(userThreads.id)">Ta bort</button>
+            <div><button @click="RemoveThread(userThreads.id)">Ta bort</button></div>
         </div>  
     </div>
 </template>

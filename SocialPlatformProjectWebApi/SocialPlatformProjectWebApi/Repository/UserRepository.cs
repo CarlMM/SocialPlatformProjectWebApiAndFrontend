@@ -35,16 +35,32 @@ namespace SocialPlatformProjectWebApi.Repository
 
         public async Task<User> AddUser(string Id_sub, string userName, string email)
         {
-            var user = new User
-            {
-                IdSub = Id_sub,
-                Username = userName,
-                Email = email,
-            };
+            var users = _dbContext.Users.Where(x => x.IdSub == Id_sub);
+            bool has = users.Any(x => x.IdSub == Id_sub);
 
-            await _dbContext.Users.AddAsync(user);
-            await _dbContext.SaveChangesAsync();
-            return user;
+            //var ifUserExists = _dbContext.Users.SingleAsync(x => x.IdSub == Id_sub);
+
+            if (!has)
+            {
+
+                var user = new User
+                {
+                    IdSub = Id_sub,
+                    Username = userName,
+                    Email = email,
+                };
+
+                await _dbContext.Users.AddAsync(user);
+                await _dbContext.SaveChangesAsync();
+                return user;
+
+            }
+            else
+            {
+                throw new Exception("användaren (Id_sub) finns redan");
+            }
+
+
         }
     }
 }
