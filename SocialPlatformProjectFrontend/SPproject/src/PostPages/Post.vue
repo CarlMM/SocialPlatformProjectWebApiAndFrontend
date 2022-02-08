@@ -1,66 +1,79 @@
 <template>
-    <div class="temp">
-        <div v-for="thread in getPost" :key="thread.id">
-            <h1>{{ thread.title }}</h1>
-            <p>{{ thread.text }}</p>
-            <p>{{ thread.id }}</p>
-        </div>
-        <div class="subforum-description subforum-column">
-            <h1>Detta är replies</h1>
-            <button @click="showModal()">Reply to post</button>
-            <div class="d-flex justify-content-end mt-1">
-                <Modal v-show="isModalVisible" @close="closeModal">
-                    <template v-slot:header>
-                        <div class="text-uppercase">
-                            reply
-                            <span><i class="fas fa-comments"></i></span></div
-                    ></template>
-                    <template v-slot:body>
-                        <div class="subforum-description subforum-column">
-                            <h1>
-                                <small
-                                    >Posted by <a href="">User</a> 15 Jan
-                                    2022</small
-                                >
-                            </h1>
-                            <h1>{{ this.threadTitle }}</h1>
-                            <p>{{ this.threadText }}</p>
-                        </div>
-                        <div id="container">
-                            <div class="form-group">
-                                <label for="reply-content">Add content</label>
-                                <textarea
-                                    placeholder="Remember, be nice!"
-                                    cols="78"
-                                    rows="5"
-                                    v-model="newReplyPost.Text"
-                                ></textarea>
-                            </div>
-                            <button class="btn btn-reply" v-on:click="this.reply(newReplyPost)">
-                                Reply
+    <div class="outer-box">
+        <div class="post-andReply">
+            <div class="post-text">
+                <div class="main-post">
+                    <div v-for="thread in getPost" :key="thread.id">
+                        <h1>{{ thread.title }}</h1>
+                        <p>{{ thread.text }}</p>
+                    </div>
+                <button class="post-btn" @click="showModal()">
+                    <i class="far fa-comment icon"></i>
+                    <span>Reply to post</span>
+                </button>
+                </div>
+                <div class="post-andReply subforum-column">
+                        <div class="replies" v-for="item in getReplies" :key="item.id">
+                        <h1>UserName</h1>
+                                <p>{{ item.text}}</p>
+                            <button class="post-btn">
+                                <i class="far fa-comment icon"></i>
+                                <span>Reply to comment</span>
                             </button>
-                            <div v-for="error in errorMessage" :key="error.id">
-                                <ul>
-                                    <li style="color: #333">{{ error }}</li>
-                                </ul>
-                            </div>
                         </div>
-                    </template>
-                </Modal>
+                </div>
             </div>
-            <div v-for="item in getReplies" :key="item.id">
-                {{ item.id }}
-                <!-- {{ item.categoryThreadId }} -->
-                <p>{{ item.text }}</p>
-            </div>
+        </div>
+        <div class="d-flex justify-content-end mt-1">
+            <Modal v-show="isModalVisible" @close="closeModal">
+                                <template v-slot:header>
+                                    <div class="text-uppercase">
+                                        reply
+                                        <span><i class="fas fa-comments"></i></span></div
+                                ></template>
+                                <template v-slot:body>
+                                    <div class="subforum-description subforum-column">
+                                        <h1>
+                                            <small
+                                                >Posted by <a href="">User</a> 15 Jan
+                                                2022</small
+                                            >
+                                        </h1>
+                                        <h1>{{ this.threadTitle }}</h1>
+                                        <p>{{ this.threadText }}</p>
+                                    </div>
+                                    <div id="container">
+                                        <div class="form-group">
+                                            <label for="reply-content">Add content</label>
+                                            <textarea
+                                                placeholder="Remember, be nice!"
+                                                cols="78"
+                                                rows="5"
+                                                v-model="newReplyPost.Text"
+                                            ></textarea>
+                                        </div>
+                                        <button class="btn btn-reply" v-on:click="this.reply(newReplyPost)">
+                                            Reply
+                                        </button>
+                                        <div v-for="error in errorMessage" :key="error.id">
+                                            <ul>
+                                                <li style="color: #333">{{ error }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </template>
+            </Modal>
         </div>
     </div>
 </template>
+
+
 
 <script>
 import { AuthState } from '../auth0/useAuth0'
 import Modal from '/src/components/Modal.vue'
 import { mapActions } from 'vuex'
+
 
 export default {
     data() {
@@ -184,28 +197,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-    box-sizing: border-box;
-}
-
-li {
-    list-style: none;
-}
-
-a {
-    color: rgb(153, 149, 163);
-    font-weight: bolder;
-}
-
-p {
-    color: white;
-}
-
-.post-link > a {
-    color: white;
-    padding-right: 10px;
-    font-size: 12px;
-}
 
 h1 {
     font-size: 18px;
@@ -213,62 +204,54 @@ h1 {
     color: white;
 }
 
+.post-text {
+    margin-left: 5px;
+    margin-top: 20px;
+}
+
+
 /*Body*/
 .outer-box {
     background: #484848;
     border-radius: 5px;
-    margin-bottom: 20px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.subforum {
-    margin-top: 20px;
+.main-post {
+    padding: 8px 10px;
+    background-color:#303030;
 }
 
-.subforum-title {
-    background-color: rgb(119, 119, 119);
-    padding: 10px;
-    border-radius: 5px;
-    margin: 4px;
-}
-
-.subforum-row {
-    display: grid;
-    grid-template-columns: 7% 93%;
-}
 
 .subforum-column {
-    border-radius: 5px;
-    margin: 1px;
+    margin-top:1px;
     background-color: rgb(48, 48, 48);
 }
 
-.subforum-description {
-    padding: 2px;
+.post-andReply {
+    padding-top: 1px;
+    padding-right: 5px;
+    color:#fff;
 }
 
-.center {
+.replies{
+   margin: 10px 10px;
+   padding: 6px 10px;
+   border-bottom: 1px rgb(109, 109, 109) solid;
+}
+
+/* .center {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
-.subforum-icon > img {
+/* .subforum-icon > img {
     height: 95%;
     width: 95%;
     border-radius: 3px;
-}
+} */
 
-/*Category*/
-.category {
-    margin-top: 20px;
-}
-
-.category-title {
-    background-color: rgb(119, 119, 119);
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
 
 /*Buttons in thread */
 .post-btn {
@@ -298,14 +281,14 @@ h1 {
     font-size: 20px;
     margin-right: 10px;
 }
-.temp {
-    color: #ffff;
-}
+
 #container {
     margin: 40px auto;
-    max-width: 600px;
+    max-width: 592px;
     /* border: 1px solid red; */
 }
+
+
 .form-group label {
     font-size: 1.1rem;
     display: block;
@@ -320,7 +303,7 @@ h1 {
 }
 
 .btn-reply {
-    background-color: #43a78c;
+    background-color: #325dac;
     display: block;
     width: 100%;
     padding: 10px;
@@ -329,7 +312,7 @@ h1 {
 }
 
 .btn-reply:hover {
-    background: #5ab6a6;
+    background: #416bb8;
 }
 
 textarea {

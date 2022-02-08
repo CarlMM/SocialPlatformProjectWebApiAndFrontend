@@ -277,6 +277,7 @@ export default {
     background-color: #303030;
     border-radius: 5px;
     z-index: 99;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
 }
 
 nav {
@@ -347,6 +348,7 @@ nav {
     border-radius: 5px;
     display: flex;
     justify-content: space-around;
+     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .create-post > img {

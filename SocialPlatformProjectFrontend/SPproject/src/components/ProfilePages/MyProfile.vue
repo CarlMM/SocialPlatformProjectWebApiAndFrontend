@@ -1,22 +1,44 @@
 8 lines (32 sloc) 941 Bytes
 <template>
-    <div>
-        <div v-if="AuthState.isAuthenticated" class="temp">
-            <h1>My profile</h1>
-            <p>Loopa ut användarens data, så som nickname email osv?</p>
-            <form>
-                <img :src="AuthState.user.picture" alt="AvatarPic" />
-                <br />
-                <input type="text" v-model="AuthState.user.nickname" />
-                <br />
-                <input type="text" v-model="AuthState.user.email" />
-            </form>
-            <button @click="consoleLogMyUser()">ConsoleLogUser</button>
+    <div class="outer-box">
+        <div class="grid" v-if="AuthState.isAuthenticated">
+            <div class="profile">
+                <h1>My profile</h1>
+                <p>Loopa ut användarens data, så som nickname email osv?</p>
+                <form>
+                    <img :src="AuthState.user.picture" alt="AvatarPic" />
+                    <div class="input">
+                        <label for="nickname">Nickname</label>
+                        <input type="text" v-model="AuthState.user.nickname" />
+                    </div>
+                    <div class="input">
+                        <label for="email">firstname</label>
+                        <input type="text" v-model="AuthState.user.given_name" />
+                    </div>
+                    <div class="input">
+                        <label for="email">lastname</label>
+                        <input type="text" v-model="AuthState.user.family_name" />
+                    </div>
+                    <div class="input">
+                        <label for="email">Email</label>
+                        <input type="text" v-model="AuthState.user.email" />
+                    </div>
+                    <div class="input">
+                        <label for="email">password</label>
+                        <input type="password" placeholder="Password" />
+                    </div>
+                </form>
+                <button @click="consoleLogMyUser()" class="btn-update">Update Profile</button>
+            </div>
+            <div class="num-post">
+                <h2>i has this many posts</h2>
+                <h2>group posts</h2>
+            </div>
         </div>
-        <div v-else>
-            <!-- <h1>UR NOT AUTHONTICATED</h1> -->
-            <NotAuthantication />
-        </div>
+            <div v-else>
+                <!-- <h1>UR NOT AUTHONTICATED add v-else later</h1> -->
+                <NotAuthantication />
+            </div>
     </div>
 </template>
 
@@ -52,8 +74,43 @@ initAuth()
 
 <style scoped>
 
-.temp{
+.outer-box{
+    background: #484848;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.grid{
     color:#ffff;
+    display: grid;
+    grid-template-columns: 60% 40%; 
+    grid-template-rows: 100%;
+    grid-column-gap: 5px;
+}
+
+.profile{
+    background-color:#303030;
+}
+
+.input {
+    margin: 16px 0;
+    width: 100%;
+    border: none;
+    padding: 8px;
+    height: 50px;
+}
+
+.input > label{
+    font-size: 14px;
+    display: block;
+    padding-bottom: 6px;
+}
+
+.num-post{
+
+}
+
+.btn-update{
+    padding: 6px;
 }
 
 </style>

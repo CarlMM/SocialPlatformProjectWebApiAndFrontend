@@ -137,6 +137,10 @@ i {
 }
 
 /*Header*/
+#header{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .header-top {
     font-size: 12px;
     padding: 6px 0px;
