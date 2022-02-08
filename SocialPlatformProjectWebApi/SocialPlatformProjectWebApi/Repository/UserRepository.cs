@@ -35,10 +35,12 @@ namespace SocialPlatformProjectWebApi.Repository
 
         public async Task<User> AddUser(string Id_sub, string userName, string email)
         {
-            var users = _dbContext.Users.Where(x => x.IdSub == Id_sub);
-            bool has = users.Any(x => x.IdSub == Id_sub);
+            //var users = _dbContext.Users.Where(x => x.IdSub == Id_sub);
+            //bool has = users.Any(x => x.IdSub == Id_sub);
 
-            if (!has){
+            var ifUserExists = _dbContext.Users.SingleAsync(x => x.IdSub == Id_sub);
+
+            if (ifUserExists == null){
 
                 var user = new User
                 {
