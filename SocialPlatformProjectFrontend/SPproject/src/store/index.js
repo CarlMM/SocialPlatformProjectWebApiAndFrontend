@@ -117,7 +117,7 @@ const store = createStore({
         async getAllThreads({ commit }) {
             //console.log(this.state.token)
             let response = await fetch(
-                'https://localhost:44300/api/CategoryThread/GetCategoryThreads',
+                'https://localhost:44300/api/CategoryThread/GetCategoryThreadByThreadType/false',
                 {
                     method: 'get',
                     headers: {
