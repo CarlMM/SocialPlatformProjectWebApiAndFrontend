@@ -45,7 +45,10 @@ namespace SocialPlatformProjectWebApi.Repository
 
         public async Task<CategoryThread> AddCategoryThread(CategoryThread categoryThread)
         {
-            DateTime date = DateTime.Now;
+
+
+            DateTime todaysDate = DateTime.UtcNow.Date;
+
 
             var user = new ThreadUser
             {
@@ -61,7 +64,7 @@ namespace SocialPlatformProjectWebApi.Repository
 
                 Title = categoryThread.Title,
                 Text = categoryThread.Text,
-                CreatedDate = date,
+                CreatedDate = todaysDate,
                 CategoryId = categoryThread.CategoryId,
                 ThreadType = categoryThread.ThreadType,
                 UserIdSub = categoryThread.UserIdSub,
