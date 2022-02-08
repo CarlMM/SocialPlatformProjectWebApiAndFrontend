@@ -96,7 +96,6 @@ namespace SocialPlatformProjectWebApi.Models
                 entity.HasOne(d => d.CategoryThread)
                     .WithMany(p => p.Replies)
                     .HasForeignKey(d => d.CategoryThreadId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Reply_Thread");
             });
 
@@ -115,6 +114,7 @@ namespace SocialPlatformProjectWebApi.Models
                 entity.HasOne(d => d.UserIdSubNavigation)
                     .WithMany(p => p.ThreadUsers)
                     .HasForeignKey(d => d.UserIdSub)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_ThreadUsers_User");
             });
 
