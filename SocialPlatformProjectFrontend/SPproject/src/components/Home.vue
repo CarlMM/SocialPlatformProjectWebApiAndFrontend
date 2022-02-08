@@ -18,6 +18,15 @@ export default {
     components: {
         Thread,
     },
+    data() {
+        return {
+            userToSend: {
+                idSub: '',
+                username: '',
+                email: '',
+            },
+        }
+    },
 
     mounted() {
         if (AuthState.isAuthenticated == true) {
@@ -26,6 +35,15 @@ export default {
             ) {
                 this.$store.state.isAdmin = true
             }
+        }
+    },
+    created() {
+        if (AuthState.isAuthenticated == true) {
+            this.userToSend.idSub = AuthState.user.sub
+            this.userToSend.username = AuthState.user.nickname
+            this.userToSend.email = AuthState.user.email
+            console.log('Inne i created', this.userToSend)
+            this.$store.dispatch('CreateUserToDatabase', this.userToSend)
         }
     },
 

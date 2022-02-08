@@ -12,7 +12,7 @@ const store = createStore({
         Reply: [],
         SpecificPostThread: [],
         groupThreadsAdmin: [],
-        Users:[],
+        Users: [],
     },
     mutations: {
         setNewPost(state, data) {
@@ -78,10 +78,10 @@ const store = createStore({
             state.token = data
             console.log(data)
         },
-        setNewUser(state, data){
-            state.Users = data;
+        setNewUser(state, data) {
+            state.Users = data
             console.log(data)
-        }
+        },
     },
     actions: {
         async createNewPostMethod({ commit }, newPostObject) {
@@ -216,18 +216,18 @@ const store = createStore({
             commit('setUserThreads', data)
         },
 
-        async CreateUserToDatabase({commit}, createUserObject){
-
-            
-            let response = await fetch(`https://localhost:44300/api/User/AddUser?Id_sub=${createUserObject.idSub}&userName=${createUserObject.username}&email=${createUserObject.email}`,{
-                method: 'post',
-                headers: { 'Content-type': 'application/json' },
-                body: JSON.stringify(createUserObject)
-                
-
-            })
+        async CreateUserToDatabase({ commit }, createUserObject) {
+            console.log(createUserObject, 'inne i action')
+            let response = await fetch(
+                `https://localhost:44300/api/User/AddUser?Id_sub=${createUserObject.idSub}&userName=${createUserObject.username}&email=${createUserObject.email}`,
+                {
+                    method: 'post',
+                    headers: { 'Content-type': 'application/json' },
+                    body: JSON.stringify(createUserObject),
+                }
+            )
             let data = await response.json()
-            console.log(data)
+            console.log('from action', data)
             commit('setNewUser', data)
         },
         // async GetUser({ commit }) {
