@@ -47,6 +47,7 @@ namespace SocialPlatformProjectWebApi.Repository
         {
             DateTime date = DateTime.UtcNow.Date;
 
+            //Coment for updatebranch
             //var user = new ThreadUser
             //{
             //    CategoryThreadId = categoryThread.Id,
