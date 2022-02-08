@@ -61,7 +61,7 @@ namespace SocialPlatformProjectWebApi.Repository
 
                 Title = categoryThread.Title,
                 Text = categoryThread.Text,
-                CreatedDate = todaysDate,
+                CreatedDate = date,
                 CategoryId = categoryThread.CategoryId,
                 ThreadType = categoryThread.ThreadType,
                 UserIdSub = categoryThread.UserIdSub,
