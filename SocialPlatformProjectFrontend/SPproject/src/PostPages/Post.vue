@@ -5,21 +5,47 @@
                 <div class="main-post">
                     <div v-for="thread in getPost" :key="thread.id">
                         <h1>{{ thread.title }}</h1>
+                        <span>Posted by <a href="#"> {{thread.id}} </a> 15 jan 2022</span>
                         <p>{{ thread.text }}</p>
                     </div>
-                <button class="post-btn" @click="showModal()">
+                <button class="post-btn" @click="toggleButton()">
                     <i class="far fa-comment icon"></i>
                     <span>Reply to post</span>
                 </button>
+                <button class="post-btn">
+                        <i class="far fa-surprise icon"></i>
+                        <span>Surprise</span>
+                    </button>
+                    <button class="post-btn">
+                        <i class="far fa-share-square icon"></i>
+                        <span>Share</span>
+                    </button>
+                    <button class="post-btn">
+                        <i class="far fa-flag icon"></i>
+                        <span>Report</span>
+                    </button>
                 </div>
                 <div class="post-andReply subforum-column">
                         <div class="replies" v-for="item in getReplies" :key="item.id">
-                        <h1>UserName</h1>
+                        <h1>Replying user</h1>
+                        <span>Replied by <a href="#"> {{item.id}} </a> 15 jan 2022</span>
                                 <p>{{ item.text}}</p>
                             <button class="post-btn">
                                 <i class="far fa-comment icon"></i>
                                 <span>Reply to comment</span>
                             </button>
+                            <button class="post-btn">
+                        <i class="far fa-surprise icon"></i>
+                        <span>Surprise</span>
+                        </button>
+                        <button class="post-btn">
+                            <i class="far fa-share-square icon"></i>
+                            <span>Share</span>
+                        </button>
+                        <button class="post-btn">
+                            <i class="far fa-flag icon"></i>
+                            <span>Report</span>
+                        </button>
                         </div>
                 </div>
             </div>
@@ -131,7 +157,11 @@ export default {
     },
 
     methods: {
-
+        toggleButton(){
+            if(AuthState.isAuthenticated){
+                this.showModal()
+            }
+        },
         showModal() {
             this.isModalVisible = true
             let threadList = this.$store.state.SpecificPostThread
@@ -204,6 +234,7 @@ h1 {
     color: white;
 }
 
+
 .post-text {
     margin-left: 5px;
     margin-top: 20px;
@@ -252,35 +283,6 @@ h1 {
     border-radius: 3px;
 } */
 
-
-/*Buttons in thread */
-.post-btn {
-    height: 35px;
-    padding: 0 15px;
-    background: inherit;
-    color: #ffff;
-    border: none;
-    user-select: none;
-    white-space: nowrap;
-    transition: all 0.05s linear;
-    font-family: inherit;
-}
-
-.post-btn:active {
-    color: white;
-    box-shadow: 0 0.2rem #dfd9d9;
-    transform: translateY(0.2rem);
-}
-
-.post-btn:disabled {
-    cursor: auto;
-    color: grey;
-}
-
-.icon {
-    font-size: 20px;
-    margin-right: 10px;
-}
 
 #container {
     margin: 40px auto;

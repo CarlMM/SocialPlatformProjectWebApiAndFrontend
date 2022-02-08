@@ -46,5 +46,35 @@ html > body{
     background-color: rgb(36, 36, 36);
 }
 
+/*Buttons for threads*/
+.post-btn {
+    height: 35px;
+    padding: 0 15px;
+    background: inherit;
+    color: #ffff;
+    border: none;
+    user-select: none;
+    white-space: nowrap;
+    transition: all 0.05s linear;
+    font-family: inherit;
+}
+
+.post-btn:active {
+    color: #3f99e7;
+    box-shadow: 0 0.2rem #3f99e7;
+    transform: translateY(0.2rem);
+}
+
+.post-btn:disabled {
+    cursor: auto;
+    color: grey;
+}
+
+.icon {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+
 
 </style>

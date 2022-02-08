@@ -101,6 +101,7 @@ initAuth()
     height: 100%;
     width: 80px;
     margin: 20px;
+    border-radius: 20%;
 }
 
 img {

@@ -48,8 +48,8 @@
 }
 
 .footer-distributed{
-	background: #212529;
-	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	background: #33393a;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	box-sizing: border-box;
 	width: 100%;
 	font: bold 16px sans-serif;
