@@ -2,18 +2,18 @@ import { createStore } from 'vuex'
 
 const store = createStore({
     state: {
-        token:"",
+        token: '',
         comingFromThreads: false,
         isAdmin: false,
         GroupThreads: [],
-        UserThread:[],
+        UserThread: [],
         Category: [],
         Thread: [],
         Reply: [],
-        SpecificPostThread:[], 
+        SpecificPostThread: [],
+        groupThreadsAdmin: [],
     },
     mutations: {
-       
         setNewPost(state, data) {
             console.log('inne i setNewPostMutatuon: ', data)
             state.Thread.push(data)
@@ -45,90 +45,117 @@ const store = createStore({
             console.log(data)
         },
 
-        fetchReplyToSpecificPost(state, data){
-            state.Reply = data;
-            console.log('Vi är i mutation nu ',  data)
+        fetchReplyToSpecificPost(state, data) {
+            state.Reply = data
+            console.log('Vi är i mutation nu ', data)
         },
 
-        setNewReplyToPost(state, data){
-            state.Reply.push(data);
+        setGroupThreadsAdmin(state, data) {
+            state.groupThreadsAdmin = data
+        },
+
+        setNewReplyToPost(state, data) {
+            state.Reply.push(data)
             //state.Reply = data;
-
         },
 
-        setUserThreads(state, data){
-            state.UserThread = data;
+        setUserThreads(state, data) {
+            state.UserThread = data
             console.log('userThreads: ', data)
         },
-        setSpecificPostFromThread(state, data){
-            state.SpecificPostThread = data;
+        setSpecificPostFromThread(state, data) {
+            state.SpecificPostThread = data
             console.log('SpecificPostThreadMutation: ', data)
         },
-        deleteSpecificThread(state, data){
-            state.UserThread = data;
+        deleteSpecificThread(state, data) {
+            state.UserThread = data
             state.UserThread.push(data)
-            console.log(data);
+            console.log(data)
         },
 
-        setToken(state, data){
-            state.token = data;
+        setToken(state, data) {
+            state.token = data
             console.log(data)
-        }
+        },
     },
     actions: {
         async createNewPostMethod({ commit }, newPostObject) {
             //console.log('Inne i createNewPostMethod action: ', newPostObject)
 
-             let response = await fetch(`https://localhost:44300/api/CategoryThread/AddCategoryThread/${newPostObject}`,{
-                 method:'post',
-                 headers:{'Content-type': 'application/json'},
-                 body: JSON.stringify(newPostObject)
-             })
+            let response = await fetch(
+                `https://localhost:44300/api/CategoryThread/AddCategoryThread/${newPostObject}`,
+                {
+                    method: 'post',
+                    headers: { 'Content-type': 'application/json' },
+                    body: JSON.stringify(newPostObject),
+                }
+            )
 
-            let data = await response.json();
-             console.log(data)
+            let data = await response.json()
+            console.log(data)
             commit('setNewPost', data)
         },
 
+        async getAllGroupThreadsAdmin({ commit }) {
+            let response = await fetch(
+                'https://localhost:44300/api/CategoryThread/GetCategoryThreadByThreadType/true',
+                {
+                    method: 'get',
+                    // headers: {
+                    //     Authorization: 'Bearer ' + this.state.token,
+                    //     'Content-type': 'application/json',
+                    // },
+                    //body: JSON.stringify(this.state.token)
+                }
+            )
+            let data = await response.json()
 
-        async getAllThreads({ commit })
-        {
+            console.log(data)
+            commit('setGroupThreadsAdmin', data)
+        },
 
+        async getAllThreads({ commit }) {
             //console.log(this.state.token)
-            let response = await fetch('https://localhost:44300/api/CategoryThread/GetCategoryThreads',{
-                method: 'get',
-                headers:{
-                    'Authorization': "Bearer " + this.state.token,
-                    'Content-type': 'application/json',
-                },
-                //body: JSON.stringify(this.state.token)
-            })
-                let data = await response.json()
-                
-                console.log(data)
-                commit('setThreadsFromBack', data)
-        },
-            
+            let response = await fetch(
+                'https://localhost:44300/api/CategoryThread/GetCategoryThreads',
+                {
+                    method: 'get',
+                    headers: {
+                        Authorization: 'Bearer ' + this.state.token,
+                        'Content-type': 'application/json',
+                    },
+                    //body: JSON.stringify(this.state.token)
+                }
+            )
+            let data = await response.json()
 
-        async GetThreadFromSpecificId({commit}, id)
-        {
-                let response = await fetch(`https://localhost:44300/api/CategoryThread/GetCategoryThreadById/${id}`)
-                    let data = await response.json()
-                    
-                    console.log('GetThreadFromSpecificId Action: ', data)
-                    commit('setSpecificPostFromThread', data)
+            console.log(data)
+            commit('setThreadsFromBack', data)
         },
 
-        async delelteSpecificThread({commit}, id){
-                    let response = await fetch(`https://localhost:44300/api/CategoryThread/DeleteCategoryThread/${id}`,{
-                        method:'delete',
-                        headers:{'Content-type': 'application/json'},
-                        body: JSON.stringify(this.state.UserThread)
-                    })
-                    let data = await response.json()
-                    console.log(data, 'I action')
-        
-                    commit('deleteSpecificThread', data)
+        async GetThreadFromSpecificId({ commit }, id) {
+            let response = await fetch(
+                `https://localhost:44300/api/CategoryThread/GetCategoryThreadById/${id}`
+            )
+            let data = await response.json()
+
+            console.log('GetThreadFromSpecificId Action: ', data)
+            commit('setSpecificPostFromThread', data)
+        },
+
+        async delelteSpecificThread({ commit }, id) {
+            let response = await fetch(
+                `https://localhost:44300/api/CategoryThread/DeleteCategoryThread/${id}`,
+                {
+                    method: 'delete',
+                    headers: { 'Content-type': 'application/json' },
+                    body: JSON.stringify(this.state.UserThread),
+                }
+            )
+            let data = await response.json()
+            console.log(data, 'I action')
+
+            commit('deleteSpecificThread', data)
         },
 
         async getAllCategories({ commit }) {
@@ -140,22 +167,27 @@ const store = createStore({
             commit('setCategoriesFromBackend', data)
         },
 
-        async GetRepliesForSpecificPost({ commit }, id){
-            let response = await fetch(`https://localhost:44300/api/Reply/GetReplyByCategoryThreadId/${id}`)
+        async GetRepliesForSpecificPost({ commit }, id) {
+            let response = await fetch(
+                `https://localhost:44300/api/Reply/GetReplyByCategoryThreadId/${id}`
+            )
 
-            let data = await response.json();
+            let data = await response.json()
             console.log('GetRepliesForSpecificPost Action: ', data)
-            commit('fetchReplyToSpecificPost', data);
+            commit('fetchReplyToSpecificPost', data)
         },
 
-        async PostReplyToSpecificPost({commit}, replyObject){
-            let response = await fetch(`https://localhost:44300/api/Reply/AddReply/${replyObject}`, {
-                method:'post',
-                headers:{'Content-type': 'application/json'},
-                body: JSON.stringify(replyObject)
-            })
+        async PostReplyToSpecificPost({ commit }, replyObject) {
+            let response = await fetch(
+                `https://localhost:44300/api/Reply/AddReply/${replyObject}`,
+                {
+                    method: 'post',
+                    headers: { 'Content-type': 'application/json' },
+                    body: JSON.stringify(replyObject),
+                }
+            )
 
-            let data = await response.json();
+            let data = await response.json()
             console.log(data)
             commit('setNewReplyToPost', data)
         },
@@ -169,10 +201,12 @@ const store = createStore({
             commit('setRepliesFromBacked', data)
         },
 
-        async GetThreadsFromUser({commit}, userId){
-            let response = await fetch(`https://localhost:44300/api/CategoryThread/GetCategoryThreadByUserId/${userId}`)
-            
-            let data = await response.json();
+        async GetThreadsFromUser({ commit }, userId) {
+            let response = await fetch(
+                `https://localhost:44300/api/CategoryThread/GetCategoryThreadByUserId/${userId}`
+            )
+
+            let data = await response.json()
             console.log(data)
             commit('setUserThreads', data)
         },
@@ -185,7 +219,9 @@ const store = createStore({
         // },
 
         async getAllUsers({ commit }) {
-            let response = await fetch('https://localhost:44300/api/User/GetUsers')
+            let response = await fetch(
+                'https://localhost:44300/api/User/GetUsers'
+            )
             let data = await response.json()
             console.log(data)
             commit('setUsersFromBack', data)
@@ -207,9 +243,11 @@ const store = createStore({
         // }
     },
 
-    getters:{
-        fetchToken: state => {return state.token},
-    }
+    getters: {
+        fetchToken: state => {
+            return state.token
+        },
+    },
 })
 
 export default store
