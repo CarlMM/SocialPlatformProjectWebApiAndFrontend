@@ -6,6 +6,7 @@ using System.Collections.Generic;
 namespace SocialPlatformProjectWebApi.Controllers
 {
     [ApiController]
+
     [Route("api/[controller]")]
     public class CategoryController : ControllerBase
     {

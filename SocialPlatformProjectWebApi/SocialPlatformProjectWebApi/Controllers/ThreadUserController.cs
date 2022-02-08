@@ -31,9 +31,16 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         [HttpPost]
         [Route("AddThreadUser")]
-        public async Task<ThreadUser> AddThreadUser(int threadId, string userId)
+        public async Task<ThreadUser> AddThreadUser(int categoryThreadId, string userId)
         {
-            var template = await _threadUserService.AddThreadUser(threadId, userId);
+            var template = await _threadUserService.AddThreadUser(categoryThreadId, userId);
+            return template;
+        }
+        [HttpDelete]
+        [Route("DeleteThreadUser")]
+        public async Task<IList<ThreadUser>> DeleteThreadUser(string userIdSub)
+        {
+            var template = await _threadUserService.DeleteThreadUser(userIdSub);
             return template;
         }
     }

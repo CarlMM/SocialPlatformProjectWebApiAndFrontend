@@ -47,14 +47,13 @@ namespace SocialPlatformProjectWebApi.Repository
         {
             DateTime date = DateTime.UtcNow.Date;
 
-
-            //Bråk här inte snällt
-
+            //Coment for updatebranch
             //var user = new ThreadUser
             //{
             //    CategoryThreadId = categoryThread.Id,
             //    UserIdSub = categoryThread.UserIdSub,
             //};
+
 
             //_dbContext.ThreadUsers.Add(user);
             //await _dbContext.AddAsync(user);
