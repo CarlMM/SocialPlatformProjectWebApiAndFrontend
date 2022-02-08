@@ -38,7 +38,7 @@ namespace SocialPlatformProjectWebApi.Repository
             var users = _dbContext.Users.Where(x => x.IdSub == Id_sub);
             bool has = users.Any(x => x.IdSub == Id_sub);
 
-            if (has){
+            if (!has){
 
                 var user = new User
                 {
