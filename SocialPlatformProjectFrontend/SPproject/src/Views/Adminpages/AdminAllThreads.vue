@@ -42,6 +42,8 @@ export default {
                 AuthState.user['http://localhost:3000/roles'][0] == 'AdminUser'
             ) {
                 this.$store.state.isAdmin = true
+            } else {
+                this.$router.push('/notauthorized')
             }
         }
     },
