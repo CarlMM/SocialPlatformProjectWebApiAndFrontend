@@ -19,9 +19,9 @@ namespace SocialPlatformProjectWebApi.Repository
             _dbContext = new socialplatformContext();
         }
 
-        public IEnumerable<User> GetUsers()
+        public async Task<IList<User>> GetUsers()
         {
-            var result = _dbContext.Users;
+            var result = await _dbContext.Users.ToListAsync();
             return result;
         }
 
@@ -31,6 +31,20 @@ namespace SocialPlatformProjectWebApi.Repository
             _dbContext.Users.Remove(userDelete);
             await _dbContext.SaveChangesAsync();
             return userDelete;
+        }
+
+        public async Task<User> AddUser(string Id_sub, string userName, string email)
+        {
+            var user = new User
+            {
+                IdSub = Id_sub,
+                Username = userName,
+                Email = email,
+            };
+
+            await _dbContext.Users.AddAsync(user);
+            await _dbContext.SaveChangesAsync();
+            return user;
         }
     }
 }

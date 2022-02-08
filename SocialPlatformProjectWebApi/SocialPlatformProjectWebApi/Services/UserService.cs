@@ -14,15 +14,21 @@ namespace SocialPlatformProjectWebApi.Services
             _userRepository = userRepository;
         }
 
-        public IEnumerable<User> GetUsers()
+        public async Task<IList<User>> GetUsers()
         {
-            var template = _userRepository.GetUsers();
+            var template = await _userRepository.GetUsers();
             return template;
         }
 
         public async Task<User> DeleteUser(string idSub)
         {
             var template = await _userRepository.DeleteUserByIdSub(idSub);
+            return template;
+        }
+
+        public async Task<User> AddUser(string Id_sub, string userName, string email)
+        {
+            var template = await _userRepository.AddUser(Id_sub, userName, email);
             return template;
         }
 
