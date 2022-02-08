@@ -67,6 +67,15 @@ namespace SocialPlatformProjectWebApi.Controllers
             return types;
         }
 
+        [HttpGet]
+        [Route("GetGroupCategoryThreadByUserId)")]
+        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(int id, string IdSub)
+        {
+            var getGroupCategoryThreadByUserId = await _categorythreadService.GetGroupCategoryThreadByUserId(id, IdSub);
+            return getGroupCategoryThreadByUserId;
+        }
+
+
         [HttpPost]
         [Route("AddCategoryThread/{CategoryThread}")]
         public async Task<CategoryThread> AddCategoryThread([FromBody] CategoryThread categoryThread)
