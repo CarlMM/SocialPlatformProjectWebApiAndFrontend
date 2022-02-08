@@ -14,7 +14,6 @@
             <button @click="consoleLogMyUser()">ConsoleLogUser</button>
         </div>
         <div v-else>
-            <!-- <h1>UR NOT AUTHONTICATED</h1> -->
             <NotAuthantication />
         </div>
     </div>
@@ -27,20 +26,20 @@ export default {
     components: {
         NotAuthantication,
     },
-    methods:{
-        consoleLogMyUser(){
+    methods: {
+        consoleLogMyUser() {
             //var accessTokenObj = localStorage.getItem('access_token');
-            
+
             //console.log('accesstoken: ', localStorage.getItem('access_token'));
 
             //__raw = token?
             // console.log(AuthState.claims.__raw)
             // this.$store.commit('setToken', AuthState.claims.__raw)
-             console.log(AuthState.user)
+            console.log(AuthState.user)
             // console.log('statetoken: ', this.$store.state.token)
             //commit('setToken')
-        }
-    }
+        },
+    },
 }
 </script>
 
@@ -51,9 +50,7 @@ initAuth()
 </script>
 
 <style scoped>
-
-.temp{
-    color:#ffff;
+.temp {
+    color: #ffff;
 }
-
 </style>

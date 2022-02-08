@@ -1,36 +1,44 @@
 <template>
     <div>
         <div>
-            <Thread :list="GetThreads"/>
+            <Thread :list="GetThreads" />
         </div>
     </div>
 </template>
 
-
 <script>
 import Thread from '/src/components/Thread.vue'
+import { useAuth0, AuthState } from '../../auth0/useAuth0.js'
 
-export default{
- 
-  components: {
-    Thread,
-  },
+export default {
+    components: {
+        Thread,
+    },
 
-  data(){
-    return{
-      idFromUrl: this.$route.params
-    }
-  },
+    data() {
+        return {
+            idFromUrl: this.$route.params,
+        }
+    },
 
-  created(){
+    created() {
+        this.GetThreads
+        if (AuthState.isAuthenticated == true) {
+            if (
+                AuthState.user['http://localhost:3000/roles'][0] == 'AdminUser'
+            ) {
+                this.$store.state.isAdmin = true
+            }
+        }
+    },
+
+    // created(){
     // console.log(this.idFromUrl)
     // this.$store.dispatch('getThreadsByCategoryId')
-  },
+    // },
 
-  computed:{
-    GetThreads() {
-      // // console.log(this.$route.params)
-      // // console.log(this.idFromUrl)
+    computed: {
+        GetThreads() {
             let list = this.$store.state.Thread
 
             let filterlist = list.filter(item => {
@@ -39,7 +47,6 @@ export default{
             console.log(filterlist)
             return filterlist
         },
-  }
+    },
 }
-
 </script>
