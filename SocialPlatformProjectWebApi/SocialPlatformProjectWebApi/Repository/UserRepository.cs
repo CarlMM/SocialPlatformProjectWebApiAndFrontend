@@ -54,7 +54,7 @@ namespace SocialPlatformProjectWebApi.Repository
             }
             else
             {
-                throw new Exception("användaren finns redan");
+                throw new Exception("användaren (Id_sub) finns redan");
             }
 
 
