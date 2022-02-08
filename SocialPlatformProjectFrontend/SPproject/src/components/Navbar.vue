@@ -36,7 +36,12 @@
                                                     "
                                                     alt="AvatarPic"
                                                 />
-                                                <select class="dropdown-nav" @change="changeRoute($event)">
+                                                <select
+                                                    class="dropdown-nav"
+                                                    @change="
+                                                        changeRoute($event)
+                                                    "
+                                                >
                                                     <option selected value="">
                                                         Home
                                                     </option>
@@ -49,11 +54,12 @@
                                                     <option value="MyThreads">
                                                         My threads
                                                     </option>
-                                                    <option v-if="this.$store.state.isAdmin" value="">
-                                                        Admin page
-                                                    </option>
                                                 </select>
-                                                <a href="#" @click.prevent="logout()">Logout</a>
+                                                <a
+                                                    href="#"
+                                                    @click.prevent="logout()"
+                                                    >Logout</a
+                                                >
                                             </p>
                                         </div>
                                     </div>

@@ -15,6 +15,19 @@
                         </router-link>
                     </ul>
                 </div>
+                <div v-show="this.$store.state.isAdmin" class="nav-links">
+                    <ul class="nav-menu">
+                        <router-link to="/adminallthreads" class="link"
+                            >Threads</router-link
+                        >
+                        <router-link to="/admingroupthreads" class="link"
+                            >Group Threads</router-link
+                        >
+                        <router-link to="/adminallusers" class="link"
+                            >Users</router-link
+                        >
+                    </ul>
+                </div>
             </nav>
             <div class="d-flex justify-content-end mt-1">
                 <Modal v-show="isModalVisible" @close="closeModal">
@@ -166,8 +179,19 @@ export default {
 
     created() {
         this.fetchAllCategories()
+        this.checkIfAdmin()
     },
     methods: {
+        checkIfAdmin() {
+            if (AuthState.isAuthenticated == true) {
+                if (
+                    AuthState.user['http://localhost:3000/roles'][0] ==
+                    'AdminUser'
+                ) {
+                    this.$store.state.isAdmin = true
+                }
+            }
+        },
         showModal() {
             this.isModalVisible = true
         },
@@ -181,10 +205,10 @@ export default {
 
         setPostTypeId(value) {
             if (value == 0) {
-                this.newPostObject.ThreadType = false;
+                this.newPostObject.ThreadType = false
                 console.log(this.newPostObject.ThreadType, 'INNE I IF SATSEN 1')
             } else {
-                this.newPostObject.ThreadType = true;
+                this.newPostObject.ThreadType = true
                 console.log(this.newPostObject.ThreadType, 'INNE I IF SATSEN 2')
             }
         },
@@ -243,7 +267,10 @@ export default {
                 this.closeModal()
                 console.log('Our UserId_Sub', this.newPostObject.UserId_Sub)
                 console.log(this.newPostObject, 'THIS IS THE OBJECT WE SENDING')
-                return this.$store.dispatch('createNewPostMethod', newPostObject)
+                return this.$store.dispatch(
+                    'createNewPostMethod',
+                    newPostObject
+                )
             }
         },
     },

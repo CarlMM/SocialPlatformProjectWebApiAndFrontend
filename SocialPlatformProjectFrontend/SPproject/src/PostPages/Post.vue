@@ -33,10 +33,10 @@
                                     placeholder="Remember, be nice!"
                                     cols="78"
                                     rows="5"
-                                    v-model="replyMessage"
+                                    v-model="newReplyPost.Text"
                                 ></textarea>
                             </div>
-                            <button class="btn btn-reply" @click="reply()">
+                            <button class="btn btn-reply" v-on:click="this.reply(newReplyPost)">
                                 Reply
                             </button>
                             <div v-for="error in errorMessage" :key="error.id">
@@ -48,17 +48,19 @@
                     </template>
                 </Modal>
             </div>
-            <div v-for="item in this.$store.state.Reply" :key="item.Id">
-                {{ item.Id }}
-                {{ item.categoryThreadId }}
-                {{ item.text }}
+            <div v-for="item in getReplies" :key="item.id">
+                {{ item.id }}
+                <!-- {{ item.categoryThreadId }} -->
+                <p>{{ item.text }}</p>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import { AuthState } from '../auth0/useAuth0'
 import Modal from '/src/components/Modal.vue'
+import { mapActions } from 'vuex'
 
 export default {
     data() {
@@ -72,6 +74,11 @@ export default {
             threadText: '',
             errorMessage: [],
             missingTextMessage: '',
+            newReplyPost:{
+                Text:'',
+                UserIdSub: '',
+                CategoryThreadId: null,
+            }
         }
     },
     components: {
@@ -84,8 +91,9 @@ export default {
     },
     created() {
         console.log('id from url', this.tId)
+        
         this.$store.dispatch('GetThreadFromSpecificId', this.tId)
-        this.$store.dispatch('GetRepliesForSpecificPost', this.tId)
+        this.$store.dispatch('GetRepliesForSpecificPost', this.tId).then(() => console.log('for science'));
     },
 
     computed: {
@@ -95,6 +103,9 @@ export default {
                 this.$store.state.SpecificPostThread
             )
             return this.$store.state.SpecificPostThread
+        },
+        getReplies(){
+            return this.$store.state.Reply
         },
 
     },
@@ -107,6 +118,7 @@ export default {
     },
 
     methods: {
+
         showModal() {
             this.isModalVisible = true
             let threadList = this.$store.state.SpecificPostThread
@@ -144,22 +156,29 @@ export default {
             )
             return catchBadWords
         },
-
-        reply() {
-            this.errorMessage = []
-            let catchBadWords = this.filterWords(this.replyMessage)
-            console.log(this.replyMessage, 'REPLY MESSAGE')
-            if (this.replyMessage == '') {
-                this.errorMessage.push('Please enter some text!')
-            }
-            if (catchBadWords.length > 0) {
-                this.errorMessage.push('Remember to be nice!')
-            } else if (this.replyMessage != '' && catchBadWords.length == 0) {
-                this.replyMessage = ''
-                this.errors = []
-                this.closeModal()
-            }
-        },
+        
+        ...mapActions(['PostReplyToSpecificPost']),
+         reply(newReplyPost) {
+               this.errorMessage = []
+               let catchBadWords = this.filterWords(this.newReplyPost.Text)
+               console.log(this.newReplyPost, 'REPLY MESSAGE')
+               if (this.newReplyPost.Text == '') {
+                   this.errorMessage.push('Please enter some text!')
+               }
+               if (catchBadWords.length > 0) {
+                   this.errorMessage.push('Remember to be nice!')
+               } else if (this.newReplyPost.Text != '' && catchBadWords.length == 0) {
+                   this.errors = []
+                    this.newReplyPost.UserIdSub = AuthState.user.sub;
+                    this.newReplyPost.CategoryThreadId = this.tId;
+                    console.log('ReplyMethod: ', newReplyPost)
+                    console.log('Log in ReplyMethod, this is reply store: ', this.$store.state.Reply)
+                    this.PostReplyToSpecificPost(newReplyPost)
+                   this.closeModal()
+                   this.newReplyPost.Text = ''
+               }
+            //return this.$store.dispatch('PostReplyToSpecificPost', newReplyPost)
+         },
     },
 }
 </script>

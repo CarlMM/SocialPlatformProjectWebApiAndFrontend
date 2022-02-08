@@ -42,11 +42,11 @@ export const useAuth0 = state => {
 
     const login = async () => {
         await state.auth0.loginWithPopup()
+        location.reload()
         await handleStateChange()
         //console.log(respone.data)
+        console.log('ge mig user: ', state.user)
         console.log(state.user.app_metadata)
-        console.log(state.user)
-        location.reload()
     }
 
     const logout = async () => {

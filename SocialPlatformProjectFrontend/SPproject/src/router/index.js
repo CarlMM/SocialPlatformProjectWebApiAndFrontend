@@ -8,12 +8,30 @@ import Studies from '/src/components/CategoryFolderPages/Studies.vue'
 import MyProfile from '/src/components/ProfilePages/MyProfile.vue'
 import MyGroups from '/src/components/ProfilePages/Mygroups.vue'
 import MyThreads from '/src/components/ProfilePages/MyThreads.vue'
+import AdminAllThreads from '../Views/Adminpages/AdminAllThreads.vue'
+import AdminAllUsers from '../Views/Adminpages/AdminAllUsers.vue'
+import AdminGroupThreads from '../Views/Adminpages/AdminGroupThreads.vue'
 
 const routes = [
     {
         path: '/',
         name: 'Home',
         component: Home,
+    },
+    {
+        path: '/adminallthreads',
+        name: 'AdminAllThreads',
+        component: AdminAllThreads,
+    },
+    {
+        path: '/adminallusers',
+        name: 'AdminAllUsers',
+        component: AdminAllUsers,
+    },
+    {
+        path: '/admingroupthreads',
+        name: 'AdminGroupThreads',
+        component: AdminGroupThreads,
     },
     {
         path: '/Post/:Id',
@@ -29,19 +47,19 @@ const routes = [
         path: '/Computer/:id',
         name: 'Computers',
         component: Computers,
-        props: {data: null}
+        props: { data: null },
     },
     {
         path: '/Fishing/:id',
         name: 'Fishing',
         component: Fishing,
-        props: {data: null}
+        props: { data: null },
     },
     {
         path: '/Studies/:id',
         name: 'Studies',
         component: Studies,
-        props: {data: null}
+        props: { data: null },
     },
     {
         //Behövs inte /:id för denna
