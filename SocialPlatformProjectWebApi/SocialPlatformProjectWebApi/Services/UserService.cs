@@ -26,15 +26,18 @@ namespace SocialPlatformProjectWebApi.Services
             return template;
         }
 
-        public async Task<User> AddUser(string Id_sub, string userName, string email)
+        public async Task<bool> AddUser(string Id_sub, string userName, string email)
         {
-            var template = await _userRepository.AddUser(Id_sub, userName, email);
-            return template;
+            var newUser = new User
+            {
+                IdSub = Id_sub,
+                Username = userName,
+                Email = email,
+            };
+
+            return await _userRepository.AddUser(newUser);
         }
-
     }
-    
-
 }
 
 

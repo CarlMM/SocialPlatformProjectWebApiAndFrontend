@@ -33,31 +33,20 @@ namespace SocialPlatformProjectWebApi.Repository
             return userDelete;
         }
 
-        public async Task<User> AddUser(string Id_sub, string userName, string email)
+        public async Task<bool> AddUser(User user)
         {
-            // eventuellt be service sköta logiken
-            var users = _dbContext.Users.Where(x => x.IdSub == Id_sub);
-            bool has = users.Any(x => x.IdSub == Id_sub);
+            var users = _dbContext.Users.Where(x => x.IdSub == user.IdSub);
+            bool has = users.Any(x => x.IdSub == user.IdSub);
 
             //var ifUserExists = _dbContext.Users.FirstAsync(x => x.IdSub == Id_sub);
 
             if (!has){
-
-                var user = new User
-                {
-                    IdSub = Id_sub,
-                    Username = userName,
-                    Email = email,
-                };
-
                 await _dbContext.Users.AddAsync(user);
-                await _dbContext.SaveChangesAsync();
-                return user;
-
+                return (await _dbContext.SaveChangesAsync() > 0);
             }
             else
             {
-                throw new Exception($"användaren {userName} | {Id_sub} finns redan");
+                throw new Exception($"användaren {user.Username} | {user.IdSub} finns redan");
             }
 
 

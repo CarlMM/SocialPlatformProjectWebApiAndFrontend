@@ -11,6 +11,6 @@ namespace SocialPlatformProjectWebApi.Repository
 
         Task<User> DeleteUserByIdSub(string idSub);
 
-        Task<User> AddUser(string Id_sub, string userName, string email);
+        Task<bool> AddUser(User user);
     }
 }

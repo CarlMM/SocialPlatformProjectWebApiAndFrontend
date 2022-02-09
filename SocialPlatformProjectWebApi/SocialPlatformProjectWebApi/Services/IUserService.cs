@@ -10,7 +10,7 @@ namespace SocialPlatformProjectWebApi.Services
 
         Task<User> DeleteUser(string idSub);
 
-        Task<User> AddUser(string Id_sub, string userName, string email);
+        Task<bool> AddUser(string Id_sub, string userName, string email);
     }
 }
 

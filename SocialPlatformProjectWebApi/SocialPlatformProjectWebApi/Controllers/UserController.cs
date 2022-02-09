@@ -32,18 +32,18 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         [HttpDelete]
         [Route("DeleteUserByIdSub/{idSub}")]
-        public async Task<User> DeleteUser(string idSub)
+        public async Task<IActionResult> DeleteUser(string idSub)
         {
-            var template = await _userService.DeleteUser(idSub);
-            return template;
+            await _userService.DeleteUser(idSub);
+            return Ok();
         }
 
         [HttpPost]
         [Route("AddUser")]
-        public async Task<User> AddUser(string Id_sub, string userName, string email)
+        public async Task<IActionResult> AddUser(string Id_sub, string userName, string email)
         {
-            var template = await _userService.AddUser(Id_sub, userName, email);
-            return template;    
+            await _userService.AddUser(Id_sub, userName, email);
+            return Ok();    
         }
     }
 }
