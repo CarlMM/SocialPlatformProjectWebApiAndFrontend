@@ -4,10 +4,10 @@
             <div class="user">
                 <h2>{{AuthState.user.nickname}}: Threads</h2>
             </div>
-                <div class="post-main">
+                <div class="post-main" v-for="userThreads in this.$store.state.UserThread" :key="userThreads.id">
                         <div class="post-text">
                             <div class="main-post">
-                                <div class="text" v-for="userThreads in this.$store.state.UserThread" :key="userThreads.id">
+                                <div class="text" >
                                 <button type="button" class="btn-close" @click="RemoveThread(Thread.id)">x</button>
                                     <router-link type="button" :to="`/Post/${userThreads.id}`">
                                         <h1>{{userThreads.title}}</h1>
