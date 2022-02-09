@@ -52,6 +52,7 @@ namespace SocialPlatformProjectWebApi.Repository
 
         public async Task<IList<CategoryThread>> GetCategoryThreadById(int Id)
         {
+            //Push for branch comment
             //PUSH FOR BRANCH COMMENT DO NOT MIND THIS
             var types = await _dbContext.CategoryThreads.Where(x => x.Id == Id).ToListAsync();
             return types;
