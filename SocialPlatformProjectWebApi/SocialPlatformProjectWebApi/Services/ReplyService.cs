@@ -44,10 +44,10 @@ namespace SocialPlatformProjectWebApi.Services
             return template;
         }
 
-        public async Task<Reply> DeleteReply(int id)
+        public async Task<bool> DeleteReply(int id)
         {
-            var template = await _replyRepository.DeleteReply(id);
-            return template;
+            var result = await _replyRepository.DeleteReply(id);
+            return result;
         }
 
         public async Task<Reply> EditReplyText(int id, string text)

@@ -14,9 +14,10 @@ namespace SocialPlatformProjectWebApi.Repository
 
         Task<Reply> AddReply(Reply reply);
 
-        Task<Reply> DeleteReply(int id);
+        Task<bool> DeleteReply(int id);
 
         Task<IList<Reply>> GetReplyByCategoryThreadId(int categoryThreadId);
+
         Task<Reply> EditReplyText(int id, string text);
 
     }

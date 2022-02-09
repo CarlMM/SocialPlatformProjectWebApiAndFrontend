@@ -32,7 +32,6 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         [HttpDelete]
         [Route("DeleteUserByIdSub/{idSub}")]
-
         public async Task<User> DeleteUser(string idSub)
         {
             var template = await _userService.DeleteUser(idSub);
@@ -41,7 +40,6 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         [HttpPost]
         [Route("AddUser")]
-
         public async Task<User> AddUser(string Id_sub, string userName, string email)
         {
             var template = await _userService.AddUser(Id_sub, userName, email);

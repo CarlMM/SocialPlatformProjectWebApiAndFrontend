@@ -65,14 +65,17 @@ namespace SocialPlatformProjectWebApi.Repository
             return template;
         }
 
-        public async Task<Reply> DeleteReply(int id)
+        public async Task<bool> DeleteReply(int id)
         {
             var deleteReply = await _dbContext.Replies.SingleAsync(x => x.Id == id);
+
+            if(deleteReply == null)
+            {
+                return false;
+            }
+
             _dbContext.Replies.Remove(deleteReply);
-
-            await _dbContext.SaveChangesAsync();
-
-            return deleteReply;
+            return (await _dbContext.SaveChangesAsync() > 0);
         }
 
         public async Task<Reply> EditReplyText(int id, string text)
