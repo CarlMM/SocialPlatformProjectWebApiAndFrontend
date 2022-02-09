@@ -50,42 +50,28 @@ namespace SocialPlatformProjectWebApi.Repository
             return getGroupCategoryThreadByUserId;
         }
 
-
-        public async Task<CategoryThread> AddCategoryThread(CategoryThread categoryThread)
-        {
-            DateTime date = DateTime.UtcNow.Date;
-
-            //var user = new ThreadUser
-            //{
-            //    CategoryThreadId = categoryThread.Id,
-            //    UserIdSub = categoryThread.UserIdSub,
-            //};
-
-            //_dbContext.ThreadUsers.Add(user);
-            //await _dbContext.AddAsync(user);
-
-            var template = new CategoryThread
-            {
-
-                Title = categoryThread.Title,
-                Text = categoryThread.Text,
-                CreatedDate = date,
-                CategoryId = categoryThread.CategoryId,
-                ThreadType = categoryThread.ThreadType,
-                UserIdSub = categoryThread.UserIdSub,
-            };
-
-            await _dbContext.AddAsync(template);
-            await _dbContext.SaveChangesAsync();
-
-            return template;
-        }
-
         public async Task<IList<CategoryThread>> GetCategoryThreadById(int Id)
         {
             //PUSH FOR BRANCH COMMENT DO NOT MIND THIS
             var types = await _dbContext.CategoryThreads.Where(x => x.Id == Id).ToListAsync();
             return types;
+        }
+
+        public async Task<CategoryThread> AddCategoryThread(CategoryThread newTemplate)
+        {       
+            var user = new ThreadUser
+            {
+                CategoryThreadId = newTemplate.Id,
+                UserIdSub = newTemplate.UserIdSub,
+            };
+
+            _dbContext.ThreadUsers.Add(user);
+            await _dbContext.AddAsync(user);
+
+            await _dbContext.AddAsync(newTemplate);
+            await _dbContext.SaveChangesAsync();
+
+            return newTemplate;
         }
 
         public async Task<bool> DeleteCategoryThread(int id)

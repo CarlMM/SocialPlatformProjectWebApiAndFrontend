@@ -2,6 +2,7 @@
 using SocialPlatformProjectWebApi.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 namespace SocialPlatformProjectWebApi.Services
 {
@@ -46,8 +47,21 @@ namespace SocialPlatformProjectWebApi.Services
 
         public async Task<CategoryThread> AddCategoryThread(CategoryThread categoryThread)
         {
-            var template = await _categorythreadRepository.AddCategoryThread(categoryThread);
-            return template;
+            DateTime date = DateTime.UtcNow.Date;
+
+            var newTemplate = new CategoryThread
+            {
+
+                Title = categoryThread.Title,
+                Text = categoryThread.Text,
+                CreatedDate = date,
+                CategoryId = categoryThread.CategoryId,
+                ThreadType = categoryThread.ThreadType,
+                UserIdSub = categoryThread.UserIdSub,
+            };
+
+            await _categorythreadRepository.AddCategoryThread(newTemplate);
+            return newTemplate;
         }
 
         public async Task<IList<CategoryThread>> GetCategoryThreadById(int Id)
