@@ -14,6 +14,7 @@ const store = createStore({
         groupThreadsAdmin: [],
         Users: [],
         listOfUsersAdmin: [],
+        // Auth0ListUsers: [],
     },
     mutations: {
         setNewPost(state, data) {
@@ -63,30 +64,37 @@ const store = createStore({
 
         setUserThreads(state, data) {
             state.UserThread = data
-            // console.log('userThreads: ', data)
         },
         setSpecificPostFromThread(state, data) {
             state.SpecificPostThread = data
-            console.log('SpecificPostThreadMutation: ', data)
         },
 
         updateSpecificThreadAfterDelete(state, data) {
             state.UserThread = data
         },
         deleteSpecificThread(state, data) {
-            // state.UserThread = data  Vi gör fel här vi skickar in en thread då blir den nya listan 1 thread
             state.UserThread.sort(data)
-            // console.log(data, 'Inne i mutation deletespecificThread')
         },
 
         setAllUsersAdmin(state, data) {
             state.listOfUsersAdmin = data
         },
 
+        updateUserListAfterDelete(state, data) {
+            state.listOfUsersAdmin = data
+        },
+
+        AsAdminDeleteUser(state, data) {
+            state.listOfUsersAdmin.sort(data)
+        },
+
         setToken(state, data) {
             state.token = data
             console.log(data)
         },
+        // Auth0SetAllUsers(state, data) {
+        //     state.Auth0ListUsers = data
+        // },
         setNewUser(state, data) {
             state.Users = data
             console.log(data)
@@ -110,6 +118,23 @@ const store = createStore({
             commit('setNewPost', data)
         },
 
+        // async Auth0GetAllUsers({ commit }) {
+        //     let response = await fetch(
+        //         'https://dev-dzje4s8y.us.auth0.com/api/v2/users',
+        //         {
+        //             method: 'get',
+        //             headers: {
+        //                 Authorization: `Bearer ${'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InNUX3otUzR1SVdlcFA5Q0NtNjNMMSJ9.eyJodHRwOi8vbG9jYWxob3N0OjMwMDAvcm9sZXMiOlsiQWRtaW5Vc2VyIl0sImlzcyI6Imh0dHBzOi8vZGV2LWR6amU0czh5LnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2MWY3YzYxMDQ1MzdmMjAwNmU3YjJjMTciLCJhdWQiOlsiaHR0cHM6Ly9hdXRoMHN1Y2tzL2FwaSIsImh0dHBzOi8vZGV2LWR6amU0czh5LnVzLmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE2NDQzOTcxOTAsImV4cCI6MTY0NDQ4MzU5MCwiYXpwIjoiTUVHMWF6b3FtNnZNVTgxbFlLdTU0Y0JvOG16QktTUTAiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOnVzZXIiLCJyZWFkOnNwZWNpZmljQ2F0ZWdvcnlUaHJlYWRzIl19.WYcY5zdmOif2ragKFqNxUkArTmBRdwERBMfkBUks0LJu2IhHn98LDXsTd2EorByCEohyrLOmGP9GcPxNqM2sO_C-UB7rnBerAWtgrcHpgWamjtbkCe0YGv9tWLuo3PweWYZ4v_fFq665vH82-4GvaaTCWljZqt2JQB7sedR6PdF14Bl-e6j9_1Zkc7sDzTxzAcQOOz0gudWnaIKw8BuNnkLiP9-WTbKGpCuOfJRyk2sJLAZBCTizvqWmhFRt-OfOcZeVQSyKf2fWWb5-qlQ8lZSYAuQT6v6WDg02xF7d5K-7v2a-9cPhsfw9BTNlkVd1BDcbpI2YwoUNkubVqZjA-A'}`,
+        //                 'Content-type': 'application/json',
+        //             },
+        //         }
+        //     )
+        //     let data = await response.json()
+        //     console.log('i Action Auth0 get all users', data)
+        //     console.log(this.state.token, 'this state token')
+        //     commit('Auth0SetAllUsers', data)
+        // },
+
         async getAllUsersAdmin({ commit }) {
             let response = await fetch(
                 'https://localhost:44300/api/User/GetUsers',
@@ -119,6 +144,18 @@ const store = createStore({
             )
             let data = await response.json()
             commit('setAllUsersAdmin', data)
+        },
+
+        async deleteUserAsAdmin({ commit }, userIdSub) {
+            let response = await fetch(
+                `https://localhost:44300/api/User/DeleteUserByIdSub/${userIdSub}`,
+                {
+                    method: 'delete',
+                    headers: { 'Content-type': 'application/json' },
+                }
+            )
+            let data = await response.json()
+            commit('AsAdminDeleteUser', data)
         },
 
         async getAllGroupThreadsAdmin({ commit }) {
