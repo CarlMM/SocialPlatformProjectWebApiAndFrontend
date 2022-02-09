@@ -7,7 +7,10 @@
         </div>
         <div class="subforum-description subforum-column">
             <h1>Detta är replies</h1>
-            <button @click="showModal()">Reply to post</button>
+            <div>
+                <button @click="toogleModal()">Reply to post</button>
+            </div>
+
             <div class="d-flex justify-content-end mt-1">
                 <Modal v-show="isModalVisible" @close="closeModal">
                     <template v-slot:header>
@@ -36,7 +39,10 @@
                                     v-model="newReplyPost.Text"
                                 ></textarea>
                             </div>
-                            <button class="btn btn-reply" v-on:click="this.reply(newReplyPost)">
+                            <button
+                                class="btn btn-reply"
+                                v-on:click="this.reply(newReplyPost)"
+                            >
                                 Reply
                             </button>
                             <div v-for="error in errorMessage" :key="error.id">
@@ -74,11 +80,11 @@ export default {
             threadText: '',
             errorMessage: [],
             missingTextMessage: '',
-            newReplyPost:{
-                Text:'',
+            newReplyPost: {
+                Text: '',
                 UserIdSub: '',
                 CategoryThreadId: null,
-            }
+            },
         }
     },
     components: {
@@ -91,9 +97,11 @@ export default {
     },
     created() {
         console.log('id from url', this.tId)
-        
+
         this.$store.dispatch('GetThreadFromSpecificId', this.tId)
-        this.$store.dispatch('GetRepliesForSpecificPost', this.tId).then(() => console.log('for science'));
+        this.$store
+            .dispatch('GetRepliesForSpecificPost', this.tId)
+            .then(() => console.log('for science'))
     },
 
     computed: {
@@ -104,21 +112,29 @@ export default {
             )
             return this.$store.state.SpecificPostThread
         },
-        getReplies(){
+        getReplies() {
             return this.$store.state.Reply
         },
-
+        checkIfAuth() {
+            if (AuthState.isAuthenticated == true) {
+                return true
+            }
+        },
     },
-    
-    mounted(){
-        if(this.$store.state.comingFromThreads == true){
+
+    mounted() {
+        if (this.$store.state.comingFromThreads == true) {
             this.showModal()
             this.$store.state.comingFromThreads = false
         }
     },
 
     methods: {
-
+        toogleModal() {
+            if (AuthState.isAuthenticated) {
+                this.showModal()
+            }
+        },
         showModal() {
             this.isModalVisible = true
             let threadList = this.$store.state.SpecificPostThread
@@ -156,29 +172,35 @@ export default {
             )
             return catchBadWords
         },
-        
+
         ...mapActions(['PostReplyToSpecificPost']),
-         reply(newReplyPost) {
-               this.errorMessage = []
-               let catchBadWords = this.filterWords(this.newReplyPost.Text)
-               console.log(this.newReplyPost, 'REPLY MESSAGE')
-               if (this.newReplyPost.Text == '') {
-                   this.errorMessage.push('Please enter some text!')
-               }
-               if (catchBadWords.length > 0) {
-                   this.errorMessage.push('Remember to be nice!')
-               } else if (this.newReplyPost.Text != '' && catchBadWords.length == 0) {
-                   this.errors = []
-                    this.newReplyPost.UserIdSub = AuthState.user.sub;
-                    this.newReplyPost.CategoryThreadId = this.tId;
-                    console.log('ReplyMethod: ', newReplyPost)
-                    console.log('Log in ReplyMethod, this is reply store: ', this.$store.state.Reply)
-                    this.PostReplyToSpecificPost(newReplyPost)
-                   this.closeModal()
-                   this.newReplyPost.Text = ''
-               }
+        reply(newReplyPost) {
+            this.errorMessage = []
+            let catchBadWords = this.filterWords(this.newReplyPost.Text)
+            console.log(this.newReplyPost, 'REPLY MESSAGE')
+            if (this.newReplyPost.Text == '') {
+                this.errorMessage.push('Please enter some text!')
+            }
+            if (catchBadWords.length > 0) {
+                this.errorMessage.push('Remember to be nice!')
+            } else if (
+                this.newReplyPost.Text != '' &&
+                catchBadWords.length == 0
+            ) {
+                this.errors = []
+                this.newReplyPost.UserIdSub = AuthState.user.sub
+                this.newReplyPost.CategoryThreadId = this.tId
+                console.log('ReplyMethod: ', newReplyPost)
+                console.log(
+                    'Log in ReplyMethod, this is reply store: ',
+                    this.$store.state.Reply
+                )
+                this.PostReplyToSpecificPost(newReplyPost)
+                this.closeModal()
+                this.newReplyPost.Text = ''
+            }
             //return this.$store.dispatch('PostReplyToSpecificPost', newReplyPost)
-         },
+        },
     },
 }
 </script>

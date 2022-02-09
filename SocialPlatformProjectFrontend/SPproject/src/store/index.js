@@ -13,6 +13,7 @@ const store = createStore({
         SpecificPostThread: [],
         groupThreadsAdmin: [],
         Users: [],
+        listOfUsersAdmin: [],
     },
     mutations: {
         setNewPost(state, data) {
@@ -62,16 +63,24 @@ const store = createStore({
 
         setUserThreads(state, data) {
             state.UserThread = data
-            console.log('userThreads: ', data)
+            // console.log('userThreads: ', data)
         },
         setSpecificPostFromThread(state, data) {
             state.SpecificPostThread = data
             console.log('SpecificPostThreadMutation: ', data)
         },
-        deleteSpecificThread(state, data) {
+
+        updateSpecificThreadAfterDelete(state, data) {
             state.UserThread = data
+        },
+        deleteSpecificThread(state, data) {
+            // state.UserThread = data  Vi gör fel här vi skickar in en thread då blir den nya listan 1 thread
             state.UserThread.sort(data)
-            console.log(data)
+            // console.log(data, 'Inne i mutation deletespecificThread')
+        },
+
+        setAllUsersAdmin(state, data) {
+            state.listOfUsersAdmin = data
         },
 
         setToken(state, data) {
@@ -99,6 +108,17 @@ const store = createStore({
             let data = await response.json()
             console.log(data)
             commit('setNewPost', data)
+        },
+
+        async getAllUsersAdmin({ commit }) {
+            let response = await fetch(
+                'https://localhost:44300/api/User/GetUsers',
+                {
+                    method: 'get',
+                }
+            )
+            let data = await response.json()
+            commit('setAllUsersAdmin', data)
         },
 
         async getAllGroupThreadsAdmin({ commit }) {
@@ -158,8 +178,6 @@ const store = createStore({
                 }
             )
             let data = await response.json()
-            console.log(data, 'I action')
-
             commit('deleteSpecificThread', data)
         },
 
