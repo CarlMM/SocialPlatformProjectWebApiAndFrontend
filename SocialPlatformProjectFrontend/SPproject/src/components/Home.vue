@@ -3,9 +3,9 @@
         <Thread :list="GetAllThreads" />
         <!-- :post="thread" v-for="(thread, index) in GetAllThreads" :key="index" -->
     </div>
-    <div class="side-by-side">
+    <!-- <div class="side-by-side">
         <h2>random text</h2>
-    </div>
+    </div> -->
 </template>
 
 <script>

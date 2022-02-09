@@ -217,15 +217,6 @@ h1 {
     }
 }
 
-.element {
-    box-shadow: none;
-}
-
-.element:hover,
-element:active {
-    box-shadow: 0 0 5px #fff, inset 0 0 10px #43a78c;
-}
-
 
 /*Category*/
 .category {

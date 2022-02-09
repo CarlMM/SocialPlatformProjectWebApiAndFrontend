@@ -48,6 +48,19 @@ html > body{
     background-color: rgb(36, 36, 36);
 }
 
+
+/*Threads outer glow */
+
+.element {
+    box-shadow: none;
+}
+
+.element:hover,
+element:active {
+    box-shadow: 0 0 5px #fff, inset 0 0 10px #43a78c;
+}
+
+
 /*Buttons for threads + posts */
 .post-btn {
     padding: 0 15px;
@@ -75,4 +88,5 @@ html > body{
     font-size: 20px;
     margin-right: 10px;
 }
+
 </style>

@@ -34,12 +34,21 @@
                 </form>
             </div>
             <div class="num-post">
-                <h2>i has this many posts</h2>
-                <h2>group posts</h2>
+                <div class="amount-text">
+                    <h2>Posts: 0</h2>
+                    <h2>GroupPosts: 0</h2>
+                </div>
+                <div class="overflow">
+                    <div class="user-threads element" v-for="userThreads in this.$store.state.UserThread" :key="userThreads.id">
+                        <div class="threads">
+                            <router-link type="button" :to="`/Post/${userThreads.id}`">
+                                <h1 >{{ userThreads.title }}</h1>
+                                <p class="thread-text">{{userThreads.text}}</p>
+                            </router-link>
+                    </div>
+                </div>
             </div>
-            <div class="my-thread">
-
-            </div>
+        </div>
         </div>
             <div v-else>
                 <NotAuthantication />
@@ -54,6 +63,11 @@ export default {
     components: {
         NotAuthantication,
     },
+    data(){
+        return{
+            userThreadList: [],
+        }
+    },
     methods: {
         consoleLogMyUser() {
             //var accessTokenObj = localStorage.getItem('access_token');
@@ -67,6 +81,16 @@ export default {
             // console.log('statetoken: ', this.$store.state.token)
             //commit('setToken')
         },
+        fetchAllUserThreads() {
+            this.$store.dispatch('GetThreadsFromUser', this.AuthState.user.sub)
+        },
+    },
+    beforeMount() {
+        this.fetchAllUserThreads()
+    },
+
+    created() {
+        this.fetchAllUserThreads()
     },
 }
 </script>
@@ -86,7 +110,7 @@ initAuth()
 .grid{
     color:#ffff;
     display: grid;
-    grid-template-columns: 30% 70%; 
+    grid-template-columns: 20% 80%; 
     grid-template-rows: 100%;
     grid-column-gap: 5px;
 }
@@ -121,7 +145,20 @@ initAuth()
     padding-bottom: 6px;
 }
 .num-post{
+    
 }
+
+.amount-text{
+    display:flex;
+    align-content: center;
+    justify-content: space-around;
+}
+
+.amount-text > h2{
+    font-size: 24px;
+    padding: 20px 0;
+}
+
 .btn-update{
     align-items: center;
     background-image: linear-gradient(144deg,#f1b306, #e73a0f 50%,#f38c06);
@@ -163,4 +200,37 @@ initAuth()
 .btn2{
     margin-top: 25px;
 }
+
+/* testing*/
+
+.overflow{
+    overflow:auto;
+    max-height:67vh;
+    max-width:72.3vw;
+}
+
+.user-threads{
+    max-width: 72.3vw;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: #1d1d1d;
+    padding: 1px 0;
+}
+
+.threads{
+    border-radius: 2px;
+    background:#656a83;
+    padding: 20px 10px;
+}
+
+.threads > a >h1{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.thread-text{
+    font-size: 16px;
+    padding:0;
+    margin:0;
+}
+
 </style>

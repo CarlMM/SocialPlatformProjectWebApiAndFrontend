@@ -12,7 +12,7 @@
         </div>
         <div class="myThreads">
             <h1>{{AuthState.user.nickname }}: Threads</h1>
-            <div class="user-threads" v-for="userThreads in this.$store.state.UserThread" :key="userThreads.id">
+            <div class="user-threads element" v-for="userThreads in this.$store.state.UserThread" :key="userThreads.id">
                 <div class="threads">
                     <router-link type="button" :to="`/Post/${userThreads.id}`">
                         <h1 >{{ userThreads.title }}</h1>
@@ -22,16 +22,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div
-            v-for="userThreads in this.$store.state.UserThread"
-            :key="userThreads.id">
-            <router-link type="button" :to="`/Post/${userThreads.id}`">
-                <h1 style="color: white">{{ userThreads.title }}</h1>
-            </router-link>
-            <div>
-                <button @click="RemoveThread(userThreads.id)">Ta bort</button>
-            </div>
-        </div> -->
     </div>
 </template>
 
@@ -54,7 +44,6 @@ export default {
         RemoveThread(id) {
             //Removes Id specific to thread
             this.$store.dispatch('delelteSpecificThread', id)
-
             let threadId = id
             //Fetch the list of userThread
             let list = this.$store.state.UserThread
