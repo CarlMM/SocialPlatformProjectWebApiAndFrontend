@@ -1,5 +1,6 @@
 8 lines (32 sloc) 941 Bytes
 <template>
+
     <div class="outer-box">
         <div class="grid" v-if="AuthState.isAuthenticated">
             <div class="profile">
@@ -54,20 +55,20 @@ export default {
     components: {
         NotAuthantication,
     },
-    methods:{
-        consoleLogMyUser(){
+    methods: {
+        consoleLogMyUser() {
             //var accessTokenObj = localStorage.getItem('access_token');
-            
-            console.log('accesstoken: ', localStorage.getItem('access_token'));
+
+            //console.log('accesstoken: ', localStorage.getItem('access_token'));
 
             //__raw = token?
             // console.log(AuthState.claims.__raw)
             // this.$store.commit('setToken', AuthState.claims.__raw)
-            // console.log(AuthState.user)
+            console.log(AuthState.user)
             // console.log('statetoken: ', this.$store.state.token)
             //commit('setToken')
-        }
-    }
+        },
+    },
 }
 </script>
 
@@ -177,6 +178,6 @@ initAuth()
 
 .btn2{
     margin-top: 25px;
-}
 
+}
 </style>

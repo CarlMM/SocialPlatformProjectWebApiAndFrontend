@@ -179,8 +179,19 @@ export default {
 
     created() {
         this.fetchAllCategories()
+        this.checkIfAdmin()
     },
     methods: {
+        checkIfAdmin() {
+            if (AuthState.isAuthenticated == true) {
+                if (
+                    AuthState.user['http://localhost:3000/roles'][0] ==
+                    'AdminUser'
+                ) {
+                    this.$store.state.isAdmin = true
+                }
+            }
+        },
         showModal() {
             this.isModalVisible = true
         },

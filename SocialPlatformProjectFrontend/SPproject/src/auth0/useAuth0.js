@@ -6,7 +6,7 @@ export const AuthState = reactive({
     loading: false,
     isAuthenticated: false,
     auth0: null,
-    token:'',
+    token: '',
 })
 
 const config = {
@@ -14,7 +14,7 @@ const config = {
     domain: 'dev-dzje4s8y.us.auth0.com',
     //import.meta.env.VITE_AUTH0_CLIENT_ID
     client_id: 'MEG1azoqm6vMU81lYKu54cBo8mzBKSQ0',
-    audience: 'https://auth0sucks/api'
+    audience: 'https://auth0sucks/api',
 }
 
 export const useAuth0 = state => {
@@ -22,7 +22,7 @@ export const useAuth0 = state => {
         state.isAuthenticated = !!(await state.auth0.isAuthenticated())
         state.user = await state.auth0.getUser()
         state.loading = false
-        state.token =  await state.auth0.getTokenSilently();
+        state.token = await state.auth0.getTokenSilently()
         state.claims.aud = config.audience
     }
 
@@ -45,8 +45,8 @@ export const useAuth0 = state => {
         location.reload()
         await handleStateChange()
         //console.log(respone.data)
+        console.log('ge mig user: ', state.user)
         console.log(state.user.app_metadata)
-        console.log(state.user)
     }
 
     const logout = async () => {

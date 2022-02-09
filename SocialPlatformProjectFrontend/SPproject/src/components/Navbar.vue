@@ -55,6 +55,7 @@
                                                         My threads
                                                     </option>
                                                 </select>
+
                                                 <a
                                                     href="#"
                                                     @click.prevent="logout()"
@@ -78,7 +79,13 @@ import Dropdown from './Dropdown.vue'
 
 export default {
     data() {
-        return {}
+        return {
+            userToSend: {
+                idSub: '',
+                username: '',
+                email: '',
+            },
+        }
     },
     methods: {
         changeRoute(e) {

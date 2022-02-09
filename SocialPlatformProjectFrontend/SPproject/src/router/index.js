@@ -11,12 +11,18 @@ import MyThreads from '/src/components/ProfilePages/MyThreads.vue'
 import AdminAllThreads from '../Views/Adminpages/AdminAllThreads.vue'
 import AdminAllUsers from '../Views/Adminpages/AdminAllUsers.vue'
 import AdminGroupThreads from '../Views/Adminpages/AdminGroupThreads.vue'
+import NotAuthantication from '../Views/NotAuthorized.vue'
 
 const routes = [
     {
         path: '/',
         name: 'Home',
         component: Home,
+    },
+    {
+        path: '/notauthorized',
+        name: 'NotAuthantication',
+        component: NotAuthantication,
     },
     {
         path: '/adminallthreads',

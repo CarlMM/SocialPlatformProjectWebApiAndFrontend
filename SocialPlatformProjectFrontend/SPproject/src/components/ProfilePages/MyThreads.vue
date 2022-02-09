@@ -1,4 +1,5 @@
 <template>
+
     <div class="outer-box">
         <div v-if="AuthState.isAuthenticated">
             <div class="user">
@@ -38,10 +39,8 @@
         <div v-else>
             <NotAuthantication />
         </div>
-        
     </div>
 </template>
-
 
 <script>
 import NotAuthantication from '../../Views/NotAuthorized.vue'
@@ -50,41 +49,40 @@ export default {
     components: {
         NotAuthantication,
     },
-    methods:{
-        fetchAllUserThreads(){
+    data() {
+        return {
+            userThreadList: [],
+        }
+    },
+    methods: {
+        fetchAllUserThreads() {
             this.$store.dispatch('GetThreadsFromUser', this.AuthState.user.sub)
         },
-        RemoveThread(id){
+        RemoveThread(id) {
             //Removes Id specific to thread
             this.$store.dispatch('delelteSpecificThread', id)
 
-            let threadId = id;
+            let threadId = id
             //Fetch the list of userThread
             let list = this.$store.state.UserThread
             //Goes through the list, filter it and check for what is no longer there
             let updatedList = list.filter(item => {
-                return item.id !== threadId;
+                return item.id !== threadId
             })
+
             this.$store.commit('deleteSpecificThread', updatedList)
         },
         goPost(id){
             this.$router.push('/Post/' + id)
             this.$store.state.comingFromThreads = true
-        }
     },
-    mounted(){
-        this.fetchAllUserThreads();
-        this.$store.state.UserThread;
-        console.log('Bajs created(): ', this.$store.state.UserThread)
+
+    beforeMount() {
+        this.fetchAllUserThreads()
     },
-    // created(){
-    //     this.$store.state.UserThread;
-    //     console.log('Bajs created(): ', this.$store.state.UserThread)
-    // },
-    // beforeCreate(){
-    //     this.$store.state.UserThread;
-    //     console.log('beforeCreate ', this.$store.state.UserThread)
-    // }
+    created() {
+        this.fetchAllUserThreads()
+    },
 }
 </script>
 
@@ -97,7 +95,6 @@ initAuth()
 </script>
 
 <style scoped>
-
 
 a {
     text-decoration: none;
