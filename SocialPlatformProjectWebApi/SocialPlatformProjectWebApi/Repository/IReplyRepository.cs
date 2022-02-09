@@ -12,7 +12,7 @@ namespace SocialPlatformProjectWebApi.Repository
 
         Task<IList<Reply>> GetReply(int userId);
 
-        Task<Reply> AddReply(Reply reply);
+        Task<bool> AddReply(Reply template);
 
         Task<bool> DeleteReply(int id);
 
@@ -25,6 +25,4 @@ namespace SocialPlatformProjectWebApi.Repository
     //{
     //    Task<IEnumerable<T>> GetAll();
     //}
-    
-
 }

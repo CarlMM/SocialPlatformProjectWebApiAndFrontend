@@ -40,7 +40,17 @@ namespace SocialPlatformProjectWebApi.Services
 
         public async Task<Reply> AddReply(Reply reply)
         {
-            var template = await _replyRepository.AddReply(reply);
+            DateTime date = DateTime.Now;
+
+            var template = new Reply
+            {
+                Text = reply.Text,
+                CreatedDate = date,
+                CategoryThreadId = reply.CategoryThreadId,
+                UserIdSub = reply.UserIdSub,
+            };
+
+            await _replyRepository.AddReply(template);
             return template;
         }
 

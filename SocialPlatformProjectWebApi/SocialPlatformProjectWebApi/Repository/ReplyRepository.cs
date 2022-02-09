@@ -43,26 +43,10 @@ namespace SocialPlatformProjectWebApi.Repository
             return reply;
         }
 
-        public async Task<Reply> AddReply(Reply reply)
+        public async Task<bool> AddReply(Reply template)
         {
-            DateTime date = DateTime.Now;
-
-            //var incomingObject = reply;
-            //_dbContext.Replies.AddAsync(incomingObject);
-            //_dbContext.SaveChangesAsync();
-
-            var template = new Reply
-            {
-                Text = reply.Text,
-                CreatedDate = date,
-                CategoryThreadId = reply.CategoryThreadId,
-                UserIdSub = reply.UserIdSub,
-            };
-
             await _dbContext.AddAsync(template);
-            await _dbContext.SaveChangesAsync();
-
-            return template;
+            return (await _dbContext.SaveChangesAsync() > 0);
         }
 
         public async Task<bool> DeleteReply(int id)
