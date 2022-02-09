@@ -30,9 +30,9 @@ namespace SocialPlatformProjectWebApi.Services
             var template = await _threadUserRepository.AddThreadUser(categoryThreadId, userId);
             return template;
         }
-        public async Task<IList<ThreadUser>> DeleteThreadUser(string userIdSub)
+        public async Task<IList<ThreadUser>> DeleteThreadUser(string categoryThreadID, string userIdSub)
         {
-            var template = await _threadUserRepository.DeleteThreadUser(userIdSub);
+            var template = await _threadUserRepository.DeleteThreadUser(categoryThreadID, userIdSub);
             return template;
         }
     }
