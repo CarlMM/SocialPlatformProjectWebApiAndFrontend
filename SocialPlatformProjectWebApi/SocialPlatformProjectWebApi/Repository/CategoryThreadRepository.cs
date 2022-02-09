@@ -57,21 +57,11 @@ namespace SocialPlatformProjectWebApi.Repository
             return types;
         }
 
-        public async Task<CategoryThread> AddCategoryThread(CategoryThread newTemplate)
+        public async Task<bool> AddCategoryThread(CategoryThread newTemplate, ThreadUser newThreadUser)
         {       
-            var user = new ThreadUser
-            {
-                CategoryThreadId = newTemplate.Id,
-                UserIdSub = newTemplate.UserIdSub,
-            };
-
-            _dbContext.ThreadUsers.Add(user);
-            await _dbContext.AddAsync(user);
-
-            await _dbContext.AddAsync(newTemplate);
-            await _dbContext.SaveChangesAsync();
-
-            return newTemplate;
+            await _dbContext.ThreadUsers.AddAsync(newThreadUser);
+            await _dbContext.CategoryThreads.AddAsync(newTemplate);
+            return (await _dbContext.SaveChangesAsync() > 0);
         }
 
         public async Task<bool> DeleteCategoryThread(int id)
