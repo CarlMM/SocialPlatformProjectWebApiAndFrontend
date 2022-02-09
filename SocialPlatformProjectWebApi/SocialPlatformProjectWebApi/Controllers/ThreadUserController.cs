@@ -31,10 +31,10 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         [HttpPost]
         [Route("AddThreadUser")]
-        public async Task<IActionResult> AddThreadUser(int categoryThreadId, string userId)
+        public async Task<IActionResult> AddThreadUser(int categoryThreadId, string userIdSub)
         {
-                await _threadUserService.AddThreadUser(categoryThreadId, userId);
-                return Ok();
+            await _threadUserService.AddThreadUser(categoryThreadId, userIdSub);
+            return Ok();
         }
 
         [HttpDelete]
