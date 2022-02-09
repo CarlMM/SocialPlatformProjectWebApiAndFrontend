@@ -48,10 +48,10 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         [HttpPost]
         [Route("AddReply/{Reply}")]
-        public async Task<Reply> AddReply([FromBody] Reply reply)
+        public async Task<IActionResult> AddReply([FromBody] Reply reply)
         {
-            var template = await _replyService.AddReply(reply);
-            return template;
+            await _replyService.AddReply(reply);
+            return Ok();
         }
 
         [HttpDelete]
