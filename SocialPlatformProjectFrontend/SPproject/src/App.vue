@@ -89,4 +89,23 @@ element:active {
     margin-right: 10px;
 }
 
+/* Style for scrollbar */
+body::-webkit-scrollbar {
+  width: 15px; 
+}
+
+body::-webkit-scrollbar-track {
+  background: rgb(58, 58, 58);
+  border: 1px solid grey; 
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
+
+body::-webkit-scrollbar-thumb:hover{
+    background:rgb(202, 209, 218);
+}
+
 </style>
