@@ -8,8 +8,8 @@ namespace SocialPlatformProjectWebApi.Repository
     {
         IEnumerable<ThreadUser> GetThreadUsers();
 
-        Task<ThreadUser> AddThreadUser(int threadId, string userId);
+        Task<bool> AddThreadUser(ThreadUser threadUser);
 
-        Task<IList<ThreadUser>> DeleteThreadUser(string userIdSub);
+        Task<bool> DeleteThreadUser(int categoryThreadID, string userIdSub);
     }
 }

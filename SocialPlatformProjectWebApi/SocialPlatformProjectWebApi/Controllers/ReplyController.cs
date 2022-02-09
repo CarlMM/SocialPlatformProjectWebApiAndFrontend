@@ -33,20 +33,9 @@ namespace SocialPlatformProjectWebApi.Controllers
         [Route("GetReply/{userId}")]
         public async Task<IList<Reply>> GetReply(int userId)
         {
-            //if (id < 1)
-            //{
-            //    return BadRequest("Detta id är för lågt");
-            //}
-
             var reply = await _replyService.GetReply(userId);
             return reply;
 
-            //if (reply == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //return await _replyService.GetReply(id);            
         }
 
         [HttpGet]
@@ -59,18 +48,26 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         [HttpPost]
         [Route("AddReply/{Reply}")]
-        public async Task<Reply> AddReply([FromBody] Reply reply)
+        public async Task<IActionResult> AddReply([FromBody] Reply reply)
         {
-            var template = await _replyService.AddReply(reply);
-            return template;
+            await _replyService.AddReply(reply);
+            return Ok();
         }
 
         [HttpDelete]
         [Route("DeleteReply/{id}")]
-        public async Task<Reply> DeleteReply(int id)
+        public async Task<IActionResult> DeleteReply(int id)
         {
-            var template = await _replyService.DeleteReply(id);
-            return template;
+            if(id < 0)
+            {
+                return BadRequest("Not a valid id");
+            }
+            else
+            {
+                await _replyService.DeleteReply(id);
+                return Ok();
+            }
+
         }
 
          [HttpPut]

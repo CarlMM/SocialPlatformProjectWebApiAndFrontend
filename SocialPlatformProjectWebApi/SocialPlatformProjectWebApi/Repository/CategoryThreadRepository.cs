@@ -42,57 +42,55 @@ namespace SocialPlatformProjectWebApi.Repository
             return result;
         }
 
-
-        public async Task<CategoryThread> AddCategoryThread(CategoryThread categoryThread)
+        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string IdSub)
         {
-            DateTime date = DateTime.UtcNow.Date;
 
-            //Coment for updatebranch
-            //var user = new ThreadUser
-            //{
-            //    CategoryThreadId = categoryThread.Id,
-            //    UserIdSub = categoryThread.UserIdSub,
-            //};
+            var getGroupCategoryThreadByUserId = await _dbContext.CategoryThreads
+                .Where(x => x.UserIdSub == IdSub && x.ThreadType == true).ToListAsync();
 
 
-            //_dbContext.ThreadUsers.Add(user);
-            //await _dbContext.AddAsync(user);
-
-            var template = new CategoryThread
-            {
-
-                Title = categoryThread.Title,
-                Text = categoryThread.Text,
-                CreatedDate = date,
-                CategoryId = categoryThread.CategoryId,
-                ThreadType = categoryThread.ThreadType,
-                UserIdSub = categoryThread.UserIdSub,
-            };
-
-            await _dbContext.AddAsync(template);
-            await _dbContext.SaveChangesAsync();
-
-            return template;
+            return getGroupCategoryThreadByUserId;
         }
 
         public async Task<IList<CategoryThread>> GetCategoryThreadById(int Id)
         {
+            //Push for branch comment
             //PUSH FOR BRANCH COMMENT DO NOT MIND THIS
             var types = await _dbContext.CategoryThreads.Where(x => x.Id == Id).ToListAsync();
             return types;
         }
 
-        public async Task<CategoryThread> DeleteCategoryThread(int id)
+        public async Task<bool> AddCategoryThread(CategoryThread newTemplate, ThreadUser newThreadUser)
+        {       
+            await _dbContext.ThreadUsers.AddAsync(newThreadUser);
+            await _dbContext.CategoryThreads.AddAsync(newTemplate);
+            return (await _dbContext.SaveChangesAsync() > 0);
+        }
+
+        public async Task<bool> DeleteCategoryThread(int id)
         {
             var deleteCategoryThread = await _dbContext.CategoryThreads.SingleAsync(x => x.Id == id);
-            var repliesInThread = await _dbContext.Replies.Where(y => y.CategoryThreadId == id).ToListAsync();
-            repliesInThread.RemoveAll(z => z.CategoryThreadId == id);
 
-            await _dbContext.SaveChangesAsync();
+
+            if (deleteCategoryThread == null)
+            {
+                return false;
+            }
 
             _dbContext.CategoryThreads.Remove(deleteCategoryThread);
-            await _dbContext.SaveChangesAsync();
-            return deleteCategoryThread;
+            return (await _dbContext.SaveChangesAsync() > 0);
+
+            //try
+            //{
+            //    var deleteCategoryThread = await _dbContext.CategoryThreads.SingleAsync(x => x.Id == id);
+            //    _dbContext.CategoryThreads.Remove(deleteCategoryThread);
+            //    await _dbContext.SaveChangesAsync();
+            //    return true;         
+            //}
+            //catch
+            //{
+            //    throw new Exception("something went wrong in the repository");
+            //}
         }
 
         public async Task<CategoryThread> EditCategoryThreadText(int id, string text)

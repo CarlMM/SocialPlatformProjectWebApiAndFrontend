@@ -1,4 +1,5 @@
 ﻿using SocialPlatformProjectWebApi.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,13 +15,15 @@ namespace SocialPlatformProjectWebApi.Repository
 
         Task<IList<CategoryThread>> GetCategoryThreadByUserId(string userId);
 
-        Task<CategoryThread> AddCategoryThread(CategoryThread categoryThread);
+        Task<bool> AddCategoryThread(CategoryThread categoryThread, ThreadUser newThreadUser);
 
         Task<IList<CategoryThread>> GetCategoryThreadById(int Id);
 
-        Task<CategoryThread> DeleteCategoryThread(int id);
+        Task<bool> DeleteCategoryThread(int id);
 
         Task<CategoryThread> EditCategoryThreadText(int id, string text);
+
+        Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string IdSub);
 
     }
 }
