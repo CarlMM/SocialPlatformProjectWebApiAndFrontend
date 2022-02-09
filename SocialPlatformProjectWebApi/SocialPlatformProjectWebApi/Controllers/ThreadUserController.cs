@@ -33,15 +33,11 @@ namespace SocialPlatformProjectWebApi.Controllers
         [Route("AddThreadUser")]
         public async Task<IActionResult> AddThreadUser(int categoryThreadId, string userId)
         {
-            if (categoryThreadId < 1 || categoryThreadId > 3)
-            {
-                return BadRequest("Not a valid categoryId");
-            }
-            else
-            {
+
+
                 await _threadUserService.AddThreadUser(categoryThreadId, userId);
                 return Ok();
-            }
+            
 
         }
 
