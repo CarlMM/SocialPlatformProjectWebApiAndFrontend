@@ -31,23 +31,31 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         [HttpPost]
         [Route("AddThreadUser")]
-        public async Task<ThreadUser> AddThreadUser(int categoryThreadId, string userId)
+        public async Task<IActionResult> AddThreadUser(int categoryThreadId, string userId)
         {
-            var template = await _threadUserService.AddThreadUser(categoryThreadId, userId);
-            return template;
-        }
-
-        [HttpDelete]
-        [Route("DeleteThreadUser")]
-        public async Task<IActionResult> DeleteThreadUser(int categoryThreadID, string userIdSub)
-        {
-            if(categoryThreadID < 1 || categoryThreadID > 3)
+            if (categoryThreadId < 1 || categoryThreadId > 3)
             {
                 return BadRequest("Not a valid categoryId");
             }
             else
             {
-                await _threadUserService.DeleteThreadUser(categoryThreadID, userIdSub);
+                await _threadUserService.AddThreadUser(categoryThreadId, userId);
+                return Ok();
+            }
+
+        }
+
+        [HttpDelete]
+        [Route("DeleteThreadUser")]
+        public async Task<IActionResult> DeleteThreadUser(int categoryThreadId, string userIdSub)
+        {
+            if(categoryThreadId < 1 || categoryThreadId > 3)
+            {
+                return BadRequest("Not a valid categoryId");
+            }
+            else
+            {
+                await _threadUserService.DeleteThreadUser(categoryThreadId, userIdSub);
                 return Ok();
             }
 
