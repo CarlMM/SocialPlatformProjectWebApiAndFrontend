@@ -44,8 +44,10 @@ namespace SocialPlatformProjectWebApi.Repository
 
         public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string IdSub)
         {
+
             var getGroupCategoryThreadByUserId = await _dbContext.CategoryThreads
                 .Where(x => x.UserIdSub == IdSub && x.ThreadType == true).ToListAsync();
+
 
             return getGroupCategoryThreadByUserId;
         }
@@ -68,6 +70,7 @@ namespace SocialPlatformProjectWebApi.Repository
         public async Task<bool> DeleteCategoryThread(int id)
         {
             var deleteCategoryThread = await _dbContext.CategoryThreads.SingleAsync(x => x.Id == id);
+
 
             if (deleteCategoryThread == null)
             {

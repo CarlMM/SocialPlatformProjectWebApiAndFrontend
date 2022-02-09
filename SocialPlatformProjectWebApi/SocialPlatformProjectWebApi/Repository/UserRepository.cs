@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using SocialPlatformProjectWebApi.Models;
 using System;
 using System.Collections.Generic;
@@ -48,7 +48,6 @@ namespace SocialPlatformProjectWebApi.Repository
             {
                 throw new Exception($"användaren {user.Username} | {user.IdSub} finns redan");
             }
-
 
         }
     }
