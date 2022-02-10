@@ -44,14 +44,17 @@ namespace SocialPlatformProjectWebApi.Repository
 
         public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string IdSub)
         {
+
             var getGroupCategoryThreadByUserId = await _dbContext.CategoryThreads
                 .Where(x => x.UserIdSub == IdSub && x.ThreadType == true).ToListAsync();
+
 
             return getGroupCategoryThreadByUserId;
         }
 
         public async Task<IList<CategoryThread>> GetCategoryThreadById(int Id)
         {
+            //Push for branch comment
             //PUSH FOR BRANCH COMMENT DO NOT MIND THIS
             var types = await _dbContext.CategoryThreads.Where(x => x.Id == Id).ToListAsync();
             return types;
@@ -60,7 +63,9 @@ namespace SocialPlatformProjectWebApi.Repository
         public async Task<bool> AddCategoryThread(CategoryThread newTemplate, ThreadUser newThreadUser)
         {       
             await _dbContext.CategoryThreads.AddAsync(newTemplate);
+
             await _dbContext.SaveChangesAsync();
+            
             await _dbContext.ThreadUsers.AddAsync(newThreadUser);
             return (await _dbContext.SaveChangesAsync() > 0);
         }
@@ -68,6 +73,7 @@ namespace SocialPlatformProjectWebApi.Repository
         public async Task<bool> DeleteCategoryThread(int id)
         {
             var deleteCategoryThread = await _dbContext.CategoryThreads.SingleAsync(x => x.Id == id);
+
 
             if (deleteCategoryThread == null)
             {

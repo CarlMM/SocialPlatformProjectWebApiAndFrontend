@@ -36,7 +36,12 @@
                                                     "
                                                     alt="AvatarPic"
                                                 />
-                                                <select class="dropdown-nav" @change="changeRoute($event)">
+                                                <select
+                                                    class="dropdown-nav"
+                                                    @change="
+                                                        changeRoute($event)
+                                                    "
+                                                >
                                                     <option selected value="">
                                                         Home
                                                     </option>
@@ -49,11 +54,16 @@
                                                     <option value="MyThreads">
                                                         My threads
                                                     </option>
-                                                    <option v-if="this.$store.state.isAdmin" value="">
-                                                        Admin page
+                                                    <option value="MyReplies">
+                                                        My Replies
                                                     </option>
                                                 </select>
-                                                <a href="#" @click.prevent="logout()">Logout</a>
+
+                                                <a
+                                                    href="#"
+                                                    @click.prevent="logout()"
+                                                    >Logout</a
+                                                >
                                             </p>
                                         </div>
                                     </div>
@@ -72,7 +82,13 @@ import Dropdown from './Dropdown.vue'
 
 export default {
     data() {
-        return {}
+        return {
+            userToSend: {
+                idSub: '',
+                username: '',
+                email: '',
+            },
+        }
     },
     methods: {
         changeRoute(e) {
@@ -95,48 +111,44 @@ initAuth()
     height: 100%;
     width: 80px;
     margin: 20px;
+    border-radius: 20%;
 }
-
 img {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
 #user {
     color: #2576e0;
     padding-right: 25px;
 }
-
 #nav-menu-container {
     display: inline-block;
     padding-top: 10px;
 }
-
 a {
     -webkit-transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
 }
-
 p {
     font-size: 18px;
     font-weight: 600;
     color: #fff;
 }
-
 i {
     font-size: 18px;
     font-weight: bolder;
     color: #fff;
 }
-
 /*Header*/
+#header{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 .header-top {
     font-size: 12px;
     padding: 6px 0px;
     background-color: #33393a;
 }
-
 .header-top a {
     color: rgb(255, 255, 255);
     -webkit-transition: all 0.3s ease 0s;
@@ -144,19 +156,15 @@ i {
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
 }
-
 .header-top a:hover {
     color: #2576e0;
 }
-
 .header-top .header-top-left a {
     margin-right: 8px;
 }
-
 .header-top .header-top-right {
     text-align: right;
 }
-
 .header-top .header-top-right .header-social a {
     color: #fff;
     margin-left: 15px;
@@ -165,11 +173,9 @@ i {
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
 }
-
 .header-top .header-top-right .header-social a:hover {
     color: #1a4e92;
 }
-
 .main-menu {
     padding-top: 10px;
     background: #33393a;
@@ -178,7 +184,6 @@ i {
     border-bottom: solid 2px;
     border-color: black;
 }
-
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
@@ -189,7 +194,6 @@ i {
     padding: 0;
     list-style: none;
 }
-
 /* Nav Meu Styling */
 .nav-menu a {
     padding: 0 8px 0px 8px;
