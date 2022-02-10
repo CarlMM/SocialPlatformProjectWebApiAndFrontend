@@ -23,7 +23,7 @@
                     >
                     <p>{{ threads.text }}</p>
                 </div>
-                <button @click="RemoveThread(threads.id)">Remove Thread</button>
+                <button class="btn-close" @click="RemoveThread(threads.id)">X</button>
             </div>
             
         </div>
@@ -178,5 +178,19 @@ h1 {
 .element:hover,
 element:active {
     box-shadow: 0 0 5px #fff, inset 0 0 10px #43a78c;
+}
+
+
+/*close button */
+.btn-close {
+    position: absolute;
+    right: 4vw;
+    font-size: 20px;
+    margin: -55px 0;
+    padding:0;
+    cursor: pointer;
+    color:#fff;
+    font-weight: bold;
+    background: transparent;
 }
 </style>

@@ -116,7 +116,7 @@ export default {
 /* close button */
 .btn-close {
     position: absolute;
-    right: 0;
+    right: 1vw;
     font-size: 20px;
     margin: -70px 0;
     cursor: pointer;
