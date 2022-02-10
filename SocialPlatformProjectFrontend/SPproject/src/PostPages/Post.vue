@@ -100,7 +100,7 @@ import { mapActions } from 'vuex'
 export default {
     data() {
         return {
-            badWords: ['fuck', 'kuk', 'snopp', 'whore', 'dick'],
+            badWords: ['fuck', 'dick', 'wiener', 'whore', 'shit', 'thomas', 'skåne'],
             tId: this.$route.params.Id,
             isModalVisible: false,
             replyMessage: '',

@@ -89,6 +89,44 @@ element:active {
     margin-right: 10px;
 }
 
+/* Mythreads, MyReplies */
+.myThreads{
+    border-radius: 4px;
+    background-color:#4b4b4b;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.myThreads > h1{
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    padding: 20px 0;
+    margin: 0 20px;
+}
+
+.user-threads{
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background: #1d1d1d;
+    padding: 1px 0;
+}
+
+.threads{
+    border-radius: 2px;
+    background:#656a83;
+    padding: 20px 10px;
+}
+
+.threads > a >h1{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.thread-text{
+    font-size: 16px;
+    padding:0;
+    margin:0;
+}
+
+
 /* Style for scrollbar */
 body::-webkit-scrollbar {
   width: 15px; 
