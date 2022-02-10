@@ -13,7 +13,7 @@ namespace SocialPlatformProjectWebApi.Controllers
     [ApiController]
     public class CategoryThreadController : Controller
     {
-
+        //Comment For Push
         private readonly ICategoryThreadService _categorythreadService;
 
         public CategoryThreadController(ICategoryThreadService categorythreadService)
