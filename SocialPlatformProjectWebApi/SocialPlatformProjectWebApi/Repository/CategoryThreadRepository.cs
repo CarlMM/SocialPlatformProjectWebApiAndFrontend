@@ -59,8 +59,9 @@ namespace SocialPlatformProjectWebApi.Repository
 
         public async Task<bool> AddCategoryThread(CategoryThread newTemplate, ThreadUser newThreadUser)
         {       
-            await _dbContext.ThreadUsers.AddAsync(newThreadUser);
             await _dbContext.CategoryThreads.AddAsync(newTemplate);
+            await _dbContext.SaveChangesAsync();
+            await _dbContext.ThreadUsers.AddAsync(newThreadUser);
             return (await _dbContext.SaveChangesAsync() > 0);
         }
 
