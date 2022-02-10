@@ -41,17 +41,23 @@ export default {
             this.$store.dispatch('GetThreadsFromUser', this.AuthState.user.sub)
         },
         RemoveThread(id) {
-            //Removes Id specific to thread
-            this.$store.dispatch('delelteSpecificThread', id)
-
-            let threadId = id
-            //Fetch the list of userThread
-            let list = this.$store.state.UserThread
-            //Goes through the list, filter it and check for what is no longer there
-            let updatedList = list.filter(item => {
-                return item.id !== threadId
-            })
-            this.$store.commit('updateSpecificThreadAfterDelete', updatedList)
+            let deleteConfirm = 'are u sure you want to delete thread?'
+            if(confirm(deleteConfirm) == true){
+                //Removes Id specific to thread
+                this.$store.dispatch('delelteSpecificThread', id)
+    
+                let threadId = id
+                //Fetch the list of userThread
+                let list = this.$store.state.UserThread
+                //Goes through the list, filter it and check for what is no longer there
+                let updatedList = list.filter(item => {
+                    return item.id !== threadId
+                })
+                this.$store.commit('updateSpecificThreadAfterDelete', updatedList)
+            }
+            else{
+                
+            }
         },
     },
 
