@@ -54,6 +54,9 @@
                                                     <option value="MyThreads">
                                                         My threads
                                                     </option>
+                                                    <option value="MyReplies">
+                                                        My Replies
+                                                    </option>
                                                 </select>
 
                                                 <a

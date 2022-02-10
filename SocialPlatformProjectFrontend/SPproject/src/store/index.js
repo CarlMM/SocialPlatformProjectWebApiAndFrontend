@@ -11,6 +11,7 @@ const store = createStore({
         Category: [],
         Thread: [],
         Reply: [],
+        AllReplies: [],
         SpecificPostThread: [],
         groupThreadsAdmin: [],
         Users: [],
@@ -33,6 +34,21 @@ const store = createStore({
         },
         setRepliesFromBacked(state, data) {
             state.reply = data
+            console.log(data)
+        },
+
+        AllRepliesUser(state, data){
+            state.AllReplies = data
+            console.log(data)
+        },
+
+        deleteSpecificReply(state, data){
+            state.AllReplies.sort(data)
+            console.log(data)
+        },
+
+        updateSpecificReplyAfterDelete(state, data){
+            state.AllReplies = data
             console.log(data)
         },
 
@@ -291,6 +307,28 @@ const store = createStore({
             let data = await response.json()
             console.log(data)
             commit('setRepliesFromBacked', data)
+        },
+
+        async DeleteSpecificReply({ commit }, id) {
+            let response = await fetch(
+                `https://localhost:44300/api/Reply/DeleteReply/${id}`,
+                {
+                    method: 'delete',
+                    headers: { 'Content-type': 'application/json' },
+                    body: JSON.stringify(this.state.AllReplies),
+                }
+            )
+            let data = await response.json()
+            commit('deleteSpecificReply', data)
+        },
+
+        async GetAllRepliesUser({commit}, userId){
+            let response = await fetch(
+                `https://localhost:44300/api/Reply/GetReply/${userId}`
+            )
+            let data = await response.json()
+            console.log(data)
+            commit('AllRepliesUser', data)
         },
 
         async GetThreadsFromUser({ commit }, userId) {

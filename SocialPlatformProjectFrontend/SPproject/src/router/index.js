@@ -8,6 +8,7 @@ import Studies from '/src/components/CategoryFolderPages/Studies.vue'
 import MyProfile from '/src/components/ProfilePages/MyProfile.vue'
 import MyGroups from '/src/components/ProfilePages/Mygroups.vue'
 import MyThreads from '/src/components/ProfilePages/MyThreads.vue'
+import MyReplies from '/src/components/ProfilePages/MyReplies.vue'
 import AdminAllThreads from '../Views/Adminpages/AdminAllThreads.vue'
 import AdminAllUsers from '../Views/Adminpages/AdminAllUsers.vue'
 import AdminGroupThreads from '../Views/Adminpages/AdminGroupThreads.vue'
@@ -84,6 +85,11 @@ const routes = [
         path: '/MyThreads',
         name: 'MyThreads',
         component: MyThreads,
+    },
+    {
+        path: '/MyReplies',
+        name: 'MyReplies',
+        component: MyReplies,
     },
 ]
 
