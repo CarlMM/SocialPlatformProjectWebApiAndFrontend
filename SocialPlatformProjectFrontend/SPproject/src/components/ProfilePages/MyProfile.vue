@@ -232,22 +232,4 @@ initAuth()
     margin:0;
 }
 
-/*Overflow scrollbar */
-::-webkit-scrollbar {
-    width: 15px;
-}
-
-::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 3px rgb(170, 170, 170); 
-}
-
-::-webkit-scrollbar-thumb {
-    background:rgb(255, 255, 255);
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background:rgb(202, 209, 218); 
-} 
-
 </style>
