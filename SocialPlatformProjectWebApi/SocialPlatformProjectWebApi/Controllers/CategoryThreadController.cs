@@ -13,7 +13,7 @@ namespace SocialPlatformProjectWebApi.Controllers
     [ApiController]
     public class CategoryThreadController : Controller
     {
-
+        //Comment For Push
         private readonly ICategoryThreadService _categorythreadService;
 
         public CategoryThreadController(ICategoryThreadService categorythreadService)
@@ -22,7 +22,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
         // GET: api/<ThreadController>
         [HttpGet]
-        //[Authorize(Policy = "CheckThreads")]
+        //[Authorize(Policy = "GetThread")]
         [Route("GetCategoryThreads")]
         public IList<CategoryThread> GetThreads()
         {
@@ -72,7 +72,7 @@ namespace SocialPlatformProjectWebApi.Controllers
 
 
         [HttpPost]
-        [Route("AddCategoryThread/{CategoryThread}")]
+        [Route("AddCategoryThread")]
         public async Task<IActionResult> AddCategoryThread([FromBody] CategoryThread categoryThread)
         {
             await _categorythreadService.AddCategoryThread(categoryThread);

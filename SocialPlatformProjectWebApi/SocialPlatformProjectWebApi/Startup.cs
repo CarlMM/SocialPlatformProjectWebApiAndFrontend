@@ -75,8 +75,7 @@ namespace SocialPlatformProjectWebApi
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("CheckThreads", policy => policy.RequireClaim("permissions", "read:specificCategoryThreads"));
-
+                options.AddPolicy("GetThreads", policy => policy.RequireClaim("permissions", "read:categoryThreads"));
                 options.AddPolicy("DeleteUser", policy => policy.RequireClaim("permissions", "delete:user"));
 
             });
