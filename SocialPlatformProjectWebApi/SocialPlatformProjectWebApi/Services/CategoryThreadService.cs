@@ -33,27 +33,23 @@ namespace SocialPlatformProjectWebApi.Services
             return types;
         }
 
-        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string userIdSub)
-        {
-            var result = await _categorythreadRepository.GetGroupCategoryThreadByUserId(userIdSub);
-            return result;
-        }
-
         public async Task<IList<CategoryThread>> GetCategoryThreadByUserId(string userId)
         {
             var types = await _categorythreadRepository.GetCategoryThreadByUserId(userId);
             return types;
         }
 
+        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string IdSub)
+        {
+            var getGroupCategoryThreadByUserId = await _categorythreadRepository.GetGroupCategoryThreadByUserId(IdSub);
+            return getGroupCategoryThreadByUserId;
+        }
+
         public async Task<bool> AddCategoryThread(CategoryThread categoryThread)
         {
             DateTime date = DateTime.UtcNow.Date;
 
-            var newThreadUser = new ThreadUser
-            {
-                CategoryThreadId = categoryThread.Id,
-                UserIdSub = categoryThread.UserIdSub,
-            };
+           
 
             var newTemplate = new CategoryThread
             {
@@ -65,7 +61,7 @@ namespace SocialPlatformProjectWebApi.Services
                 UserIdSub = categoryThread.UserIdSub,
             };
 
-            return await _categorythreadRepository.AddCategoryThread(newTemplate, newThreadUser);
+            return await _categorythreadRepository.AddCategoryThread(newTemplate);
         }
 
         public async Task<IList<CategoryThread>> GetCategoryThreadById(int Id)

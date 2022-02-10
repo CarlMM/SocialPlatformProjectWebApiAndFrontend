@@ -22,7 +22,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
         // GET: api/<ThreadController>
         [HttpGet]
-        [Authorize(Policy = "GetThreads")]
+        //[Authorize(Policy = "GetThreads")]
         [Route("GetCategoryThreads")]
         public IList<CategoryThread> GetThreads()
         {
