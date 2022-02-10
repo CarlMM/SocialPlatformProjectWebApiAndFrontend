@@ -45,7 +45,7 @@ const routes = [
         component: Post,
     },
     {
-        path: '/GroupPost',
+        path: '/GroupPost/:id',
         name: 'GroupPost',
         component: GroupPost,
     },

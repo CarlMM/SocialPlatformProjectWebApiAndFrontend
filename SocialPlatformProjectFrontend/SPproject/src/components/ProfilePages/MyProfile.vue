@@ -11,7 +11,7 @@
                 <br />
                 <input type="text" v-model="AuthState.user.email" />
             </form>
-            <button @click="consoleLogMyUser()">ConsoleLogUser</button>
+            <!-- <button @click="consoleLogMyUser()">ConsoleLogUser</button> -->
         </div>
         <div v-else>
             <NotAuthantication />

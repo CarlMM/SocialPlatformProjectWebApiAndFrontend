@@ -13,7 +13,9 @@
             </div>
             <div class="subforum-description subforum-column">
                 <div class="text">
-                    <h1>{{ threads.title }}</h1>
+                    <router-link type="button" :to="`/GroupPost/${threads.id}`">
+                        <h1>{{ threads.title }}</h1>
+                    </router-link>
                     <span
                         ><p>
                             Posted by <a href="#"> User </a> 15 jan 2022
