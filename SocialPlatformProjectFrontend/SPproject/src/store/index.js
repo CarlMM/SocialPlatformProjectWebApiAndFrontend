@@ -72,9 +72,11 @@ const store = createStore({
 
         updateSpecificThreadAfterDelete(state, data) {
             state.UserThread = data
+            state.groupThreadsAdmin = data
         },
         deleteSpecificThread(state, data) {
             state.UserThread.sort(data)
+            state.groupThreadsAdmin.sort(data)
         },
 
         setAllUsersAdmin(state, data) {

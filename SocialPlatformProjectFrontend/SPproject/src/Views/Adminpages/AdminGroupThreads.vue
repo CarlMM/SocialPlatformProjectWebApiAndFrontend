@@ -13,7 +13,9 @@
             </div>
             <div class="subforum-description subforum-column">
                 <div class="text">
-                    <h1>{{ threads.title }}</h1>
+                    <router-link type="button" :to="`/GroupPost/${threads.id}`">
+                        <h1>{{ threads.title }}</h1>
+                    </router-link>
                     <span
                         ><p>
                             Posted by <a href="#"> User </a> 15 jan 2022
@@ -21,7 +23,9 @@
                     >
                     <p>{{ threads.text }}</p>
                 </div>
+                <button @click="RemoveThread(threads.id)">Remove Thread</button>
             </div>
+            
         </div>
     </div>
 </template>
@@ -31,6 +35,14 @@ import { useAuth0, AuthState } from '../../auth0/useAuth0.js'
 export default {
     name: 'AdminGroupThreads.vue',
 
+
+
+    data(){
+        return{
+            confirm: true,
+            notConfirm: false,
+        }
+    },
     created() {
         this.$store.dispatch('getAllGroupThreadsAdmin')
 
@@ -41,6 +53,32 @@ export default {
                 this.$store.state.isAdmin = true
             } else {
                 this.$router.push('/notauthorized')
+            }
+        }
+    },
+    methods:{
+        
+        fetchAllGroupThreads(){
+            return this.$store.dispatch('getAllGroupThreadsAdmin')
+        },
+        RemoveThread(idToRemove){
+            let deleteConfirm = 'are u sure you want to delete thread?'
+            if(confirm(deleteConfirm) == true){
+                
+                //Removes Id specific to thread
+                this.$store.dispatch('delelteSpecificThread', idToRemove)
+    
+                let threadId = idToRemove
+                //Fetch the list of userThread
+                let list = this.$store.state.groupThreadsAdmin
+                //Goes through the list, filter it and check for what is no longer there
+                let updatedList = list.filter(item => {
+                    return item.id !== threadId
+                })
+                this.$store.commit('updateSpecificThreadAfterDelete', updatedList)
+            }
+            else{
+               
             }
         }
     },

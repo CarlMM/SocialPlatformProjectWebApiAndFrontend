@@ -1,16 +1,16 @@
 <template>
   <div class="bodyDiv">
       
-        <div class="forumDiv">
-            <h1>ThreadTitle</h1>
-                <p>
-                    ThreadText Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam beatae
-                    inventore natus eius, ipsum culpa praesentium quam libero at debitis
-                    dolores, repudiandae molestiae dicta nulla a, assumenda fugit
-                    necessitatibus! Sint?
-                </p>
-                <div>
-                    Här ska vi loopa ut diverse replies tänker jag
+        <div class="forumDiv" v-for="thread in getPost" :key="thread.id">
+            <h1>{{thread.title}}</h1>
+                
+                    <p>{{ thread.text }}</p>
+                    <p>{{ thread.id }}</p>
+                
+                <div v-for="item in getReplies" :key="item.id">
+                    {{ item.id }}
+                    <!-- {{ item.categoryThreadId }} -->
+                    <p>{{ item.text }}</p>
                 </div>
         </div>
         
@@ -37,12 +37,15 @@
 export default {
     data(){
         return{
-
+            pId: this.$route.params.id,
         }
     },
 
     created(){
-        this.$store.dispatch('getAllThreads')
+        console.log(this.pId);
+        this.$store.dispatch('GetThreadFromSpecificId', this.pId);
+        //this.$store.dispatch('GetRepliesForSpecificPost', this.pId)
+        //this.$store.dispatch('getAllThreads')
     },
 
     methods:{
@@ -57,7 +60,15 @@ export default {
     computed:{
         GetThreads(){
             return this.$store.state.Thread
-        }
+        },
+        getPost(){
+            console.log('getPostmetod i Post.vue: ', this.$store.state.SpecificPostThread)
+
+            return this.$store.state.SpecificPostThread;
+        },
+        getReplies() {
+            return this.$store.state.Reply
+        },
     }
 }
 </script>

@@ -52,6 +52,10 @@ export default {
                 return item.id !== threadId
             })
             this.$store.commit('updateSpecificThreadAfterDelete', updatedList)
+            }
+            else{
+                
+            }
         },
     },
 

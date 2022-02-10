@@ -2,6 +2,7 @@
 using SocialPlatformProjectWebApi.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 namespace SocialPlatformProjectWebApi.Services
 {
@@ -38,11 +39,33 @@ namespace SocialPlatformProjectWebApi.Services
             return types;
         }
 
-
-        public async Task<CategoryThread> AddCategoryThread(CategoryThread categoryThread)
+        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string IdSub)
         {
-            var template = await _categorythreadRepository.AddCategoryThread(categoryThread);
-            return template;
+            var getGroupCategoryThreadByUserId = await _categorythreadRepository.GetGroupCategoryThreadByUserId(IdSub);
+            return getGroupCategoryThreadByUserId;
+        }
+
+        public async Task<bool> AddCategoryThread(CategoryThread categoryThread)
+        {
+            DateTime date = DateTime.UtcNow.Date;
+
+            var newThreadUser = new ThreadUser
+            {
+                CategoryThreadId = categoryThread.Id,
+                UserIdSub = categoryThread.UserIdSub,
+            };
+
+            var newTemplate = new CategoryThread
+            {
+                Title = categoryThread.Title,
+                Text = categoryThread.Text,
+                CreatedDate = date,
+                CategoryId = categoryThread.CategoryId,
+                ThreadType = categoryThread.ThreadType,
+                UserIdSub = categoryThread.UserIdSub,
+            };
+
+            return await _categorythreadRepository.AddCategoryThread(newTemplate, newThreadUser);
         }
 
         public async Task<IList<CategoryThread>> GetCategoryThreadById(int Id)
@@ -52,10 +75,10 @@ namespace SocialPlatformProjectWebApi.Services
 
         }
 
-        public async Task<CategoryThread> DeleteCategoryThread(int id)
+        public async Task<bool> DeleteCategoryThread(int id)
         {
-            var template = await _categorythreadRepository.DeleteCategoryThread(id);
-            return template;
+            var result = await _categorythreadRepository.DeleteCategoryThread(id);
+            return result;
         }
 
         public async Task<CategoryThread> EditCategoryThreadText(int id, string text)
