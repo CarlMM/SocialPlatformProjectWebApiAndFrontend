@@ -154,6 +154,19 @@ const store = createStore({
             commit('Auth0SetAllUsers', data)
         },
 
+        async addUserToGroupThread({ commit }, addThreadUserObject) {
+            let response = await fetch(
+                `https://localhost:44300/api/ThreadUser/AddThreadUser?categoryThreadId=${addThreadUserObject.id}&userIdSub=${addThreadUserObject.idSub}`,
+                {
+                    method: 'post',
+                    headers: { 'Content-type': 'application/json' },
+                    body: JSON.stringify(this.addThreadUserObject),
+                }
+            )
+            let data = await response.json()
+            console.log(data, 'from action')
+        },
+
         async getAllUsersAdmin({ commit }) {
             let response = await fetch(
                 'https://localhost:44300/api/User/GetUsers',
