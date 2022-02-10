@@ -11,5 +11,7 @@ namespace SocialPlatformProjectWebApi.Repository
         Task<bool> AddThreadUser(ThreadUser threadUser);
 
         Task<bool> DeleteThreadUser(int categoryThreadID, string userIdSub);
+
+        Task<IList<ThreadUser>> GetThreadUsersByCategoryId(int categoryThreadId);
     }
 }

@@ -24,6 +24,12 @@ namespace SocialPlatformProjectWebApi.Repository
             return result;
         }
 
+        public async Task<IList<ThreadUser>> GetThreadUsersByCategoryId(int categoryThreadId)
+        {
+            var result = await _dbContext.ThreadUsers.Where(x => x.CategoryThreadId == categoryThreadId).ToListAsync();
+            return result;
+        }
+
         public async Task<bool> AddThreadUser(ThreadUser threadUser)
         {
             await _dbContext.ThreadUsers.AddAsync(threadUser);
