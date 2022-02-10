@@ -47,6 +47,14 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
+        [Route("GetGroupCategoryThreadByUserid")]
+        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string userIdSub)
+        {
+            var result = await _categorythreadService.GetGroupCategoryThreadByUserId(userIdSub);
+            return result;
+        }
+
+        [HttpGet]
         [Route("GetCategoryThreadByUserId/{userId}")]
         public async Task<IList<CategoryThread>> GetCategoryThreadByUserId(string userId)
         {
@@ -60,14 +68,6 @@ namespace SocialPlatformProjectWebApi.Controllers
         {
             var types = await _categorythreadService.GetCategoryThreadById(id);
             return types;
-        }
-
-        [HttpGet]
-        [Route("GetGroupCategoryThreadByUserId)")]
-        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string IdSub)
-        {
-            var getGroupCategoryThreadByUserId = await _categorythreadService.GetGroupCategoryThreadByUserId(IdSub);
-            return getGroupCategoryThreadByUserId;
         }
 
 

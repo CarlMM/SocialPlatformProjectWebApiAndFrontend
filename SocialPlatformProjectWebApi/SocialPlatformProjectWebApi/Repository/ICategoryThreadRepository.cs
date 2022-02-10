@@ -13,6 +13,8 @@ namespace SocialPlatformProjectWebApi.Repository
 
         Task<IList<CategoryThread>> GetCategoryThreadByThreadType(bool threadType);
 
+        Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string userIdSub);
+
         Task<IList<CategoryThread>> GetCategoryThreadByUserId(string userId);
 
         Task<bool> AddCategoryThread(CategoryThread categoryThread, ThreadUser newThreadUser);
@@ -22,8 +24,6 @@ namespace SocialPlatformProjectWebApi.Repository
         Task<bool> DeleteCategoryThread(int id);
 
         Task<CategoryThread> EditCategoryThreadText(int id, string text);
-
-        Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string IdSub);
 
     }
 }

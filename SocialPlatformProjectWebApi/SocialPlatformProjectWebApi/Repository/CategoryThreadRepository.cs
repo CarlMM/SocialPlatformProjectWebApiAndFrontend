@@ -36,18 +36,30 @@ namespace SocialPlatformProjectWebApi.Repository
             return types;
         }
 
+        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string userIdSub)
+        {
+            //var groupThreads = await _dbContext.CategoryThreads.Where(x => x.ThreadType == true).ToListAsync();
+            //List<CategoryThread> result = new List<CategoryThread>();
+
+            //for (int i = 0; i < groupThreads.Count; i++)
+            //{
+            //    if(groupThreads[i].UserIdSub == userIdSub)
+            //    {
+            //        result.Add(groupThreads[i]);
+            //    }
+            //}
+            //return result;
+
+            var getGroupCategoryThreadByUserId = await _dbContext.CategoryThreads
+                .Where(x => x.UserIdSub == userIdSub && x.ThreadType == true).ToListAsync();
+
+            return getGroupCategoryThreadByUserId;
+        }
+
         public async Task<IList<CategoryThread>> GetCategoryThreadByUserId(string userId)
         {
             var result = await _dbContext.CategoryThreads.Where(x => x.UserIdSub == userId).ToListAsync();
             return result;
-        }
-
-        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string IdSub)
-        {
-            var getGroupCategoryThreadByUserId = await _dbContext.CategoryThreads
-                .Where(x => x.UserIdSub == IdSub && x.ThreadType == true).ToListAsync();
-
-            return getGroupCategoryThreadByUserId;
         }
 
         public async Task<IList<CategoryThread>> GetCategoryThreadById(int Id)
