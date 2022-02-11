@@ -49,6 +49,46 @@
                         </div>
                     </div>
                 </div>
+                    <div class="d-flex justify-content-end mt-1">
+            <Modal v-show="isModalVisible" @close="closeModal">
+                                <template v-slot:header>
+                                    <div class="text-uppercase">
+                                        reply
+                                        <span><i class="fas fa-comments"></i></span></div
+                                ></template>
+                                <template v-slot:body>
+                                    <div class="subforum-description subforum-column">
+                                        <h1>
+                                            <small
+                                                >Posted by <a href="">User</a> 15 Jan
+                                                2022</small
+                                            >
+                                        </h1>
+                                        <h1>{{ this.threadTitle }}</h1>
+                                        <p>{{ this.threadText }}</p>
+                                    </div>
+                                    <div id="container">
+                                        <div class="form-group">
+                                            <label for="reply-content">Add content</label>
+                                            <textarea
+                                                placeholder="Remember, be nice!"
+                                                cols="78"
+                                                rows="5"
+                                                v-model="newReplyPost.Text"
+                                            ></textarea>
+                                        </div>
+                                        <button class="btn btn-reply" v-on:click="this.reply(newReplyPost)">
+                                            Reply
+                                        </button>
+                                        <div v-for="error in errorMessage" :key="error.id">
+                                            <ul>
+                                                <li style="color: #333">{{ error }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </template>
+            </Modal>
+        </div>
             </div>
                     <div class="userInListDiv">
                         <h2 for="#">GroupThread Members</h2>
@@ -136,7 +176,11 @@ export default {
     },
 
     methods: {
-      
+        // toggleModal() {
+        //     if (AuthState.isAuthenticated) {
+        //         this.showModal()
+        //     }
+        // },
         // getUserNameFilterMethod(){
         //     let result = this.$store.state.listOfUsersAdmin.filter(x1 => this.$store.state.specificGroupThreadUserList.some(x2 => x1.idSub === x2.userIdSub))
         //     console.log(result, "result");
