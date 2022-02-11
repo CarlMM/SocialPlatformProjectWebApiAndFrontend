@@ -26,11 +26,11 @@ namespace SocialPlatformProjectWebApi.Repository
 
         public async Task<IList<CategoryThread>> GetCategoryThreadsAndThreadUsersByUserId(string userIdSub)
         {
-            var threadWithRepliesAndUsers = await _dbContext.CategoryThreads.Where(x => x.UserIdSub == userIdSub).Include(x => x.ThreadUsers).ToListAsync();
+            var categoryThreadWithThreadUsers = await _dbContext.CategoryThreads.Where(x => x.UserIdSub == userIdSub).Include(x => x.ThreadUsers).ToListAsync();
 
-            List<CategoryThread> newCategoryThread = new List<CategoryThread>();
+            List<CategoryThread> newCategoryThreadList = new List<CategoryThread>();
 
-            foreach (var item in threadWithRepliesAndUsers)
+            foreach (var item in categoryThreadWithThreadUsers)
             {
                 CategoryThread categoryThread = new CategoryThread();
 
@@ -48,10 +48,10 @@ namespace SocialPlatformProjectWebApi.Repository
                     threadUserItem.CategoryThread = null;
                 }
 
-                newCategoryThread.Add(categoryThread);         
+                newCategoryThreadList.Add(categoryThread);         
             }
 
-            return newCategoryThread;
+            return newCategoryThreadList;
         }
 
         public async Task<IList<CategoryThread>> GetCategoryThreadByCategoryId(int categoryId)
