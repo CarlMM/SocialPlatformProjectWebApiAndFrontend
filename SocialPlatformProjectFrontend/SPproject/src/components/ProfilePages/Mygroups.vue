@@ -8,15 +8,16 @@
             <NotAuthantication />
         </div>
         <div class="myThreads">
-            <h1>{{AuthState.user.nickname }}: GroupThreads</h1>
+            <h1>{{AuthState.user.nickname }}: Groups</h1>
             <div class="user-threads element"  v-for="threads in this.$store.state.UserGroupThread" :key="threads.Id"  >
-                <div class="threads">
-                    <router-link type="button" :to="`/GroupPost/${threads.id}`">
-                        <h1>{{threads.title}}</h1>
-                        <p>{{threads.text}}</p>
-                    </router-link>
-                    <button class="btn-close" @click="RemoveThread(threads.id)">X</button>
-                </div>
+                        <div class="threads">
+                            <router-link class="routerPosts" :to="`/GroupPost/${threads.id}`">
+                                <h1>{{threads.title}}</h1>
+                                <span><p>Posted {{threads.createdDate}}</p></span>
+                                <p class="p-text">{{threads.text}}</p>
+                            </router-link>
+                        </div>
+                <button class="btn-close" @click="RemoveThread(threads.id)">X</button>
             </div>
         </div>
     </div>
@@ -46,32 +47,32 @@ export default {
         }
     },
     computed:{
-
+       
     },
     methods:{
         async fetchGroupThreads(){
             this.$store.dispatch('GetGroupThreadsFromUser', this.AuthState.user.sub)
-        }
-    },
-    RemoveThread(id) {
-            let deleteConfirm = 'Are u sure you want to delete thread?'
-            if(confirm(deleteConfirm) == true){
-                //Removes Id specific to thread
-                this.$store.dispatch('delelteSpecificThread', id)
-    
-                let threadId = id
-                //Fetch the list of userThread
-                let list = this.$store.state.UserThread
-                //Goes through the list, filter it and check for what is no longer there
-                let updatedList = list.filter(item => {
-                    return item.id !== threadId
-                })
-                this.$store.commit('updateSpecificThreadAfterDelete', updatedList)
-            }
-            else{
-                
-            }
         },
+        RemoveThread(id) {
+                let deleteConfirm = 'Are u sure you want to delete thread?'
+                if(confirm(deleteConfirm) == true){
+                    //Removes Id specific to thread
+                    this.$store.dispatch('delelteSpecificThread', id)
+        
+                    let threadId = id
+                    //Fetch the list of userThread
+                    let list = this.$store.state.UserThread
+                    //Goes through the list, filter it and check for what is no longer there
+                    let updatedList = list.filter(item => {
+                        return item.id !== threadId
+                    })
+                    this.$store.commit('updateSpecificThreadAfterDelete', updatedList)
+                }
+                else{
+                    
+                }
+            },
+    },
 
     beforeMount(){
         this.fetchGroupThreads()
@@ -88,12 +89,26 @@ export default {
     color:#ffff;
 }
 
+/* .routerPosts{
+    width: 100%;
+    padding:0;
+    margin: 0;
+}
+
+.threads{
+    z-index:0;
+} */
+
+.p-text{
+    font-size: 18px;
+}
+
 .btn-close {
     position: absolute;
     color: rgb(255, 255, 255);
     right:5vw;
     padding: 0;
-    margin: 15px 5px;
+    margin: -10vh 0;
     font-size: 20px;
     cursor: pointer;
     font-weight: bold;
