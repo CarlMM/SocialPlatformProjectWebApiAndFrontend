@@ -2,8 +2,8 @@
     <div class="outer-box">
         <div class="post-andReply">
             <div class="post-text">
-                <div class="main-post" >
-                    <div class="main-text" >
+                <div class="main-post">
+                    <div class="main-text"  v-for="thread in getPost" :key="thread.id">
                         <h1 class="post-h1">{{ thread.title }}</h1>
                         <span class="post-user">Posted by <a href="#"> {{thread.id}} </a> 15 jan 2022</span>
                         <p>{{ thread.text }}</p>
