@@ -42,7 +42,7 @@ export default {
             this.$store.dispatch('GetThreadsFromUser', this.AuthState.user.sub)
         },
         RemoveThread(id) {
-            let deleteConfirm = 'are u sure you want to delete thread?'
+            let deleteConfirm = 'Are u sure you want to delete thread?'
             if(confirm(deleteConfirm) == true){
                 //Removes Id specific to thread
                 this.$store.dispatch('delelteSpecificThread', id)

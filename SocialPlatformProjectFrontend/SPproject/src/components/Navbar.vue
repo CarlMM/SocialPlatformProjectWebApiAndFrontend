@@ -6,12 +6,7 @@
                     <div class="col-lg-6 col-sm-6 col-6 header-top-left">
                         <div id="logo">
                             <router-link to="/">
-                                <img
-                                    src="/src/assets/Group2_logo.jpg"
-                                    alt=""
-                                    title=""
-                                    height="110"
-                                />
+                                <p id="companyLogo">FOR-SCIENCE Forum</p>
                             </router-link>
                         </div>
                     </div>
@@ -21,8 +16,7 @@
                                 <div v-if="!AuthState.loading">
                                     <div v-if="!AuthState.isAuthenticated">
                                         <a href="#" @click.prevent="login()"
-                                            >Log in - Register</a
-                                        >
+                                            >Log in - Register</a>
                                     </div>
                                     <div v-else>
                                         <div class="logged-in">
@@ -124,17 +118,27 @@ img {
     display: inline-block;
     padding-top: 10px;
 }
+
+#companyLogo{
+    font-size:40px;
+    padding-top: 15px;
+    margin: 0 -6vw;
+    z-index:99;
+}
+
 a {
     -webkit-transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
 }
+
 p {
     font-size: 18px;
     font-weight: 600;
     color: #fff;
 }
+
 i {
     font-size: 18px;
     font-weight: bolder;
@@ -146,7 +150,6 @@ i {
 }
 .header-top {
     font-size: 12px;
-    padding: 6px 0px;
     background-color: #33393a;
 }
 .header-top a {
