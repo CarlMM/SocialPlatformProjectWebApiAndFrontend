@@ -8,6 +8,7 @@ const store = createStore({
         isAdmin: false,
         GroupThreads: [],
         UserThread: [],
+        UserGroupThread: [],
         Category: [],
         Thread: [],
         Reply: [],
@@ -83,6 +84,11 @@ const store = createStore({
         setUserThreads(state, data) {
             state.UserThread = data
         },
+
+        setGroupUserThreads(state, data){
+            state.UserGroupThread = data
+        },
+
         setSpecificPostFromThread(state, data) {
             state.SpecificPostThread = data
         },
@@ -353,6 +359,17 @@ const store = createStore({
             let data = await response.json()
             console.log(data)
             commit('setUserThreads', data)
+        },
+
+        async GetGroupThreadsFromUser({commit}, idSub){
+            let response = await fetch(
+                `https://localhost:44300/api/CategoryThread/GetGroupCategoryThreadByUserid?userIdSub=${idSub}`
+
+                )
+
+                let data = await response.json()
+                console.log(data)
+                commit('setGroupUserThreads', data)
         },
 
         async CreateUserToDatabase({ commit }, createUserObject) {
