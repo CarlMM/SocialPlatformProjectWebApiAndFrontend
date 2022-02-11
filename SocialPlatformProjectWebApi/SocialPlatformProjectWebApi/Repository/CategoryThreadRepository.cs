@@ -24,9 +24,9 @@ namespace SocialPlatformProjectWebApi.Repository
             return result.ToList();
         }
 
-        public async Task<IList<CategoryThread>> GetCategoryThreadsAndRepliesAndThreadUsers(int categoryThreadId)
+        public async Task<IList<CategoryThread>> GetCategoryThreadsAndThreadUsersByUserId(string userIdSub)
         {
-            var threadWithRepliesAndUsers = await _dbContext.CategoryThreads.Where(x => x.Id == categoryThreadId).Include(x => x.Replies).Include(x => x.ThreadUsers).ToListAsync();
+            var threadWithRepliesAndUsers = await _dbContext.CategoryThreads.Where(x => x.UserIdSub == userIdSub).Include(x => x.Replies).Include(x => x.ThreadUsers).ToListAsync();
 
             List<CategoryThread> newCategoryThread = new List<CategoryThread>();
 

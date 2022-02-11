@@ -21,9 +21,9 @@ namespace SocialPlatformProjectWebApi.Services
             return template;
         }
 
-        public async Task<IList<CategoryThread>> GetCategoryThreadsAndRepliesAndThreadUsers(int categoryThreadId)
+        public async Task<IList<CategoryThread>> GetCategoryThreadsAndThreadUsersByUserId(string userIdSub)
         {
-            var template = await _categorythreadRepository.GetCategoryThreadsAndRepliesAndThreadUsers(categoryThreadId);
+            var template = await _categorythreadRepository.GetCategoryThreadsAndThreadUsersByUserId(userIdSub);
             return template;
         }
 
