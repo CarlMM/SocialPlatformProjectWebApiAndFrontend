@@ -51,6 +51,13 @@ namespace SocialPlatformProjectWebApi.Services
             return getGroupCategoryThreadByUserId;
         }
 
+        public async Task<IList<CategoryThread>> GetCategoryThreadById(int Id)
+        {
+            var types = await _categorythreadRepository.GetCategoryThreadById(Id);
+            return types;
+
+        }
+
         public async Task<bool> AddCategoryThread(CategoryThread categoryThread)
         {
             DateTime date = DateTime.UtcNow.Date;
@@ -68,13 +75,6 @@ namespace SocialPlatformProjectWebApi.Services
             };
 
             return await _categorythreadRepository.AddCategoryThread(newTemplate);
-        }
-
-        public async Task<IList<CategoryThread>> GetCategoryThreadById(int Id)
-        {
-            var types = await _categorythreadRepository.GetCategoryThreadById(Id);
-            return types;
-
         }
 
         public async Task<bool> DeleteCategoryThread(int id)

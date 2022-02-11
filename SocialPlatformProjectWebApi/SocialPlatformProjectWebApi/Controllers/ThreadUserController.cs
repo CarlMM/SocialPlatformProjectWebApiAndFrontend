@@ -21,7 +21,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             _threadUserService = threadUserService;
         }
 
-        [HttpGet]
+        [HttpGet] // admin
         [Route("GetThreadUsers")]
         public IEnumerable<ThreadUser> GetThreadUsers()
         {
@@ -29,7 +29,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             return template;
         }
 
-        [HttpGet]
+        [HttpGet] // admin, normal
         [Route("GetThreadUsersByCategoryId")]
         public async Task<IList<ThreadUser>> GetThreadUsersByCategoryThreadId(int categoryThreadId)
         {
@@ -37,7 +37,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             return template;
         }
 
-        [HttpPost]
+        [HttpPost] // admin, normal
         [Route("AddThreadUser")]
         public async Task<IActionResult> AddThreadUser(int categoryThreadId, string userIdSub)
         {
@@ -45,7 +45,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete] // admin, normal
         [Route("DeleteThreadUser")]
         public async Task<IActionResult> DeleteThreadUser(int categoryThreadId, string userIdSub)
         {

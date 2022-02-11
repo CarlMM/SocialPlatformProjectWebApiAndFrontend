@@ -21,7 +21,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             _replyService = replyService;
         }
 
-        [HttpGet]
+        [HttpGet] // admin
         [Route("GetReplies")]
         public async Task<IEnumerable<Reply>> GetReplies()
         {
@@ -29,16 +29,15 @@ namespace SocialPlatformProjectWebApi.Controllers
             return template;
         }
 
-        [HttpGet]
+        [HttpGet] // admin, normal
         [Route("GetReply/{userId}")]
         public async Task<IList<Reply>> GetReply(int userId)
         {
             var reply = await _replyService.GetReply(userId);
             return reply;
-
         }
 
-        [HttpGet]
+        [HttpGet] // admin, normal
         [Route("GetReplyByCategoryThreadId/{categoryThreadId}")]
         public async Task<IList<Reply>> GetReplyByCategoryThreadId(int categoryThreadId)
         {
@@ -46,7 +45,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             return reply;
         }
 
-        [HttpPost]
+        [HttpPost] // admin, normal
         [Route("AddReply/{Reply}")]
         public async Task<IActionResult> AddReply([FromBody] Reply reply)
         {
@@ -54,7 +53,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete] // admin, normal
         [Route("DeleteReply/{id}")]
         public async Task<IActionResult> DeleteReply(int id)
         {
@@ -67,10 +66,9 @@ namespace SocialPlatformProjectWebApi.Controllers
                 await _replyService.DeleteReply(id);
                 return Ok();
             }
-
         }
 
-         [HttpPut]
+         [HttpPut] // admin, normal - ingen implementation
          [Route("EditReply")]
          public async Task<Reply> EditReplyText(int id, string text)
         {
