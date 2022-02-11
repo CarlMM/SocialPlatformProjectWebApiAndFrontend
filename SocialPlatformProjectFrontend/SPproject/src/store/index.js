@@ -385,12 +385,13 @@ const store = createStore({
             commit('setUsersFromBack', data)
         },
 
-        // async getThreadUser({ commit }) {
-        //     let response = await fetch('')
-        //     let data = await response.json()
-        //     console.log(data)
-        //     commit('setThreadUserFromBack', data)
-        // },
+        async getThreadUser({commit}, categoryThreadId) {
+            //console.log(categoryThreadId, ' i action')
+            let response = await fetch(`https://localhost:44300/api/ThreadUser/GetThreadUsersByCategoryId?categoryThreadId=${categoryThreadId}`)
+            let data = await response.json()
+            console.log(data)
+            commit('setThreadUserFromBack', data)
+       },
 
         // async getAllThreadByUser({commit}, userId){
         //     let response = await fetch('https://localhost:44300/api/Threads/GetThreadsByUser' + userId);

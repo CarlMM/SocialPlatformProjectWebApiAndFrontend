@@ -18,7 +18,7 @@
                 <!-- Exempel hur userlistan kan se ut -->
                 <p
                     id="userNamesInThread"
-                    v-for="user in memberListUsername"
+                    v-for="user in GetThreadUsers"
                     :key="user.Id"
                 >
                     {{ user.username }}
@@ -64,24 +64,26 @@ export default {
         console.log(this.pId, "this pId")
         this.$store.dispatch('GetThreadFromSpecificId', this.pId)
         this.$store.dispatch('GetSpecificGroupThreadUsersList', this.pId)
-        this.memberListUsername = this.getUserNameFilterMethod()
+        this.$store.dispatch('getThreadUser', this.pId)
+        //this.memberListUsername = this.getUserNameFilterMethod()
         this.fetchAllUsers()
         //this.$store.dispatch('GetRepliesForSpecificPost', this.pId)
         //this.$store.dispatch('getAllThreads')
     },
     beforeMount() {
-      this.memberListUsername = this.getUserNameFilterMethod()
+      //this.memberListUsername = this.getUserNameFilterMethod()
         this.fetchAllUsers()
     },
 
     methods: {
       
-        getUserNameFilterMethod(){
-            let result = this.$store.state.listOfUsersAdmin.filter(x1 => this.$store.state.specificGroupThreadUserList.some(x2 => x1.idSub === x2.userIdSub))
-            console.log(result, "result");
-            return result
+        // getUserNameFilterMethod(){
+        //     let result = this.$store.state.listOfUsersAdmin.filter(x1 => this.$store.state.specificGroupThreadUserList.some(x2 => x1.idSub === x2.userIdSub))
+        //     console.log(result, "result");
+        //     this.memberListUsername = result;
+        //     return this.memberListUsername;
             
-        },
+        // },
         fetchAllUsers() {
             this.$store.dispatch('getAllUsersAdmin')
             this.$store.dispatch('GetSpecificGroupThreadUsersList', this.pId)
@@ -127,6 +129,13 @@ export default {
         },
     },
     computed: {
+        GetThreadUsers(){
+            let result = this.$store.state.listOfUsersAdmin.filter(x1 => this.$store.state.specificGroupThreadUserList.some(x2 => x1.idSub === x2.userIdSub))
+            console.log(result, "result");
+            this.memberListUsername = result;
+            return this.memberListUsername;
+
+        },
         GetThreads() {
             return this.$store.state.Thread
         },
