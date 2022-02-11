@@ -73,7 +73,7 @@ namespace SocialPlatformProjectWebApi.Controllers
 
 
         [HttpPost]
-        [Route("AddCategoryThread")]
+        [Route("AddCategoryThread/{Thread}")]
         public async Task<IActionResult> AddCategoryThread([FromBody] CategoryThread categoryThread)
         {
             await _categorythreadService.AddCategoryThread(categoryThread);

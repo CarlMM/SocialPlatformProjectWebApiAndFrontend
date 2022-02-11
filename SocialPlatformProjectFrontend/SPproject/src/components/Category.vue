@@ -177,6 +177,9 @@ export default {
                 CategoryId: '',
                 UserIdSub: '',
                 ThreadType: false,
+                // ThreadUsers:{
+                //     UserIdSub: '',
+                // }
             },
         }
     },
@@ -234,7 +237,9 @@ export default {
 
         createPostMethod(newPostObject) {
             this.newPostObject.UserIdSub = AuthState.user.sub
+            //this.newPostObject.ThreadUsers.UserIdSub = AuthState.user.sub;
             console.log(this.newPostObject.UserIdSub)
+            //console.log(this.newPostObject.ThreadUsers.UserIdSub)
 
             let catchBadWords = this.filterWords(this.newPostObject.Text)
             let catchBadWordsTitle = this.filterWords(this.newPostObject.Title)
@@ -271,10 +276,16 @@ export default {
                 this.closeModal()
                 console.log('Our UserId_Sub', this.newPostObject.UserId_Sub)
                 console.log(this.newPostObject, 'THIS IS THE OBJECT WE SENDING')
-                return this.$store.dispatch(
-                    'createNewPostMethod',
-                    newPostObject
-                )
+
+                // ThreadUser:{
+                //     userIdSub: '',
+                //     CategoryThreadId: null,
+                // }
+
+                
+                // this.newPostObject.ThreadUser.CategoryThreadId = this.newPostObject.UserId_Sub;
+
+                return this.$store.dispatch('createNewPostMethod', newPostObject )
             }
         },
     },
