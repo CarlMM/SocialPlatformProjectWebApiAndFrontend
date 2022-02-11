@@ -105,12 +105,16 @@ export default {
     
 }
 
+
 .database{
     background:#656a83;
 }
 
 .user > h2{
     font-size: 24px;
+    padding:0;
+    margin:0;
+    border-bottom: 1px solid #777777;
 }
 
 /* close button */

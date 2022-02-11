@@ -43,10 +43,10 @@
                                                         Profile
                                                     </option>
                                                     <option value="MyGroups">
-                                                        My groups
+                                                        My Groups
                                                     </option>
                                                     <option value="MyThreads">
-                                                        My threads
+                                                        My Threads
                                                     </option>
                                                     <option value="MyReplies">
                                                         My Replies
