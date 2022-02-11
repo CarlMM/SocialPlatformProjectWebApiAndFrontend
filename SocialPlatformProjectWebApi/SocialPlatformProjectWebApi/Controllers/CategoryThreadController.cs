@@ -32,6 +32,14 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
+        [Route("GetCategoryThreadsAndRepliesAndThreadUsers")]
+        public async Task<IList<CategoryThread>> GetCategoryThreadsAndThreadUsersByUserId(string userIdSub)
+        {
+            var template = await _categorythreadService.GetCategoryThreadsAndThreadUsersByUserId(userIdSub);
+            return template;
+        }
+
+        [HttpGet]
         [Route("GetCategoryThreadByCategoryId/{categoryId}")]
         public async Task<IList<CategoryThread>> GetCategoryThreadByCategoryId(int categoryId)
         {

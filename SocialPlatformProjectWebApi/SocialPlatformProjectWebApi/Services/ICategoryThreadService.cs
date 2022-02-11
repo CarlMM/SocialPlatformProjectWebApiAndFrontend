@@ -8,6 +8,8 @@ namespace SocialPlatformProjectWebApi.Services
     {
         IList<CategoryThread> GetCategoryThreads();
 
+        Task<IList<CategoryThread>> GetCategoryThreadsAndThreadUsersByUserId(string userIdSub);
+
         Task<IList<CategoryThread>> GetCategoryThreadByCategoryId(int categoryId);
 
         Task<IList<CategoryThread>> GetCategoryThreadByThreadType(bool threadType);

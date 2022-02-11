@@ -21,6 +21,12 @@ namespace SocialPlatformProjectWebApi.Services
             return template;
         }
 
+        public async Task<IList<CategoryThread>> GetCategoryThreadsAndThreadUsersByUserId(string userIdSub)
+        {
+            var template = await _categorythreadRepository.GetCategoryThreadsAndThreadUsersByUserId(userIdSub);
+            return template;
+        }
+
         public async Task<IList<CategoryThread>> GetCategoryThreadByCategoryId(int categoryId)
         {
             var template = await _categorythreadRepository.GetCategoryThreadByCategoryId(categoryId);
@@ -50,7 +56,7 @@ namespace SocialPlatformProjectWebApi.Services
             DateTime date = DateTime.UtcNow.Date;
 
            
-
+            //COMMENT FOR PUSH DO NOT MIND
             var newTemplate = new CategoryThread
             {
                 Title = categoryThread.Title,
