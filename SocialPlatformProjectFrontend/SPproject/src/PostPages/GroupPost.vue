@@ -1,37 +1,97 @@
 <template>
-    <div class="bodyDiv">
+    <div class="outer-box">
+        <div class="post-andReply grid">
+            <div class="post-tex">
+                <div class="main-post">
+                    <div class="main-text" v-for="thread in getPost" :key="thread.id">
+                        <h1>{{ thread.title }}</h1>
+                        <span class="post-user">Posted by <a href="#"> {{thread.id}} </a> 15 jan 2022</span>
+                        <p>{{ thread.text }}</p>
+                    </div>
+                    <button class="post-btn" @click="toggleModal()">
+                        <i class="far fa-comment icon"></i>
+                    <span>Reply to post</span>
+                    </button>
+                    <button class="post-btn">
+                        <i class="far fa-surprise icon"></i>
+                        <span>Surprise</span>
+                    </button>
+                    <button class="post-btn">
+                        <i class="far fa-share-square icon"></i>
+                        <span>Share</span>
+                    </button>
+                    <button class="post-btn">
+                        <i class="far fa-flag icon"></i>
+                        <span>Report</span>
+                    </button>
+                </div>
+                <div class="post-andReply subforum-column">
+                    <div class="replies">
+                        <div class="post-user" v-for="item in getReplies" :key="item.id">
+                            <span class="post-user">Replied by <a href="#"> {{item.id}} </a> 15 jan 2022</span>
+                            <p class="reply-text">{{item.text}}</p>
+                            <button class="post-btn">
+                                <i class="far fa-comment icon"></i>
+                                <span>Reply to comment</span>
+                            </button>
+                            <button class="post-btn">
+                                <i class="far fa-surprise icon"></i>
+                                <span>Surprise</span>
+                            </button>
+                            <button class="post-btn">
+                                <i class="far fa-share-square icon"></i>
+                                <span>Share</span>
+                            </button>
+                            <button class="post-btn">
+                                <i class="far fa-flag icon"></i>
+                                <span>Report</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    <div class="userInListDiv">
+                        <h2 for="#">GroupThread Members</h2>
+                        <div class="diplayUsersInListDiv">
+                            <!-- Exempel hur userlistan kan se ut -->
+                            <p
+                                id="userNamesInThread"
+                                v-for="user in GetThreadUsers"
+                                :key="user.Id">
+                                {{ user.username }}
+                                <!-- Lägg till userId i removeMetoden -->
+                            </p>
+                        </div>
+                        <input type="text" v-model="searchedUser" placeholder="Search for user"/>
+                        <button @click="addUserButton()">Add user to Thread</button>
+                        <div>
+                            <ul v-for="error in errors" :key="error">
+                                <li>{{ error }}</li>
+                            </ul>
+                        </div> 
+                    </div>
+        </div>
+    </div>
+
+    <!-- <div class="bodyDiv">
         <div class="forumDiv" v-for="thread in getPost" :key="thread.id">
             <h1>{{ thread.title }}</h1>
-
             <p>{{ thread.text }}</p>
-            <p>{{ thread.id }}</p>
-
             <div v-for="item in getReplies" :key="item.id">
                 {{ item.id }}
-                <!-- {{ item.categoryThreadId }} -->
                 <p>{{ item.text }}</p>
             </div>
         </div>
-
         <div class="userInListDiv">
             <div class="diplayUsersInListDiv">
-                <!-- Exempel hur userlistan kan se ut -->
                 <p
                     id="userNamesInThread"
                     v-for="user in GetThreadUsers"
-                    :key="user.Id"
-                >
+                    :key="user.Id">
                     {{ user.username }}
-
-                    <!-- Lägg till userId i removeMetoden -->
                 </p>
-                
             </div>
-            <input
-                type="text"
-                v-model="searchedUser"
-                placeholder="Search for user"
-            />
+            <input type="text" v-model="searchedUser" placeholder="Search for user"/>
             <button @click="addUserButton()">Add user to Thread</button>
             <div>
                 <ul v-for="error in errors" :key="error">
@@ -39,10 +99,8 @@
                 </ul>
             </div> 
             <h2 for="#">members of this groupthread</h2>
-            
         </div>
-      
-    </div>
+    </div> -->
 </template>
 
 <script>
@@ -50,6 +108,7 @@ export default {
     data() {
         return {
             pId: this.$route.params.id,
+            // tId: this.$route.params.Id,
             searchedUser: '',
             errors: [],
             memberListUsername: [],
@@ -65,6 +124,7 @@ export default {
         this.$store.dispatch('GetThreadFromSpecificId', this.pId)
         this.$store.dispatch('GetSpecificGroupThreadUsersList', this.pId)
         this.$store.dispatch('getThreadUser', this.pId)
+        this.$store.dispatch('GetRepliesForSpecificPost', this.pId)
         //this.memberListUsername = this.getUserNameFilterMethod()
         this.fetchAllUsers()
         //this.$store.dispatch('GetRepliesForSpecificPost', this.pId)
@@ -144,7 +204,6 @@ export default {
                 'getPostmetod i Post.vue: ',
                 this.$store.state.SpecificPostThread
             )
-
             return this.$store.state.SpecificPostThread
         },
         getReplies() {
@@ -156,6 +215,101 @@ export default {
 </script>
 
 <style scoped>
+
+.grid{
+    display: grid;
+    grid-template-columns: 77% 23%; 
+    grid-template-rows: 100%;
+    grid-column-gap: 5px;
+}
+
+h1 {
+    padding-top:10px;
+    font-size: 18px;
+    font-weight: bolder;
+    color: white;
+}
+.post-text {
+    margin-left: 5px;
+    margin-top: 20px;
+}
+/*Body*/
+.outer-box {
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.main-post {
+    padding: 10px 10px;
+    background-color:#1d1d1d;
+    border-radius:4px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.main-text{
+    margin: -5px 10px;
+    padding-bottom: 30px;
+}
+
+.post-user{
+    font-size: 14px;
+}
+
+.subforum-column {
+    margin-top:1px;
+    background-color: #6f7281;
+}
+.post-andReply {
+    padding-top: 1px;
+    padding-right: 5px;
+    color:#fff;
+}
+.replies{
+   margin: 10px 10px;
+   padding: 6px 10px;
+   border-bottom: 1px rgb(65, 75, 109) solid;
+}
+
+.reply-text{
+    padding-top:10px;
+}
+
+#container {
+    margin: 40px auto;
+    max-width: 600px;
+    /* border: 1px solid red; */
+}
+.form-group label {
+    font-size: 1.1rem;
+    display: block;
+    color: #666;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: rgb(158, 158, 158) 1px solid;
+    border-radius: 5px;
+}
+
+.btn-reply {
+    background-color: #43a78c;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btn-reply:hover {
+    background: #5ab6a6;
+}
+
+textarea {
+    resize: none;
+}
+
+/*User in group */
+
 .bodyDiv {
     display: flex;
     color: #ffff;
@@ -164,17 +318,18 @@ export default {
     float: left;
     text-align: center;
 }
-/* .userInListDiv{
-    
-} */
 
 .diplayUsersInListDiv {
     border-style: solid;
     border-width: thin;
     text-align: left;
     overflow: auto;
-    width: 400px;
     height: 200px;
+}
+
+.diplayUsersInListDiv > p{
+    padding:0;
+    margin:0;
 }
 
 #userNamesInThread {
