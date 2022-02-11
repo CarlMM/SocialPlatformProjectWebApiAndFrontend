@@ -109,6 +109,7 @@ namespace SocialPlatformProjectWebApi.Models
                 entity.HasOne(d => d.CategoryThread)
                     .WithMany(p => p.ThreadUsers)
                     .HasForeignKey(d => d.CategoryThreadId)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_ThreadUsers_Thread");
 
                 entity.HasOne(d => d.UserIdSubNavigation)
