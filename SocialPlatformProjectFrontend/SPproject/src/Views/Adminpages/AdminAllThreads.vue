@@ -1,25 +1,30 @@
 <template>
-    <div
-        v-for="threads in getGroupThreadsAdmin"
-        :key="threads.Id"
-        class="subforum-description"
-    >
-        <div class="subforum-row element">
-            <div class="subforum-icon subforum-column center">
-                <img
-                    src="https://via.placeholder.com/300.png/ https://placeholder.com/ "
-                    alt=""
-                />
-            </div>
-            <div class="subforum-description subforum-column">
-                <div class="text">
-                    <h1>{{ threads.title }}</h1>
-                    <span
-                        ><p>
-                            Posted by <a href="#"> User </a> 15 jan 2022
-                        </p></span
-                    >
-                    <p>{{ threads.text }}</p>
+    <div class="outer-box">
+        <div
+            v-for="threads in getGroupThreadsAdmin"
+            :key="threads.Id"
+            class="subforum-description"
+        >
+            <div class="subforum-row element">
+                <div class="subforum-icon subforum-column center">
+                    <img
+                        src="https://via.placeholder.com/300.png/ https://placeholder.com/ "
+                        alt=""
+                    />
+                </div>
+                <div class="subforum-description subforum-column">
+                    <div class="text">
+                        <router-link type="button" :to="`/Post/${threads.id}`">
+                            <h1>{{ threads.title }}</h1>
+                        </router-link>
+                        <span
+                            ><p>
+                                Posted by <a href="#"> User </a> 15 jan 2022
+                            </p></span
+                        >
+                        <p>{{ threads.text }}</p>
+                    </div>
+                    <button class="btn-close" @click="RemoveThread(threads.id)">X</button>
                 </div>
             </div>
         </div>
@@ -53,6 +58,27 @@ export default {
             return allThreadsAdmin
         },
     },
+    methods:{
+        RemoveThread(id) {
+            let deleteConfirm = 'Are u sure you want to delete thread?'
+            if(confirm(deleteConfirm) == true){
+                //Removes Id specific to thread
+                this.$store.dispatch('delelteSpecificThread', id)
+    
+                let threadId = id
+                //Fetch the list of userThread
+                let list = this.$store.state.Thread
+                //Goes through the list, filter it and check for what is no longer there
+                let updatedList = list.filter(item => {
+                    return item.id !== threadId
+                })
+                this.$store.commit('updateSpecificThreadAfterDelete', updatedList)
+            }
+            else{
+                
+            }
+        },
+    }
     // beforeMounted(){
 
     // }
@@ -142,5 +168,19 @@ h1 {
 .element:hover,
 element:active {
     box-shadow: 0 0 5px #fff, inset 0 0 10px #43a78c;
+}
+
+/* btn-close*/
+
+.btn-close {
+    position: absolute;
+    right: 4vw;
+    font-size: 20px;
+    margin: -55px 0;
+    padding:0;
+    cursor: pointer;
+    color:#fff;
+    font-weight: bold;
+    background: transparent;
 }
 </style>

@@ -49,11 +49,7 @@ namespace SocialPlatformProjectWebApi.Services
         {
             DateTime date = DateTime.UtcNow.Date;
 
-            var newThreadUser = new ThreadUser
-            {
-                CategoryThreadId = categoryThread.Id,
-                UserIdSub = categoryThread.UserIdSub,
-            };
+           
 
             var newTemplate = new CategoryThread
             {
@@ -65,7 +61,7 @@ namespace SocialPlatformProjectWebApi.Services
                 UserIdSub = categoryThread.UserIdSub,
             };
 
-            return await _categorythreadRepository.AddCategoryThread(newTemplate, newThreadUser);
+            return await _categorythreadRepository.AddCategoryThread(newTemplate);
         }
 
         public async Task<IList<CategoryThread>> GetCategoryThreadById(int Id)

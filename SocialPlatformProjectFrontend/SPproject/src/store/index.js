@@ -136,8 +136,7 @@ const store = createStore({
         },
 
         async createNewPostMethod({ commit }, newPostObject) {
-            //console.log('Inne i createNewPostMethod action: ', newPostObject)
-
+            console.log('Inne i createNewPostMethod action: ', newPostObject)
             let response = await fetch(
                 `https://localhost:44300/api/CategoryThread/AddCategoryThread/${newPostObject}`,
                 {
@@ -146,12 +145,29 @@ const store = createStore({
                     body: JSON.stringify(newPostObject),
                 }
             )
-
-            let data = await response.json()
-            console.log(data)
-            commit('setNewPost', data)
-        },
-
+                
+                
+                console.log(await response.json())
+                let data = await response.json()
+                console.log('i action', data)
+                commit('setNewPost', data)
+            },
+            async PostReplyToSpecificPost({ commit }, replyObject) {
+                let response = await fetch(
+                    `https://localhost:44300/api/Reply/AddReply/${replyObject}`,
+                    {
+                        method: 'post',
+                        headers: { 'Content-type': 'application/json' },
+                        body: JSON.stringify(replyObject),
+                    }
+                )
+        
+                let data = await response.json()
+                
+                console.log(data)
+                commit('setNewReplyToPost', data)
+            },
+            
         async Auth0DeleteUser({ commit }, userSubId) {
             let response = await fetch(
                 `https://dev-dzje4s8y.us.auth0.com/api/v2/users/${userSubId}`,
@@ -297,20 +313,6 @@ const store = createStore({
             commit('fetchReplyToSpecificPost', data)
         },
 
-        async PostReplyToSpecificPost({ commit }, replyObject) {
-            let response = await fetch(
-                `https://localhost:44300/api/Reply/AddReply/${replyObject}`,
-                {
-                    method: 'post',
-                    headers: { 'Content-type': 'application/json' },
-                    body: JSON.stringify(replyObject),
-                }
-            )
-
-            let data = await response.json()
-            console.log(data)
-            commit('setNewReplyToPost', data)
-        },
 
         async GetAllReplies({ commit }) {
             let response = await fetch(

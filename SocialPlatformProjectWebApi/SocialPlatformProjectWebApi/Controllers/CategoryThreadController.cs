@@ -22,7 +22,8 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
         // GET: api/<ThreadController>
         [HttpGet]
-        //[Authorize(Policy = "GetThread")]
+        //[Authorize(Policy = "GetThreads")]
+
         [Route("GetCategoryThreads")]
         public IList<CategoryThread> GetThreads()
         {
@@ -47,6 +48,14 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
+        [Route("GetGroupCategoryThreadByUserid")]
+        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string userIdSub)
+        {
+            var result = await _categorythreadService.GetGroupCategoryThreadByUserId(userIdSub);
+            return result;
+        }
+
+        [HttpGet]
         [Route("GetCategoryThreadByUserId/{userId}")]
         public async Task<IList<CategoryThread>> GetCategoryThreadByUserId(string userId)
         {
@@ -62,17 +71,9 @@ namespace SocialPlatformProjectWebApi.Controllers
             return types;
         }
 
-        [HttpGet]
-        [Route("GetGroupCategoryThreadByUserId)")]
-        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string IdSub)
-        {
-            var getGroupCategoryThreadByUserId = await _categorythreadService.GetGroupCategoryThreadByUserId(IdSub);
-            return getGroupCategoryThreadByUserId;
-        }
-
 
         [HttpPost]
-        [Route("AddCategoryThread")]
+        [Route("AddCategoryThread/{Thread}")]
         public async Task<IActionResult> AddCategoryThread([FromBody] CategoryThread categoryThread)
         {
             await _categorythreadService.AddCategoryThread(categoryThread);

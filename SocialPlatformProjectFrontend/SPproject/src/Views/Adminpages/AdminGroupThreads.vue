@@ -1,31 +1,33 @@
 <template>
-    <div
-        v-for="threads in this.$store.state.groupThreadsAdmin"
-        :key="threads.Id"
-        class="subforum-description"
-    >
-        <div class="subforum-row element">
-            <div class="subforum-icon subforum-column center">
-                <img
-                    src="https://via.placeholder.com/300.png/ https://placeholder.com/ "
-                    alt=""
-                />
-            </div>
-            <div class="subforum-description subforum-column">
-                <div class="text">
-                    <router-link type="button" :to="`/GroupPost/${threads.id}`">
-                        <h1>{{ threads.title }}</h1>
-                    </router-link>
-                    <span
-                        ><p>
-                            Posted by <a href="#"> User </a> 15 jan 2022
-                        </p></span
-                    >
-                    <p>{{ threads.text }}</p>
+    <div class="outer-box">
+        <div
+            v-for="threads in this.$store.state.groupThreadsAdmin"
+            :key="threads.Id"
+            class="subforum-description"
+        >
+            <div class="subforum-row element">
+                <div class="subforum-icon subforum-column center">
+                    <img
+                        src="https://via.placeholder.com/300.png/ https://placeholder.com/ "
+                        alt=""
+                    />
                 </div>
-                <button class="btn-close" @click="RemoveThread(threads.id)">X</button>
+                <div class="subforum-description subforum-column">
+                    <div class="text">
+                        <router-link type="button" :to="`/GroupPost/${threads.id}`">
+                            <h1>{{ threads.title }}</h1>
+                        </router-link>
+                        <span
+                            ><p>
+                                Posted by <a href="#"> User </a> 15 jan 2022
+                            </p></span
+                        >
+                        <p>{{ threads.text }}</p>
+                    </div>
+                    <button class="btn-close" @click="RemoveThread(threads.id)">X</button>
+                </div>
+                
             </div>
-            
         </div>
     </div>
 </template>
@@ -63,7 +65,7 @@ export default {
             return this.$store.dispatch('getAllGroupThreadsAdmin')
         },
         RemoveThread(idToRemove){
-            let deleteConfirm = 'are u sure you want to delete thread?'
+            let deleteConfirm = 'Are u sure you want to delete thread?'
             if(confirm(deleteConfirm) == true){
                 
                 //Removes Id specific to thread

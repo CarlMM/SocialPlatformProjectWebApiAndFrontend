@@ -113,6 +113,8 @@ export default {
                 Text: '',
                 UserIdSub: '',
                 CategoryThreadId: null,
+                
+                
             },
         }
     },
@@ -224,6 +226,7 @@ export default {
                     'Log in ReplyMethod, this is reply store: ',
                     this.$store.state.Reply
                 )
+
                 this.PostReplyToSpecificPost(newReplyPost)
                 this.closeModal()
                 this.newReplyPost.Text = ''
