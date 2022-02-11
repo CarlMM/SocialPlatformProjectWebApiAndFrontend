@@ -39,8 +39,13 @@ namespace SocialPlatformProjectWebApi.Repository
         public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string userIdSub)
         {
 
+
+        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string IdSub)
+        {
+
             var getGroupCategoryThreadByUserId = await _dbContext.CategoryThreads
                 .Where(x => x.UserIdSub == userIdSub && x.ThreadType == true).ToListAsync();
+
 
             return getGroupCategoryThreadByUserId;
         }
@@ -54,6 +59,7 @@ namespace SocialPlatformProjectWebApi.Repository
         public async Task<IList<CategoryThread>> GetCategoryThreadById(int Id)
         {
             //Comment for push branch do not mind
+
             var types = await _dbContext.CategoryThreads.Where(x => x.Id == Id).ToListAsync();
             return types;
         }
@@ -62,6 +68,7 @@ namespace SocialPlatformProjectWebApi.Repository
         {       
             //Do we need to control that the user exists before the creating thread user
             await _dbContext.CategoryThreads.AddAsync(newTemplate);
+
             await _dbContext.SaveChangesAsync();
 
             var newThreadUser = new ThreadUser
@@ -69,7 +76,6 @@ namespace SocialPlatformProjectWebApi.Repository
                 CategoryThreadId = newTemplate.Id,
                 UserIdSub = newTemplate.UserIdSub,
             };
-
             await _dbContext.ThreadUsers.AddAsync(newThreadUser);
             return (await _dbContext.SaveChangesAsync() > 0);
         }
@@ -77,6 +83,7 @@ namespace SocialPlatformProjectWebApi.Repository
         public async Task<bool> DeleteCategoryThread(int id)
         {
             var deleteCategoryThread = await _dbContext.CategoryThreads.SingleAsync(x => x.Id == id);
+
 
             if (deleteCategoryThread == null)
             {

@@ -15,6 +15,19 @@
                         </router-link>
                     </ul>
                 </div>
+                <div v-show="this.$store.state.isAdmin" class="nav-links">
+                    <ul class="nav-menu">
+                        <router-link to="/adminallthreads" class="link"
+                            >Threads</router-link
+                        >
+                        <router-link to="/admingroupthreads" class="link"
+                            >Group Threads</router-link
+                        >
+                        <router-link to="/adminallusers" class="link"
+                            >Users</router-link
+                        >
+                    </ul>
+                </div>
             </nav>
             <div class="d-flex justify-content-end mt-1">
                 <Modal v-show="isModalVisible" @close="closeModal">
@@ -115,11 +128,15 @@
             />
         </div>
         <div v-else>
-            <div class="No-CreatePost">
-                <h1>Welcome To Group2 Forum</h1>
-            </div>
-            <div class="No-CreatePost">
-                <p>You need to log in before you can create posts!</p>
+            <div class="body-message">
+                <h1>
+                    <span>You need to sign in:</span>
+                    <div class="message">
+                        <div class="word1">So You Can</div>
+                        <div class="word2">!</div>
+                        <div class="word3">Post With Us!</div>
+                    </div>
+                </h1>
             </div>
         </div>
     </div>
@@ -166,8 +183,19 @@ export default {
 
     created() {
         this.fetchAllCategories()
+        this.checkIfAdmin()
     },
     methods: {
+        checkIfAdmin() {
+            if (AuthState.isAuthenticated == true) {
+                if (
+                    AuthState.user['http://localhost:3000/roles'][0] ==
+                    'AdminUser'
+                ) {
+                    this.$store.state.isAdmin = true
+                }
+            }
+        },
         showModal() {
             this.isModalVisible = true
         },
@@ -181,10 +209,10 @@ export default {
 
         setPostTypeId(value) {
             if (value == 0) {
-                this.newPostObject.ThreadType = false;
+                this.newPostObject.ThreadType = false
                 console.log(this.newPostObject.ThreadType, 'INNE I IF SATSEN 1')
             } else {
-                this.newPostObject.ThreadType = true;
+                this.newPostObject.ThreadType = true
                 console.log(this.newPostObject.ThreadType, 'INNE I IF SATSEN 2')
             }
         },
@@ -243,7 +271,10 @@ export default {
                 this.closeModal()
                 console.log('Our UserId_Sub', this.newPostObject.UserId_Sub)
                 console.log(this.newPostObject, 'THIS IS THE OBJECT WE SENDING')
-                return this.$store.dispatch('createNewPostMethod', newPostObject)
+                return this.$store.dispatch(
+                    'createNewPostMethod',
+                    newPostObject
+                )
             }
         },
     },
@@ -299,6 +330,8 @@ nav {
     transition: all 0.3s ease 0s;
 }
 
+
+
 @media (max-width: 1300px) {
     .link {
         margin-left: 12vw;
@@ -344,28 +377,6 @@ nav {
     border-radius: 5px;
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(0, 0, 0);
-}
-
-.No-CreatePost {
-    display: flex;
-    align-content: center;
-    padding: 20px;
-    justify-content: space-around;
-}
-
-.No-CreatePost > h1 {
-    color: rgb(29, 99, 204);
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-        'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-weight: bolder;
-}
-
-.No-CreatePost > p {
-    color: #2576e0;
-    font-size: 18px;
-    font-weight: bolder;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-        'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 #container {
@@ -466,5 +477,111 @@ textarea {
 
 textarea {
     resize: none;
+}
+
+
+/*Not signed in text */
+
+.body-message{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+  width: 100vw;
+}
+
+.body-message > h1{
+  color: rgb(255, 255, 255);
+  font-family: tahoma;
+  font-size: 1.5rem;
+  font-weight: 100;
+  line-height: 1.5;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  position: relative;
+  width: 550px;
+}
+
+.message{
+  background-color: rgb(23, 156, 209);
+  color: #333;
+  display: block;
+  font-weight: 900;
+  overflow: hidden;
+  position: absolute;
+  padding-left: 0.5rem;
+  top: 0.2rem;
+  left: 250px;
+  animation: openclose 5s ease-in-out infinite;
+}
+
+.word1, .word2, .word3{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+@keyframes openclose {
+  0% {
+    top: 0.2rem;
+    width: 0;
+  }
+  5% {
+    width: 0;
+  }
+  15% {
+    width: 230px;
+  }
+  30% {
+    top: 0.2rem;
+    width: 230px;
+  }
+  33% {
+    top: 0.2rem;
+    width: 0;
+  }
+  35% {
+    top: 0.2rem;
+    width: 0;
+  }
+  38% {
+    top: -4.5rem;
+    
+  }
+  48% {
+    top: -4.5rem;
+    width: 190px;
+  }
+  62% {
+    top: -4.5rem;
+    width: 190px;
+  }
+  66% {
+    top: -4.5rem;
+    width: 0;
+    text-indent: 0;
+  }
+  71% {
+    top: -9rem;
+    width: 0;
+    text-indent: 5px;
+  }
+  86% {
+    top: -9rem;
+    width: 285px;
+  }
+  95% {
+    top: -9rem;
+    width: 285px;
+  }
+  98% {
+    top: -9rem;
+    width: 0;
+    text-indent: 5px;
+  }
+  100% {
+    top: 0;
+    width: 0;
+    text-indent: 0;
+  }
 }
 </style>

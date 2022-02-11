@@ -31,7 +31,7 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         [HttpGet]
         [Route("GetReply/{userId}")]
-        public async Task<IList<Reply>> GetReply(int userId)
+        public async Task<IList<Reply>> GetReply(string userId)
         {
             var reply = await _replyService.GetReply(userId);
             return reply;
