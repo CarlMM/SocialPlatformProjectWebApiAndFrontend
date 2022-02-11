@@ -56,7 +56,7 @@ namespace SocialPlatformProjectWebApi.Services
             DateTime date = DateTime.UtcNow.Date;
 
            
-
+            //COMMENT FOR PUSH DO NOT MIND
             var newTemplate = new CategoryThread
             {
                 Title = categoryThread.Title,
