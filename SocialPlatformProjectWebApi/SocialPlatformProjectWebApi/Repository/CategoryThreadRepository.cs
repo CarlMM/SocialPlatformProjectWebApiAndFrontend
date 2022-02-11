@@ -26,10 +26,43 @@ namespace SocialPlatformProjectWebApi.Repository
 
         public async Task<IList<CategoryThread>> GetCategoryThreadsAndRepliesAndThreadUsers(int categoryThreadId)
         {
-            var threadwithRepliesAndUsers = await _dbContext.CategoryThreads.Where(x => x.Id == categoryThreadId).Include(x => x.Replies).Include(x => x.ThreadUsers).ToListAsync();
+            var threadWithRepliesAndUsers = await _dbContext.CategoryThreads.Where(x => x.Id == categoryThreadId).Include(x => x.Replies).Include(x => x.ThreadUsers).ToListAsync();
 
+            List<CategoryThread> newCategoryThread = new List<CategoryThread>();
 
-            return threadwithRepliesAndUsers;
+            foreach (var item in threadWithRepliesAndUsers)
+            {
+                CategoryThread categoryThread = new CategoryThread();
+
+                categoryThread.Id = item.Id;
+                categoryThread.Title = item.Title;
+                categoryThread.Text = item.Text;
+                categoryThread.CreatedDate = item.CreatedDate;
+                categoryThread.CategoryId = item.CategoryId;
+                categoryThread.ThreadType = item.ThreadType;
+                categoryThread.UserIdSub = item.UserIdSub;
+
+                foreach (var threadUserItem in item.ThreadUsers)
+                {
+                    threadUserItem.Id = threadUserItem.Id;
+                    threadUserItem.CategoryThreadId = threadUserItem.CategoryThreadId;
+                    threadUserItem.UserIdSub = threadUserItem.UserIdSub;
+                }
+
+                foreach (var replyItem in item.Replies)
+                {
+                    replyItem.Id = replyItem.Id;
+                    replyItem.Text = replyItem.Text;
+                    replyItem.CreatedDate = replyItem.CreatedDate;
+                    replyItem.CategoryThreadId = replyItem.CategoryThreadId;
+                    replyItem.UserIdSub = replyItem.UserIdSub;
+                }
+
+                newCategoryThread.Add(categoryThread);
+             
+            }
+
+            return newCategoryThread;
         }
 
         public async Task<IList<CategoryThread>> GetCategoryThreadByCategoryId(int categoryId)
