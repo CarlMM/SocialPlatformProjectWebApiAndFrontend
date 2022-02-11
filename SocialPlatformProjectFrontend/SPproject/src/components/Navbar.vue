@@ -120,9 +120,9 @@ img {
 }
 
 #companyLogo{
+    display:flex;
     font-size:40px;
     padding-top: 15px;
-    margin: 0 -6vw;
     z-index:99;
 }
 

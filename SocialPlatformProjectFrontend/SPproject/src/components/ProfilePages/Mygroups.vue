@@ -8,12 +8,13 @@
             <NotAuthantication />
         </div>
         <div class="myThreads">
-            <h1>{{AuthState.user.nickname }}: Groups</h1>
+            <h1>{{AuthState.user.nickname }}: Made Groups</h1>
             <div class="user-threads element"  v-for="threads in this.$store.state.UserGroupThread" :key="threads.Id"  >
                         <div class="threads">
                             <router-link class="routerPosts" :to="`/GroupPost/${threads.id}`">
                                 <h1>{{threads.title}}</h1>
-                                <span><p>Posted {{threads.createdDate}}</p></span>
+                                <span><p>Posted temp</p></span>
+                                <!-- <span><p>Posted {{threads.createdDate}}</p></span> -->
                                 <p class="p-text">{{threads.text}}</p>
                             </router-link>
                         </div>
@@ -21,14 +22,19 @@
             </div>
             
         </div>
-            <h1>HÄR SKA NÅGOT LOOPA</h1>
-        <div class="user-threads element" v-for="groups in GetUserGroups" :key="groups.id" >
-            <div class="threads">
-                <router-link class="routerPosts" :to="`/GroupPost/${groups.id}`">
-                    <h1>{{groups.title}}</h1>
-                </router-link>
+        <div class="myThreads">
+            <h1>{{AuthState.user.nickname }}: Joined Groups</h1>
+            <div class="user-threads element" v-for="groups in GetUserGroups" :key="groups.id" >
+                <div class="threads">
+                    <router-link class="routerPosts" :to="`/GroupPost/${groups.id}`">
+                        <h1>{{groups.title}}</h1>
+                        <span><p>Posted temp</p></span>
+                        <!-- <span><p>Posted {{groups.createdDate}}</p></span> -->
+                        <p class="p-text">{{groups.text}}</p>
+                    </router-link>
+                </div>
+                <button class="btn-close" @click="RemoveThread(groups.id)">X</button>
             </div>
-            <button class="btn-close" @click="RemoveThread(groups.id)">X</button>
         </div>
     </div>
 </template>

@@ -2,9 +2,9 @@
     <div class="outer-box">
         <div class="post-andReply">
             <div class="post-text">
-                <div class="main-post">
-                    <div class="main-text"  v-for="thread in getPost" :key="thread.id">
-                        <h1>{{ thread.title }}</h1>
+                <div class="main-post" >
+                    <div class="main-text" >
+                        <h1 class="post-h1">{{ thread.title }}</h1>
                         <span class="post-user">Posted by <a href="#"> {{thread.id}} </a> 15 jan 2022</span>
                         <p>{{ thread.text }}</p>
                     </div>
@@ -237,54 +237,11 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-    padding-top:10px;
-    font-size: 18px;
-    font-weight: bolder;
-    color: white;
-}
-.post-text {
-    margin-left: 5px;
-    margin-top: 20px;
-}
-/*Body*/
-.outer-box {
-    border-radius: 5px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-.main-post {
-    padding: 10px 10px;
-    background-color:#1d1d1d;
-    border-radius:4px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.main-text{
-    margin: -5px 10px;
-    padding-bottom: 30px;
-}
-
-.post-user{
-    font-size: 14px;
-}
 
 .subforum-column {
     margin-top:1px;
+    padding-bottom: 0.1px;
     background-color: #6f7281;
-}
-.post-andReply {
-    padding-top: 1px;
-    padding-right: 5px;
-    color:#fff;
-}
-.replies{
-   margin: 10px 10px;
-   padding: 6px 10px;
-   border-bottom: 1px rgb(65, 75, 109) solid;
-}
-
-.reply-text{
-    padding-top:10px;
 }
 
 #container {

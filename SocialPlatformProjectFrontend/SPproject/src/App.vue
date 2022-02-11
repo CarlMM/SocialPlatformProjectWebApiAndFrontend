@@ -126,6 +126,57 @@ element:active {
     margin:0;
 }
 
+/* Posts + adminposts*/
+
+.post-h1 {
+    padding-top:10px;
+    font-size: 18px;
+    font-weight: bolder;
+    color: white;
+}
+.post-text {
+    margin-left: 5px;
+    margin-top: 20px;
+}
+/*Body*/
+.outer-box {
+    border-radius: 5px;
+    padding: 10px 10px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.main-post {
+    padding: 10px 10px;
+    background-color:#1d1d1d;
+    border-radius:4px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.main-text{
+    margin: -5px 10px;
+    padding-bottom: 30px;
+}
+
+.post-user{
+    font-size: 14px;
+}
+
+
+.post-andReply {
+    padding-top: 1px;
+    padding-right: 5px;
+    color:#fff;
+}
+.replies{
+   margin: 10px 10px;
+   padding: 6px 10px;
+   border-bottom: 1px rgb(65, 75, 109) solid;
+}
+
+.reply-text{
+    padding-top:10px;
+}
+
+
 
 /* Style for scrollbar */
 body::-webkit-scrollbar {
