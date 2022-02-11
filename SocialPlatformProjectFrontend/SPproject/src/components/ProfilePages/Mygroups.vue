@@ -19,6 +19,16 @@
                         </div>
                 <button class="btn-close" @click="RemoveThread(threads.id)">X</button>
             </div>
+            
+        </div>
+            <h1>HÄR SKA NÅGOT LOOPA</h1>
+        <div class="user-threads element" v-for="groups in GetUserGroups" :key="groups.id" >
+            <div class="threads">
+                <router-link class="routerPosts" :to="`/GroupPost/${groups.id}`">
+                    <h1>{{groups.title}}</h1>
+                </router-link>
+            </div>
+            <button class="btn-close" @click="RemoveThread(groups.id)">X</button>
         </div>
     </div>
 </template>
@@ -44,15 +54,44 @@ export default {
     data(){
         return{
             getGroupUserThread:[],
+            groupWithMyIdInIt:[],
         }
     },
     computed:{
-       
+       GetUserGroups(){
+           let result = this.$store.state.userRelatedGroup
+             .filter(x1 => this.$store.state.groupThreadsAdmin.some(x2 => x1.categoryThreadId === x2.id))
+             console.log(result, "result");
+             this.groupWithMyIdInIt = result;
+
+            
+            console.log('lilla Listan: ', this.groupWithMyIdInIt)
+            
+
+            let groups = this.$store.state.groupThreadsAdmin
+
+            
+            console.log('stora listan: ', groups)
+
+            
+            let filtered = groups.filter(o1 => this.groupWithMyIdInIt
+            .some(o2 => o1.id === o2.categoryThreadId))
+
+            console.log('filtrerad stora lista: ', filtered)
+
+            return filtered;
+            
+
+       }
     },
     methods:{
         async fetchGroupThreads(){
             this.$store.dispatch('GetGroupThreadsFromUser', this.AuthState.user.sub)
         },
+        async getUserGroups(){
+            this.$store.dispatch('getUserGroups', this.AuthState.user.sub)
+        },  
+               
         RemoveThread(id) {
                 let deleteConfirm = 'Are u sure you want to delete thread?'
                 if(confirm(deleteConfirm) == true){
@@ -79,7 +118,10 @@ export default {
     },
 
     created(){
+        
+        this.$store.dispatch('getAllGroupThreadsAdmin')
         this.fetchGroupThreads()
+        this.getUserGroups()
     },       
 }
 </script>

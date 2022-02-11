@@ -18,7 +18,8 @@ const store = createStore({
         Users: [],
         listOfUsersAdmin: [],
         Auth0ListUsers: [],
-        specificGroupThreadUserList:[]
+        specificGroupThreadUserList:[],
+        userRelatedGroup:[],
     },
     mutations: {
         setNewPost(state, data) {
@@ -130,6 +131,10 @@ const store = createStore({
         },
         setSpecificGroupThreadUsers(state, data){
             state.specificGroupThreadUserList = data
+        },
+        setUserGroups(state, data){
+            state.userRelatedGroup = data;
+            console.log('setUserGroups mutation: ', state.userRelatedGroup)
         }
     },
     actions: {
@@ -168,7 +173,7 @@ const store = createStore({
                     }
                 )
         
-                let data = await response.json()
+                let data = await response.text()
                 
                 console.log(data)
                 commit('setNewReplyToPost', data)
@@ -409,6 +414,14 @@ const store = createStore({
             console.log(data)
             commit('setThreadUserFromBack', data)
        },
+
+       async getUserGroups({commit}, userId){
+           let response = await fetch(`https://localhost:44300/api/ThreadUser/GetThreadUsersByCategoryId?userId=${userId}`)
+
+            let data = await response.json()
+            console.log('getUserGroups action ', data)
+            commit('setUserGroups', data)
+       }
 
         // async getAllThreadByUser({commit}, userId){
         //     let response = await fetch('https://localhost:44300/api/Threads/GetThreadsByUser' + userId);

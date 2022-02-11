@@ -130,9 +130,7 @@ export default {
         console.log('id from url', this.tId)
 
         this.$store.dispatch('GetThreadFromSpecificId', this.tId)
-        this.$store
-            .dispatch('GetRepliesForSpecificPost', this.tId)
-            .then(() => console.log('for science'))
+        this.$store.dispatch('GetRepliesForSpecificPost', this.tId)
     },
 
     computed: {
@@ -228,6 +226,7 @@ export default {
                 )
 
                 this.PostReplyToSpecificPost(newReplyPost)
+                this.$store.dispatch('GetRepliesForSpecificPost', this.tId)
                 this.closeModal()
                 this.newReplyPost.Text = ''
             }
