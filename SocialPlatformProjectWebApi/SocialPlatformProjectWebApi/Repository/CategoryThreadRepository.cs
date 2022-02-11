@@ -41,22 +41,21 @@ namespace SocialPlatformProjectWebApi.Repository
                 categoryThread.CategoryId = item.CategoryId;
                 categoryThread.ThreadType = item.ThreadType;
                 categoryThread.UserIdSub = item.UserIdSub;
+                categoryThread.ThreadUsers = item.ThreadUsers;
 
                 foreach (var threadUserItem in item.ThreadUsers)
                 {
-                    threadUserItem.Id = threadUserItem.Id;
-                    threadUserItem.CategoryThreadId = threadUserItem.CategoryThreadId;
-                    threadUserItem.UserIdSub = threadUserItem.UserIdSub;
+                    threadUserItem.CategoryThread = null;
                 }
 
-                foreach (var replyItem in item.Replies)
-                {
-                    replyItem.Id = replyItem.Id;
-                    replyItem.Text = replyItem.Text;
-                    replyItem.CreatedDate = replyItem.CreatedDate;
-                    replyItem.CategoryThreadId = replyItem.CategoryThreadId;
-                    replyItem.UserIdSub = replyItem.UserIdSub;
-                }
+                //foreach (var replyItem in item.Replies)
+                //{
+                //    replyItem.Id = replyItem.Id;
+                //    replyItem.Text = replyItem.Text;
+                //    replyItem.CreatedDate = replyItem.CreatedDate;
+                //    replyItem.CategoryThreadId = replyItem.CategoryThreadId;
+                //    replyItem.UserIdSub = replyItem.UserIdSub;
+                //}
 
                 newCategoryThread.Add(categoryThread);
              
