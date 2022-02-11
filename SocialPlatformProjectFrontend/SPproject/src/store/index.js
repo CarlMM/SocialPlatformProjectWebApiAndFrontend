@@ -147,7 +147,10 @@ const store = createStore({
                 `https://localhost:44300/api/CategoryThread/AddCategoryThread/${newPostObject}`,
                 {
                     method: 'post',
-                    headers: { 'Content-type': 'application/json' },
+                    headers: {
+                        Authorization: 'Bearer ' + this.state.token,
+                        'Content-type': 'application/json',
+                    },
                     body: JSON.stringify(newPostObject),
                 }
             )

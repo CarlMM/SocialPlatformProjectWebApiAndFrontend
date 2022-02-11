@@ -75,9 +75,22 @@ namespace SocialPlatformProjectWebApi
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("GetThreads", policy => policy.RequireClaim("permissions", "read:categoryThreads"));
-                options.AddPolicy("DeleteUser", policy => policy.RequireClaim("permissions", "delete:user"));
 
+                // CategoryThreadController policies
+                options.AddPolicy("GetThreads", policy => policy.RequireClaim("permissions", "read:categoryThreads"));
+                options.AddPolicy("GetThreadsAndRepliesAndThreadUsers", policy => policy.RequireClaim("permissions", "get:threadandrepliesandthreadUsers"));
+                options.AddPolicy("GetThreadCategoryId", policy => policy.RequireClaim("permissions", "get:threadCategoryId"));
+                options.AddPolicy("GetThreadByThreadType", policy => policy.RequireClaim("permissions", "get:threadByType"));
+                options.AddPolicy("GetGroupThreadByUserId", policy => policy.RequireClaim("permissions", "get:groupThreadUserId"));
+                options.AddPolicy("GetThreadByUserId", policy => policy.RequireClaim("permissions", "get: threadByUserId"));
+                options.AddPolicy("GetThreadById", policy => policy.RequireClaim("permissions", "get: threadById"));
+                options.AddPolicy("PostThread", policy => policy.RequireClaim("permissions", "post:thread"));
+                options.AddPolicy("DeleteThread", policy => policy.RequireClaim("permissions", "delete:thread"));
+                options.AddPolicy("PutThreadText", policy => policy.RequireClaim("permissions", "put:threadText"));
+
+                options.AddPolicy("DeleteUser", policy => policy.RequireClaim("permissions", "delete:user"));
+                
+                
             });
 
             services.AddControllersWithViews();

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SocialPlatformProjectWebApi.Models;
 using SocialPlatformProjectWebApi.Services;
@@ -31,6 +32,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Policy = "DeleteUser")]
         [Route("DeleteUserByIdSub/{idSub}")]
         public async Task<IActionResult> DeleteUser(string idSub)
         {
