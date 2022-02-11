@@ -36,36 +36,46 @@ namespace SocialPlatformProjectWebApi.Repository
             return types;
         }
 
+        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string userIdSub)
+        {
+
+
+        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string IdSub)
+        {
+
+            var getGroupCategoryThreadByUserId = await _dbContext.CategoryThreads
+                .Where(x => x.UserIdSub == userIdSub && x.ThreadType == true).ToListAsync();
+
+
+            return getGroupCategoryThreadByUserId;
+        }
+
         public async Task<IList<CategoryThread>> GetCategoryThreadByUserId(string userId)
         {
             var result = await _dbContext.CategoryThreads.Where(x => x.UserIdSub == userId).ToListAsync();
             return result;
         }
 
-        public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string IdSub)
-        {
-
-            var getGroupCategoryThreadByUserId = await _dbContext.CategoryThreads
-                .Where(x => x.UserIdSub == IdSub && x.ThreadType == true).ToListAsync();
-
-
-            return getGroupCategoryThreadByUserId;
-        }
-
         public async Task<IList<CategoryThread>> GetCategoryThreadById(int Id)
         {
-            //Push for branch comment
-            //PUSH FOR BRANCH COMMENT DO NOT MIND THIS
+            //Comment for push branch do not mind
+
             var types = await _dbContext.CategoryThreads.Where(x => x.Id == Id).ToListAsync();
             return types;
         }
 
-        public async Task<bool> AddCategoryThread(CategoryThread newTemplate, ThreadUser newThreadUser)
+        public async Task<bool> AddCategoryThread(CategoryThread newTemplate)
         {       
+            //Do we need to control that the user exists before the creating thread user
             await _dbContext.CategoryThreads.AddAsync(newTemplate);
 
             await _dbContext.SaveChangesAsync();
-            
+
+            var newThreadUser = new ThreadUser
+            {
+                CategoryThreadId = newTemplate.Id,
+                UserIdSub = newTemplate.UserIdSub,
+            };
             await _dbContext.ThreadUsers.AddAsync(newThreadUser);
             return (await _dbContext.SaveChangesAsync() > 0);
         }
