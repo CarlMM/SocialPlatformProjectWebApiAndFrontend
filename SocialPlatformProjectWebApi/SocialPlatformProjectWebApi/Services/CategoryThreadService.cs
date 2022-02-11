@@ -62,8 +62,6 @@ namespace SocialPlatformProjectWebApi.Services
         {
             DateTime date = DateTime.UtcNow.Date;
 
-           
-
             var newTemplate = new CategoryThread
             {
                 Title = categoryThread.Title,
