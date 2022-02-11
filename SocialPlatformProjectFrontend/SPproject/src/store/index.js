@@ -17,6 +17,7 @@ const store = createStore({
         Users: [],
         listOfUsersAdmin: [],
         Auth0ListUsers: [],
+        specificGroupThreadUserList:[]
     },
     mutations: {
         setNewPost(state, data) {
@@ -121,8 +122,19 @@ const store = createStore({
             state.Users = data
             console.log(data)
         },
+        setSpecificGroupThreadUsers(state, data){
+            state.specificGroupThreadUserList = data
+        }
     },
     actions: {
+        async GetSpecificGroupThreadUsersList( {commit}, groupPostId ){
+            let response = await fetch(`https://localhost:44300/api/ThreadUser/GetThreadUsersByCategoryId?categoryThreadId=${groupPostId}`,{
+                method: 'get',
+            })
+            let data = await response.json()
+            commit('setSpecificGroupThreadUsers', data) 
+        },
+
         async createNewPostMethod({ commit }, newPostObject) {
             //console.log('Inne i createNewPostMethod action: ', newPostObject)
 
