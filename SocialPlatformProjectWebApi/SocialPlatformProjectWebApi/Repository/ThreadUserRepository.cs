@@ -24,9 +24,35 @@ namespace SocialPlatformProjectWebApi.Repository
             return result;
         }
 
+        public async Task<IList<ThreadUser>> GetThreadUsersByPostId(int categoryThreadId)
+        {
+
+            var result = await _dbContext.ThreadUsers.Where(x => x.CategoryThreadId == categoryThreadId).Include(y => y.UserIdSubNavigation).ToListAsync();
+
+            List<ThreadUser> TUList = new();
+
+            foreach (var item in result)
+            {
+                ThreadUser tU = new();
+                tU.UserIdSubNavigation = new User();
+
+                tU.CategoryThreadId = item.CategoryThreadId;
+                tU.UserIdSub = item.UserIdSub;
+                tU.UserIdSubNavigation.Username = item.UserIdSubNavigation.Username;
+
+                TUList.Add(tU);
+            }
+
+            return TUList;
+
+        }
+
+
         public async Task<IList<ThreadUser>> GetThreadUsersByCategoryThreadId(string userID)
         {
             var result = await _dbContext.ThreadUsers.Where(x => x.UserIdSub == userID).ToListAsync();
+
+            
             return result;
         }
 

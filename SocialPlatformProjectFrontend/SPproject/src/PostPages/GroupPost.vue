@@ -96,7 +96,7 @@
                                 id="userNamesInThread"
                                 v-for="user in GetThreadUsers"
                                 :key="user.Id">
-                                {{ user.username }}
+                                {{ user.userIdSubNavigation.username }}
                                 <!-- Lägg till userId i removeMetoden -->
                             </p>
                         </div>
@@ -108,6 +108,7 @@
                             </ul>
                         </div> 
                     </div>
+                    <button @click="getUserNameFilterMethod()">bajs</button>
         </div>
     </div>
 
@@ -160,8 +161,8 @@ export default {
     created() {
         console.log(this.pId, "this pId")
         this.$store.dispatch('GetThreadFromSpecificId', this.pId)
-        this.$store.dispatch('GetSpecificGroupThreadUsersList', this.pId)
-        this.$store.dispatch('getThreadUser', this.pId)
+        //this.$store.dispatch('GetSpecificGroupThreadUsersList', this.pId)
+        //this.$store.dispatch('getThreadUser', this.pId)
         this.$store.dispatch('GetRepliesForSpecificPost', this.pId)
         //this.memberListUsername = this.getUserNameFilterMethod()
         this.fetchAllUsers()
@@ -180,15 +181,18 @@ export default {
         //     }
         // },
         // getUserNameFilterMethod(){
-        //     let result = this.$store.state.listOfUsersAdmin.filter(x1 => this.$store.state.specificGroupThreadUserList.some(x2 => x1.idSub === x2.userIdSub))
-        //     console.log(result, "result");
-        //     this.memberListUsername = result;
-        //     return this.memberListUsername;
+        //      let result = this.$store.state.listOfUsersAdmin.filter(x1 => this.$store.state.specificGroupThreadUserList.some(x2 => x1.idSub === x2.userIdSub))
+        //      console.log(result, "result");
+        //      console.log
+        //      this.memberListUsername = result;
+        //      console.log('i test metod: ', this.memberListUsername)
+        //      return this.memberListUsername;
             
-        // },
+        //  },
         fetchAllUsers() {
             this.$store.dispatch('getAllUsersAdmin')
             this.$store.dispatch('GetSpecificGroupThreadUsersList', this.pId)
+            this.$store.dispatch('getThreadUser', this.pId)
             // this.$store.dispatch('Auth0GetAllUsers')
         },
         addUserButton() {
@@ -232,10 +236,12 @@ export default {
     },
     computed: {
         GetThreadUsers(){
-            let result = this.$store.state.listOfUsersAdmin.filter(x1 => this.$store.state.specificGroupThreadUserList.some(x2 => x1.idSub === x2.userIdSub))
-            console.log(result, "result");
-            this.memberListUsername = result;
-            return this.memberListUsername;
+            return this.$store.state.ThreadUser
+            // let result = this.$store.state.listOfUsersAdmin.filter(x1 => this.$store.state.specificGroupThreadUserList.some(x2 => x1.idSub === x2.userIdSub))
+            // console.log("memberlist", this.memberListUsername)
+            // console.log("result", result);
+            // this.memberListUsername = result;
+            // return this.memberListUsername;
 
         },
         GetThreads() {
