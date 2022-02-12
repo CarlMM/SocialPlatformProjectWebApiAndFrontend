@@ -98,7 +98,7 @@
                                 :key="user.Id">
                                 {{ user.userIdSubNavigation.username }}
                                 <!-- Lägg till userId i removeMetoden -->
-                                <button class="btn-close">X</button>
+                                 <button class="btn-close" >X</button>
                             </p>
                         </div>
                         <input type="text" v-model="searchedUser" placeholder="Search for user"/>
@@ -242,18 +242,6 @@ export default {
 
 <style scoped>
 
-.btn-close {
-    /* position: absolute; */
-    color: rgb(255, 255, 255);
-    /* right:5vw; */
-    padding: 0;
-    /* margin: -10vh 0; */
-    font-size: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    background: transparent;
-}
-
 .grid{
     display: grid;
     grid-template-columns: 77% 23%; 
@@ -266,6 +254,7 @@ export default {
     margin-top:1px;
     padding-bottom: 0.1px;
     background-color: #6f7281;
+    /* #816f6f */
 }
 
 #container {
@@ -318,7 +307,6 @@ textarea {
     border-style: solid;
     border-width: thin;
     text-align: left;
-    position: relative;
     overflow: auto;
     height: 200px;
 }
@@ -331,4 +319,18 @@ textarea {
 #userNamesInThread {
     font-weight: bold;
 }
+
+
+/*btn-close */
+
+.btn-close {
+    position: absolute;
+    color: rgb(255, 255, 255);
+    padding: 0;
+    margin: 2px 2px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    background: transparent;
+} 
 </style>
