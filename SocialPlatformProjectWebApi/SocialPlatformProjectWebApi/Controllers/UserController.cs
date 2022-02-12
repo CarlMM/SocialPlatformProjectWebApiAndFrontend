@@ -22,7 +22,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             _userService = userService;
         }
 
-        [HttpGet]
+        [HttpGet] // admin
         [Route("GetUsers")]
         public async Task<IList<User>> GetUsers()
         {
@@ -30,7 +30,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             return template;
         }
 
-        [HttpDelete]
+        [HttpDelete] // admin
         [Route("DeleteUserByIdSub/{idSub}")]
         public async Task<IActionResult> DeleteUser(string idSub)
         {
@@ -38,7 +38,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPost] // admin
         [Route("AddUser")]
         public async Task<IActionResult> AddUser(string Id_sub, string userName, string email)
         {

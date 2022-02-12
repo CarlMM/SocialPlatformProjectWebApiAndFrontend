@@ -101,6 +101,7 @@ namespace SocialPlatformProjectWebApi.Repository
             {
                 CategoryThreadId = newTemplate.Id,
                 UserIdSub = newTemplate.UserIdSub,
+                IsAdmin = true,
             };
             await _dbContext.ThreadUsers.AddAsync(newThreadUser);
             return (await _dbContext.SaveChangesAsync() > 0);

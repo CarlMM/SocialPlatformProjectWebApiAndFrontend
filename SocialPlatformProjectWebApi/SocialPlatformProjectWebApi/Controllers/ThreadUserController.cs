@@ -21,7 +21,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             _threadUserService = threadUserService;
         }
 
-        [HttpGet]
+        [HttpGet] // admin
         [Route("GetThreadUsers")]
         public IEnumerable<ThreadUser> GetThreadUsers()
         {
@@ -29,7 +29,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             return template;
         }
 
-        [HttpGet]
+        [HttpGet] // admin, normal
         [Route("GetThreadUsersByCategoryId")]
         public async Task<IList<ThreadUser>> GetThreadUsersByCategoryThreadId(string userId)
         {
@@ -44,20 +44,28 @@ namespace SocialPlatformProjectWebApi.Controllers
             var template = await _threadUserService.GetThreadUsersByPostId(categoryThreadId);
             return template;
         }
-
-        [HttpPost]
+        //Comment For push dont mind
+        [HttpPost] // admin, normal
         [Route("AddThreadUser")]
-        public async Task<IActionResult> AddThreadUser(int categoryThreadId, string userIdSub)
+        public async Task<IActionResult> AddThreadUser(int categoryThreadId, string userIdSub, [FromBody] ThreadUser threadUser)
         {
-            await _threadUserService.AddThreadUser(categoryThreadId, userIdSub);
+            if (threadUser.IsAdmin == false)
+            {
+                return BadRequest("you are not admin");
+            }
+            await _threadUserService.AddThreadUser(categoryThreadId, userIdSub, threadUser);
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete] // admin, normal
         [Route("DeleteThreadUser")]
-        public async Task<IActionResult> DeleteThreadUser(int categoryThreadId, string userIdSub)
+        public async Task<IActionResult> DeleteThreadUser(int categoryThreadId, string userIdSub, [FromBody] ThreadUser threadUser)
         {
-            await _threadUserService.DeleteThreadUser(categoryThreadId, userIdSub);
+            if(threadUser.IsAdmin == false)
+            {
+                return BadRequest("you are not admin");
+            }
+            await _threadUserService.DeleteThreadUser(categoryThreadId, userIdSub, threadUser);
             return Ok();
         }
     }

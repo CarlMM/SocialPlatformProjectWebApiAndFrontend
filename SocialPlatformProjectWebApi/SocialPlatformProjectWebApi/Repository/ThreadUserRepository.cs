@@ -56,25 +56,31 @@ namespace SocialPlatformProjectWebApi.Repository
             return result;
         }
 
-        public async Task<bool> AddThreadUser(ThreadUser threadUser)
+        public async Task<bool> AddThreadUser(ThreadUser newThreadUser, ThreadUser threadUser)
         {
-            var result = await _dbContext.ThreadUsers.Where(x => x.UserIdSub == threadUser.UserIdSub).ToListAsync();
+            if (threadUser.IsAdmin == false  ) { return false; }
 
-            var newCategoryThreadId = threadUser.CategoryThreadId;
+                var result = await _dbContext.ThreadUsers.Where(x => x.UserIdSub == newThreadUser.UserIdSub).ToListAsync();
 
-            for (int i = 0; i < result.Count; i++)
-            {
-                if (result[i].CategoryThreadId == newCategoryThreadId)
+                var newCategoryThreadId = newThreadUser.CategoryThreadId;
+
+                for (int i = 0; i < result.Count; i++)
                 {
-                    return false;
+                    if (result[i].CategoryThreadId == newCategoryThreadId)
+                    {
+                        return false;
+                    }
                 }
-            }
-            await _dbContext.ThreadUsers.AddAsync(threadUser);
+
+            await _dbContext.ThreadUsers.AddAsync(newThreadUser);
             return (await _dbContext.SaveChangesAsync() > 0);
+
         }
 
-        public async Task<bool> DeleteThreadUser(int categoryThreadId, string userIdSub)
+        public async Task<bool> DeleteThreadUser(int categoryThreadId, string userIdSub, ThreadUser threadUser)
         {
+            if(threadUser.IsAdmin == false) { return false; }
+
             var deleteThreadUser = await _dbContext.ThreadUsers.Where(x => x.UserIdSub == userIdSub && x.CategoryThreadId == categoryThreadId).ToListAsync();
 
             if(deleteThreadUser == null)
