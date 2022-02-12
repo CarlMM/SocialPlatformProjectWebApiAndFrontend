@@ -171,7 +171,8 @@ export default {
             sendObj:{
                 prop1: null,
                 prop2: null
-            }
+            },
+            userNameToId:'',
         }
     },
 
@@ -201,34 +202,33 @@ export default {
             console.log(this.$store.state.listOfUsersAdmin)
         },
         addUserButton() {
-            this.CurrentAddingUserObj.categoryThreadId = this.pId;
-            this.CurrentAddingUserObj.userIdSub = AuthState.user.sub;
+            
+            for(let i = 0; i < this.$store.state.listOfUsersAdmin.length; ++i){
+                //console.log(this.$store.state.listOfUsersAdmin[i])
+                if(this.searchedUser == this.$store.state.listOfUsersAdmin[i].username){
+                    this.userNameToId = this.$store.state.listOfUsersAdmin[i].idSub
+                }
+                
 
-            // console.log(this.CurrentAddingUserObj.categoryThreadId)
-            // console.log(this.CurrentAddingUserObj.userIdSub)
-
-
-            this.ThreadUserobj.categoryThreadId = this.pId
-            this.ThreadUserobj.userIdSub = this.searchedUser;
-
-
-            // console.log('threaduserobj cId: ', this.ThreadUserobj.categoryThreadId)
-            // console.log('threaduserobj userIdSub: ', this.ThreadUserobj.userIdSub)
-
-
-            // console.log(this.CurrentAddingUserObj, this.ThreadUserobj)
-
-
-            this.sendObj = {
-                prop1: this.CurrentAddingUserObj,
-                prop2: this.ThreadUserobj
             }
 
-            console.log(this.sendObj)
-            //console.log(this.sendObj)
+            //console.log(this.userNameToId)
+
+             this.CurrentAddingUserObj.categoryThreadId = this.pId;
+             this.CurrentAddingUserObj.userIdSub = AuthState.user.sub;
+
+             this.ThreadUserobj.categoryThreadId = this.pId
+             this.ThreadUserobj.userIdSub = this.userNameToId;
+
+             this.sendObj = {
+                 prop1: this.CurrentAddingUserObj,
+                 prop2: this.ThreadUserobj
+             }
+
+             return this.$store.dispatch('addUserToGroupThread', this.sendObj)
 
 
-            return this.$store.dispatch('addUserToGroupThread', this.sendObj)
+
 
 
 
@@ -270,6 +270,9 @@ export default {
         },
     },
     computed: {
+        // GetUsersFromDataBase(){
+        //     return this.$store.state.listOfUsersAdmin
+        // },
         GetThreadUsers(){
             return this.$store.state.ThreadUser
 
