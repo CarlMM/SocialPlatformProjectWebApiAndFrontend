@@ -46,8 +46,8 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
         //Comment For push dont mind
         [HttpPost] // admin, normal
-        [Route("AddThreadUser")]
-        public async Task<IActionResult> AddThreadUser(int categoryThreadId, string userIdSub, [FromBody] ThreadUser threadUser)
+        [Route("AddThreadUser/{ThreadUser}")]
+        public async Task<IActionResult> AddThreadUser([FromBody] ThreadUser threadUser, int categoryThreadId, string userIdSub)
         {
             if (threadUser.IsAdmin == false)
             {

@@ -159,7 +159,7 @@ const store = createStore({
                 
                 
                 console.log(await response.json())
-                let data = await response.json()
+                let data = await response.text()
                 console.log('i action', data)
                 commit('setNewPost', data)
             },
@@ -209,13 +209,18 @@ const store = createStore({
             commit('Auth0SetAllUsers', data)
         },
 
-        async addUserToGroupThread({ commit }, addThreadUserObject) {
+        async addUserToGroupThread({ commit }, addingObject) {
+            console.log('adding obj i action: ', addingObject )
+            
             let response = await fetch(
-                `https://localhost:44300/api/ThreadUser/AddThreadUser?categoryThreadId=${addThreadUserObject.id}&userIdSub=${addThreadUserObject.idSub}`,
+                 `https://localhost:44300/api/ThreadUser/AddThreadUser/${addingObject.prop1}?categoryThreadId=${addingObject.prop2.categoryThreadId}&userIdSub=${addingObject.prop2.userIdSub}`,
+                // `https://localhost:44300/api/ThreadUser/AddThreadUser?categoryThreadId=${addThreadUserObject.id}&userIdSub=${addThreadUserObject.idSub}`,
+
+                
                 {
                     method: 'post',
                     headers: { 'Content-type': 'application/json' },
-                    body: JSON.stringify(this.addThreadUserObject),
+                    body: JSON.stringify(addingObject),
                 }
             )
             let data = await response.json()
