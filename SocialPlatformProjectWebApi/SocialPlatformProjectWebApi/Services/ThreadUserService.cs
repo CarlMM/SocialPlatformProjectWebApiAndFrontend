@@ -31,16 +31,16 @@ namespace SocialPlatformProjectWebApi.Services
             return template;
         }
 
-        public async Task<bool> AddThreadUser(int categoryThreadId, string userIdSub)
+        public async Task<bool> AddThreadUser(int categoryThreadId, string userIdSub, ThreadUser threadUser)
         {
-            var threadUser = new ThreadUser
+            var newThreadUser = new ThreadUser
             {
                 CategoryThreadId = categoryThreadId,
                 UserIdSub = userIdSub,
                 IsAdmin = false,
             };
 
-            return await _threadUserRepository.AddThreadUser(threadUser);
+            return await _threadUserRepository.AddThreadUser(newThreadUser, threadUser);
         }
 
         public async Task<bool> DeleteThreadUser(int categoryThreadID, string userIdSub, ThreadUser threadUser)

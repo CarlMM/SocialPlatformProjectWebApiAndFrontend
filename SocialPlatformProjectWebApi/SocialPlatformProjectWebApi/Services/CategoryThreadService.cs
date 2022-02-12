@@ -70,6 +70,7 @@ namespace SocialPlatformProjectWebApi.Services
                 CategoryId = categoryThread.CategoryId,
                 ThreadType = categoryThread.ThreadType,
                 UserIdSub = categoryThread.UserIdSub,
+                
             };
 
             return await _categorythreadRepository.AddCategoryThread(newTemplate);

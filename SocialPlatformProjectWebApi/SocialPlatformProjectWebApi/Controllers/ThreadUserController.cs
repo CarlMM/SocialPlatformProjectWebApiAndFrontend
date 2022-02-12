@@ -39,9 +39,9 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         [HttpPost] // admin, normal
         [Route("AddThreadUser")]
-        public async Task<IActionResult> AddThreadUser(int categoryThreadId, string userIdSub)
+        public async Task<IActionResult> AddThreadUser(int categoryThreadId, string userIdSub, [FromBody] ThreadUser threadUser)
         {
-            await _threadUserService.AddThreadUser(categoryThreadId, userIdSub);
+            await _threadUserService.AddThreadUser(categoryThreadId, userIdSub, threadUser);
             return Ok();
         }
 

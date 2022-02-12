@@ -30,13 +30,13 @@ namespace SocialPlatformProjectWebApi.Repository
             return result;
         }
 
-        public async Task<bool> AddThreadUser(ThreadUser threadUser)
+        public async Task<bool> AddThreadUser(ThreadUser newThreadUser, ThreadUser threadUser)
         {
-            if (threadUser.IsAdmin == false) { return false; }
+            if (threadUser.IsAdmin == false  ) { return false; }
 
-                var result = await _dbContext.ThreadUsers.Where(x => x.UserIdSub == threadUser.UserIdSub).ToListAsync();
+                var result = await _dbContext.ThreadUsers.Where(x => x.UserIdSub == newThreadUser.UserIdSub).ToListAsync();
 
-                var newCategoryThreadId = threadUser.CategoryThreadId;
+                var newCategoryThreadId = newThreadUser.CategoryThreadId;
 
                 for (int i = 0; i < result.Count; i++)
                 {
@@ -46,7 +46,7 @@ namespace SocialPlatformProjectWebApi.Repository
                     }
                 }
 
-            await _dbContext.ThreadUsers.AddAsync(threadUser);
+            await _dbContext.ThreadUsers.AddAsync(newThreadUser);
             return (await _dbContext.SaveChangesAsync() > 0);
 
         }
