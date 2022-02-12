@@ -211,16 +211,18 @@ const store = createStore({
 
         async addUserToGroupThread({ commit }, addingObject) {
             console.log('adding obj i action: ', addingObject )
+            console.log('addingObj.prop1: ', addingObject.prop1.userIdSub)
             
             let response = await fetch(
-                 `https://localhost:44300/api/ThreadUser/AddThreadUser/${addingObject.prop1}?categoryThreadId=${addingObject.prop2.categoryThreadId}&userIdSub=${addingObject.prop2.userIdSub}`,
+                `https://localhost:44300/api/ThreadUser/AddThreadUser?threadUserSubId=${addingObject.prop1.userIdSub}&categoryThreadId=${addingObject.prop2.categoryThreadId}&userIdSub=${addingObject.prop2.userIdSub}`,
+                // `https://localhost:44300/api/ThreadUser/AddThreadUser/${addingObject.prop1.userIdSub}?categoryThreadId=${addingObject.prop2.categoryThreadId}&userIdSub=${addingObject.prop2.userIdSub}`,
                 {
                     method: 'post',
                     headers: { 'Content-type': 'application/json' },
                     body: JSON.stringify(addingObject)
                 }
             )
-            let data = await response.json()
+            let data = await response.text()
             console.log(data, 'from action')
         },
 

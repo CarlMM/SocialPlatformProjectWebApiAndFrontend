@@ -56,24 +56,40 @@ namespace SocialPlatformProjectWebApi.Repository
             return result;
         }
 
-        public async Task<bool> AddThreadUser(ThreadUser newThreadUser, ThreadUser threadUser)
+        public async Task<bool> AddThreadUser(ThreadUser newThreadUser, string threadUserSubId)
         {
-            if (threadUser.IsAdmin == false  ) { return false; }
 
-                var result = await _dbContext.ThreadUsers.Where(x => x.UserIdSub == newThreadUser.UserIdSub).ToListAsync();
+            var result = await _dbContext.ThreadUsers.Where(x => x.UserIdSub == threadUserSubId && x.CategoryThreadId == newThreadUser.CategoryThreadId).ToListAsync();
 
-                var newCategoryThreadId = newThreadUser.CategoryThreadId;
 
-                for (int i = 0; i < result.Count; i++)
+
+            for (int i = 0; i < result.Count; ++i)
+            {
+                if(result[i].UserIdSub == threadUserSubId)
                 {
-                    if (result[i].CategoryThreadId == newCategoryThreadId)
+                    if(result[i].IsAdmin == true)
                     {
-                        return false;
+                        result = await _dbContext.ThreadUsers.Where(x => x.UserIdSub == newThreadUser.UserIdSub).ToListAsync();
+
+                        var newCategoryThreadId = newThreadUser.CategoryThreadId;
+
+                         for (int y = 0; y < result.Count; y++)
+                            {
+                             if (result[y].CategoryThreadId == newCategoryThreadId)
+                                 {
+                                    return false;
+                                 }
+                             }
+
+                         await _dbContext.ThreadUsers.AddAsync(newThreadUser);
+
                     }
                 }
-
-            await _dbContext.ThreadUsers.AddAsync(newThreadUser);
+            }
             return (await _dbContext.SaveChangesAsync() > 0);
+
+            //if (threadUser.IsAdmin == false  ) { return false; }
+
 
         }
 

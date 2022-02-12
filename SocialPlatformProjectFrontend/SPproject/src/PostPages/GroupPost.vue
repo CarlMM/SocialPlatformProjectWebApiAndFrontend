@@ -212,7 +212,6 @@ export default {
 
             }
 
-            //console.log(this.userNameToId)
 
              this.CurrentAddingUserObj.categoryThreadId = this.pId;
              this.CurrentAddingUserObj.userIdSub = AuthState.user.sub;
@@ -220,10 +219,16 @@ export default {
              this.ThreadUserobj.categoryThreadId = this.pId
              this.ThreadUserobj.userIdSub = this.userNameToId;
 
+            
+             console.log(this.CurrentAddingUserObj)
+
              this.sendObj = {
                  prop1: this.CurrentAddingUserObj,
                  prop2: this.ThreadUserobj
              }
+
+
+             console.log(this.sendObj.prop1.userIdSub)
 
              return this.$store.dispatch('addUserToGroupThread', this.sendObj)
 

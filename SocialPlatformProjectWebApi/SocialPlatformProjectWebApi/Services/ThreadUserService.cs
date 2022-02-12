@@ -37,7 +37,7 @@ namespace SocialPlatformProjectWebApi.Services
             return template;
         }
 
-        public async Task<bool> AddThreadUser(int categoryThreadId, string userIdSub, ThreadUser threadUser)
+        public async Task<bool> AddThreadUser(int categoryThreadId, string userIdSub, string threadUserSubId)
         {
             var newThreadUser = new ThreadUser
             {
@@ -46,7 +46,7 @@ namespace SocialPlatformProjectWebApi.Services
                 IsAdmin = false,
             };
 
-            return await _threadUserRepository.AddThreadUser(newThreadUser, threadUser);
+            return await _threadUserRepository.AddThreadUser(newThreadUser, threadUserSubId);
         }
 
         public async Task<bool> DeleteThreadUser(int categoryThreadID, string userIdSub, ThreadUser threadUser)
