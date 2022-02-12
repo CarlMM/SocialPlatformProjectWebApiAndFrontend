@@ -93,16 +93,16 @@
                         <div class="diplayUsersInListDiv">
                             <!-- Exempel hur userlistan kan se ut -->
                             <p
-                                id="userNamesInThread"
-                                v-for="user in GetThreadUsers"
-                                :key="user.Id">
+                                id="userNamesInThread" v-for="user in GetThreadUsers" :key="user.Id">
                                 {{ user.userIdSubNavigation.username }}
+                                <!-- {{ user }} -->
                                 <!-- Lägg till userId i removeMetoden -->
                                  <button class="btn-close" >X</button>
                             </p>
                         </div>
                         <input type="text" v-model="searchedUser" placeholder="Search for user"/>
-                        <button @click="addUserButton()">Add user to Thread</button>
+                        <button @click="addUserButton(this.searchedUser)">Add user to Thread</button>
+                        <button @click="kollaAnvändareKnapp()">Kolla alla användare</button>
                         <div>
                             <ul v-for="error in errors" :key="error">
                                 <li>{{ error }}</li>
@@ -142,8 +142,17 @@
     </div> -->
 </template>
 
+
+<script setup>
+import { useAuth0, AuthState } from '/src/auth0/useAuth0.js'
+const { initAuth } = useAuth0(AuthState)
+initAuth()
+</script>
+
 <script>
 export default {
+
+
     data() {
         return {
             pId: this.$route.params.id,
@@ -152,13 +161,23 @@ export default {
             errors: [],
             memberListUsername: [],
             ThreadUserobj: {
-                id: null,
-                idSub: '',
+                categoryThreadId: null,
+                userIdSub: '',
             },
+            CurrentAddingUserObj:{
+                categoryThreadId: null,
+                userIdSub: '',
+            },
+            sendObj:{
+                prop1: null,
+                prop2: null
+            },
+            userNameToId:'',
         }
     },
 
     created() {
+        this.$store.dispatch('getAllUsersAdmin')
         this.$store.dispatch('GetThreadFromSpecificId', this.pId)
         this.$store.dispatch('GetRepliesForSpecificPost', this.pId)
         this.fetchAllUsers()
@@ -178,46 +197,82 @@ export default {
             this.$store.dispatch('getThreadUser', this.pId)
             
         },
+
+        kollaAnvändareKnapp(){
+            console.log(this.$store.state.listOfUsersAdmin)
+        },
         addUserButton() {
-            console.log(this.$store.state.listOfUsersAdmin, "Alla users");
-            // alert('Tjofräs')
-            if (this.searchedUser == '') {
-                this.errors.push('User dont exist')
-            } else {
-                this.errors = []
-                this.ThreadUserobj.id = null
-                this.ThreadUserobj.idSub = ''
-                let userList = this.$store.state.listOfUsersAdmin
+            
+            for(let i = 0; i < this.$store.state.listOfUsersAdmin.length; ++i){
+                //console.log(this.$store.state.listOfUsersAdmin[i])
+                if(this.searchedUser == this.$store.state.listOfUsersAdmin[i].username){
+                    this.userNameToId = this.$store.state.listOfUsersAdmin[i].idSub
+                }
+                
 
-                let filteredUser = userList.filter(item => {
-                    return item.username == this.searchedUser
-                })
-
-                //Destruct object
-                let {
-                    0: {
-                        id,
-                        idSub,
-                        username,
-                        picture,
-                        email,
-                        emailVerified,
-                        threadUsers,
-                        createDate,
-                    },
-                } = filteredUser
-
-                this.ThreadUserobj.id = this.pId
-                this.ThreadUserobj.idSub = idSub
-
-                this.$store.dispatch('addUserToGroupThread', this.ThreadUserobj)
             }
+
+            //console.log(this.userNameToId)
+
+             this.CurrentAddingUserObj.categoryThreadId = this.pId;
+             this.CurrentAddingUserObj.userIdSub = AuthState.user.sub;
+
+             this.ThreadUserobj.categoryThreadId = this.pId
+             this.ThreadUserobj.userIdSub = this.userNameToId;
+
+             this.sendObj = {
+                 prop1: this.CurrentAddingUserObj,
+                 prop2: this.ThreadUserobj
+             }
+
+             return this.$store.dispatch('addUserToGroupThread', this.sendObj)
+
+
+
+
+
+
+            //console.log(this.$store.state.listOfUsersAdmin, "Alla users");
+            // alert('Tjofräs')
+            // // if (this.searchedUser == '') {
+            // //     this.errors.push('User dont exist')
+            // // } else {
+                // this.errors = []
+                // this.ThreadUserobj.id = null
+                // this.ThreadUserobj.idSub = ''
+                // let userList = this.$store.state.listOfUsersAdmin
+
+                // let filteredUser = userList.filter(item => {
+                //     return item.username == this.searchedUser
+                // })
+
+                // //Destruct object
+                // let {
+                //     0: {
+                //         id,
+                //         idSub,
+                //         username,
+                //         picture,
+                //         email,
+                //         emailVerified,
+                //         threadUsers,
+                //         createDate,
+                //     },
+                // } = filteredUser
+
+
+
+
+            //}
         },
         removeUserFromThreadButton() {
             alert('Tjoflöjt')
         },
     },
     computed: {
+        // GetUsersFromDataBase(){
+        //     return this.$store.state.listOfUsersAdmin
+        // },
         GetThreadUsers(){
             return this.$store.state.ThreadUser
 

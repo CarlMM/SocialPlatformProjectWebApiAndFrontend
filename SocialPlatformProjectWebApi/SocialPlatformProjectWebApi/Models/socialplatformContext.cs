@@ -101,7 +101,10 @@ namespace SocialPlatformProjectWebApi.Models
 
             modelBuilder.Entity<ThreadUser>(entity =>
             {
+                entity.Property(e => e.IsAdmin).HasColumnName("isAdmin");
+
                 entity.Property(e => e.UserIdSub)
+                    .IsRequired()
                     .HasMaxLength(500)
                     .IsUnicode(false)
                     .HasColumnName("UserId_Sub");
@@ -109,13 +112,11 @@ namespace SocialPlatformProjectWebApi.Models
                 entity.HasOne(d => d.CategoryThread)
                     .WithMany(p => p.ThreadUsers)
                     .HasForeignKey(d => d.CategoryThreadId)
-                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_ThreadUsers_Thread");
 
                 entity.HasOne(d => d.UserIdSubNavigation)
                     .WithMany(p => p.ThreadUsers)
                     .HasForeignKey(d => d.UserIdSub)
-                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_ThreadUsers_User");
             });
 

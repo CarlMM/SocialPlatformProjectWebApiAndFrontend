@@ -22,7 +22,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
         // GET: api/<ThreadController>
         [HttpGet]
-        //[Authorize(Policy = "GetThreads")]
+        [Authorize(Policy = "GetThreads")] // admin 
 
         [Route("GetCategoryThreads")]
         public IList<CategoryThread> GetThreads()
@@ -31,7 +31,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             return template;
         }
 
-        [HttpGet]
+        [HttpGet] // admin, normal
         [Route("GetCategoryThreadsAndRepliesAndThreadUsers")]
         public async Task<IList<CategoryThread>> GetCategoryThreadsAndThreadUsersByUserId(string userIdSub)
         {
@@ -39,7 +39,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             return template;
         }
 
-        [HttpGet]
+        [HttpGet] // admin - för att den hämtar både grupp och publika trådar 
         [Route("GetCategoryThreadByCategoryId/{categoryId}")]
         public async Task<IList<CategoryThread>> GetCategoryThreadByCategoryId(int categoryId)
         {
@@ -47,7 +47,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             return template;
         }
 
-        [HttpGet]
+        [HttpGet] // admin - för att den hämtar både grupp och publika trådar 
         [Route("GetCategoryThreadByThreadType/{threadType}")]
         public async Task<IList<CategoryThread>> GetCategoryThreadByThreadType(bool threadType)
         {
@@ -55,7 +55,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             return types;
         }
 
-        [HttpGet]
+        [HttpGet] // admin, normal
         [Route("GetGroupCategoryThreadByUserid")]
         public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string userIdSub)
         {
@@ -63,7 +63,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             return result;
         }
 
-        [HttpGet]
+        [HttpGet] // admin, normal
         [Route("GetCategoryThreadByUserId/{userId}")]
         public async Task<IList<CategoryThread>> GetCategoryThreadByUserId(string userId)
         {
@@ -71,7 +71,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             return types;
         }
 
-        [HttpGet]
+        [HttpGet] // admin, normal - används denna?
         [Route("GetCategoryThreadById/{id}")]
         public async Task<IList<CategoryThread>> GetCategoryThreadById(int id)
         {
@@ -88,7 +88,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete] // admin, normal
         [Route("DeleteCategoryThread/{id}")]
         public async Task<IActionResult> DeleteCategoryThread(int id)
         {
@@ -103,9 +103,8 @@ namespace SocialPlatformProjectWebApi.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut] // admin, normal
         [Route("EditCategoryThreadText")]
-
         public async Task<CategoryThread> EditCategoryThreadText(int id, string text)
         {
             var template = await _categorythreadService.EditCategoryThreadText(id, text);
