@@ -36,7 +36,7 @@ namespace SocialPlatformProjectWebApi.Controllers
             var template = await _threadUserService.GetThreadUsersByCategoryThreadId(categoryThreadId);
             return template;
         }
-
+        //Comment For push dont mind
         [HttpPost] // admin, normal
         [Route("AddThreadUser")]
         public async Task<IActionResult> AddThreadUser(int categoryThreadId, string userIdSub, [FromBody] ThreadUser threadUser)
