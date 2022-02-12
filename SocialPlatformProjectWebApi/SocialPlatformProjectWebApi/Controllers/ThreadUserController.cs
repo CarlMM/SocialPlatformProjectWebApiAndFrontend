@@ -41,6 +41,10 @@ namespace SocialPlatformProjectWebApi.Controllers
         [Route("AddThreadUser")]
         public async Task<IActionResult> AddThreadUser(int categoryThreadId, string userIdSub, [FromBody] ThreadUser threadUser)
         {
+            if (threadUser.IsAdmin == false)
+            {
+                return BadRequest("you are not admin");
+            }
             await _threadUserService.AddThreadUser(categoryThreadId, userIdSub, threadUser);
             return Ok();
         }
