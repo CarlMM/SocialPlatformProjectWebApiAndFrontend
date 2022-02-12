@@ -3,30 +3,28 @@
         <header class="header">
             <nav class="nav">
                 <div class="nav-links">
-                    <ul
-                        class="nav-menu"
+                    <ul class="nav-menu"
                         v-for="categories in getCategories"
-                        :key="categories.Id"
-                    >
+                        :key="categories.Id">
                         <router-link
                             class="link"
                             :to="`/${categories.title}/${categories.id}`"
                             >{{ categories.title }}
                         </router-link>
                     </ul>
-                </div>
-                <div v-show="this.$store.state.isAdmin" class="nav-links">
-                    <ul class="nav-menu">
-                        <router-link to="/adminallthreads" class="link"
-                            >Threads</router-link
-                        >
-                        <router-link to="/admingroupthreads" class="link"
-                            >Group Threads</router-link
-                        >
-                        <router-link to="/adminallusers" class="link"
-                            >Users</router-link
-                        >
-                    </ul>
+                    <div v-show="this.$store.state.isAdmin" class="nav-links">
+                        <ul class="nav-menu">
+                            <router-link to="/adminallthreads" class="link"
+                                >Threads</router-link
+                            >
+                            <router-link to="/admingroupthreads" class="link"
+                                >Group Threads</router-link
+                            >
+                            <router-link to="/adminallusers" class="link"
+                                >Users</router-link
+                            >
+                        </ul>
+                    </div>
                 </div>
             </nav>
             <div class="d-flex justify-content-end mt-1">
@@ -299,10 +297,9 @@ export default {
 
 <style scoped>
 .header {
-    margin: 20px;
     background-color: #303030;
-    border-radius: 5px;
-    z-index: 99;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 nav {
@@ -312,7 +309,6 @@ nav {
 
 .nav-links {
     display: flex;
-    flex: 1;
     align-items: center;
     margin-top: 18px;
 }
@@ -324,16 +320,11 @@ nav {
 .nav-menu > a:hover {
     color: #2576e0;
 }
-.nav-links > ul {
-    display: flex;
-    margin-right: 22px;
-}
 
 .link {
     text-decoration: none;
     font-family: 'Poppins' sans-serif;
     font-size: 25px;
-    margin-left: 15vw;
     letter-spacing: 0.5px;
     -webkit-transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;
@@ -343,7 +334,7 @@ nav {
 
 
 
-@media (max-width: 1300px) {
+/* @media (max-width: 1300px) {
     .link {
         margin-left: 12vw;
     }
@@ -365,14 +356,15 @@ nav {
     .link {
         margin-left: 4px;
     }
-}
+} */
 
 /*Create Post */
 .create-post {
     padding: 14px;
     margin-bottom: 20px;
     background: #505455;
-    border-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     display: flex;
     justify-content: space-around;
 }
