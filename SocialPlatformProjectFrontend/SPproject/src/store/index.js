@@ -214,13 +214,10 @@ const store = createStore({
             
             let response = await fetch(
                  `https://localhost:44300/api/ThreadUser/AddThreadUser/${addingObject.prop1}?categoryThreadId=${addingObject.prop2.categoryThreadId}&userIdSub=${addingObject.prop2.userIdSub}`,
-                // `https://localhost:44300/api/ThreadUser/AddThreadUser?categoryThreadId=${addThreadUserObject.id}&userIdSub=${addThreadUserObject.idSub}`,
-
-                
                 {
                     method: 'post',
                     headers: { 'Content-type': 'application/json' },
-                    body: JSON.stringify(addingObject),
+                    body: JSON.stringify(addingObject)
                 }
             )
             let data = await response.json()
