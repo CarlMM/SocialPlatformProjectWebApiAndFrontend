@@ -87,6 +87,7 @@ namespace SocialPlatformProjectWebApi
                 options.AddPolicy("PostThread", policy => policy.RequireClaim("permissions", "post:thread"));
                 options.AddPolicy("DeleteThread", policy => policy.RequireClaim("permissions", "delete:thread"));
                 options.AddPolicy("PutThreadText", policy => policy.RequireClaim("permissions", "put:threadText"));
+                // CategoryThreadController policies
 
                 options.AddPolicy("DeleteUser", policy => policy.RequireClaim("permissions", "delete:user"));
                 

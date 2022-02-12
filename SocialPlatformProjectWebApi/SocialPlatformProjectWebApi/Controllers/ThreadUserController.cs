@@ -22,7 +22,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetThreadUsers")]
+        [Route("GetThreadUsers")] //Admin 
         public IEnumerable<ThreadUser> GetThreadUsers()
         {
             var template = _threadUserService.GetThreadUsers();
@@ -30,7 +30,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetThreadUsersByCategoryId")]
+        [Route("GetThreadUsersByCategoryId")] //Admin & Normal
         public async Task<IList<ThreadUser>> GetThreadUsersByCategoryThreadId(int categoryThreadId)
         {
             var template = await _threadUserService.GetThreadUsersByCategoryThreadId(categoryThreadId);
@@ -38,7 +38,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpPost]
-        [Route("AddThreadUser")]
+        [Route("AddThreadUser")] //Admin & Normal
         public async Task<IActionResult> AddThreadUser(int categoryThreadId, string userIdSub)
         {
             await _threadUserService.AddThreadUser(categoryThreadId, userIdSub);
@@ -46,7 +46,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpDelete]
-        [Route("DeleteThreadUser")]
+        [Route("DeleteThreadUser")] //Admin & Normal
         public async Task<IActionResult> DeleteThreadUser(int categoryThreadId, string userIdSub)
         {
             await _threadUserService.DeleteThreadUser(categoryThreadId, userIdSub);

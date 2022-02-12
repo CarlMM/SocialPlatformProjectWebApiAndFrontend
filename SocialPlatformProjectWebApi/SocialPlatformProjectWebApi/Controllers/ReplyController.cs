@@ -22,7 +22,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetReplies")]
+        [Route("GetReplies")] //Admin 
         public async Task<IEnumerable<Reply>> GetReplies()
         {
             var template = await _replyService.GetReplies();
@@ -30,7 +30,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetReply/{userId}")]
+        [Route("GetReply/{userId}")] //Admin & Normal
         public async Task<IList<Reply>> GetReply(string userId)
         {
             var reply = await _replyService.GetReply(userId);
@@ -39,7 +39,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetReplyByCategoryThreadId/{categoryThreadId}")]
+        [Route("GetReplyByCategoryThreadId/{categoryThreadId}")] //Admin & Normal
         public async Task<IList<Reply>> GetReplyByCategoryThreadId(int categoryThreadId)
         {
             var reply = await _replyService.GetReplyByCategoryThreadId(categoryThreadId);
@@ -47,7 +47,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpPost]
-        [Route("AddReply/{Reply}")]
+        [Route("AddReply/{Reply}")] //Admin & Normal
         public async Task<IActionResult> AddReply([FromBody] Reply reply)
         {
             await _replyService.AddReply(reply);
@@ -55,7 +55,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpDelete]
-        [Route("DeleteReply/{id}")]
+        [Route("DeleteReply/{id}")] //Admin & Normal
         public async Task<IActionResult> DeleteReply(int id)
         {
             if(id < 0)
@@ -71,8 +71,8 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
          [HttpPut]
-         [Route("EditReply")]
-         public async Task<Reply> EditReplyText(int id, string text)
+         [Route("EditReply")] //Admin & Normal
+        public async Task<Reply> EditReplyText(int id, string text)
         {
             var template = await _replyService.EditReplyText(id, text);
             return template;
