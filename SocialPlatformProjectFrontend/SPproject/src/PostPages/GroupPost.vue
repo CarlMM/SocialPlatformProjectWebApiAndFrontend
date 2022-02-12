@@ -96,7 +96,7 @@
                                 id="userNamesInThread"
                                 v-for="user in GetThreadUsers"
                                 :key="user.Id">
-                                {{ user.username }}
+                                {{ user.userIdSubNavigation.username }}
                                 <!-- Lägg till userId i removeMetoden -->
                             </p>
                         </div>
@@ -108,6 +108,7 @@
                             </ul>
                         </div> 
                     </div>
+                    <button @click="getUserNameFilterMethod()">bajs</button>
         </div>
     </div>
 
@@ -158,18 +159,11 @@ export default {
     },
 
     created() {
-        console.log(this.pId, "this pId")
         this.$store.dispatch('GetThreadFromSpecificId', this.pId)
-        this.$store.dispatch('GetSpecificGroupThreadUsersList', this.pId)
-        this.$store.dispatch('getThreadUser', this.pId)
         this.$store.dispatch('GetRepliesForSpecificPost', this.pId)
-        //this.memberListUsername = this.getUserNameFilterMethod()
         this.fetchAllUsers()
-        //this.$store.dispatch('GetRepliesForSpecificPost', this.pId)
-        //this.$store.dispatch('getAllThreads')
     },
     beforeMount() {
-      //this.memberListUsername = this.getUserNameFilterMethod()
         this.fetchAllUsers()
     },
 
@@ -179,17 +173,10 @@ export default {
         //         this.showModal()
         //     }
         // },
-        // getUserNameFilterMethod(){
-        //     let result = this.$store.state.listOfUsersAdmin.filter(x1 => this.$store.state.specificGroupThreadUserList.some(x2 => x1.idSub === x2.userIdSub))
-        //     console.log(result, "result");
-        //     this.memberListUsername = result;
-        //     return this.memberListUsername;
-            
-        // },
+        
         fetchAllUsers() {
-            this.$store.dispatch('getAllUsersAdmin')
-            this.$store.dispatch('GetSpecificGroupThreadUsersList', this.pId)
-            // this.$store.dispatch('Auth0GetAllUsers')
+            this.$store.dispatch('getThreadUser', this.pId)
+            
         },
         addUserButton() {
             console.log(this.$store.state.listOfUsersAdmin, "Alla users");
@@ -232,10 +219,7 @@ export default {
     },
     computed: {
         GetThreadUsers(){
-            let result = this.$store.state.listOfUsersAdmin.filter(x1 => this.$store.state.specificGroupThreadUserList.some(x2 => x1.idSub === x2.userIdSub))
-            console.log(result, "result");
-            this.memberListUsername = result;
-            return this.memberListUsername;
+            return this.$store.state.ThreadUser
 
         },
         GetThreads() {

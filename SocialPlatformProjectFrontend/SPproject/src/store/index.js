@@ -409,7 +409,7 @@ const store = createStore({
 
         async getThreadUser({commit}, categoryThreadId) {
             //console.log(categoryThreadId, ' i action')
-            let response = await fetch(`https://localhost:44300/api/ThreadUser/GetThreadUsersByCategoryId?categoryThreadId=${categoryThreadId}`)
+            let response = await fetch(`https://localhost:44300/api/ThreadUser/GetThreadUsersByPostId?categoryThreadId=${categoryThreadId}`)
             let data = await response.json()
             console.log(data)
             commit('setThreadUserFromBack', data)
@@ -417,7 +417,7 @@ const store = createStore({
 
        async getUserGroups({commit}, userId){
            let response = await fetch(`https://localhost:44300/api/ThreadUser/GetThreadUsersByCategoryId?userId=${userId}`)
-
+           
             let data = await response.json()
             console.log('getUserGroups action ', data)
             commit('setUserGroups', data)
