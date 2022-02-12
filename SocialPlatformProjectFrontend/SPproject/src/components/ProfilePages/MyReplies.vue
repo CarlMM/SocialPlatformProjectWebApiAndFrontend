@@ -1,24 +1,20 @@
 <template>
     <div>
         <div v-if="AuthState.isAuthenticated" class="temp">
-            <h1>My Threads</h1>
+            <h1>My Replies</h1>
             <p>
-                Loopa ut alla trådar med användarens userId aka som användaren
-                har skapat
+                Loops out all replies that the user creates
             </p>
         </div>
         <div v-else>
             <NotAuthantication />
         </div>
         <div class="myThreads">
-            <h1>{{AuthState.user.nickname }}: Threads</h1>
-            <div class="user-threads element" v-for="userThreads in this.$store.state.UserThread" :key="userThreads.id">
+            <h1>{{AuthState.user.nickname }}: Replies</h1>
+            <div class="user-threads element" v-for="userReplies in this.$store.state.AllReplies" :key="userReplies.id">
                 <div class="threads">
-                    <router-link type="button" :to="`/Post/${userThreads.id}`">
-                        <h1 >{{ userThreads.title }}</h1>
-                        <p class="thread-text">{{userThreads.text}}</p>
-                    </router-link>
-                        <button class="btn-close" @click="RemoveThread(userThreads.id)">X</button>
+                        <p class="thread-text">{{userReplies.text}}</p>
+                        <button class="btn-close" @click="RemoveReplies(userReplies.id)">X</button>
                 </div>
             </div>
         </div>
@@ -34,27 +30,27 @@ export default {
     },
     data() {
         return {
-            userThreadList: [],
+            
         }
     },
     methods: {
-        fetchAllUserThreads() {
-            this.$store.dispatch('GetThreadsFromUser', this.AuthState.user.sub)
+        fetchAllRepliesUser() {
+            this.$store.dispatch('GetAllRepliesUser', this.AuthState.user.sub)
         },
-        RemoveThread(id) {
-            let deleteConfirm = 'Are u sure you want to delete thread?'
+        RemoveReplies(id) {
+            let deleteConfirm = 'are u sure you want to delete reply?'
             if(confirm(deleteConfirm) == true){
                 //Removes Id specific to thread
-                this.$store.dispatch('delelteSpecificThread', id)
+                this.$store.dispatch('DeleteSpecificReply', id)
     
-                let threadId = id
+                let ReplyId = id
                 //Fetch the list of userThread
-                let list = this.$store.state.UserThread
+                let list = this.$store.state.AllReplies
                 //Goes through the list, filter it and check for what is no longer there
                 let updatedList = list.filter(item => {
-                    return item.id !== threadId
+                    return item.id !== ReplyId
                 })
-                this.$store.commit('updateSpecificThreadAfterDelete', updatedList)
+                this.$store.commit('updateSpecificReplyAfterDelete', updatedList)
             }
             else{
                 
@@ -63,11 +59,11 @@ export default {
     },
 
     beforeMount() {
-        this.fetchAllUserThreads()
+        this.fetchAllRepliesUser()
     },
 
     created() {
-        this.fetchAllUserThreads()
+        this.fetchAllRepliesUser()
     },
 }
 </script>
@@ -87,12 +83,13 @@ initAuth()
 }
 
 
+
 .btn-close {
     position: absolute;
     color: rgb(255, 255, 255);
     right:5vw;
     padding: 0;
-    margin: 15px 5px;
+    margin: -25px 0;
     font-size: 20px;
     cursor: pointer;
     font-weight: bold;

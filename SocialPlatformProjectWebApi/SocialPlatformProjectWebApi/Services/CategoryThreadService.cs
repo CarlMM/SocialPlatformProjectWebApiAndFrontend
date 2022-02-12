@@ -61,7 +61,6 @@ namespace SocialPlatformProjectWebApi.Services
         public async Task<bool> AddCategoryThread(CategoryThread categoryThread)
         {
             DateTime date = DateTime.UtcNow.Date;
-
             var newTemplate = new CategoryThread
             {
                 Title = categoryThread.Title,

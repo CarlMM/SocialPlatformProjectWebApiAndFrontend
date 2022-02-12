@@ -8,6 +8,11 @@ import Studies from '/src/components/CategoryFolderPages/Studies.vue'
 import MyProfile from '/src/components/ProfilePages/MyProfile.vue'
 import MyGroups from '/src/components/ProfilePages/Mygroups.vue'
 import MyThreads from '/src/components/ProfilePages/MyThreads.vue'
+import MyReplies from '/src/components/ProfilePages/MyReplies.vue'
+import AdminAllThreads from '../Views/Adminpages/AdminAllThreads.vue'
+import AdminAllUsers from '../Views/Adminpages/AdminAllUsers.vue'
+import AdminGroupThreads from '../Views/Adminpages/AdminGroupThreads.vue'
+import NotAuthantication from '../Views/NotAuthorized.vue'
 
 const routes = [
     {
@@ -16,12 +21,32 @@ const routes = [
         component: Home,
     },
     {
+        path: '/notauthorized',
+        name: 'NotAuthantication',
+        component: NotAuthantication,
+    },
+    {
+        path: '/adminallthreads',
+        name: 'AdminAllThreads',
+        component: AdminAllThreads,
+    },
+    {
+        path: '/adminallusers',
+        name: 'AdminAllUsers',
+        component: AdminAllUsers,
+    },
+    {
+        path: '/admingroupthreads',
+        name: 'AdminGroupThreads',
+        component: AdminGroupThreads,
+    },
+    {
         path: '/Post/:Id',
         name: 'Post',
         component: Post,
     },
     {
-        path: '/GroupPost',
+        path: '/GroupPost/:id',
         name: 'GroupPost',
         component: GroupPost,
     },
@@ -29,19 +54,19 @@ const routes = [
         path: '/Computer/:id',
         name: 'Computers',
         component: Computers,
-        props: {data: null}
+        props: { data: null },
     },
     {
         path: '/Fishing/:id',
         name: 'Fishing',
         component: Fishing,
-        props: {data: null}
+        props: { data: null },
     },
     {
         path: '/Studies/:id',
         name: 'Studies',
         component: Studies,
-        props: {data: null}
+        props: { data: null },
     },
     {
         //Behövs inte /:id för denna
@@ -60,6 +85,11 @@ const routes = [
         path: '/MyThreads',
         name: 'MyThreads',
         component: MyThreads,
+    },
+    {
+        path: '/MyReplies',
+        name: 'MyReplies',
+        component: MyReplies,
     },
 ]
 

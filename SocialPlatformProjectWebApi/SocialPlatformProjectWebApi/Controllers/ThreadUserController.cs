@@ -31,9 +31,17 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         [HttpGet] // admin, normal
         [Route("GetThreadUsersByCategoryId")]
-        public async Task<IList<ThreadUser>> GetThreadUsersByCategoryThreadId(int categoryThreadId)
+        public async Task<IList<ThreadUser>> GetThreadUsersByCategoryThreadId(string userId)
         {
-            var template = await _threadUserService.GetThreadUsersByCategoryThreadId(categoryThreadId);
+            var template = await _threadUserService.GetThreadUsersByCategoryThreadId(userId);
+            return template;
+        }
+
+        [HttpGet]
+        [Route("GetThreadUsersByPostId")]
+        public async Task<IList<ThreadUser>> GetThreadUsersByPostId(int categoryThreadId)
+        {
+            var template = await _threadUserService.GetThreadUsersByPostId(categoryThreadId);
             return template;
         }
         //Comment For push dont mind

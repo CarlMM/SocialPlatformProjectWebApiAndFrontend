@@ -10,7 +10,7 @@ namespace SocialPlatformProjectWebApi.Repository
         
         Task<IEnumerable<Reply>> GetReplies();
 
-        Task<IList<Reply>> GetReply(int userId);
+        Task<IList<Reply>> GetReply(string userId);
 
         Task<bool> AddReply(Reply template);
 
