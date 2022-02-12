@@ -159,18 +159,11 @@ export default {
     },
 
     created() {
-        console.log(this.pId, "this pId")
         this.$store.dispatch('GetThreadFromSpecificId', this.pId)
-        //this.$store.dispatch('GetSpecificGroupThreadUsersList', this.pId)
-        //this.$store.dispatch('getThreadUser', this.pId)
         this.$store.dispatch('GetRepliesForSpecificPost', this.pId)
-        //this.memberListUsername = this.getUserNameFilterMethod()
         this.fetchAllUsers()
-        //this.$store.dispatch('GetRepliesForSpecificPost', this.pId)
-        //this.$store.dispatch('getAllThreads')
     },
     beforeMount() {
-      //this.memberListUsername = this.getUserNameFilterMethod()
         this.fetchAllUsers()
     },
 
@@ -180,20 +173,10 @@ export default {
         //         this.showModal()
         //     }
         // },
-        // getUserNameFilterMethod(){
-        //      let result = this.$store.state.listOfUsersAdmin.filter(x1 => this.$store.state.specificGroupThreadUserList.some(x2 => x1.idSub === x2.userIdSub))
-        //      console.log(result, "result");
-        //      console.log
-        //      this.memberListUsername = result;
-        //      console.log('i test metod: ', this.memberListUsername)
-        //      return this.memberListUsername;
-            
-        //  },
+        
         fetchAllUsers() {
-            this.$store.dispatch('getAllUsersAdmin')
-            this.$store.dispatch('GetSpecificGroupThreadUsersList', this.pId)
             this.$store.dispatch('getThreadUser', this.pId)
-            // this.$store.dispatch('Auth0GetAllUsers')
+            
         },
         addUserButton() {
             console.log(this.$store.state.listOfUsersAdmin, "Alla users");
@@ -237,11 +220,6 @@ export default {
     computed: {
         GetThreadUsers(){
             return this.$store.state.ThreadUser
-            // let result = this.$store.state.listOfUsersAdmin.filter(x1 => this.$store.state.specificGroupThreadUserList.some(x2 => x1.idSub === x2.userIdSub))
-            // console.log("memberlist", this.memberListUsername)
-            // console.log("result", result);
-            // this.memberListUsername = result;
-            // return this.memberListUsername;
 
         },
         GetThreads() {
