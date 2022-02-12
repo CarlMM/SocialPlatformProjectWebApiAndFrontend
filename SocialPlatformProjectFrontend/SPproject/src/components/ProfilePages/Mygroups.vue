@@ -33,7 +33,6 @@
                         <p class="p-text">{{groups.text}}</p>
                     </router-link>
                 </div>
-                <button class="btn-close" @click="RemoveThread(groups.id)">X</button>
             </div>
         </div>
     </div>
