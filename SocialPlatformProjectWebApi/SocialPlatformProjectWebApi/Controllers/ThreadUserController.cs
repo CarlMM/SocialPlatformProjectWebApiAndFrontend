@@ -47,7 +47,7 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         [HttpDelete] // admin, normal
         [Route("DeleteThreadUser")]
-        public async Task<IActionResult> DeleteThreadUser(int categoryThreadId, string userIdSub, ThreadUser threadUser)
+        public async Task<IActionResult> DeleteThreadUser(int categoryThreadId, string userIdSub, [FromBody] ThreadUser threadUser)
         {
             if(threadUser.IsAdmin == false)
             {
