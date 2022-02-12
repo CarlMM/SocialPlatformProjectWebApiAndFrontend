@@ -19,7 +19,7 @@
                         </router-link>
                         <span
                             ><p>
-                                Posted by <a href="#"> User </a> 15 jan 2022
+                                Posted {{threads.createdDate}}
                             </p></span
                         >
                         <p>{{ threads.text }}</p>

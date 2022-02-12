@@ -147,7 +147,8 @@ element:active {
 .main-post {
     padding: 10px 10px;
     background-color:#1d1d1d;
-    border-radius:4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 

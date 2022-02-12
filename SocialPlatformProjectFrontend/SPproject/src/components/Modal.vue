@@ -28,6 +28,7 @@ export default {
     },
 }
 </script>
+
 <style scoped>
 .modal-backdrop {
     position: fixed;
