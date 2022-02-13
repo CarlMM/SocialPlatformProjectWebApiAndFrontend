@@ -68,6 +68,13 @@ export default {
 
     created() {
         this.fetchAllUserThreads()
+        if (AuthState.isAuthenticated == true) {
+            if (
+                AuthState.user['http://localhost:3000/roles'][0] == 'AdminUser'
+            ) {
+                this.$store.state.isAdmin = true
+            }
+        }
     },
 }
 </script>
