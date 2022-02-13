@@ -1,5 +1,6 @@
 <template>
     <div class="outer-box">
+        <button class="btn-close" @click="goHome()">X</button>
         <div
             v-for="threads in list"
             :key="threads.Id"
@@ -134,7 +135,10 @@ export default {
         goPost(id){
             this.$router.push('/Post/' + id)
             this.$store.state.comingFromThreads = true
-        }
+        },
+        goHome(){
+        this.$router.push('/')
+        },
     },
 }
 </script>
@@ -179,6 +183,7 @@ h1 {
 .outer-box {
     background: #484848;
     border-radius: 5px;
+    padding-top:60px;
 }
 
 .subforum {
@@ -234,6 +239,11 @@ h1 {
 
 .post-btn{
     padding-top:5.7vh;
+}
+
+/*btn-close */
+.btn-close{
+    padding: 10px 20px;
 }
 
 </style>

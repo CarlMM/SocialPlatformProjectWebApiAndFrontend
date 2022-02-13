@@ -3,8 +3,8 @@
         <h1 class="highlight">Users from database</h1>
         <div class="users database" v-for="user in this.$store.state.listOfUsersAdmin" :key="user.id">
             <div class="user">
-                <h2>{{ user.username }}</h2>
-                <h2>{{ user.email }}</h2>
+                <h2>Username: {{ user.username }}</h2>
+                <h2>Email: {{ user.email }}</h2>
                 <button class="btn-close"  @click="deleteUser(user.idSub)" type="button">
                     X
                 </button>
@@ -102,7 +102,7 @@ export default {
 }
 
 .user{
-    
+    border-bottom:1px solid #fff;
 }
 
 

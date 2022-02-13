@@ -4,31 +4,31 @@
         <div class="grid" v-if="AuthState.isAuthenticated">
             <div class="profile">
                 <form class="profile-form">
-                    <h2>Profile Page</h2>
+                    <h2 >Profile Page</h2>
                     <img :src="AuthState.user.picture" alt="AvatarPic" />
-                    <h2>{{AuthState.user.nickname}}</h2>
-                     <button class="btn-update"><span>Create New Post</span></button>
-                    <!-- <div class="input">
-                        <label for="nickname">Nickname</label>
-                        <input type="text" v-model="AuthState.user.nickname" />
-                    </div> -->
+                    <h2 class="profile-h2">{{AuthState.user.nickname}}</h2>
+                     <button class="btn-all btn2"><span>Create New Post</span></button>
+                    <div class="input">
+                        <label for="nickname">Username</label>
+                        <input class="input_field" type="text" v-model="AuthState.user.nickname" />
+                    </div>
                     <div class="input">
                         <label for="email">Firstname</label>
-                        <input type="text" v-model="AuthState.user.given_name" />
+                        <input class="input_field" type="text" v-model="AuthState.user.given_name" />
                     </div>
                     <div class="input">
                         <label for="email">Lastname</label>
-                        <input type="text" v-model="AuthState.user.family_name" />
+                        <input class="input_field" type="text" v-model="AuthState.user.family_name" />
                     </div>
                     <div class="input">
                         <label for="email">Email</label>
-                        <input type="text" v-model="AuthState.user.email" />
+                        <input class="input_field" type="text" v-model="AuthState.user.email" />
                     </div>
                     <div class="input">
                         <label for="email">Password</label>
-                        <input type="password" placeholder="Password" />
+                        <input class="input_field" type="password" placeholder="Password" />
                     </div>
-                <button @click="consoleLogMyUser()" class="btn-update btn2">
+                <button @click="consoleLogMyUser()" class="btn-all btn2">
                     <span class="btn-text">Update Profile</span>
                 </button>
                 </form>
@@ -118,32 +118,33 @@ initAuth()
     background-color:#303030;
     display:flex;
 }
-.profile > form{
-    padding: 10px 20px;
+.profile-form{
+    padding: 10px 30px;
+    display:grid;
+    position:relative;
 }
-.profile > form > h2{
+
+.profile-form  input{
+    padding: 5px 0;
+    width: 100%;
+}
+
+.profile-form > h2{
     display:flex;
     align-items: center;
     justify-content: space-around;
+    font-size: 24px;
 }
-.profile > form > img{
-    padding: 10px 10px;
-    border-radius: 20%;
-    height:30%;
+.profile-form > img{
+    border-radius: 20px;
     width: 100%;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.input {
-    margin: 16px 0;
-    width: 100%;
-    border: none;
-    padding: 8px;
-    height: 50px;
+
+.profile-h2{
+    padding-top:10px;
 }
-.input > label{
-    font-size: 14px;
-    display: block;
-    padding-bottom: 6px;
-}
+
 .num-post{
     
 }
@@ -159,52 +160,20 @@ initAuth()
     padding: 20px 0;
 }
 
-.btn-update{
-    align-items: center;
-    background-image: linear-gradient(144deg,#f1b306, #e73a0f 50%,#f38c06);
-    border: 0;
-    border-radius: 8px;
-    /* box-shadow: rgba(250, 85, 8, 0.2) 0 15px 30px -5px; */
-    box-sizing: border-box;
-    color: #FFFFFF;
-    display: flex;
-    font-size: 14px;
-    justify-content: center;
-    line-height: 10px;
-    max-width: 100%;
-    min-width: 140px;
-    padding: 3px;
-    margin: 0 20px;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    cursor:pointer;
+/*buttons */
+
+.btn-all{
+    padding: 10px 20px;
 }
-.btn-update:active,
-.btn-update:hover{
-    outline: 0;
-}
-.btn-update > span{
-  background-color: rgb(5, 6, 45);
-  padding: 16px 24px;
-  border-radius: 6px;
-  width: 100%;
-  height: 100%;
-  transition: 300ms;
-}
-.btn-update:hover span{
-    background: none;
-}
+
 .btn2{
-    margin-top: 25px;
+    margin-top: 5px;
 }
 
 /* Css for threads in profile*/
 .overflow{
     overflow:auto;
-    max-height:67vh;
+    max-height:80vh;
     max-width:72.3vw;
 }
 

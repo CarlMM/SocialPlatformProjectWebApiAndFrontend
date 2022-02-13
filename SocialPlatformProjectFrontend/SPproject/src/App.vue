@@ -1,7 +1,7 @@
 <template>
         <Navbar />
-     <div class="test">
-        <Category />
+     <div class="category-menu">
+        <Category class="category" />
         <router-view />
     </div>
         <Footer />
@@ -26,6 +26,7 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;1,300&display=swap');
 
 * {
@@ -40,8 +41,12 @@ export default {
   min-height: 100vh;
 }
 
-.test{
+.category-menu{
   padding: 20px 60px;
+}
+
+.category{
+    padding: 20px 20vw;
 }
 
 html > body{
@@ -60,6 +65,37 @@ element:active {
     box-shadow: 0 0 5px #fff, inset 0 0 10px #43a78c;
 }
 
+/*Inputs*/
+.input_field{
+ font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid gray;
+  outline: 0;
+  font-size: 1.1rem;
+  color: #fff;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+/*All Buttons */
+
+.btn-all{
+    background-color:#6d7c8f;
+    border:none;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 4px;
+    width: 100%;
+    
+}
+
+.btn-all:hover{
+    background-color:#e73a0f;
+    transition: ease-in 0.5s;
+}
 
 /*Buttons for threads + posts */
 .post-btn {

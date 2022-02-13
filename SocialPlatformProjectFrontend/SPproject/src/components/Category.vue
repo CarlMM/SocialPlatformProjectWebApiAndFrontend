@@ -12,21 +12,18 @@
                             >{{ categories.title }}
                         </router-link>
                     </ul>
-                    <div v-show="this.$store.state.isAdmin" class="nav-links">
-                        <ul class="nav-menu">
-                            <router-link to="/adminallthreads" class="link"
-                                >Threads</router-link
-                            >
-                            <router-link to="/admingroupthreads" class="link"
-                                >Group Threads</router-link
-                            >
-                            <router-link to="/adminallusers" class="link"
-                                >Users</router-link
-                            >
-                        </ul>
-                    </div>
                 </div>
             </nav>
+            <div v-show="this.$store.state.isAdmin" class="nav-links">
+                <ul class="admin-menu">
+                    <article>
+                        <h2 class="admin-screen">Welcome Admin</h2>
+                    </article>
+                    <router-link to="/adminallthreads" class="link">Threads</router-link>
+                    <router-link to="/admingroupthreads" class="link">Group-Threads</router-link>
+                    <router-link to="/adminallusers" class="link">Users</router-link>
+                </ul>
+             </div>
             <div class="d-flex justify-content-end mt-1">
                 <Modal v-show="isModalVisible" @close="closeModal">
                     <template v-slot:header>
@@ -300,30 +297,60 @@ export default {
     background-color: #303030;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 nav {
-    display: flex;
-    align-items: center;
+    display:flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.nav-menu{
+    margin:0;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
-    margin-top: 18px;
+    justify-content: space-around;
+    padding: 10px 0;
 }
 
-.nav-menu > a {
+article{
+ background: linear-gradient(
+    to right, 
+    hsl(40 100% 62%), 
+    hsl(20 100% 59%)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.admin-screen{
+    color:#fff;
+    text-align: center;
+    font-size: 20px;
+    padding-left:22px;
+}
+
+.admin-menu > a{
+    color:#fff;
+    line-height: 10px;
+    padding: 0 10px;
+}
+
+a{
     color: #ffffff;
 }
 
-.nav-menu > a:hover {
+a:hover {
     color: #2576e0;
 }
 
 .link {
     text-decoration: none;
-    font-family: 'Poppins' sans-serif;
     font-size: 25px;
     letter-spacing: 0.5px;
     -webkit-transition: all 0.3s ease 0s;
@@ -332,31 +359,6 @@ nav {
     transition: all 0.3s ease 0s;
 }
 
-
-
-/* @media (max-width: 1300px) {
-    .link {
-        margin-left: 12vw;
-    }
-}
-
-@media (max-width: 1000px) {
-    .link {
-        margin-left: 8vw;
-    }
-}
-
-@media (max-width: 800px) {
-    .link {
-        margin-left: 3vw;
-    }
-}
-
-@media (max-width: 500px) {
-    .link {
-        margin-left: 4px;
-    }
-} */
 
 /*Create Post */
 .create-post {
@@ -490,7 +492,7 @@ textarea {
   align-items: center;
   justify-content: center;
   height: 20vh;
-  width: 100vw;
+  /* width: 100vw; */
 }
 
 .body-message > h1{

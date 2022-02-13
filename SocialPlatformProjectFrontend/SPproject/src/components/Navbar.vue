@@ -6,7 +6,9 @@
                     <div class="col-lg-6 col-sm-6 col-6 header-top-left">
                         <div id="logo">
                             <router-link to="/">
-                                <p id="companyLogo">FOR-SCIENCE Forum</p>
+                                <p id="companyLogo">FOR-SCIENCE Forum
+                                    <i class="far fa-rocket"></i>
+                                </p>
                             </router-link>
                         </div>
                     </div>
@@ -101,6 +103,7 @@ initAuth()
 </script>
 
 <style scoped>
+
 .logged-in > p > img {
     height: 100%;
     width: 80px;
@@ -122,8 +125,9 @@ img {
 #companyLogo{
     display:flex;
     font-size:40px;
-    padding-top: 15px;
-    z-index:99;
+    font-family: 'Righteous', cursive;
+    padding-top: 30px;
+    text-shadow: 2px 2px 4px #000;
 }
 
 a {

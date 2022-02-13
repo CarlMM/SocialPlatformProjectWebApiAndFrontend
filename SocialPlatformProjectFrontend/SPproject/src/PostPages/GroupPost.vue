@@ -89,7 +89,7 @@
         </div>
             </div>
                     <div class="userInListDiv">
-                        <h2 for="#">GroupThread Members</h2>
+                        <h2>GroupThread Members</h2>
                         <div class="diplayUsersInListDiv">
                             <!-- Exempel hur userlistan kan se ut -->
                             <p
@@ -100,14 +100,16 @@
                                  <button class="btn-close" >X</button>
                             </p>
                         </div>
-                        <input type="text" v-model="searchedUser" placeholder="Search for user"/>
-                        <button @click="addUserButton(this.searchedUser)">Add user to Thread</button>
-                        <button @click="kollaAnvändareKnapp()">Kolla alla användare</button>
-                        <div>
-                            <ul v-for="error in errors" :key="error">
-                                <li>{{ error }}</li>
-                            </ul>
-                        </div> 
+                        <div class="functions">
+                            <input class="input_field" type="text" v-model="searchedUser" placeholder="Search for user"/>
+                            <button class="btn-all" @click="addUserButton(this.searchedUser)">Add User</button>
+                            <!-- <button @click="kollaAnvändareKnapp()">Kolla alla användare</button> -->
+                            <div>
+                                <ul v-for="error in errors" :key="error">
+                                    <li>{{ error }}</li>
+                                </ul>
+                            </div> 
+                        </div>
                     </div>
         </div>
     </div>
@@ -198,9 +200,9 @@ export default {
             
         },
 
-        kollaAnvändareKnapp(){
-            console.log(this.$store.state.listOfUsersAdmin)
-        },
+        // kollaAnvändareKnapp(){
+        //     console.log(this.$store.state.listOfUsersAdmin)
+        // },
         addUserButton() {
             
             for(let i = 0; i < this.$store.state.listOfUsersAdmin.length; ++i){
@@ -367,8 +369,15 @@ textarea {
     border-style: solid;
     border-width: thin;
     text-align: left;
+    border: 2px solid #6f7281;
     overflow: auto;
-    height: 200px;
+    border-radius: 4px;
+    height:280px;
+    max-height: 280px;
+}
+
+.userInListDiv > h2{
+    padding: 5px 20px;
 }
 
 .diplayUsersInListDiv > p{
@@ -380,6 +389,23 @@ textarea {
     font-weight: bold;
 }
 
+.functions{
+    display:flex;
+    align-content: flex-end;
+    justify-content: flex-end;
+    padding: 5px 5px;
+}
+
+.functions > input{
+    width: 100%;
+}
+
+/*btn-all*/
+
+.btn-all{
+    padding: 5px 5px;
+    margin: 0 5px;
+}
 
 /*btn-close */
 
