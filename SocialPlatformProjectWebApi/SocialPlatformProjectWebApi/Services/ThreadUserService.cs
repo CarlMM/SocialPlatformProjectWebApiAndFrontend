@@ -49,9 +49,9 @@ namespace SocialPlatformProjectWebApi.Services
             return await _threadUserRepository.AddThreadUser(newThreadUser, threadUserSubId);
         }
 
-        public async Task<bool> DeleteThreadUser(int categoryThreadID, string userIdSub, ThreadUser threadUser)
+        public async Task<bool> DeleteThreadUser(string userIdSubOfRequestingUser, int currentCategoryThreadId, string threadUserToBeRemoved)
         {
-            var result = await _threadUserRepository.DeleteThreadUser(categoryThreadID, userIdSub, threadUser);
+            var result = await _threadUserRepository.DeleteThreadUser(userIdSubOfRequestingUser, currentCategoryThreadId, threadUserToBeRemoved);
             return result;
         }
     }

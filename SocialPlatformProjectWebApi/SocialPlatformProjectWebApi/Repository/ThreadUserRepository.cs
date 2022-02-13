@@ -42,26 +42,18 @@ namespace SocialPlatformProjectWebApi.Repository
 
                 TUList.Add(tU);
             }
-
             return TUList;
-
         }
-
 
         public async Task<IList<ThreadUser>> GetThreadUsersByCategoryThreadId(string userID)
         {
-            var result = await _dbContext.ThreadUsers.Where(x => x.UserIdSub == userID).ToListAsync();
-
-            
+            var result = await _dbContext.ThreadUsers.Where(x => x.UserIdSub == userID).ToListAsync();            
             return result;
         }
 
         public async Task<bool> AddThreadUser(ThreadUser newThreadUser, string threadUserSubId)
         {
-
             var result = await _dbContext.ThreadUsers.Where(x => x.UserIdSub == threadUserSubId && x.CategoryThreadId == newThreadUser.CategoryThreadId).ToListAsync();
-
-
 
             for (int i = 0; i < result.Count; ++i)
             {
@@ -70,34 +62,34 @@ namespace SocialPlatformProjectWebApi.Repository
                     if(result[i].IsAdmin == true)
                     {
                         result = await _dbContext.ThreadUsers.Where(x => x.UserIdSub == newThreadUser.UserIdSub).ToListAsync();
-
                         var newCategoryThreadId = newThreadUser.CategoryThreadId;
 
-                         for (int y = 0; y < result.Count; y++)
-                            {
-                             if (result[y].CategoryThreadId == newCategoryThreadId)
-                                 {
-                                    return false;
-                                 }
-                             }
-
-                         await _dbContext.ThreadUsers.AddAsync(newThreadUser);
-
+                        for (int y = 0; y < result.Count; y++)
+                        {
+                            if (result[y].CategoryThreadId == newCategoryThreadId)
+                                return false;
+                        }
+                        await _dbContext.ThreadUsers.AddAsync(newThreadUser);
                     }
                 }
             }
             return (await _dbContext.SaveChangesAsync() > 0);
-
             //if (threadUser.IsAdmin == false  ) { return false; }
-
-
         }
 
-        public async Task<bool> DeleteThreadUser(int categoryThreadId, string userIdSub, ThreadUser threadUser)
+        public async Task<bool> DeleteThreadUser(string userIdSubOfRequestingUser, int currentCategoryThreadId, string threadUserToBeRemoved)
         {
-            if(threadUser.IsAdmin == false) { return false; }
+            var threadUsers = await _dbContext.ThreadUsers.Where(x => x.UserIdSub == userIdSubOfRequestingUser && x.CategoryThreadId == currentCategoryThreadId).ToListAsync();
+            
+            for (int i = 0; i < threadUsers.Count; ++i)
+            {
+                if(threadUsers[i].IsAdmin != true)
+                {
+                    return false;
+                }                
+            }
 
-            var deleteThreadUser = await _dbContext.ThreadUsers.Where(x => x.UserIdSub == userIdSub && x.CategoryThreadId == categoryThreadId).ToListAsync();
+            var deleteThreadUser = await _dbContext.ThreadUsers.Where(x => x.UserIdSub == threadUserToBeRemoved && x.CategoryThreadId == currentCategoryThreadId).ToListAsync();
 
             if(deleteThreadUser == null)
             {
@@ -108,7 +100,6 @@ namespace SocialPlatformProjectWebApi.Repository
             {
                 _dbContext.ThreadUsers.Remove(deleteThreadUser[i]);
             }
-
             return (await _dbContext.SaveChangesAsync() > 0);                 
         }
     }
