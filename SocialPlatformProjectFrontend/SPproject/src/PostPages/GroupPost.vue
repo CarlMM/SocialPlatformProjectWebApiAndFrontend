@@ -8,7 +8,7 @@
                         <span class="post-user">Posted Temp</span>
                         <p>{{ thread.text }}</p>
                     </div>
-                    <button class="post-btn" @click="toggleModal()">
+                    <button class="post-btn" @click="showModal()">
                         <i class="far fa-comment icon"></i>
                     <span>Reply to post</span>
                     </button>
@@ -47,46 +47,6 @@
                             </button>
                     </div>
                 </div>
-                    <div class="d-flex justify-content-end mt-1">
-            <Modal v-show="isModalVisible" @close="closeModal">
-                                <template v-slot:header>
-                                    <div class="text-uppercase">
-                                        reply
-                                        <span><i class="fas fa-comments"></i></span></div
-                                ></template>
-                                <template v-slot:body>
-                                    <div class="subforum-description subforum-column">
-                                        <h1>
-                                            <small
-                                                >Posted by <a href="">User</a> 15 Jan
-                                                2022</small
-                                            >
-                                        </h1>
-                                        <h1>{{ this.threadTitle }}</h1>
-                                        <p>{{ this.threadText }}</p>
-                                    </div>
-                                    <div id="container">
-                                        <div class="form-group">
-                                            <label for="reply-content">Add content</label>
-                                            <textarea
-                                                placeholder="Remember, be nice!"
-                                                cols="78"
-                                                rows="5"
-                                                v-model="newReplyPost.Text"
-                                            ></textarea>
-                                        </div>
-                                        <button class="btn btn-reply" v-on:click="this.reply(newReplyPost)">
-                                            Reply
-                                        </button>
-                                        <div v-for="error in errorMessage" :key="error.id">
-                                            <ul>
-                                                <li style="color: #333">{{ error }}</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </template>
-            </Modal>
-        </div>
             </div>
                     <div class="userInListDiv">
                         <h2>GroupThread Members</h2>
@@ -111,6 +71,46 @@
                             </div> 
                         </div>
                     </div>
+                    <div class="d-flex justify-content-end mt-1">
+            <Modal v-show="isModalVisible" @close="closeModal">
+                                <template v-slot:header>
+                                    <div class="text-uppercase">
+                                        reply
+                                        <span><i class="fas fa-comments"></i></span></div
+                                ></template>
+                                <template v-slot:body>
+                                    <div class="subforum-description subforum-column">
+                                        <h1>
+                                            <small
+                                                >Posted by <a href="">User</a> 15 Jan
+                                                2022</small
+                                            >
+                                        </h1>
+                                        <h1></h1>
+                                        <p></p>
+                                    </div>
+                                    <div id="container">
+                                        <div class="form-group">
+                                            <label for="reply-content">Add content</label>
+                                            <textarea
+                                                placeholder="Remember, be nice!"
+                                                cols="78"
+                                                rows="5"
+                                                v-model="newReplyPost.Text"
+                                            ></textarea>
+                                        </div>
+                                        <button class="btn btn-reply" v-on:click="this.reply(newReplyPost)">
+                                            Reply
+                                        </button>
+                                       <div v-for="error in errorMessage" :key="error.id">
+                                            <ul>
+                                                <li style="color: #333">{{ error }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </template>
+            </Modal>
+        </div>
         </div>
     </div>
 
@@ -152,16 +152,22 @@ initAuth()
 </script>
 
 <script>
+import { mapActions } from 'vuex'
+import Modal from '../components/Modal.vue'
 export default {
-
+    components:{
+        Modal,
+    },
 
     data() {
         return {
+            badWords: ['fuck', 'dick', 'wiener', 'whore', 'shit', 'thomas', 'skåne'],
+            errorMessage: [],
             pId: this.$route.params.id,
-            // tId: this.$route.params.Id,
             searchedUser: '',
             errors: [],
             memberListUsername: [],
+            isModalVisible: false,
             ThreadUserobj: {
                 categoryThreadId: null,
                 userIdSub: '',
@@ -175,6 +181,11 @@ export default {
                 prop2: null
             },
             userNameToId:'',
+            newReplyPost: {
+                Text: '',
+                UserIdSub: '',
+                CategoryThreadId: null,
+            },
         }
     },
 
@@ -198,6 +209,51 @@ export default {
         fetchAllUsers() {
             this.$store.dispatch('getThreadUser', this.pId)
             
+        },
+
+        showModal(){
+            this.isModalVisible = true
+        },
+        closeModal(){
+            this.isModalVisible = false
+        },
+
+         filterWords(message) {
+            let filteredWordsArray = message.toLowerCase().split(' ')
+            let catchBadWords = filteredWordsArray.filter(item =>
+                this.badWords.includes(item)
+            )
+            return catchBadWords
+        },
+
+        ...mapActions(['PostReplyToSpecificPost']),
+        reply(newReplyPost) {
+            this.errorMessage = []
+            let catchBadWords = this.filterWords(this.newReplyPost.Text)
+            console.log(this.newReplyPost, 'REPLY MESSAGE')
+            if (this.newReplyPost.Text == '') {
+                this.errorMessage.push('Please enter some text!')
+            }
+            if (catchBadWords.length > 0) {
+                this.errorMessage.push('Remember to be nice!')
+            } else if (
+                this.newReplyPost.Text != '' &&
+                catchBadWords.length == 0
+            ) {
+                this.errors = []
+                this.newReplyPost.UserIdSub = AuthState.user.sub
+                console.log(this.pId, "PID!!!!!!");
+                this.newReplyPost.CategoryThreadId = this.pId
+                console.log(this.newReplyPost.CategoryThreadId , "PID");
+                console.log('ReplyMethod: ', newReplyPost)
+                console.log(this.newReplyPost, "this.newReplyPost!!!!!!!!");
+
+                this.PostReplyToSpecificPost(newReplyPost)
+                this.$store.dispatch('GetRepliesForSpecificPost', this.pId)
+                this.closeModal()
+                this.newReplyPost.Text = ''
+            }
+            //return this.$store.dispatch('PostReplyToSpecificPost', newReplyPost)
         },
 
         // kollaAnvändareKnapp(){
