@@ -77,7 +77,7 @@
                                                 v-model="newReplyPost.Text"
                                             ></textarea>
                                         </div>
-                                        <button class="btn btn-reply" v-on:click="this.reply(newReplyPost)">
+                                        <button class="btn-all" v-on:click="this.reply(newReplyPost)">
                                             Reply
                                         </button>
                                         <div v-for="error in errorMessage" :key="error.id">
@@ -263,11 +263,18 @@ export default {
 }
 
 .btn-reply {
-    background-color: #43a78c;
+    background-color: #000000;
     display: block;
     width: 100%;
     padding: 10px;
     color: #fff;
+    cursor: pointer;
+}
+
+.btn-all{
+    display:block;
+    width: 100%;
+    padding:10px;
     cursor: pointer;
 }
 
