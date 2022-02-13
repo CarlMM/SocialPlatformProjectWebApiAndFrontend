@@ -1,4 +1,5 @@
-﻿using SocialPlatformProjectWebApi.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using SocialPlatformProjectWebApi.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace SocialPlatformProjectWebApi.Services
 
         Task<bool> AddThreadUser(int categoryThreadId, string userIdSub, string threadUserSubId);
 
-        Task<bool> DeleteThreadUser(int categoryThreadID, string userIdSub, ThreadUser threadUser);
+        Task<bool> DeleteThreadUser(string userIdSubOfRequestingUser, int currentCategoryThreadId, string threadUserToBeRemoved);
 
         Task<IList<ThreadUser>> GetThreadUsersByCategoryThreadId(string userId);
 

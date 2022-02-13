@@ -49,8 +49,6 @@ namespace SocialPlatformProjectWebApi.Controllers
         [Route("AddThreadUser")]
         public async Task<IActionResult> AddThreadUser(string threadUserSubId, int categoryThreadId, string userIdSub)
         {
-
-
             //if (threadUser.IsAdmin == false)
             //{
             //    return BadRequest("you are not admin");
@@ -61,13 +59,13 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         [HttpDelete] // admin, normal
         [Route("DeleteThreadUser")]
-        public async Task<IActionResult> DeleteThreadUser(int categoryThreadId, string userIdSub, [FromBody] ThreadUser threadUser)
+        public async Task<IActionResult> DeleteThreadUser(string userIdSubOfRequestingUser, int currentCategoryThreadId, string threadUserToBeRemoved)
         {
-            if(threadUser.IsAdmin == false)
-            {
-                return BadRequest("you are not admin");
-            }
-            await _threadUserService.DeleteThreadUser(categoryThreadId, userIdSub, threadUser);
+            //if(threadUserSubId.IsAdmin == false)
+            //{
+            //    return BadRequest("you are not admin");
+            //}
+            await _threadUserService.DeleteThreadUser(userIdSubOfRequestingUser, currentCategoryThreadId, threadUserToBeRemoved);
             return Ok();
         }
     }
