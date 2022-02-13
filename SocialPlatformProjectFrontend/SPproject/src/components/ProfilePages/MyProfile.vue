@@ -124,6 +124,7 @@ initAuth()
 .profile{
     background-color:#303030;
     display:flex;
+    border-radius: 4px;
 }
 .profile-form{
     padding: 10px 30px;

@@ -46,7 +46,6 @@ export default {
     max-width: 65%;
     max-height: 75%;
     background: #f0f0f0;
-    box-shadow: 2px 2px 20px 1px;
     overflow-x: auto;
     border-radius: 10px;
 
@@ -72,11 +71,11 @@ export default {
     justify-content: space-between;
 }
 
-.modal-footer {
+/* .modal-footer {
     border-top: 1px solid #1fa89d;
     flex-direction: column;
     justify-content: flex-end;
-}
+} */
 
 .modal-body {
     position: relative;

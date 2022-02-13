@@ -5,7 +5,7 @@
                 <div class="main-post">
                     <div class="main-text" v-for="thread in getPost" :key="thread.id">
                         <h1 class="post-h1">{{ thread.title }}</h1>
-                        <span class="post-user">Posted Temp</span>
+                        <span class="post-user">Posted {{setTime(thread.createdDate)}}</span>
                         <p>{{ thread.text }}</p>
                     </div>
                     <button class="post-btn" @click="showModal()">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="post-andReply subforum-column">
                     <div class="replies" v-for="item in getReplies" :key="item.id">
-                            <span class="post-user">Replied temp</span>
+                            <span class="post-user">Replied {{setTime(item.createdDate)}}</span>
                             <p class="reply-text">{{item.text}}</p>
                             <button class="post-btn">
                                 <i class="far fa-comment icon"></i>
@@ -86,8 +86,8 @@
                                                 2022</small
                                             >
                                         </h1>
-                                        <h1></h1>
-                                        <p></p>
+                                        <h1>{{ this.threadTitle }}</h1>
+                                        <p>{{ this.threadText }}</p>
                                     </div>
                                     <div id="container">
                                         <div class="form-group">
@@ -99,7 +99,7 @@
                                                 v-model="newReplyPost.Text"
                                             ></textarea>
                                         </div>
-                                        <button class="btn btn-reply" v-on:click="this.reply(newReplyPost)">
+                                        <button class="btn-all" v-on:click="this.reply(newReplyPost)">
                                             Reply
                                         </button>
                                        <div v-for="error in errorMessage" :key="error.id">
@@ -154,6 +154,8 @@ initAuth()
 <script>
 import { mapActions } from 'vuex'
 import Modal from '../components/Modal.vue'
+import dateclock from '/src/assets/js/dateclock.js'
+
 export default {
     components:{
         Modal,
@@ -194,6 +196,14 @@ export default {
         this.$store.dispatch('GetThreadFromSpecificId', this.pId)
         this.$store.dispatch('GetRepliesForSpecificPost', this.pId)
         this.fetchAllUsers()
+
+        if (AuthState.isAuthenticated == true) {
+            if (
+                AuthState.user['http://localhost:3000/roles'][0] == 'AdminUser'
+            ) {
+                this.$store.state.isAdmin = true
+            }
+        }
     },
     beforeMount() {
         this.fetchAllUsers()
@@ -328,6 +338,10 @@ export default {
 
             //}
         },
+        setTime(date){
+            return dateclock.DateOfCreation(date)
+        },
+
         removeUserFromThreadButton() {
             alert('Tjoflöjt')
         },
@@ -375,6 +389,7 @@ export default {
     /* #816f6f */
 }
 
+/*modal*/
 #container {
     margin: 40px auto;
     max-width: 600px;
@@ -393,18 +408,12 @@ export default {
     border-radius: 5px;
 }
 
-.btn-reply {
-    background-color: #43a78c;
-    display: block;
-    width: 100%;
-    padding: 10px;
-    color: #fff;
+.btn-all{
+    display:block;
+    padding:10px;
     cursor: pointer;
 }
 
-.btn-reply:hover {
-    background: #5ab6a6;
-}
 
 textarea {
     resize: none;

@@ -13,7 +13,7 @@
                         <div class="threads">
                             <router-link class="routerPosts" :to="`/GroupPost/${threads.id}`">
                                 <h1>{{threads.title}}</h1>
-                                <span><p>Posted temp</p></span>
+                                <span><p>Posted {{setTime(threads.createdDate)}}</p></span>
                                 <!-- <span><p>Posted {{threads.createdDate}}</p></span> -->
                                 <p class="p-text">{{threads.text}}</p>
                             </router-link>
@@ -28,7 +28,7 @@
                 <div class="threads">
                     <router-link class="routerPosts" :to="`/GroupPost/${groups.id}`">
                         <h1>{{groups.title}}</h1>
-                        <span><p>Posted temp</p></span>
+                        <span><p>Posted {{setTime(groups.createdDate)}}</p></span>
                         <!-- <span><p>Posted {{groups.createdDate}}</p></span> -->
                         <p class="p-text">{{groups.text}}</p>
                     </router-link>
@@ -49,6 +49,7 @@ initAuth()
 
 <script>
 import NotAuthantication from '../../Views/NotAuthorized.vue'
+import dateclock from '/src/assets/js/dateclock.js'
 
 export default {
     
@@ -115,7 +116,10 @@ export default {
                 else{
                     
                 }
-            },
+        },
+        setTime(date){
+            return dateclock.DateOfCreation(date)
+        },
     },
 
     beforeMount(){

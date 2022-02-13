@@ -19,7 +19,7 @@
                         </router-link>
                         <span
                             ><p>
-                                Posted {{threads.createdDate}}
+                                Posted {{setTime(threads.createdDate)}}
                             </p></span
                         >
                         <p>{{ threads.text }}</p>
@@ -33,6 +33,8 @@
 
 <script>
 import { useAuth0, AuthState } from '../../auth0/useAuth0.js'
+import dateclock from '/src/assets/js/dateclock.js'
+
 export default {
     name: 'AdminAllThreads',
     data() {
@@ -42,7 +44,7 @@ export default {
     },
     created() {
         this.$store.dispatch('getAllThreads')
-        if (AuthState.isAuthenticated == true) {
+        if (AuthState.isAuthenticated == true || AuthState.isAuthenticated == false) {
             if (
                 AuthState.user['http://localhost:3000/roles'][0] == 'AdminUser'
             ) {
@@ -78,6 +80,9 @@ export default {
                 
             }
         },
+        setTime(date){
+            return dateclock.DateOfCreation(date)
+        }
     }
     // beforeMounted(){
 

@@ -19,7 +19,7 @@
                         </router-link>
                         <span
                             ><p>
-                                Posted {{threads.createdDate}}
+                                Posted {{setTime(threads.createdDate)}}
                             </p></span
                         >
                         <p>{{ threads.text }}</p>
@@ -32,16 +32,21 @@
     </div>
 </template>
 
+<script setup>
+ import { useAuth0, AuthState } from '/src/auth0/useAuth0.js'
+
+const { initAuth } = useAuth0(AuthState)
+
+initAuth()
+</script>  
+
 <script>
-import { useAuth0, AuthState } from '../../auth0/useAuth0.js'
+import dateclock from '/src/assets/js/dateclock.js'
+
 export default {
     name: 'AdminGroupThreads.vue',
-
-
-
     data(){
         return{
-        
             confirm: true,
             notConfirm: false,
         }
@@ -49,7 +54,7 @@ export default {
     created() {
         this.$store.dispatch('getAllGroupThreadsAdmin')
 
-        if (AuthState.isAuthenticated == true) {
+        if (AuthState.isAuthenticated == true || AuthState.isAuthenticated == false) {
             if (
                 AuthState.user['http://localhost:3000/roles'][0] == 'AdminUser'
             ) {
@@ -60,7 +65,6 @@ export default {
         }
     },
     methods:{
-        
         fetchAllGroupThreads(){
             return this.$store.dispatch('getAllGroupThreadsAdmin')
         },
@@ -83,7 +87,11 @@ export default {
             else{
                
             }
+        },
+        setTime(date){
+            return dateclock.DateOfCreation(date)
         }
+        
     },
 
     computed: {

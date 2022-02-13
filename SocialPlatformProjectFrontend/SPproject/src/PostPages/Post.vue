@@ -5,7 +5,7 @@
                 <div class="main-post">
                     <div class="main-text"  v-for="thread in getPost" :key="thread.id">
                         <h1 class="post-h1">{{ thread.title }}</h1>
-                        <span class="post-user">Posted by <a href="#"> {{thread.id}} </a> 15 jan 2022</span>
+                        <span class="post-user">Posted {{setTime(thread.createdDate)}}</span>
                         <p>{{ thread.text }}</p>
                     </div>
                 <button class="post-btn" @click="toggleModal()">
@@ -27,7 +27,7 @@
                 </div>
                 <div class="post-andReply subforum-column">
                         <div class="replies" v-for="item in getReplies" :key="item.id">
-                        <span class="post-user">Replied by <a href="#"> {{item.id}} </a> 15 jan 2022</span>
+                        <span class="post-user">Replied {{setTime(item.createdDate)}}</span>
                                 <p class="reply-text">{{ item.text}}</p>
                             <button class="post-btn">
                                 <i class="far fa-comment icon"></i>
@@ -44,6 +44,10 @@
                         <button class="post-btn">
                             <i class="far fa-flag icon"></i>
                             <span>Report</span>
+                        </button>
+                         <button class="post-btn">
+                            <i class="fa-regular fa-trash"></i>
+                            <span>Remove Comment</span>
                         </button>
                         </div>
                 </div>
@@ -96,6 +100,7 @@
 import { AuthState } from '../auth0/useAuth0'
 import Modal from '/src/components/Modal.vue'
 import { mapActions } from 'vuex'
+import dateclock from '/src/assets/js/dateclock.js'
 
 export default {
     data() {
@@ -131,6 +136,14 @@ export default {
 
         this.$store.dispatch('GetThreadFromSpecificId', this.tId)
         this.$store.dispatch('GetRepliesForSpecificPost', this.tId)
+
+        if (AuthState.isAuthenticated == true) {
+            if (
+                AuthState.user['http://localhost:3000/roles'][0] == 'AdminUser'
+            ) {
+                this.$store.state.isAdmin = true
+            }
+        }
     },
 
     computed: {
@@ -232,6 +245,9 @@ export default {
             }
             //return this.$store.dispatch('PostReplyToSpecificPost', newReplyPost)
         },
+        setTime(date){
+            return dateclock.DateOfCreation(date)
+        },
     },
 }
 </script>
@@ -260,15 +276,6 @@ export default {
     padding: 10px;
     border: rgb(158, 158, 158) 1px solid;
     border-radius: 5px;
-}
-
-.btn-reply {
-    background-color: #000000;
-    display: block;
-    width: 100%;
-    padding: 10px;
-    color: #fff;
-    cursor: pointer;
 }
 
 .btn-all{

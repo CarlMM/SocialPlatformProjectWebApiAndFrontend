@@ -15,10 +15,7 @@
                         <router-link type="button" :to="`/Post/${threads.id}`">
                             <h1>{{ threads.title }}</h1>
                         </router-link>
-                        <span
-                            ><p>
-                                Posted by <a href="#"> User </a> 15 jan 2022
-                            </p></span>
+                        <span><p> Posted {{setTime(threads.createdDate)}}</p></span>
                         <p>{{ threads.Text }}</p>
                     </div>
                     <button class="post-btn" @click="goPost(threads.id)">
@@ -59,7 +56,7 @@
                         </router-link>
                         <span
                             ><p>
-                                Posted by <a href="#"> User </a> 15 jan 2022
+                                Posted {{setTime(threads.createdDate)}}
                             </p></span
                         >
                         <p>{{ threads.Text }}</p>
@@ -90,6 +87,7 @@
 import Modal from './Modal.vue'
 // import { mapMutations } from 'vuex'
 import { useAuth0, AuthState } from '/src/auth0/useAuth0.js'
+import dateclock from '/src/assets/js/dateclock.js'
 
 
 export default {
@@ -138,6 +136,9 @@ export default {
         },
         goHome(){
         this.$router.push('/')
+        },
+        setTime(date){
+            return dateclock.DateOfCreation(date)
         },
     },
 }

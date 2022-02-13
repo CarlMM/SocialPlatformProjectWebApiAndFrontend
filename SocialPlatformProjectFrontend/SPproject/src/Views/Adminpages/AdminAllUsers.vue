@@ -39,6 +39,14 @@
     </div> -->
 </template>
 
+<script setup>
+ import { useAuth0, AuthState } from '/src/auth0/useAuth0.js'
+
+const { initAuth } = useAuth0(AuthState)
+
+initAuth()
+</script>  
+
 <script>
 export default {
     name: 'AdminAllUsers.vue',
@@ -47,7 +55,16 @@ export default {
     },
 
     created() {
-        this.fetchAllUsers()
+        if (AuthState.isAuthenticated == true || AuthState.isAuthenticated == false) {
+            if (
+                AuthState.user['http://localhost:3000/roles'][0] == 'AdminUser'
+            ) {
+                this.$store.state.isAdmin = true
+                this.fetchAllUsers()
+            } else {
+                this.$router.push('/notauthorized')
+            }
+        }
     },
     methods: {
         fetchAllUsers() {

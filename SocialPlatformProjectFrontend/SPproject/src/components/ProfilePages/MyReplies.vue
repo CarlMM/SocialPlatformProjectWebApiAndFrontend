@@ -13,6 +13,7 @@
             <h1>{{AuthState.user.nickname }}: Replies</h1>
             <div class="user-threads element" v-for="userReplies in this.$store.state.AllReplies" :key="userReplies.id">
                 <div class="threads">
+                        <span><p> Replied {{setTime(userReplies.createdDate)}}</p></span>
                         <p class="thread-text">{{userReplies.text}}</p>
                         <button class="btn-close" @click="RemoveReplies(userReplies.id)">X</button>
                 </div>
@@ -23,6 +24,7 @@
 
 <script>
 import NotAuthantication from '../../Views/NotAuthorized.vue'
+import dateclock from '/src/assets/js/dateclock.js'
 
 export default {
     components: {
@@ -55,6 +57,9 @@ export default {
             else{
                 
             }
+        },
+        setTime(date){
+            return dateclock.DateOfCreation(date)
         },
     },
 

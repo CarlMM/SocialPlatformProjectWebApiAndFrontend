@@ -16,6 +16,7 @@
                 <div class="threads">
                     <router-link type="button" :to="`/Post/${userThreads.id}`">
                         <h1 >{{ userThreads.title }}</h1>
+                        <span><p> Posted {{setTime(userThreads.createdDate)}}</p></span>
                         <p class="thread-text">{{userThreads.text}}</p>
                     </router-link>
                         <button class="btn-close" @click="RemoveThread(userThreads.id)">X</button>
@@ -27,6 +28,7 @@
 
 <script>
 import NotAuthantication from '../../Views/NotAuthorized.vue'
+import dateclock from '/src/assets/js/dateclock.js'
 
 export default {
     components: {
@@ -60,6 +62,9 @@ export default {
                 
             }
         },
+        setTime(date){
+            return dateclock.DateOfCreation(date)
+        },
     },
 
     beforeMount() {
@@ -68,7 +73,7 @@ export default {
 
     created() {
         this.fetchAllUserThreads()
-        if (AuthState.isAuthenticated == true) {
+        if (AuthState.isAuthenticated == true || AuthState.isAuthenticated == false) {
             if (
                 AuthState.user['http://localhost:3000/roles'][0] == 'AdminUser'
             ) {
