@@ -48,6 +48,7 @@ Scenario: Create Post (Confirm create post)
 - Given that the User is logged in
 - When the User press Create new post button
 - And the User choose the category
+- Choose what kind of post (Normal/group)
 - And the User types the text for the post
 - And the User will press confirm post button
 - Then the post will be created
@@ -57,13 +58,14 @@ Scenario: Cancel its Post (Cancel post)
 - Given that the User is logged in
 - When the User press Create new post button
 - And the User choose the category
+- Choose what kind of post (Normal/group)
 - And the User types the text for the post
 - And then the User regrets its post
 - And the User presses the Cancel Post button
 - Then the post will not be created
 
 -----------------------------------
-
+(Next release)
 Feature: Edit Post
 
 As a User and Creator of a post, I want to edit My post
@@ -129,8 +131,8 @@ Feature: Create Usergroups
 Scenario: The user wants to create a grouppost
 
 - Given that the User is logged in
-- And the User clicks My Groups tab
-- And the User clicks the Create Grouppost button
+- And the User clicks Create Post
+- And the User chooses group type post
 - And the User types the text for the post
 - When the User will press confirm post button
 - Then the post will be created
@@ -150,14 +152,19 @@ Scenario: The user wants to create a grouppost
 
 Feature: Invite Users to group
 
-Scenario: As GA, I want to search for Users to invite for the group
+Scenario: As GA, I want to add Users to my group
 
 - Given that the User is a GA
+- And the GA inserts the username in textbox
+- When the GA Clicks add user to group button
+- Then the user will be added
+
+(Outdated)
 - And the GA presses Add User button
 - When the add user button is pressed, a list of all users will be shown
 - Then a list of all users will be shown
 
-
+(Outdated)
 Scenario: As GA, I want to add a User from a list to my group
 
 - Given that the GA have a list of Users
@@ -211,7 +218,7 @@ Scenario: As GA, I regret to delete a group of mine (**Cancel**)
 - And the GA presses the Cancel, and the group will not be deleted
 
 -----------------------------------
-
+(NEXT RELEASE)
 Feature: Delete post/comment from my group
 
 Scenario: As GA, I want to Delete a post in a group of mine (**Confirmed**)
@@ -223,7 +230,7 @@ Scenario: As GA, I want to Delete a post in a group of mine (**Confirmed**)
 - Then a Confirm Message will show with **Confirm**/Cancel Delete
 - And the post will be deleted
 
-
+(NEXT RELEASE)
 Scenario: As GA, I regret to delete a post in a group of mine (**Cancel**)
 
 - Given that the GA has a group
@@ -234,7 +241,7 @@ Scenario: As GA, I regret to delete a post in a group of mine (**Cancel**)
 - And the post will be deleted
 
 -----------------------------------
-
+(OUTDATED)
 Feature: Delete/Edit Grouppost
 
 Scenario: The user want to delete/edit its group post
@@ -255,6 +262,9 @@ Scenario: MA wants to log in
 - And the User is on the Login page
 - When the MA fills in its info (Credentiales)
 - And then presses the log in button
+- Theb the MA redirects to the frontpage
+
+(OUTDATED)
 - Then the MA will be redirected to the Admin page
 
 -----------------------------------
@@ -351,12 +361,6 @@ Scenario: As MA, I regret to remove a group (**Cancel**)
 - When MA presses the Delete button a Confirm/**Cancel** message will be shown
 - And then MA presses the **Cancel** button
 - Then the post will be removed
-
-
-
-
-
-
 
 
 
