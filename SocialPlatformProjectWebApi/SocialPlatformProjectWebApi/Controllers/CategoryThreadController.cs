@@ -51,7 +51,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         [HttpGet] //Admin
        // [Authorize(Policy = "GetThreadByThreadType")]
         [Route("GetCategoryThreadByThreadType/{threadType}")]
-        public async Task<IList<CategoryThread>> GetCategoryThreadByThreadType(bool threadType)
+        public async Task<IList<CategoryThreadVM>> GetCategoryThreadByThreadType(bool threadType)
         {
             var types = await _categorythreadService.GetCategoryThreadByThreadType(threadType);
             return types;

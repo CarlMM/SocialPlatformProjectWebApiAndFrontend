@@ -16,6 +16,7 @@
                             <h1>{{ threads.title }}</h1>
                         </router-link>
                         <span><p> Posted {{setTime(threads.createdDate)}}</p></span>
+                        <p> Posted By:  {{threads.userName}}</p>
                         <p>{{ threads.Text }}</p>
                     </div>
                     <button class="post-btn" @click="goPost(threads.id)">

@@ -60,12 +60,39 @@ namespace SocialPlatformProjectWebApi.Repository
             return template;
         }
 
-        public async Task<IList<CategoryThread>> GetCategoryThreadByThreadType(bool threadType)
+        public async Task<IList<CategoryThreadVM>> GetCategoryThreadByThreadType(bool threadType)
         {
-            // grupper eller publika
-            var types = await _dbContext.CategoryThreads.Where(x => x.ThreadType == threadType).ToListAsync();
 
-            return types;
+            var types = await _dbContext.CategoryThreads.Where(x => x.ThreadType == threadType).Include(x => x.ThreadUsers).ThenInclude(x => x.UserIdSubNavigation).ToListAsync();
+
+
+            List<CategoryThreadVM> cVM = new List<CategoryThreadVM>();
+
+            foreach(var items in types)
+            {
+                CategoryThreadVM vm = new();
+
+                vm.Id = items.Id;
+                vm.Title = items.Title;
+                vm.Text = items.Text;
+                vm.CategoryId = items.CategoryId;
+                vm.ThreadType = items.ThreadType;
+                vm.UserIdSub = items.UserIdSub;
+                vm.ThreadUsers = items.ThreadUsers;
+                vm.CreatedDate = items.CreatedDate;
+                //vm.UserName = null;
+
+
+                foreach (var moreItems in items.ThreadUsers)
+                {
+                    moreItems.CategoryThread = null;
+                    moreItems.UserIdSubNavigation.ThreadUsers = null;
+                    vm.UserName = moreItems.UserIdSubNavigation.Username;
+                }
+                cVM.Add(vm);
+            }
+
+            return cVM;
         }
 
         public async Task<IList<CategoryThread>> GetGroupCategoryThreadByUserId(string userIdSub)

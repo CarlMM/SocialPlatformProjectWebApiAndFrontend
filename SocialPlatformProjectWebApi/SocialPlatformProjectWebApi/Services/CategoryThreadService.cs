@@ -34,11 +34,11 @@ namespace SocialPlatformProjectWebApi.Services
             return template;
         }
 
-        public async Task<IList<CategoryThread>> GetCategoryThreadByThreadType(bool threadType)
+        public async Task<IList<CategoryThreadVM>> GetCategoryThreadByThreadType(bool threadType)
         {
             var types = await _categorythreadRepository.GetCategoryThreadByThreadType(threadType);
 
-            var resultWithUsernames = types.SelectMany(x => x.ThreadUsers).Select(y => y.UserIdSubNavigation).Select(x => x.Username).ToList();
+            //var resultWithUsernames = types.SelectMany(x => x.ThreadUsers).Select(y => y.UserIdSubNavigation).Select(x => x.Username).ToList();
             return types;
         }
 
