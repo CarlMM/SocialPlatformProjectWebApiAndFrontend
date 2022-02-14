@@ -18,11 +18,7 @@
                         <router-link type="button" :to="`/Post/${threads.id}`">
                             <h1>{{ threads.title }}</h1>
                         </router-link>
-                        <span
-                            ><p>
-                                Posted {{setTime(threads.createdDate)}}
-                            </p></span
-                        >
+                        <span><p>Posted {{setTime(threads.createdDate)}}</p></span>
                         <p>{{ threads.text }}</p>
                     </div>
                     <button class="btn-close" @click="RemoveThread(threads.id)">X</button>

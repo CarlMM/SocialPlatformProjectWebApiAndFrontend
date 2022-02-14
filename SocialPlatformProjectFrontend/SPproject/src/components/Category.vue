@@ -91,7 +91,7 @@
                             </div>
                             <button
                                 @click="this.createPostMethod(newPostObject)"
-                                class="btn btn-form"
+                                class="btn-all"
                             >
                                 <!-- type="submit" -->
                                 Create post
@@ -153,7 +153,7 @@ export default {
     },
     data() {
         return {
-            badWords: ['fuck', 'kuk', 'snopp', 'whore', 'dick'],
+            badWords: ['fuck', 'dick', 'wiener', 'whore', 'shit', 'thomas', 'skåne'],
             isModalVisible: false,
             postTypeChosen: null,
             errorMessage: [],
@@ -414,6 +414,10 @@ textarea {
 
 .btn-form:hover {
     background: #2576e0;
+}
+
+.btn-all{
+    padding: 10px;
 }
 
 /* HOOVER STYLE CATEGORY WHEN CREATE POST*/

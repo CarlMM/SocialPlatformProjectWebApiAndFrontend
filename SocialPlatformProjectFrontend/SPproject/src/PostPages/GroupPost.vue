@@ -63,7 +63,7 @@
                         </div>
                         <div class="functions">
                             <input class="input_field" type="text" v-model="searchedUser" placeholder="Search for user"/>
-                            <button class="btn-all" @click="addUserButton(this.searchedUser)">Add User</button>
+                            <button class="btn-all all2" @click="addUserButton(this.searchedUser)">Add User</button>
                             <!-- <button @click="kollaAnvändareKnapp()">Kolla alla användare</button> -->
                             <div>
                                 <ul v-for="error in errors" :key="error">
@@ -80,20 +80,20 @@
                                         <span><i class="fas fa-comments"></i></span></div
                                 ></template>
                                 <template v-slot:body>
-                                    <div class="subforum-description subforum-column">
-                                        <h1>
+                                    <div class="main-post m2">
+                                        <!-- <h1>
                                             <small
                                                 >Posted by <a href="">User</a> 15 Jan
                                                 2022</small
                                             >
-                                        </h1>
+                                        </h1> -->
                                         <h1>{{ this.threadTitle }}</h1>
                                         <p>{{ this.threadText }}</p>
                                     </div>
                                     <div id="container">
                                         <div class="form-group">
                                             <label for="reply-content">Add content</label>
-                                            <textarea
+                                            <textarea class="textareas"
                                                 placeholder="Remember, be nice!"
                                                 cols="78"
                                                 rows="5"
@@ -168,6 +168,8 @@ export default {
             errorMessage: [],
             pId: this.$route.params.id,
             searchedUser: '',
+            threadTitle: '',
+            threadText: '',
             errors: [],
             memberListUsername: [],
             isModalVisible: false,
@@ -232,6 +234,25 @@ export default {
 
         showModal(){
             this.isModalVisible = true
+            let threadList = this.$store.state.SpecificPostThread
+
+            let {
+                0: {
+                    id,
+                    title,
+                    text,
+                    categoryId,
+                    category,
+                    createdDate,
+                    replies,
+                    threadType,
+                    threadUsers,
+                    userIdSub,
+                },
+            } = threadList
+
+            this.threadTitle = title
+            this.threadText = text
         },
         closeModal(){
             this.isModalVisible = false
@@ -276,9 +297,6 @@ export default {
         },
 
         removeUserButton(userSubId){
-
-           
-
             let deleteConfirm = 'are u sure you want to remove user from group?'
             if(confirm(deleteConfirm) == true){
 
@@ -411,6 +429,14 @@ export default {
 
 <style scoped>
 
+.textareas{
+    width:100%;
+}
+
+.m2{
+    border-radius: 4px;
+}
+
 .grid{
     display: grid;
     grid-template-columns: 77% 23%; 
@@ -444,13 +470,6 @@ export default {
     border: rgb(158, 158, 158) 1px solid;
     border-radius: 5px;
 }
-
-.btn-all{
-    display:block;
-    padding:10px;
-    cursor: pointer;
-}
-
 
 textarea {
     resize: none;
@@ -505,6 +524,12 @@ textarea {
 /*btn-all*/
 
 .btn-all{
+    display:block;
+    padding:10px;
+    cursor: pointer;
+}
+
+.all2{
     padding: 5px 5px;
     margin: 0 5px;
 }

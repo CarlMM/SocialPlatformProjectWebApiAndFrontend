@@ -74,18 +74,23 @@ export default {
         },
         removeUserFromAuth0(userSubId) {
             //console.log(this.$store.state.Auth0ListUsers)
-            
-             this.$store.dispatch('Auth0DeleteUser', userSubId)
+            let deleteConfirm = 'Are u sure you want to delete User?'
+            if(confirm(deleteConfirm) == true){
 
-             let updateId = userSubId
-             //Fetch the list of userThread
-             let list = this.$store.state.Auth0ListUsers
-             // Goes through the list, filter it and check for what is no longer there
-             let updatedList = list.filter(item => {
-                 return item.user_id !== updateId
-             })
-
-             this.$store.commit('Auth0SetAllUsers', updatedList)
+                this.$store.dispatch('Auth0DeleteUser', userSubId)
+   
+                let updateId = userSubId
+                //Fetch the list of userThread
+                let list = this.$store.state.Auth0ListUsers
+                // Goes through the list, filter it and check for what is no longer there
+                let updatedList = list.filter(item => {
+                    return item.user_id !== updateId
+                })
+   
+                this.$store.commit('Auth0SetAllUsers', updatedList)
+            }else{
+                
+            }
 
         },
         deleteUser(userId) {
