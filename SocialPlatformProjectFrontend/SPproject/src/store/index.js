@@ -68,6 +68,11 @@ const store = createStore({
             console.log(data)
         },
 
+        updateThreadUser(state, data){
+            state.ThreadUser = data
+            console.log(data)
+        },
+
         fetchReplyToSpecificPost(state, data) {
             state.Reply = data
             console.log('Vi är i mutation nu ', data)
@@ -215,7 +220,6 @@ const store = createStore({
             
             let response = await fetch(
                 `https://localhost:44300/api/ThreadUser/AddThreadUser?threadUserSubId=${addingObject.prop1.userIdSub}&categoryThreadId=${addingObject.prop2.categoryThreadId}&userIdSub=${addingObject.prop2.userIdSub}`,
-                // `https://localhost:44300/api/ThreadUser/AddThreadUser/${addingObject.prop1.userIdSub}?categoryThreadId=${addingObject.prop2.categoryThreadId}&userIdSub=${addingObject.prop2.userIdSub}`,
                 {
                     method: 'post',
                     headers: { 'Content-type': 'application/json' },
@@ -224,6 +228,23 @@ const store = createStore({
             )
             let data = await response.text()
             console.log(data, 'from action')
+        },
+
+        async deleteUserFromGroup({commit}, removingGroupUserObj){
+
+            console.log('deleteUser i aciton: ', removingGroupUserObj)
+
+            let response = await fetch(`https://localhost:44300/api/ThreadUser/DeleteThreadUser?userIdSubOfRequestingUser=${removingGroupUserObj.prop1.userIdSub}&currentCategoryThreadId=${removingGroupUserObj.prop2.categoryThreadId}&threadUserToBeRemoved=${removingGroupUserObj.prop2.userIdSub}`,
+                {
+                method: 'delete',
+                headers: { 'Content-type': 'application/json' },
+                body: JSON.stringify(removingGroupUserObj)
+                }
+            )
+
+            let data = await response.text()
+            //console.log(data);
+            //commit('updateThreadUser', data)
         },
 
         async getAllUsersAdmin({ commit }) {
