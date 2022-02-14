@@ -75,8 +75,46 @@ namespace SocialPlatformProjectWebApi
 
             services.AddAuthorization(options =>
             {
+
+                // CategoryThreadController policies
                 options.AddPolicy("GetThreads", policy => policy.RequireClaim("permissions", "read:categoryThreads"));
+                options.AddPolicy("GetThreadsAndRepliesAndThreadUsers", policy => policy.RequireClaim("permissions", "get:threadandrepliesandthreadUsers"));
+                options.AddPolicy("GetThreadCategoryId", policy => policy.RequireClaim("permissions", "get:threadCategoryId"));
+                options.AddPolicy("GetThreadByThreadType", policy => policy.RequireClaim("permissions", "get:threadByType"));
+                options.AddPolicy("GetGroupThreadByUserId", policy => policy.RequireClaim("permissions", "get:groupThreadUserId"));
+                options.AddPolicy("GetThreadByUserId", policy => policy.RequireClaim("permissions", "get: threadByUserId"));
+                options.AddPolicy("GetThreadById", policy => policy.RequireClaim("permissions", "get: threadById"));
+                options.AddPolicy("PostThread", policy => policy.RequireClaim("permissions", "post:thread"));
+                options.AddPolicy("DeleteThread", policy => policy.RequireClaim("permissions", "delete:thread"));
+                options.AddPolicy("PutThreadText", policy => policy.RequireClaim("permissions", "put:threadText"));
+                
+
+                // ReplyController policies
+
+                options.AddPolicy("GetReplies", policy => policy.RequireClaim("permissions", "get:replies"));
+                options.AddPolicy("ReplyUserId", policy => policy.RequireClaim("permissions", "get:replyUserid"));
+                options.AddPolicy("ReplyThreadId", policy => policy.RequireClaim("permissions", "get:replyThreadId"));
+                options.AddPolicy("Reply", policy => policy.RequireClaim("permissions", "post:reply"));
+                options.AddPolicy("DeleteReplyId", policy => policy.RequireClaim("permissions", "delete:replyId"));
+                options.AddPolicy("EditReply", policy => policy.RequireClaim("permissions", "put:reply"));
+
+
+                
+
+                // ThreadUserController policies
+
+                options.AddPolicy("GetThreadUsers", policy => policy.RequireClaim("permissions", "get:threadUsers"));
+                options.AddPolicy("GetThreadUsersByCategoryId", policy => policy.RequireClaim("permissions", "get:threadUsersByCategoryId"));
+                options.AddPolicy("AddThreadUser", policy => policy.RequireClaim("permissions", "post:addThreadUser"));
+                options.AddPolicy("DeleteThreadUser", policy => policy.RequireClaim("permissions", "delete:threadUser"));
+
+
+                // UserController policies
+
+                options.AddPolicy("GetUsers", policy => policy.RequireClaim("permissions", "get:user"));
                 options.AddPolicy("DeleteUser", policy => policy.RequireClaim("permissions", "delete:user"));
+                options.AddPolicy("PostUser", policy => policy.RequireClaim("permissions", "post:user"));
+
 
             });
 
