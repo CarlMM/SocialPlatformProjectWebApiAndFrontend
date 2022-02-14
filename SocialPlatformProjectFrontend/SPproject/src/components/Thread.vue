@@ -115,7 +115,6 @@ export default {
             let filterlist = list.filter(item => {
                 return item.categoryId == this.cId
             })
-            console.log(filterlist)
             return filterlist
         },
         GetCategory() {
@@ -124,8 +123,6 @@ export default {
             let filterList = categoryList.filter(item => {
                 return item.Id == this.catId
             })
-            console.log('this is categorylist')
-            console.log(filterList)
             return filterList
         },
     },

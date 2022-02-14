@@ -69,7 +69,6 @@ export default {
 
     created() {
         this.$store.commit('setToken', AuthState.token)
-        console.log(AuthState.token)
         this.fetchAllRepliesUser()
         //if (AuthState.isAuthenticated == true) {
             //if (

@@ -22,9 +22,7 @@ const store = createStore({
     },
     mutations: {
         setNewPost(state, data) {
-            console.log('inne i setNewPostMutatuon: ', data)
             state.Thread.push(data)
-            console.log(state.Thread)
         },
         setThreadsFromBack(state, data) {
             state.Thread = data
@@ -32,46 +30,37 @@ const store = createStore({
 
         setCategoriesFromBackend(state, data) {
             state.Category = data
-            console.log(data)
         },
         setRepliesFromBacked(state, data) {
             state.reply = data
-            console.log(data)
         },
 
         AllRepliesUser(state, data){
             state.AllReplies = data
-            console.log(data)
         },
 
         deleteSpecificReply(state, data){
             state.AllReplies.sort(data)
-            console.log(data)
         },
 
         updateSpecificReplyAfterDelete(state, data){
             state.AllReplies = data
-            console.log(data)
         },
 
         setUserFromBack(state, data) {
             state.User = data
-            console.log(data)
         },
         
         setThreadUserFromBack(state, data) {
             state.ThreadUser = data
-            console.log(data)
         },
 
         updateThreadUser(state, data){
             state.ThreadUser = data
-            console.log(data)
         },
 
         fetchReplyToSpecificPost(state, data) {
             state.Reply = data
-            console.log('Vi är i mutation nu ', data)
         },
 
         setGroupThreadsAdmin(state, data) {
@@ -416,13 +405,11 @@ const store = createStore({
                     
                 }
             )
-
             let data = await response.json()
             commit('setUserThreads', data)
         },
 
         async GetGroupThreadsFromUser({commit}, idSub){
-            console.log(this.state.token)
             let response = await fetch(
                 `https://localhost:44300/api/CategoryThread/GetGroupCategoryThreadByUserid?userIdSub=${idSub}`,
                 {

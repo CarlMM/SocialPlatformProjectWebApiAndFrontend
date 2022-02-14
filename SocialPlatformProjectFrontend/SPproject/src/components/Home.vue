@@ -42,7 +42,6 @@ export default {
             this.userToSend.idSub = AuthState.user.sub
             this.userToSend.username = AuthState.user.nickname
             this.userToSend.email = AuthState.user.email
-            console.log('Inne i created', this.userToSend)
             this.$store.dispatch('CreateUserToDatabase', this.userToSend)
         }
     },
@@ -50,7 +49,6 @@ export default {
     computed: {
         GetAllThreads() {
             const result = this.$store.state.Thread
-            console.log('Get All Threads', result)
             return result
         },
     },

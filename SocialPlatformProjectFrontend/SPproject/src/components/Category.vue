@@ -208,17 +208,14 @@ export default {
         setPostTypeId(value) {
             if (value == 0) {
                 this.newPostObject.ThreadType = false
-                console.log(this.newPostObject.ThreadType, 'INNE I IF SATSEN 1')
             } else {
                 this.newPostObject.ThreadType = true
-                console.log(this.newPostObject.ThreadType, 'INNE I IF SATSEN 2')
             }
         },
         async fetchAllCategories() {
             this.$store.dispatch('getAllCategories')
         },
         setCategoryIdFromDropdown(value) {
-            console.log('Category Id from dropdown ', value)
             this.newPostObject.CategoryId = value
         },
 
@@ -233,8 +230,6 @@ export default {
         createPostMethod(newPostObject) {
             this.newPostObject.UserIdSub = AuthState.user.sub
             //this.newPostObject.ThreadUsers.UserIdSub = AuthState.user.sub;
-            console.log(this.newPostObject.UserIdSub)
-            //console.log(this.newPostObject.ThreadUsers.UserIdSub)
 
             let catchBadWords = this.filterWords(this.newPostObject.Text)
             let catchBadWordsTitle = this.filterWords(this.newPostObject.Title)
@@ -254,7 +249,6 @@ export default {
             }
             if (catchBadWords.length > 0) {
                 this.errorMessage.push('Remember to be nice!')
-                console.log(this.errorMessage)
             }
             if (catchBadWordsTitle.length > 0) {
                 this.errorMessage.push('Remember to be nice Title!')
@@ -269,8 +263,6 @@ export default {
             ) {
                 this.errorMessage = []
                 this.closeModal()
-                console.log('Our UserId_Sub', this.newPostObject.UserId_Sub)
-                console.log(this.newPostObject, 'THIS IS THE OBJECT WE SENDING')
 
                 // ThreadUser:{
                 //     userIdSub: '',

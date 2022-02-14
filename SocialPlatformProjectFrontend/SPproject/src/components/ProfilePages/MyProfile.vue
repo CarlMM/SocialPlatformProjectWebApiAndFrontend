@@ -71,16 +71,7 @@ export default {
     },
     methods: {
         consoleLogMyUser() {
-            //var accessTokenObj = localStorage.getItem('access_token');
-
-            //console.log('accesstoken: ', localStorage.getItem('access_token'));
-
-            //__raw = token?
-            // console.log(AuthState.claims.__raw)
-            // this.$store.commit('setToken', AuthState.claims.__raw)
             console.log(AuthState.user)
-            // console.log('statetoken: ', this.$store.state.token)
-            //commit('setToken')
         },
         fetchAllUserThreads() {
             this.$store.dispatch('GetThreadsFromUser', this.AuthState.user.sub)
@@ -91,6 +82,7 @@ export default {
     },
 
     created() {
+        this.$store.commit('setToken', AuthState.token)
         this.fetchAllUserThreads()
         if (AuthState.isAuthenticated == true) {
             if (
@@ -150,9 +142,6 @@ initAuth()
     padding-top:10px;
 }
 
-.num-post{
-    
-}
 
 .amount-text{
     display:flex;

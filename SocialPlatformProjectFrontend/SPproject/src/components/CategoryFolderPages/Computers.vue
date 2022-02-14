@@ -33,10 +33,6 @@ export default {
         }
     },
 
-    // created(){
-    // console.log(this.idFromUrl)
-    // this.$store.dispatch('getThreadsByCategoryId')
-    // },
 
     computed: {
         GetThreads() {
@@ -45,7 +41,6 @@ export default {
             let filterlist = list.filter(item => {
                 return item.categoryId == this.cId
             })
-            console.log(filterlist)
             return filterlist
         },
     },

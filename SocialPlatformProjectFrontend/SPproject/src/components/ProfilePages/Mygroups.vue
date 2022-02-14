@@ -67,23 +67,19 @@ export default {
        GetUserGroups(){
            let result = this.$store.state.userRelatedGroup
              .filter(x1 => this.$store.state.groupThreadsAdmin.some(x2 => x1.categoryThreadId === x2.id))
-             console.log(result, "result");
              this.groupWithMyIdInIt = result;
 
             
-            console.log('lilla Listan: ', this.groupWithMyIdInIt)
             
 
             let groups = this.$store.state.groupThreadsAdmin
 
             
-            console.log('stora listan: ', groups)
 
             
             let filtered = groups.filter(o1 => this.groupWithMyIdInIt
             .some(o2 => o1.id === o2.categoryThreadId))
 
-            console.log('filtrerad stora lista: ', filtered)
 
             return filtered;
             
