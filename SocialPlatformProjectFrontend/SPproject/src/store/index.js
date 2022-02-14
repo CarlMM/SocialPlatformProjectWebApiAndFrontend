@@ -59,10 +59,7 @@ const store = createStore({
             state.User = data
             console.log(data)
         },
-        setUsersFromBack(state, data) {
-            state.Users = data
-            console.log(data)
-        },
+        
         setThreadUserFromBack(state, data) {
             state.ThreadUser = data
             console.log(data)
@@ -416,21 +413,7 @@ const store = createStore({
             console.log('from action', data)
             commit('setNewUser', data)
         },
-        // async GetUser({ commit }) {
-        //     let response = await fetch('')
-        //     let data = await response.json()
-        //     console.log(data)
-        //     commit('setUserFromBack', data)
-        // },
-
-        async getAllUsers({ commit }) {
-            let response = await fetch(
-                'https://localhost:44300/api/User/GetUsers'
-            )
-            let data = await response.json()
-            console.log(data)
-            commit('setUsersFromBack', data)
-        },
+        
 
         async getThreadUser({commit}, categoryThreadId) {
             //console.log(categoryThreadId, ' i action')
@@ -447,14 +430,7 @@ const store = createStore({
             console.log('getUserGroups action ', data)
             commit('setUserGroups', data)
        }
-
-        // async getAllThreadByUser({commit}, userId){
-        //     let response = await fetch('https://localhost:44300/api/Threads/GetThreadsByUser' + userId);
-        //     let data = await response.json()
-
-        //     console.log(data)
-        //     commit('setInMutation' , data)
-        // }
+        
     },
 
     getters: {
