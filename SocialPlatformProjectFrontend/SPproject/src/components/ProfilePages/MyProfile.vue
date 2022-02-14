@@ -5,7 +5,7 @@
             <div class="profile">
                 <form class="profile-form">
                     <h2 >Profile Page</h2>
-                    <h3>LÄHETÄ SÄHKÖPOSTI ASIAKASTUKIIN, JOS HALUAT POISTAA PROFIILIN :)</h3>
+                    <h3 class="UpdateProfile">LÄHETÄ SÄHKÖPOSTI ASIAKASTUKIIN, JOS HALUAT POISTAA PROFIILIN :)</h3>
                     <img :src="AuthState.user.picture" alt="AvatarPic" />
                     <h2 class="profile-h2">{{AuthState.user.nickname}}</h2>
                      <button class="btn-all btn2"><span>Create New Post</span></button>
@@ -142,6 +142,14 @@ initAuth()
     padding-top:10px;
 }
 
+.UpdateProfile{
+    font-size: 12px;
+    font-family: 'Righteous', cursive;
+}
+
+.outer-box{
+    background-color:#3d4155;
+}
 
 .amount-text{
     display:flex;
@@ -180,7 +188,7 @@ initAuth()
 
 .threads{
     border-radius: 2px;
-    background:#656a83;
+    background:#525d92;
     padding: 20px 10px;
 }
 

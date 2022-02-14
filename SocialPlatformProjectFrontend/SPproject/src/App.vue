@@ -51,7 +51,7 @@ export default {
 
 .categories-h1{
     font-family: 'Righteous', cursive;
-    background-color: #656a83;
+    background-color: #1A2453;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-size: 32px;
     padding:10px 20px;
@@ -66,6 +66,15 @@ html > body{
 }
 
 
+/*nav dropdown */
+
+select.dropdown-nav{
+    border-radius: 4px;
+    background:#ffffff;
+    border:none;
+    color:rgb(0, 0, 0);
+}
+
 /*Threads outer glow */
 
 .element {
@@ -79,7 +88,7 @@ element:active {
 
 /*Inputs*/
 .input_field{
- font-family: inherit;
+  font-family: inherit;
   width: 100%;
   border: 0;
   border-bottom: 1px solid gray;
@@ -94,7 +103,7 @@ element:active {
 /*All Buttons */
 
 .btn-all{
-    background-color:#6d7c8f;
+    background-color:#525d92;
     border:none;
     color: #fff;
     font-size: 20px;

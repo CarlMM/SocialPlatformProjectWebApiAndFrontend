@@ -260,7 +260,7 @@ export default {
 .subforum-column {
     margin-top:1px;
     padding-bottom: 0.1px;
-    background-color: #6f7281;
+    background-color: #525d92;
 }
 
 #container {

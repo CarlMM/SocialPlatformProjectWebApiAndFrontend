@@ -125,7 +125,7 @@ export default {
 .highlight{
     font-size: 32px;
     padding: 10px 20px;
-    background-color:#777777;
+    background-color:#1A2453;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -141,7 +141,7 @@ export default {
 
 
 .database{
-    background:#656a83;
+    background:#525d92;
 }
 
 .user > h2{
