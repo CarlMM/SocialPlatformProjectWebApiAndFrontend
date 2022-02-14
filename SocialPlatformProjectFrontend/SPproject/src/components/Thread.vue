@@ -15,8 +15,10 @@
                         <router-link type="button" :to="`/Post/${threads.id}`">
                             <h1>{{ threads.title }}</h1>
                         </router-link>
-                        <span><p> Posted {{setTime(threads.createdDate)}}</p></span>
-                        <p> Posted By:  {{threads.userName}}</p>
+                        <div class="poster">
+                            <span><p> Posted {{setTime(threads.createdDate)}}</p></span>
+                            <p>By {{threads.userName}}</p>
+                        </div>
                         <p>{{ threads.Text }}</p>
                     </div>
                     <button class="post-btn" @click="goPost(threads.id)">
@@ -55,11 +57,10 @@
                         <router-link type="button" :to="`/Post/${threads.id}`">
                             <h1>{{ threads.title }}</h1>
                         </router-link>
-                        <span
-                            ><p>
-                                Posted {{setTime(threads.createdDate)}}
-                            </p></span
-                        >
+                       <div class="poster">
+                            <span><p> Posted {{setTime(threads.createdDate)}}</p></span>
+                            <p> By {{threads.userName}}</p>
+                        </div>
                         <p>{{ threads.Text }}</p>
                     </div>
                     <button class="post-btn" @click="goPost(threads.id)">
@@ -149,6 +150,7 @@ export default {
 * {
     box-sizing: border-box;
 }
+
 
 li {
     list-style: none;

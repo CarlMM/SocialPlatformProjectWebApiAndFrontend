@@ -183,6 +183,14 @@ element:active {
     margin:0;
 }
 
+.poster{
+    display:flex;
+}
+
+.poster > span{
+    margin-right: 5px;
+}
+
 /* Posts + adminposts*/
 
 .post-h1 {
