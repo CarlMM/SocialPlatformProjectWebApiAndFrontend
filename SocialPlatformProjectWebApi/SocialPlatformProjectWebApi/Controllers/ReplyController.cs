@@ -76,7 +76,7 @@ namespace SocialPlatformProjectWebApi.Controllers
 
         }
 
-         [HttpPut]
+        [HttpPut]
         [Authorize(Policy = "EditReply")]
         [Route("EditReply")] //Admin & Normal
         public async Task<Reply> EditReplyText(int id, string text)
