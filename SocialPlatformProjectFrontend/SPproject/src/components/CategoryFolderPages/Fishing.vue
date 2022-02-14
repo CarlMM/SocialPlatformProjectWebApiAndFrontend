@@ -1,6 +1,7 @@
 <template>
     <div>
         <div>
+            <h1 class="categories-h1">Fishing</h1>
             <Thread />
         </div>
     </div>
@@ -26,3 +27,7 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+
+</style>

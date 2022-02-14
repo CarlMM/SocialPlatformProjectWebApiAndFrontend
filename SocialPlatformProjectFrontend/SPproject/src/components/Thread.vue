@@ -1,6 +1,6 @@
 <template>
     <div class="outer-box">
-        <button class="btn-close" @click="goHome()">X</button>
+        <!-- <button class="btn-close" @click="goHome()">X</button> -->
         <div
             v-for="threads in list"
             :key="threads.Id"
@@ -181,11 +181,7 @@ h1 {
 }
 
 /*Body*/
-.outer-box {
-    background: #484848;
-    border-radius: 5px;
-    padding-top:60px;
-}
+
 
 .subforum {
     margin-top: 20px;

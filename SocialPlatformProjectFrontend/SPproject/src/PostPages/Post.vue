@@ -10,11 +10,11 @@
                     </div>
                 <button class="post-btn" @click="toggleModal()">
                     <i class="far fa-comment icon"></i>
-                    <span>Reply to post</span>
+                    <span>Reply</span>
                 </button>
                 <button class="post-btn">
-                        <i class="far fa-surprise icon"></i>
-                        <span>Surprise</span>
+                        <i class="fa-regular fa-pen-to-square icon"></i>
+                        <span>Edit</span>
                     </button>
                     <button class="post-btn">
                         <i class="far fa-share-square icon"></i>
@@ -31,24 +31,24 @@
                                 <p class="reply-text">{{ item.text}}</p>
                             <button class="post-btn">
                                 <i class="far fa-comment icon"></i>
-                                <span>Reply to comment</span>
+                                <span>Reply</span>
                             </button>
                             <button class="post-btn">
-                        <i class="far fa-surprise icon"></i>
-                        <span>Surprise</span>
-                        </button>
-                        <button class="post-btn">
-                            <i class="far fa-share-square icon"></i>
-                            <span>Share</span>
-                        </button>
-                        <button class="post-btn">
-                            <i class="far fa-flag icon"></i>
-                            <span>Report</span>
-                        </button>
-                         <button class="post-btn">
-                            <i class="fa-regular fa-trash"></i>
-                            <span>Remove Comment</span>
-                        </button>
+                                <i class="fa-regular fa-pen-to-square icon"></i>
+                                <span>Edit</span>
+                            </button>
+                            <button class="post-btn">
+                                <i class="far fa-share-square icon"></i>
+                                <span>Share</span>
+                            </button>
+                            <button class="post-btn">
+                                <i class="far fa-flag icon"></i>
+                                <span>Report</span>
+                            </button>
+                            <button class="post-btn">
+                                <i class="fa-solid fa-trash icon"></i>
+                                <span>Delete</span>
+                            </button>
                         </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 <template>
+<h1 class="categories-h1">Admin GroupThreads</h1>
     <div class="outer-box">
         <div
             v-for="threads in this.$store.state.groupThreadsAdmin"
@@ -140,11 +141,6 @@ h1 {
     font-size: 18px;
     font-weight: bolder;
     color: white;
-}
-
-.outer-box {
-    background: #484848;
-    border-radius: 5px;
 }
 
 .subforum {

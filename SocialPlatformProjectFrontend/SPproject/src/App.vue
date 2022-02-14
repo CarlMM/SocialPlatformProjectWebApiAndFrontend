@@ -49,6 +49,18 @@ export default {
     padding: 20px 20vw;
 }
 
+.categories-h1{
+    font-family: 'Righteous', cursive;
+    background-color: #656a83;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 32px;
+    padding:10px 20px;
+    margin:0;
+    letter-spacing: 3px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
 html > body{
     background-color: rgb(36, 36, 36);
 }
@@ -176,7 +188,9 @@ element:active {
 }
 /*Body*/
 .outer-box {
-    border-radius: 5px;
+    border-bottom-left-radius:4px;
+    border-bottom-right-radius:4px;
+    background: #484848;
     padding: 10px 10px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
