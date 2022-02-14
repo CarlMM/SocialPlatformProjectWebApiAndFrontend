@@ -3,6 +3,7 @@ using SocialPlatformProjectWebApi.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
+using System.Linq;
 
 namespace SocialPlatformProjectWebApi.Services
 {
@@ -36,6 +37,8 @@ namespace SocialPlatformProjectWebApi.Services
         public async Task<IList<CategoryThread>> GetCategoryThreadByThreadType(bool threadType)
         {
             var types = await _categorythreadRepository.GetCategoryThreadByThreadType(threadType);
+
+            var resultWithUsernames = types.SelectMany(x => x.ThreadUsers).Select(y => y.UserIdSubNavigation).Select(x => x.Username).ToList();
             return types;
         }
 

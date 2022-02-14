@@ -62,7 +62,9 @@ namespace SocialPlatformProjectWebApi.Repository
 
         public async Task<IList<CategoryThread>> GetCategoryThreadByThreadType(bool threadType)
         {
+            // grupper eller publika
             var types = await _dbContext.CategoryThreads.Where(x => x.ThreadType == threadType).ToListAsync();
+
             return types;
         }
 
