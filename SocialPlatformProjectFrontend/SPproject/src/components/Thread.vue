@@ -23,8 +23,8 @@
                         <span>Comment</span>
                     </button>
                     <button class="post-btn">
-                        <i class="far fa-surprise icon"></i>
-                        <span>Surprise</span>
+                        <i class="fa-regular fa-pen-to-square icon"></i>
+                        <span>Edit</span>
                     </button>
                     <button class="post-btn">
                         <i class="far fa-share-square icon"></i>
@@ -66,8 +66,8 @@
                         <span>Comment</span>
                     </button>
                     <button class="post-btn">
-                        <i class="far fa-surprise icon"></i>
-                        <span>Surprise</span>
+                        <i class="fa-regular fa-pen-to-square icon"></i>
+                        <span>Edit</span>
                     </button>
                     <button class="post-btn">
                         <i class="far fa-share-square icon"></i>

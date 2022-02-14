@@ -10,7 +10,7 @@
                     </div>
                 <button class="post-btn" @click="toggleModal()">
                     <i class="far fa-comment icon"></i>
-                    <span>Reply</span>
+                    <span>comment</span>
                 </button>
                 <button class="post-btn">
                         <i class="fa-regular fa-pen-to-square icon"></i>
