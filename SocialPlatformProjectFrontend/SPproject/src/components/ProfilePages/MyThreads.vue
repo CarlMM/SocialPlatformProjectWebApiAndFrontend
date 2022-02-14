@@ -1,11 +1,7 @@
 <template>
     <div>
         <div v-if="AuthState.isAuthenticated" class="temp">
-            <h1>My Threads</h1>
-            <p>
-                Loopa ut alla trådar med användarens userId aka som användaren
-                har skapat
-            </p>
+           
         </div>
         <div v-else>
             <NotAuthantication />

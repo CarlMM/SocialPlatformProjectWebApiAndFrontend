@@ -1,10 +1,7 @@
 <template>
     <div>
         <div v-if="AuthState.isAuthenticated" class="temp">
-            <h1>My Replies</h1>
-            <p>
-                Loops out all replies that the user creates
-            </p>
+           
         </div>
         <div v-else>
             <NotAuthantication />

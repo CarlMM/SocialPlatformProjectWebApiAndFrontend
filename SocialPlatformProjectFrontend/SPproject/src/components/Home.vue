@@ -1,5 +1,6 @@
 <template>
     <div class="side-by-side">
+        <h1 class="categories-h1">Home</h1>
         <Thread :list="GetAllThreads" />
         <!-- :post="thread" v-for="(thread, index) in GetAllThreads" :key="index" -->
     </div>

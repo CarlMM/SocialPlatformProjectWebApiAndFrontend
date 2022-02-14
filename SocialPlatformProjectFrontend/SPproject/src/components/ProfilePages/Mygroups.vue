@@ -1,8 +1,7 @@
 <template>
     <div>
         <div v-if="AuthState.isAuthenticated" class="temp">
-            <h1>My groupthreads</h1>
-            <p>Loopa ut alla trådar som har användarens userId</p>
+            
         </div>
         <div v-else>
             <NotAuthantication />
