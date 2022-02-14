@@ -55,9 +55,10 @@
                             <p
                                 id="userNamesInThread" v-for="user in GetThreadUsers" :key="user.Id">
                                 {{ user.userIdSubNavigation.username }}
+                                
                                 <!-- {{ user }} -->
                                 <!-- Lägg till userId i removeMetoden -->
-                                 <button class="btn-close" >X</button>
+                                 <button class="btn-close" @click="removeUserButton(user.userIdSub)" >X</button>
                             </p>
                         </div>
                         <div class="functions">
@@ -174,13 +175,17 @@ export default {
                 categoryThreadId: null,
                 userIdSub: '',
             },
-            CurrentAddingUserObj:{
+            CurrentUserObj:{
                 categoryThreadId: null,
                 userIdSub: '',
             },
             sendObj:{
                 prop1: null,
                 prop2: null
+            },
+            RemoveUserFromGroupObj:{
+                categoryThreadId: null,
+                userIdSub: '',
             },
             userNameToId:'',
             newReplyPost: {
@@ -266,9 +271,44 @@ export default {
             //return this.$store.dispatch('PostReplyToSpecificPost', newReplyPost)
         },
 
-        // kollaAnvändareKnapp(){
-        //     console.log(this.$store.state.listOfUsersAdmin)
-        // },
+        removeUserButton(userSubId){
+
+           
+
+            let deleteConfirm = 'are u sure you want to remove user from group?'
+            if(confirm(deleteConfirm) == true){
+
+            this.CurrentUserObj.categoryThreadId = this.pId;
+            this.CurrentUserObj.userIdSub = AuthState.user.sub;
+
+
+            this.RemoveUserFromGroupObj.categoryThreadId = this.pId
+            this.RemoveUserFromGroupObj.userIdSub = userSubId;
+
+            this.sendObj = {
+                 prop1: this.CurrentUserObj,
+                 prop2: this.RemoveUserFromGroupObj
+             }
+            this.$store.dispatch('deleteUserFromGroup', this.sendObj)
+
+                let groupMemberId = userSubId
+                //Fetch the list of userThread
+                let list = this.$store.state.ThreadUser
+                //Goes through the list, filter it and check for what is no longer there
+                let updatedList = list.filter(item => {
+                    return item.userIdSub !== groupMemberId
+                })
+                this.$store.commit('updateThreadUser', updatedList)
+            }
+            else{
+                
+            }
+
+
+            
+           
+
+        },
         addUserButton() {
             
             for(let i = 0; i < this.$store.state.listOfUsersAdmin.length; ++i){
@@ -277,21 +317,19 @@ export default {
                     this.userNameToId = this.$store.state.listOfUsersAdmin[i].idSub
                 }
                 
-
             }
 
-
-             this.CurrentAddingUserObj.categoryThreadId = this.pId;
-             this.CurrentAddingUserObj.userIdSub = AuthState.user.sub;
+             this.CurrentUserObj.categoryThreadId = this.pId;
+             this.CurrentUserObj.userIdSub = AuthState.user.sub;
 
              this.ThreadUserobj.categoryThreadId = this.pId
              this.ThreadUserobj.userIdSub = this.userNameToId;
 
             
-             console.log(this.CurrentAddingUserObj)
+             console.log(this.CurrentUserObj)
 
              this.sendObj = {
-                 prop1: this.CurrentAddingUserObj,
+                 prop1: this.CurrentUserObj,
                  prop2: this.ThreadUserobj
              }
 
@@ -299,9 +337,6 @@ export default {
              console.log(this.sendObj.prop1.userIdSub)
 
              return this.$store.dispatch('addUserToGroupThread', this.sendObj)
-
-
-
 
 
 
@@ -342,9 +377,6 @@ export default {
             return dateclock.DateOfCreation(date)
         },
 
-        removeUserFromThreadButton() {
-            alert('Tjoflöjt')
-        },
     },
     computed: {
         // GetUsersFromDataBase(){
