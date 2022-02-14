@@ -199,8 +199,8 @@ export default {
         },
         closeModal() {
             this.errorMessage = []
-            // this.newPostObject.Title = ''
-            // this.newPostObject.Text = ''
+            this.newPostObject.Title = ''
+            this.newPostObject.Text = ''
             // this.newPostObject.CategoryId = ''
             this.isModalVisible = false
         },

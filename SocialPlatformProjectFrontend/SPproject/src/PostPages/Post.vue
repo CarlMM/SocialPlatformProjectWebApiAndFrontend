@@ -239,6 +239,7 @@ export default {
                 this.PostReplyToSpecificPost(newReplyPost)
                 this.$store.dispatch('GetRepliesForSpecificPost', this.tId)
                 this.closeModal()
+                location.reload()
                 this.newReplyPost.Text = ''
             }
             //return this.$store.dispatch('PostReplyToSpecificPost', newReplyPost)
