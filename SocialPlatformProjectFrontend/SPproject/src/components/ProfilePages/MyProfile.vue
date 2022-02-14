@@ -5,6 +5,7 @@
             <div class="profile">
                 <form class="profile-form">
                     <h2 >Profile Page</h2>
+                    <h3>LÄHETÄ SÄHKÖPOSTI ASIAKASTUKIIN, JOS HALUAT POISTAA PROFIILIN :)</h3>
                     <img :src="AuthState.user.picture" alt="AvatarPic" />
                     <h2 class="profile-h2">{{AuthState.user.nickname}}</h2>
                      <button class="btn-all btn2"><span>Create New Post</span></button>
