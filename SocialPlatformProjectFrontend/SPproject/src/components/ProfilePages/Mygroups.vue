@@ -127,7 +127,7 @@ export default {
     },
 
     created(){
-        
+        this.$store.commit('setToken', AuthState.token)
         this.$store.dispatch('getAllGroupThreadsAdmin')
         this.fetchGroupThreads()
         this.getUserGroups()

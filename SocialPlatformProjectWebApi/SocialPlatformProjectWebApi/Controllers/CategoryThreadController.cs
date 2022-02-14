@@ -22,7 +22,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
         // GET: api/<ThreadController>
         [HttpGet]
-        [Authorize(Policy = "GetThreads")] // Admin
+        //[Authorize(Policy = "GetThreads")] // Admin
         [Route("GetCategoryThreads")]
         public IList<CategoryThread> GetThreads()
         {
@@ -49,7 +49,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet] //Admin
-        [Authorize(Policy = "GetThreadByThreadType")]
+       // [Authorize(Policy = "GetThreadByThreadType")]
         [Route("GetCategoryThreadByThreadType/{threadType}")]
         public async Task<IList<CategoryThread>> GetCategoryThreadByThreadType(bool threadType)
         {
@@ -76,7 +76,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet] //Admin & Normal
-        [Authorize(Policy = "GetThreadById")]
+        //[Authorize(Policy = "GetThreadById")]
         [Route("GetCategoryThreadById/{id}")]
         public async Task<IList<CategoryThread>> GetCategoryThreadById(int id)
         {

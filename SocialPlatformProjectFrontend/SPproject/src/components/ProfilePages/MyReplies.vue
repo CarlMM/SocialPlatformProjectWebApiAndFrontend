@@ -68,14 +68,17 @@ export default {
     },
 
     created() {
+        this.$store.commit('setToken', AuthState.token)
+        console.log(AuthState.token)
         this.fetchAllRepliesUser()
-        if (AuthState.isAuthenticated == true) {
-            if (
-                AuthState.user['http://localhost:3000/roles'][0] == 'AdminUser'
-            ) {
-                this.$store.state.isAdmin = true
-            }
-        }
+        //if (AuthState.isAuthenticated == true) {
+            //if (
+                //AuthState.user['http://localhost:3000/roles'][0] == 'NormalUser'
+            //) 
+            // {
+            //     this.$store.state.isAdmin = true
+            // }
+        //}
     },
 }
 </script>

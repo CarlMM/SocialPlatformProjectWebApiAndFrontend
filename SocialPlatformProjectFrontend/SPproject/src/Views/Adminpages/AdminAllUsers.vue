@@ -55,6 +55,7 @@ export default {
     },
 
     created() {
+        this.$store.commit('setToken', AuthState.token)
         if (AuthState.isAuthenticated == true || AuthState.isAuthenticated == false) {
             if (
                 AuthState.user['http://localhost:3000/roles'][0] == 'AdminUser'

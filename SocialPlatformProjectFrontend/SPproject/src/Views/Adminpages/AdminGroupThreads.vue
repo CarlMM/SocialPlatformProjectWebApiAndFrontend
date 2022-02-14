@@ -53,6 +53,7 @@ export default {
         }
     },
     created() {
+        this.$store.commit('setToken', AuthState.token)
         this.$store.dispatch('getAllGroupThreadsAdmin')
 
         if (AuthState.isAuthenticated == true || AuthState.isAuthenticated == false) {
@@ -84,6 +85,7 @@ export default {
                     return item.id !== threadId
                 })
                 this.$store.commit('updateSpecificThreadAfterDelete', updatedList)
+                location.reload();
             }
             else{
                

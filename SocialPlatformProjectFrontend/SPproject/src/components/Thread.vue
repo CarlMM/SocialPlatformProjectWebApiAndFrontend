@@ -131,8 +131,11 @@ export default {
     },
     methods:{
         goPost(id){
-            this.$router.push('/Post/' + id)
-            this.$store.state.comingFromThreads = true
+            if (AuthState.isAuthenticated == true){
+
+                this.$router.push('/Post/' + id)
+                this.$store.state.comingFromThreads = true
+            }
         },
         goHome(){
         this.$router.push('/')

@@ -119,7 +119,6 @@ const store = createStore({
 
         setToken(state, data) {
             state.token = data
-            console.log(data)
         },
         Auth0DeleteFromuserList(state, data) {
             state.Auth0ListUsers.sort(data)
@@ -129,27 +128,24 @@ const store = createStore({
         },
         setNewUser(state, data) {
             state.Users = data
-            console.log(data)
         },
         setSpecificGroupThreadUsers(state, data){
             state.specificGroupThreadUserList = data
         },
         setUserGroups(state, data){
             state.userRelatedGroup = data;
-            console.log('setUserGroups mutation: ', state.userRelatedGroup)
         }
     },
     actions: {
-        async GetSpecificGroupThreadUsersList( {commit}, groupPostId ){
-            let response = await fetch(`https://localhost:44300/api/ThreadUser/GetThreadUsersByCategoryId?categoryThreadId=${groupPostId}`,{
-                method: 'get',
-            })
-            let data = await response.json()
-            commit('setSpecificGroupThreadUsers', data) 
-        },
+        // async GetSpecificGroupThreadUsersList( {commit}, groupPostId ){
+        //     let response = await fetch(`https://localhost:44300/api/ThreadUser/GetThreadUsersByCategoryId?categoryThreadId=${groupPostId}`,{
+        //         method: 'get',
+        //     })
+        //     let data = await response.json()
+        //     commit('setSpecificGroupThreadUsers', data) 
+        // },
 
         async createNewPostMethod({ commit }, newPostObject) {
-            console.log('Inne i createNewPostMethod action: ', newPostObject)
             let response = await fetch(
                 `https://localhost:44300/api/CategoryThread/AddCategoryThread/${newPostObject}`,
                 {
@@ -161,11 +157,7 @@ const store = createStore({
                     body: JSON.stringify(newPostObject),
                 }
             )
-                
-                
-                console.log(await response.json())
                 let data = await response.text()
-                console.log('i action', data)
                 commit('setNewPost', data)
             },
             async PostReplyToSpecificPost({ commit }, replyObject) {
@@ -173,14 +165,16 @@ const store = createStore({
                     `https://localhost:44300/api/Reply/AddReply/${replyObject}`,
                     {
                         method: 'post',
-                        headers: { 'Content-type': 'application/json' },
+                        headers: {
+                            Authorization: 'Bearer ' + this.state.token,
+                            'Content-type': 'application/json',
+                        },
                         body: JSON.stringify(replyObject),
                     }
                 )
         
                 let data = await response.text()
                 
-                console.log(data)
                 commit('setNewReplyToPost', data)
             },
             
@@ -215,35 +209,35 @@ const store = createStore({
         },
 
         async addUserToGroupThread({ commit }, addingObject) {
-            console.log('adding obj i action: ', addingObject )
-            console.log('addingObj.prop1: ', addingObject.prop1.userIdSub)
             
             let response = await fetch(
                 `https://localhost:44300/api/ThreadUser/AddThreadUser?threadUserSubId=${addingObject.prop1.userIdSub}&categoryThreadId=${addingObject.prop2.categoryThreadId}&userIdSub=${addingObject.prop2.userIdSub}`,
                 {
                     method: 'post',
-                    headers: { 'Content-type': 'application/json' },
+                    headers: { 
+                        Authorization: 'Bearer ' + this.state.token,
+                        'Content-type': 'application/json' 
+                    },
                     body: JSON.stringify(addingObject)
                 }
             )
             let data = await response.text()
-            console.log(data, 'from action')
         },
 
         async deleteUserFromGroup({commit}, removingGroupUserObj){
 
-            console.log('deleteUser i aciton: ', removingGroupUserObj)
 
             let response = await fetch(`https://localhost:44300/api/ThreadUser/DeleteThreadUser?userIdSubOfRequestingUser=${removingGroupUserObj.prop1.userIdSub}&currentCategoryThreadId=${removingGroupUserObj.prop2.categoryThreadId}&threadUserToBeRemoved=${removingGroupUserObj.prop2.userIdSub}`,
                 {
                 method: 'delete',
-                headers: { 'Content-type': 'application/json' },
+                headers: { 
+                    Authorization: 'Bearer ' + this.state.token,
+                    'Content-type': 'application/json' },
                 body: JSON.stringify(removingGroupUserObj)
                 }
             )
 
             let data = await response.text()
-            //console.log(data);
             //commit('updateThreadUser', data)
         },
 
@@ -252,6 +246,11 @@ const store = createStore({
                 'https://localhost:44300/api/User/GetUsers',
                 {
                     method: 'get',
+                     headers: {
+                         Authorization: 'Bearer ' + this.state.token,
+                         'Content-type': 'application/json',
+                     },
+                    //body: JSON.stringify(this.state.token)
                 }
             )
             let data = await response.json()
@@ -263,7 +262,10 @@ const store = createStore({
                 `https://localhost:44300/api/User/DeleteUserByIdSub/${userIdSub}`,
                 {
                     method: 'delete',
-                    headers: { 'Content-type': 'application/json' },
+                    headers: { 
+                        Authorization: 'Bearer ' + this.state.token,
+                        'Content-type': 'application/json' 
+                    },
                 }
             )
             let data = await response.json()
@@ -284,12 +286,11 @@ const store = createStore({
             )
             let data = await response.json()
 
-            console.log(data)
             commit('setGroupThreadsAdmin', data)
         },
 
         async getAllThreads({ commit }) {
-            //console.log(this.state.token)
+            
             let response = await fetch(
                 'https://localhost:44300/api/CategoryThread/GetCategoryThreadByThreadType/false',
                 {
@@ -303,17 +304,23 @@ const store = createStore({
             )
             let data = await response.json()
 
-            console.log(data)
             commit('setThreadsFromBack', data)
         },
 
         async GetThreadFromSpecificId({ commit }, id) {
             let response = await fetch(
-                `https://localhost:44300/api/CategoryThread/GetCategoryThreadById/${id}`
+                `https://localhost:44300/api/CategoryThread/GetCategoryThreadById/${id}`,
+                {
+                    method: 'get',
+                    headers: {
+                        Authorization: 'Bearer ' + this.state.token,
+                        'Content-type': 'application/json',
+                    },
+                    //body: JSON.stringify(this.state.token)
+                }
             )
             let data = await response.json()
 
-            console.log('GetThreadFromSpecificId Action: ', data)
             commit('setSpecificPostFromThread', data)
         },
 
@@ -322,7 +329,9 @@ const store = createStore({
                 `https://localhost:44300/api/CategoryThread/DeleteCategoryThread/${id}`,
                 {
                     method: 'delete',
-                    headers: { 'Content-type': 'application/json' },
+                    headers: { 
+                        Authorization: 'Bearer ' + this.state.token,
+                        'Content-type': 'application/json' },
                     body: JSON.stringify(this.state.UserThread),
                 }
             )
@@ -335,28 +344,58 @@ const store = createStore({
                 'https://localhost:44300/api/Category/GetCategories'
             )
             let data = await response.json()
-            console.log(data)
             commit('setCategoriesFromBackend', data)
         },
 
         async GetRepliesForSpecificPost({ commit }, id) {
             let response = await fetch(
-                `https://localhost:44300/api/Reply/GetReplyByCategoryThreadId/${id}`
+                `https://localhost:44300/api/Reply/GetReplyByCategoryThreadId/${id}`,
+                {
+                    method: 'get',
+                    headers: {
+                        Authorization: 'Bearer ' + this.state.token,
+                        'Content-type': 'application/json',
+                    },
+                    //body: JSON.stringify(this.state.token)
+                }
             )
 
             let data = await response.json()
-            console.log('GetRepliesForSpecificPost Action: ', data)
             commit('fetchReplyToSpecificPost', data)
         },
 
 
         async GetAllReplies({ commit }) {
+            
             let response = await fetch(
-                'https://localhost:44300/api/Reply/GetReplies'
+                'https://localhost:44300/api/Reply/GetReplies',
+                {
+                    method: 'get',
+                    headers: {
+                        Authorization: 'Bearer ' + this.state.token,
+                        'Content-type': 'application/json',
+                    },
+                    //body: JSON.stringify(this.state.token)
+                }
             )
             let data = await response.json()
-            console.log(data)
             commit('setRepliesFromBacked', data)
+        },
+        async GetAllRepliesUser({commit}, userId){
+            
+            let response = await fetch(
+                `https://localhost:44300/api/Reply/GetReply/${userId}`,
+                {
+                    method: 'get',
+                    headers: {
+                        Authorization: 'Bearer ' + this.state.token,
+                        'Content-type': 'application/json',
+                    }
+                    
+                }
+            )
+            let data = await response.json()
+            commit('AllRepliesUser', data)
         },
 
         async DeleteSpecificReply({ commit }, id) {
@@ -364,41 +403,50 @@ const store = createStore({
                 `https://localhost:44300/api/Reply/DeleteReply/${id}`,
                 {
                     method: 'delete',
-                    headers: { 'Content-type': 'application/json' },
+                    headers: { 
+                        Authorization: 'Bearer ' + this.state.token,
+                        'Content-type': 'application/json' 
+                    },
                     body: JSON.stringify(this.state.AllReplies),
                 }
             )
-            let data = await response.json()
+            let data = await response.text()
             commit('deleteSpecificReply', data)
         },
 
-        async GetAllRepliesUser({commit}, userId){
-            let response = await fetch(
-                `https://localhost:44300/api/Reply/GetReply/${userId}`
-            )
-            let data = await response.json()
-            console.log(data)
-            commit('AllRepliesUser', data)
-        },
 
         async GetThreadsFromUser({ commit }, userId) {
             let response = await fetch(
-                `https://localhost:44300/api/CategoryThread/GetCategoryThreadByUserId/${userId}`
+                `https://localhost:44300/api/CategoryThread/GetCategoryThreadByUserId/${userId}`,
+                {
+                    method: 'get',
+                    headers: {
+                        Authorization: 'Bearer ' + this.state.token,
+                        'Content-type': 'application/json',
+                    }
+                    
+                }
             )
 
             let data = await response.json()
-            console.log(data)
             commit('setUserThreads', data)
         },
 
         async GetGroupThreadsFromUser({commit}, idSub){
+            console.log(this.state.token)
             let response = await fetch(
-                `https://localhost:44300/api/CategoryThread/GetGroupCategoryThreadByUserid?userIdSub=${idSub}`
-
+                `https://localhost:44300/api/CategoryThread/GetGroupCategoryThreadByUserid?userIdSub=${idSub}`,
+                {
+                    method: 'get',
+                    headers: {
+                        Authorization: 'Bearer ' + this.state.token,
+                        'Content-type': 'application/json',
+                    }
+                    
+                }
                 )
 
                 let data = await response.json()
-                console.log(data)
                 commit('setGroupUserThreads', data)
         },
 
@@ -408,29 +456,44 @@ const store = createStore({
                 `https://localhost:44300/api/User/AddUser?Id_sub=${createUserObject.idSub}&userName=${createUserObject.username}&email=${createUserObject.email}`,
                 {
                     method: 'post',
-                    headers: { 'Content-type': 'application/json' },
+                    headers: { 
+                        Authorization: 'Bearer ' + this.state.token,
+                        'Content-type': 'application/json' },
                     body: JSON.stringify(createUserObject),
                 }
             )
             let data = await response.json()
-            console.log('from action', data)
             commit('setNewUser', data)
         },
         
 
         async getThreadUser({commit}, categoryThreadId) {
-            //console.log(categoryThreadId, ' i action')
-            let response = await fetch(`https://localhost:44300/api/ThreadUser/GetThreadUsersByPostId?categoryThreadId=${categoryThreadId}`)
+            let response = await fetch(`https://localhost:44300/api/ThreadUser/GetThreadUsersByPostId?categoryThreadId=${categoryThreadId}`,
+            {
+                method: 'get',
+                 headers: {
+                     Authorization: 'Bearer ' + this.state.token,
+                     'Content-type': 'application/json',
+                 },
+                //body: JSON.stringify(this.state.token)
+            }
+            )
             let data = await response.json()
-            console.log(data)
             commit('setThreadUserFromBack', data)
        },
 
        async getUserGroups({commit}, userId){
-           let response = await fetch(`https://localhost:44300/api/ThreadUser/GetThreadUsersByCategoryId?userId=${userId}`)
+           let response = await fetch(`https://localhost:44300/api/ThreadUser/GetThreadUsersByCategoryId?userId=${userId}`,
+           {
+            method: 'get',
+            headers: {
+                Authorization: 'Bearer ' + this.state.token,
+                'Content-type': 'application/json',
+            }
+            
+        })
            
             let data = await response.json()
-            console.log('getUserGroups action ', data)
             commit('setUserGroups', data)
        }
         

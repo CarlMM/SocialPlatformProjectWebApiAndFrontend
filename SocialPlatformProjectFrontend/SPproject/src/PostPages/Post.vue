@@ -132,18 +132,18 @@ export default {
         //this.fetchReplyForPost();
     },
     created() {
-        console.log('id from url', this.tId)
-
+        
+        this.$store.commit('setToken', AuthState.token)
         this.$store.dispatch('GetThreadFromSpecificId', this.tId)
         this.$store.dispatch('GetRepliesForSpecificPost', this.tId)
 
-        if (AuthState.isAuthenticated == true) {
-            if (
-                AuthState.user['http://localhost:3000/roles'][0] == 'AdminUser'
-            ) {
-                this.$store.state.isAdmin = true
-            }
-        }
+        // if (AuthState.isAuthenticated == true) {
+        //     if (
+        //         AuthState.user['http://localhost:3000/roles'][0] == 'AdminUser'
+        //     ) {
+        //         this.$store.state.isAdmin = true
+        //     }
+        // }
     },
 
     computed: {

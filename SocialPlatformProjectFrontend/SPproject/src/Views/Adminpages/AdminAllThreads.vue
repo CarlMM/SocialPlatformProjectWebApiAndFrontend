@@ -44,6 +44,7 @@ export default {
         }
     },
     created() {
+        this.$store.commit('setToken', AuthState.token)
         this.$store.dispatch('getAllThreads')
         if (AuthState.isAuthenticated == true || AuthState.isAuthenticated == false) {
             if (
@@ -76,6 +77,7 @@ export default {
                     return item.id !== threadId
                 })
                 this.$store.commit('updateSpecificThreadAfterDelete', updatedList)
+                location.reload()
             }
             else{
                 

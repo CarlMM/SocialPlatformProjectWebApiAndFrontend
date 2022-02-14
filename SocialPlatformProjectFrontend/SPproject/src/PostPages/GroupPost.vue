@@ -197,17 +197,21 @@ export default {
     },
 
     created() {
+        this.$store.commit('setToken', AuthState.token)
         this.$store.dispatch('getAllUsersAdmin')
         this.$store.dispatch('GetThreadFromSpecificId', this.pId)
         this.$store.dispatch('GetRepliesForSpecificPost', this.pId)
         this.fetchAllUsers()
 
-        if (AuthState.isAuthenticated == true) {
-            if (
-                AuthState.user['http://localhost:3000/roles'][0] == 'AdminUser'
-            ) {
-                this.$store.state.isAdmin = true
-            }
+        if (AuthState.isAuthenticated != true || !AuthState.isAuthenticated != false) {
+            // if (
+            //     AuthState.user['http://localhost:3000/roles'][0] == 'AdminUser'
+            // ) {
+            //     this.$store.state.isAdmin = true
+            // } 
+            //else {
+                this.$router.push('/notauthorized')
+            //}
         }
     },
     beforeMount() {
@@ -334,7 +338,8 @@ export default {
              }
 
 
-             console.log(this.sendObj.prop1.userIdSub)
+            //  console.log(this.sendObj.prop1.userIdSub)
+            //  console.log('person att lägga till', this.sendObj.prop2.userIdSub)
 
              return this.$store.dispatch('addUserToGroupThread', this.sendObj)
 
