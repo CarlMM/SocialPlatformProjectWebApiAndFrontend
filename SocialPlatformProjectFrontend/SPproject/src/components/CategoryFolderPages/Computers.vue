@@ -1,6 +1,7 @@
 <template>
     <div>
         <div>
+            <h1 class="categories-h1">Computer</h1>
             <Thread :list="GetThreads" />
         </div>
     </div>
@@ -50,3 +51,9 @@ export default {
     },
 }
 </script>
+
+
+
+<style scoped>
+
+</style>

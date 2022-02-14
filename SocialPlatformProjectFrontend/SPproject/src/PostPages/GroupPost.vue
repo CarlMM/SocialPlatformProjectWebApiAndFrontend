@@ -10,11 +10,11 @@
                     </div>
                     <button class="post-btn" @click="showModal()">
                         <i class="far fa-comment icon"></i>
-                    <span>Reply to post</span>
+                        <span>Comment</span>
                     </button>
                     <button class="post-btn">
-                        <i class="far fa-surprise icon"></i>
-                        <span>Surprise</span>
+                        <i class="fa-regular fa-pen-to-square icon"></i>
+                        <span>Edit</span>
                     </button>
                     <button class="post-btn">
                         <i class="far fa-share-square icon"></i>
@@ -31,11 +31,11 @@
                             <p class="reply-text">{{item.text}}</p>
                             <button class="post-btn">
                                 <i class="far fa-comment icon"></i>
-                                <span>Reply to comment</span>
+                                <span>Reply</span>
                             </button>
                             <button class="post-btn">
-                                <i class="far fa-surprise icon"></i>
-                                <span>Surprise</span>
+                                <i class="fa-regular fa-pen-to-square icon"></i>
+                                <span>Edit</span>
                             </button>
                             <button class="post-btn">
                                 <i class="far fa-share-square icon"></i>
