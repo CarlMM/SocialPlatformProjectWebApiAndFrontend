@@ -89,6 +89,7 @@ namespace SocialPlatformProjectWebApi
                 options.AddPolicy("PutThreadText", policy => policy.RequireClaim("permissions", "put:threadText"));
                 
 
+
                 // ReplyController policies
 
                 options.AddPolicy("GetReplies", policy => policy.RequireClaim("permissions", "get:replies"));
@@ -105,6 +106,7 @@ namespace SocialPlatformProjectWebApi
 
                 options.AddPolicy("GetThreadUsers", policy => policy.RequireClaim("permissions", "get:threadUsers"));
                 options.AddPolicy("GetThreadUsersByCategoryId", policy => policy.RequireClaim("permissions", "get:threadUsersByCategoryId"));
+                options.AddPolicy("GetThreadUsersByPostId", policy => policy.RequireClaim("permissions", "get:"));
                 options.AddPolicy("AddThreadUser", policy => policy.RequireClaim("permissions", "post:addThreadUser"));
                 options.AddPolicy("DeleteThreadUser", policy => policy.RequireClaim("permissions", "delete:threadUser"));
 

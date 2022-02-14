@@ -41,6 +41,7 @@ namespace SocialPlatformProjectWebApi.Controllers
 
 
         [HttpGet]
+        [Authorize(Policy = "GetThreadUsersByPostId")]
         [Route("GetThreadUsersByPostId")]
         public async Task<IList<ThreadUser>> GetThreadUsersByPostId(int categoryThreadId)
         {
