@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SocialPlatformProjectWebApi.Models;
 using SocialPlatformProjectWebApi.Services;
@@ -22,6 +23,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "GetThreadUsers")]
         [Route("GetThreadUsers")] //Admin 
         public IEnumerable<ThreadUser> GetThreadUsers()
         {
@@ -30,6 +32,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "GetThreadUsersByCategoryId")]
         [Route("GetThreadUsersByCategoryId")] //Admin & Normal
         public async Task<IList<ThreadUser>> GetThreadUsersByCategoryThreadId(int categoryThreadId)
         {
@@ -38,6 +41,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "AddThreadUser")]
         [Route("AddThreadUser")] //Admin & Normal
         public async Task<IActionResult> AddThreadUser(int categoryThreadId, string userIdSub)
         {
@@ -46,6 +50,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Policy = "DeleteThreadUser")]
         [Route("DeleteThreadUser")] //Admin & Normal
         public async Task<IActionResult> DeleteThreadUser(int categoryThreadId, string userIdSub)
         {

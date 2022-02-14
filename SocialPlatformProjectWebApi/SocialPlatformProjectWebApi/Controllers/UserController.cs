@@ -24,6 +24,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "GetUsers")]
         [Route("GetUsers")]
         public async Task<IList<User>> GetUsers()
         {
@@ -41,7 +42,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpPost]
-        [Route("AddUser")]
+        [Authorize(Policy = "PostUser")]
         public async Task<IActionResult> AddUser(string Id_sub, string userName, string email)
         {
             await _userService.AddUser(Id_sub, userName, email);
