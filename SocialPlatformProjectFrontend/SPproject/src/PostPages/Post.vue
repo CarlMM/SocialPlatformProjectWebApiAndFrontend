@@ -62,8 +62,9 @@
                                 ></template>
                                 <template v-slot:body>
                                     <div class="main-post m2">
-                                        <!-- <span><p>Posted {{setTime(this.createdDate)}}</p></span> -->
                                         <h1>{{ this.threadTitle }}</h1>
+                                        <p>Posted {{this.threadDate}}</p>
+                                        <!-- <p>{{setTime(threadDate)}}</p> -->
                                         <p>{{ this.threadText }}</p>
                                     </div>
                                     <div id="container">
@@ -107,6 +108,7 @@ export default {
             threadId: null,
             threadTitle: '',
             threadText: '',
+            threadDate: '',
             errorMessage: [],
             missingTextMessage: '',
             newReplyPost: {
@@ -194,6 +196,7 @@ export default {
 
             this.threadTitle = title
             this.threadText = text
+            this.threadDate = createdDate.slice(0, 10)
         },
 
         closeModal() {

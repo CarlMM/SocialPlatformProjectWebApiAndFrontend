@@ -81,13 +81,9 @@
                                 ></template>
                                 <template v-slot:body>
                                     <div class="main-post m2">
-                                        <!-- <h1>
-                                            <small
-                                                >Posted by <a href="">User</a> 15 Jan
-                                                2022</small
-                                            >
-                                        </h1> -->
                                         <h1>{{ this.threadTitle }}</h1>
+                                        <h1>Posted {{ this.threadDate}}</h1>
+                                        <!-- <p>{{setTime(threadDate)}}</p> -->
                                         <p>{{ this.threadText }}</p>
                                     </div>
                                     <div id="container">
@@ -170,6 +166,7 @@ export default {
             searchedUser: '',
             threadTitle: '',
             threadText: '',
+            threadDate: Date,
             errors: [],
             memberListUsername: [],
             isModalVisible: false,
@@ -253,6 +250,7 @@ export default {
 
             this.threadTitle = title
             this.threadText = text
+            this.threadDate = createdDate.slice(0, 10)
         },
         closeModal(){
             this.isModalVisible = false
