@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SocialPlatformProjectWebApi.Models;
 using SocialPlatformProjectWebApi.Services;
@@ -22,6 +23,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "GetReplies")]
         [Route("GetReplies")] //Admin 
         public async Task<IEnumerable<Reply>> GetReplies()
         {
@@ -30,6 +32,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "ReplyUserId")]
         [Route("GetReply/{userId}")] //Admin & Normal
         public async Task<IList<Reply>> GetReply(string userId)
         {
@@ -39,6 +42,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "ReplyThreadId")]
         [Route("GetReplyByCategoryThreadId/{categoryThreadId}")] //Admin & Normal
         public async Task<IList<Reply>> GetReplyByCategoryThreadId(int categoryThreadId)
         {
@@ -47,6 +51,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "Reply")]
         [Route("AddReply/{Reply}")] //Admin & Normal
         public async Task<IActionResult> AddReply([FromBody] Reply reply)
         {
@@ -55,6 +60,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Policy = "DeleteReplyId")]
         [Route("DeleteReply/{id}")] //Admin & Normal
         public async Task<IActionResult> DeleteReply(int id)
         {
@@ -71,7 +77,8 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
          [HttpPut]
-         [Route("EditReply")] //Admin & Normal
+        [Authorize(Policy = "EditReply")]
+        [Route("EditReply")] //Admin & Normal
         public async Task<Reply> EditReplyText(int id, string text)
         {
             var template = await _replyService.EditReplyText(id, text);
