@@ -8,6 +8,7 @@ namespace SocialPlatformProjectWebApi.Models
 {
     public partial class socialplatformContext : DbContext
     {
+
         public socialplatformContext()
         {
         }
