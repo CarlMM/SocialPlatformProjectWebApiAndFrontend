@@ -73,9 +73,20 @@ export default {
             this.$store.dispatch('Auth0GetAllUsers')
         },
         removeUserFromAuth0(userSubId) {
-            console.log('we are in the method')
-            console.log(userSubId, 'usersubId i metodem')
-            this.$store.dispatch('Auth0DeleteUser', userSubId)
+            //console.log(this.$store.state.Auth0ListUsers)
+            
+             this.$store.dispatch('Auth0DeleteUser', userSubId)
+
+             let updateId = userSubId
+             //Fetch the list of userThread
+             let list = this.$store.state.Auth0ListUsers
+             // Goes through the list, filter it and check for what is no longer there
+             let updatedList = list.filter(item => {
+                 return item.user_id !== updateId
+             })
+
+             this.$store.commit('Auth0SetAllUsers', updatedList)
+
         },
         deleteUser(userId) {
             //Removes Id specific to thread

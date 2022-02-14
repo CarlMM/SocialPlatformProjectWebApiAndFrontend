@@ -41,7 +41,7 @@ namespace SocialPlatformProjectWebApi.Controllers
         }
 
         [HttpGet]
-        [Authorize(Policy = "ReplyThreadId")]
+        //[Authorize(Policy = "ReplyThreadId")]
         [Route("GetReplyByCategoryThreadId/{categoryThreadId}")] //Admin & Normal
         public async Task<IList<Reply>> GetReplyByCategoryThreadId(int categoryThreadId)
         {
