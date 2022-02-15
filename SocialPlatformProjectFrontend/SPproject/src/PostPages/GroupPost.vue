@@ -358,7 +358,8 @@ export default {
             //  console.log(this.sendObj.prop1.userIdSub)
             //  console.log('person att lägga till', this.sendObj.prop2.userIdSub)
 
-             return this.$store.dispatch('addUserToGroupThread', this.sendObj)
+             this.$store.dispatch('addUserToGroupThread', this.sendObj)
+             location.reload();
 
 
 
