@@ -94,17 +94,23 @@ export default {
 
         },
         deleteUser(userId) {
-            //Removes Id specific to thread
-            this.$store.dispatch('deleteUserAsAdmin', userId)
+            let deleteConfirm = 'Are u sure you want to delete User?'
+            if(confirm(deleteConfirm) == true){
+                //Removes Id specific to thread
+                this.$store.dispatch('deleteUserAsAdmin', userId)
+    
+                let userSubId = userId
+                //Fetch the list of userThread
+                let list = this.$store.state.listOfUsersAdmin
+                //Goes through the list, filter it and check for what is no longer there
+                let updatedList = list.filter(item => {
+                    return item.idSub !== userSubId
+                })
+                this.$store.commit('updateUserListAfterDelete', updatedList)
+            }
+            else{
 
-            let userSubId = userId
-            //Fetch the list of userThread
-            let list = this.$store.state.listOfUsersAdmin
-            //Goes through the list, filter it and check for what is no longer there
-            let updatedList = list.filter(item => {
-                return item.idSub !== userSubId
-            })
-            this.$store.commit('updateUserListAfterDelete', updatedList)
+            }
         },
     },
 }
