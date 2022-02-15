@@ -5,17 +5,17 @@ using System.Collections.Generic;
 
 namespace SocialPlatformProjectWebApi.Models
 {
-    public  class Category
+    public partial class Category
     {
         public Category()
         {
-            Threads = new HashSet<Thread>();
+            CategoryThreads = new HashSet<CategoryThread>();
         }
 
         public long Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
 
-        public virtual ICollection<Thread> Threads { get; set; }
+        public virtual ICollection<CategoryThread> CategoryThreads { get; set; }
     }
 }

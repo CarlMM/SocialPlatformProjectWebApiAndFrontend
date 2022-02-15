@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 namespace SocialPlatformProjectWebApi.Models
 {
-    public class Reply
+    public partial class Reply
     {
         public long Id { get; set; }
         public string Text { get; set; }
-        public byte[] CreatedDate { get; set; }
-        public long? UserId { get; set; }
-        public long ThreadId { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public long CategoryThreadId { get; set; }
+        public string UserIdSub { get; set; }
 
-        public virtual Thread Thread { get; set; }
+        public virtual CategoryThread CategoryThread { get; set; }
     }
 }
