@@ -199,8 +199,8 @@ export default {
         },
         closeModal() {
             this.errorMessage = []
-            this.newPostObject.Title = ''
-            this.newPostObject.Text = ''
+            // this.newPostObject.Title = ''
+            // this.newPostObject.Text = ''
             // this.newPostObject.CategoryId = ''
             this.isModalVisible = false
         },
@@ -271,8 +271,9 @@ export default {
 
                 
                 // this.newPostObject.ThreadUser.CategoryThreadId = this.newPostObject.UserId_Sub;
-
-                return this.$store.dispatch('createNewPostMethod', newPostObject )
+                this.$store.dispatch('createNewPostMethod', newPostObject )
+                 this.newPostObject.Title = ''
+                 this.newPostObject.Text = ''
             }
         },
     },
